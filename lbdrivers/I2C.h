@@ -81,7 +81,7 @@ public:
 //  }
 
  inline bool masterTransmit(Fifo * frame){
-   masterWriteBlock(frame);
+   return masterWriteBlock(frame);
  }
 
   bool masterWriteBlock(Fifo * toWrite);
@@ -102,8 +102,13 @@ public:
 extern "C" {
 #endif
 
+#ifdef STM32F072
+void I2C1_IRQHandler(void) __attribute__ ((interrupt));
+#endif
+#ifdef STM32F4xx
 void I2C1_EV_IRQHandler(void) __attribute__ ((interrupt));
 void I2C1_ER_IRQHandler(void) __attribute__ ((interrupt));
+#endif
 
 #ifdef __cplusplus
 }

@@ -71,8 +71,8 @@ public:
   Gpio gpioSCL = Gpio(GPIOB, 10);
   Gpio gpioSDA = Gpio(GPIOB, 11);
 
-  Led ledAlarm = Led(GPIOF, 2, Led::Type::ACTIVEHIGH, Led::Mode::SWIECI ); //  Gpio gpioLedAwaria = Gpio(GPIOF, 2);
-  Led ledPracaAku = Led(GPIOF, 3, Led::Type::ACTIVEHIGH, Led::Mode::SWIECI ); //  Gpio gpioLedPracaAku = Gpio(GPIOF, 3);
+  Led ledAlarm = Led(GPIOF, 2); //  Gpio gpioLedAwaria = Gpio(GPIOF, 2);
+  Led ledPracaAku = Led(GPIOF, 3); //  Gpio gpioLedPracaAku = Gpio(GPIOF, 3);
 
   // to jest w Hardware/ADC
   //  Gpio gpioPomSygnL = Gpio(GPIOC, 0);
@@ -82,6 +82,13 @@ public:
 
 
   void setup(){
+
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN | RCC_AHBENR_GPIOBEN
+        |RCC_AHBENR_GPIOCEN | RCC_AHBENR_GPIODEN
+        |RCC_AHBENR_GPIOEEN | RCC_AHBENR_GPIOFEN
+        ;
+    READ_REG_AND_FORGET(RCC->AHBENR);
+
     gpioOutPozar.setup( Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::LowSpeed);
     gpioOutZamkniete.setupFromClone(&gpioOutPozar);
     gpioOutOtwarte.setupFromClone(&gpioOutPozar);
@@ -121,11 +128,9 @@ public:
     gpioInRezerwa1.setupFromClone(&gpioInBtnBACK);
     gpioInRezerwa2.setupFromClone(&gpioInBtnBACK);
 
-    RCC->AHBENR |= RCC_AHBENR_GPIOAEN | RCC_AHBENR_GPIOBEN
-        |RCC_AHBENR_GPIOCEN | RCC_AHBENR_GPIODEN
-        |RCC_AHBENR_GPIOEEN | RCC_AHBENR_GPIOFEN
-        ;
-    READ_REG_AND_FORGET(RCC->AHBENR);
+    ledAlarm.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI ); //  Gpio gpioLedAwaria = Gpio(GPIOF, 2);
+    ledPracaAku.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI ); //  Gpio gpioLedPracaAku = Gpio(GPIOF, 3);
+
   }
 
 };

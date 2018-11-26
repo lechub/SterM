@@ -100,12 +100,17 @@ QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_
 
 
 
-int main(int argc, char* argv[]) {
+//int main(int argc, char* argv[]) {
+  void main(void) {
   // At this stage the system clock should have already been configured
   // at high speed.
 
   Hardware::init();
+
   pins.setup();
+
+  pins.ledAlarm.setOutputUp();
+  pins.ledPracaAku.setOutputUp();
 
   {
     i2cDefs.base = I2C_FOR_LCD;
@@ -134,9 +139,9 @@ int main(int argc, char* argv[]) {
 //    while(true){;}
 //  }
 
+  pins.ledAlarm.setOutputDown();
+  pins.ledPracaAku.setOutputDown();
 
-  pins.ledAlarm.set(Led::Mode::SWIECI);
-  pins.ledPracaAku.setOutputUp();
 
   //---------------------->1234567890123456<
   hmi->lcd->printXY(0,0,  " Sterownik bram ");//  i2c->dirtyDelayMs(500);
