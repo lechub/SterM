@@ -50,10 +50,6 @@ private:
 		return Key::NONE;
 	}
 
-
-
-
-
 	Gpio *keyBACK;// =  Gpio(GPIOC,6, Gpio::GpioMode::INPUT, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::Speed1);
 	Gpio *keyLEFT;// =  Gpio(GPIOC,5, Gpio::GpioMode::INPUT, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::Speed1);
 	Gpio *keyRIGHT;// =  Gpio(GPIOC,8, Gpio::GpioMode::INPUT, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::Speed1);

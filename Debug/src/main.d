@@ -11,7 +11,7 @@ src/main.o: ../src/main.cpp ../system/include/diag/Trace.h \
  ../src/HBridge.h ../src/Hamulec.h ../src/Pinout.h ../lbutils/Led.h \
  ../src/Keyboard.h ../lbutils/Button.h ../src/HMI.h ../src/Menu.h \
  ../lbutils/FrameBuffer.h ../lbutils/Fifo.h ../lbdrivers/ST7032iFB.h \
- ../lbdrivers/I2C.h
+ ../lbdrivers/I2C.h ../src/Parameter.h
 
 ../system/include/diag/Trace.h:
 
@@ -74,3 +74,5 @@ src/main.o: ../src/main.cpp ../system/include/diag/Trace.h \
 ../lbdrivers/ST7032iFB.h:
 
 ../lbdrivers/I2C.h:
+
+../src/Parameter.h:

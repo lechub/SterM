@@ -113,7 +113,7 @@ public:
 	void setResetPin(bool newstate){ gpioResetLCD->setOutput(newstate); }
 	void setBackLight(bool newstate){ gpioBackLight->setOutput(newstate); }
 
-	inline bool gotoXY(uint8_t Row, uint8_t Col){
+	inline bool gotoXY(uint8_t Col, uint8_t Row){
 	  if (Col > LCD_COL) return false;
 	  uint32_t offset = 0;
 	  switch(Row){
@@ -123,7 +123,7 @@ public:
     case 0:
     default: offset = LCD_L1; break;
 	  }
-	  return sendCommand(LCD_DDRAM_WRITE | offset | Col) ;
+	  return sendCommand(uint8_t(LCD_DDRAM_WRITE | offset | Col)) ;
 	}
 
 	bool print(char znak);

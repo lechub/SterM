@@ -61,8 +61,8 @@ public:
 
 
 	void monitor(){
-		//lcd->poll();
 		menu->poll();
+
 	}
 
 	static HMI * getInstance();

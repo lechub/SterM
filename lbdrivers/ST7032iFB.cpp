@@ -70,19 +70,19 @@ void ST7032iFB::init(I2C * i2cPort, Gpio * backLightPin, Gpio * resetLCDPin){
   gpioBackLight = backLightPin;
   gpioResetLCD = resetLCDPin;
   gpioBackLight->setup(Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::HighSpeed);
-  gpioResetLCD->setupFromClone(gpioBackLight);
+  gpioResetLCD->setup(Gpio::GpioMode::OUTPUT, Gpio::GpioOType::OpenDrain, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::HighSpeed);
   frameBuffer = &frame_buffer;
   fifo = &dataFifo;
   lcdStage = LcdStage::START;
   i2c = i2cPort;
-  i2c->setSlaveAdres(ST7032I_ADDRESS);
+  i2c->setSlaveAdres(ST7032I_ADDRESS<<1); // czemu do k.... nędzy adres jest przesuniety???
 
 
-  //Hardware::i2cInit();
+  setBackLight(true);
   setResetPin(false);
   delayMsDirty(50);
   setResetPin(true);
-  delayMsDirty(10);
+  delayMsDirty(100);
 
   sendCommand(0x38);
   delayMsDirty(300);
@@ -113,6 +113,8 @@ void ST7032iFB::init(I2C * i2cPort, Gpio * backLightPin, Gpio * resetLCDPin){
 
   sendCommand(0x38);	//cmmd table 0
   delayMsDirty(100);
+//  frameBuffer->printXY(0,0,"Chyba dziala..");
+//  sendLine(0);  //cmmd table 0
 }
 
 
@@ -160,7 +162,7 @@ void ST7032iFB::process(){
     break;
   case LcdStage::SEND_LINE1:
     if (!isBusy()){
-      sendLine(1);
+      sendLine(0);
       lcdStage = LcdStage::WAIT_GOTO_L2;
     }
     break;
@@ -178,7 +180,7 @@ void ST7032iFB::process(){
        break;
   case LcdStage::SEND_LINE2:
     if (!isBusy()){
-      sendLine(2);
+      sendLine(1);
       lcdStage = LcdStage::START;
     }
     break;

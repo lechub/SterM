@@ -41,6 +41,7 @@
 #include "I2C.h"
 #include "Hamulec.h"
 #include "Silnik24VDC.h"
+#include "Parameter.h"
 
 // ----------------------------------------------------------------------------
 //
@@ -65,9 +66,9 @@ Hamulec hamulec = Hamulec(&hBridgeHamulec);
 Silnik24VDC silnik24VDC = Silnik24VDC(&hBridgeSilnik);
 Silnik230VAC silnik230VAC = Silnik230VAC(&pins.gpioWlacz230Otworz, &pins.gpioWlacz230Zamknij);
 
-I2C_TypeDef * const I2C_FOR_LCD = I2C1;
+I2C_TypeDef * const I2C_FOR_LCD = I2C2;
 I2C::DeviceDefs i2cDefs;
-I2C i2c = I2C();
+I2C * i2c = I2C::getInstance();
 ST7032iFB st7032iDriver = ST7032iFB();
 
 Sterownik sterBramDym = Sterownik(&silnik24VDC, &silnik230VAC, &hamulec);
@@ -83,7 +84,6 @@ Menu menu = Menu();
 
 /** Wywolanie metody monitor() */
 void static inline keyb_callback(){  keys.co10ms(); }
-
 
 // periodycznie wykonywana funkcja monitor() opakowana w aku_callback()
 QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_KEYB_MS);
@@ -109,16 +109,21 @@ QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_
 
   pins.setup();
 
-  pins.ledAlarm.setOutputUp();
-  pins.ledPracaAku.setOutputUp();
+  Parameter::initEepromMemory();
+
+  //  for(int i = 0; i < 5; i++ ){
+//    pins.ledAlarm.toggleOutput();
+//    pins.ledPracaAku.toggleOutput();
+//    QuickTask::delayMsWithStoppedTasks(1000);
+//  }
 
   {
     i2cDefs.base = I2C_FOR_LCD;
     i2cDefs.i2cFreqkHz = 100;
     i2cDefs.sda = &pins.gpioSDA;
     i2cDefs.scl = &pins.gpioSCL;
-    i2c.init(&i2cDefs);
-    st7032iDriver.init(&i2c, &pins.gpioLcdBackLight, &pins.gpioLcdReset);
+    i2c->init(&i2cDefs);
+    st7032iDriver.init(i2c, &pins.gpioLcdBackLight, &pins.gpioLcdReset);
   }
 
   HMI * hmi;
@@ -139,15 +144,12 @@ QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_
 //    while(true){;}
 //  }
 
-  pins.ledAlarm.setOutputDown();
-  pins.ledPracaAku.setOutputDown();
-
-
   //---------------------->1234567890123456<
   hmi->lcd->printXY(0,0,  " Sterownik bram ");//  i2c->dirtyDelayMs(500);
-  hmi->lcd->printXY(1,0,  "pozarowych v.1.0");
+  hmi->lcd->printXY(0,1,  "pozarowych v.1.0");
+  QuickTask::delayMsWithActiveTasks(2000);
 
-  hmi->menu->goToEkran(Menu::EKRAN::e_AUTOMAT);
+  //hmi->menu->goToEkran(Menu::EKRAN::e_AUTOMAT);
   do{
     Hardware::WDOG_Reload();          // przeladowanie Watch-doga
     QuickTask::poll();

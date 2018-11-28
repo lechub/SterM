@@ -48,10 +48,12 @@ private:
     IDLE, START, ADR, DATA, STOP, FAIL
   }State;
 
-  DeviceDefs * i2c = nullptr;
-  Fifo * data = nullptr;
+  DeviceDefs * volatile i2c = nullptr;
+  Fifo * volatile data = nullptr;
   volatile uint16_t slaveAdr = 0;
   volatile State state = State::IDLE;
+
+//  I2C(){} // private, bo to singleton
 
   void setState(State newstate){
     if (newstate == State::IDLE){
@@ -75,14 +77,14 @@ public:
 
   //bool masterTransmit(Fifo * frame);
   //bool masterTransmit(uint8_t * buffer, uint8_t amount);
-//  bool masterTransmit(uint16_t slaveAdres, uint8_t * buffer, uint8_t amount){
-//    setSlaveAdres(slaveAdres);
-//    return masterTransmit(buffer, amount);
-//  }
+  //  bool masterTransmit(uint16_t slaveAdres, uint8_t * buffer, uint8_t amount){
+  //    setSlaveAdres(slaveAdres);
+  //    return masterTransmit(buffer, amount);
+  //  }
 
- inline bool masterTransmit(Fifo * frame){
-   return masterWriteBlock(frame);
- }
+  inline bool masterTransmit(Fifo * frame){
+    return masterWriteBlock(frame);
+  }
 
   bool masterWriteBlock(Fifo * toWrite);
   bool masterReadStart(uint32_t size);
@@ -103,7 +105,8 @@ extern "C" {
 #endif
 
 #ifdef STM32F072
-void I2C1_IRQHandler(void) __attribute__ ((interrupt));
+void I2C1_IRQHandler(void);
+void I2C2_IRQHandler(void);
 #endif
 #ifdef STM32F4xx
 void I2C1_EV_IRQHandler(void) __attribute__ ((interrupt));

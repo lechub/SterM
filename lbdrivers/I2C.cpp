@@ -59,11 +59,18 @@ bool I2C::init(DeviceDefs * initDefsPtr){
 }
 
 bool I2C::init(){
+  data = &dataFrame;
+  setState(State::IDLE);
+
   // RCC
+  uint32_t RCC_BITS = RCC_APB1ENR_I2C1EN;
+  if (i2c->base == I2C2){
+    RCC_BITS = RCC_APB1ENR_I2C2EN;
+  }
   do {
-    SET_BIT(RCC->APB1ENR, RCC_APB1ENR_I2C1EN);
+    SET_BIT(RCC->APB1ENR, RCC_BITS);
     /* Delay after an RCC peripheral clock enabling */
-    __IO uint32_t tmpreg = READ_BIT(RCC->APB1ENR, RCC_APB1ENR_I2C1EN);
+    __IO uint32_t tmpreg = READ_BIT(RCC->APB1ENR, RCC_BITS);
     (void)(tmpreg);
   } while(0U);
 
@@ -71,8 +78,8 @@ bool I2C::init(){
   while(i2c->base->CR1 & I2C_CR1_PE){;} // odczekanie na koniec resetu I2C
 
   /**I2C1 GPIO Configuration
-PB10     ------> I2C1_SCL
-PB11     ------> I2C1_SDA
+PB10     ------> I2C2_SCL
+PB11     ------> I2C2_SDA
    */
   { // GPIO setup
     i2c->scl->setup(Gpio::GpioMode::ALTERNATE, Gpio::GpioOType::OpenDrain, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::MaximumSpeed);
@@ -88,8 +95,16 @@ PB11     ------> I2C1_SDA
   //i2c->base->CR1 &= ~I2C_CR1_PE;
   //while(i2c->base->CR1 & I2C_CR1_PE){;}	// odczekanie na koniec resetu I2C
 
-  NVIC_SetPriority(IRQn_Type::I2C1_IRQn, I2C::NVIC_I2C_PRIORITY);
-  NVIC_EnableIRQ(IRQn_Type::I2C1_IRQn);
+  if (i2c->base == I2C1){
+    NVIC_SetPriority(IRQn_Type::I2C1_IRQn, I2C::NVIC_I2C_PRIORITY);
+    NVIC_EnableIRQ(IRQn_Type::I2C1_IRQn);
+  }else if (i2c->base == I2C2){
+    NVIC_SetPriority(IRQn_Type::I2C2_IRQn, I2C::NVIC_I2C_PRIORITY);
+    NVIC_EnableIRQ(IRQn_Type::I2C2_IRQn);
+  }else{
+    return false;
+  }
+
 
   CLEAR_BIT(i2c->base->CR1, I2C_CR1_NOSTRETCH);   //
 
@@ -106,9 +121,7 @@ PB11     ------> I2C1_SDA
 
 
 
-  data = &dataFrame;
 
-  setState(State::IDLE);
 
   return true;
 }
@@ -118,22 +131,25 @@ void I2C::irqEvent(){
   I2C_TypeDef * base = i2c->base;
   Fifo * frame = data;
 
-//  if (READ_BIT(base->ISR, I2C_ISR_NACKF)){
-//    setState(I2C::State::FAIL);
-//    SET_BIT(base->ISR, I2C_ISR_NACKF);
-//    return;
-//  }
+  if (READ_BIT(base->ISR, I2C_ISR_NACKF)){
+    setState(I2C::State::FAIL);
+    SET_BIT(base->ICR, I2C_ICR_NACKCF);
+  }
 
   if (READ_BIT(base->ISR, I2C_ISR_RXNE)){ // nastepny bajt do odebrania
-    frame->put(i2c->base->RXDR);
+    frame->put(uint8_t(i2c->base->RXDR));
   }
 
   if (READ_BIT(base->ISR, I2C_ISR_TXIS)){ // nastepny bajt do wyslania
     i2c->base->TXDR = uint8_t(frame->get());
   }
 
+//  if (READ_BIT(base->ISR, I2C_ISR_TXE)){ // nastepny bajt do wyslania
+//    i2c->base->TXDR = uint8_t(frame->get());
+//  }
+
   if (READ_BIT(base->ISR, I2C_ISR_STOPF)){
-    SET_BIT(base->CR1, I2C_ICR_STOPCF);
+    SET_BIT(base->ICR, I2C_ICR_STOPCF);
     setState(State::IDLE);
   }
 
@@ -196,8 +212,8 @@ bool I2C::masterReadStart(uint32_t size){
   MODIFY_REG(i2c->base->CR2, I2C_CR2_NBYTES, size<<16); // The number of bytes to be transferred: NBYTES[7:0]. If the number of bytes is equal to or greater than 255 bytes, NBYTES[7:0] must initially be filled with 0xFF.
 
   i2c->base->CR1 |= I2C_CR1_TCIE
-      //| I2C_CR1_TXIE
-      | I2C_CR1_RXIE
+      | I2C_CR1_TXIE
+      //| I2C_CR1_RXIE
       //| I2C_CR1_NACKIE
       | I2C_CR1_STOPIE
       //| I2C_CR1_ERRIE
@@ -241,7 +257,18 @@ void I2C2_IRQHandler(void){
   i2cInstance.irqEvent();
 }
 
+//void I2C2_IRQHandler(void){
+//  i2cInstance.irqEvent();
+//}
 
+/*
+Arbitration Loss (ARLO)
+Bus Error detection (BERR)
+Overrun/Underrun (OVR)
+Timeout detection (TIMEOUT)
+PEC error detection (PECERR)
+Alert pin event detection (ALERT)
+*/
 
 
 //} /* namespace STM32F4 */

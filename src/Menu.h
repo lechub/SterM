@@ -29,7 +29,7 @@ public:
 
 private:
 
-	static constexpr uint32_t REFRESH_DELAY_MS = 1888;
+	static constexpr uint32_t REFRESH_DELAY_MS = 338;
 
 	Sterownik * ster;
 	Keyboard * keys;
@@ -60,12 +60,12 @@ public:
 		ekran = nowyEkran;
 		editMode = false;
 
-		switch(ekran){
-		case e_AUTOMAT:				 break;
-
-		default:
- break;
-		}
+//		switch(ekran){
+//		case e_AUTOMAT:				 break;
+//
+//		default:
+// break;
+//		}
 		showEkran();
 	}
 
@@ -91,7 +91,6 @@ public:
 	void showEkran(uint16_t val);
 
 	void poll();
-
 
 
 };
