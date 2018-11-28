@@ -6,7 +6,7 @@ src/Sterownik.o: ../src/Sterownik.cpp ../src/Sterownik.h \
  ../system/include/cmsis/core_cmFunc.h \
  ../system/include/cmsis/system_stm32f0xx.h ../src/SilnikNapedu.h \
  ../src/Silnik24VDC.h ../src/HBridge.h ../src/Hamulec.h ../src/Pinout.h \
- ../lbutils/Led.h
+ ../lbutils/Led.h ../src/Parameter.h
 
 ../src/Sterownik.h:
 
@@ -39,3 +39,5 @@ src/Sterownik.o: ../src/Sterownik.cpp ../src/Sterownik.h \
 ../src/Pinout.h:
 
 ../lbutils/Led.h:
+
+../src/Parameter.h:

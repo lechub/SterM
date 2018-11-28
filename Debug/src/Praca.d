@@ -6,7 +6,8 @@ src/Praca.o: ../src/Praca.cpp ../src/Praca.h ../src/Pinout.h \
  ../system/include/cmsis/core_cmFunc.h \
  ../system/include/cmsis/system_stm32f0xx.h ../lbutils/Led.h \
  ../src/Sterownik.h ../src/Silnik230VAC.h ../src/SilnikNapedu.h \
- ../src/Silnik24VDC.h ../src/HBridge.h ../src/Hamulec.h
+ ../src/Silnik24VDC.h ../src/HBridge.h ../src/Hamulec.h \
+ ../src/Parameter.h ../lbutils/QuickTask.h
 
 ../src/Praca.h:
 
@@ -41,3 +42,7 @@ src/Praca.o: ../src/Praca.cpp ../src/Praca.h ../src/Pinout.h \
 ../src/HBridge.h:
 
 ../src/Hamulec.h:
+
+../src/Parameter.h:
+
+../lbutils/QuickTask.h:

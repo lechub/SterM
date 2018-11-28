@@ -14,6 +14,7 @@
 #include "Silnik24VDC.h"
 #include "Hamulec.h"
 #include "Pinout.h"
+#include "Parameter.h"
 
 class Sterownik {
 
@@ -50,6 +51,7 @@ private:
   NAPED typNapedu = NIEOKRESLONY;
   StanBramy stanBramy = ZATRZYMANA;
 
+  bool awaria = false;
 
 
   SilnikNapedu * getSilnik() const{
@@ -60,10 +62,66 @@ private:
       sn = silnik24VDC;
     }
     return sn;
-//    return reinterpret_cast<SilnikNapedu>( ?  : );
+    //    return reinterpret_cast<SilnikNapedu>( ?  : );
+  }
+
+  void fixOutputs(){
+    wewy->gpioOutOtwarte.setOutput(stanBramy == OTWARTA);
+    wewy->gpioOutZamkniete.setOutput(stanBramy == ZAMKNIETA);
+    setBuzzer((stanBramy == ZAMYKA_SIE)||(stanBramy == OTWIERA_SIE));
+    if (stanBramy == USZKODZONA) awaria = true;
   }
 
 
+  StanBramy check(){
+    if (isOtwarte()) stanBramy = OTWARTA;
+    if (isZamkniete()) stanBramy = ZAMKNIETA;
+    if (isOtwarte() && isZamkniete()){
+      stanBramy = USZKODZONA;
+    }else{
+      if (stanBramy == USZKODZONA) stanBramy = ZATRZYMANA;
+    }
+
+    switch(stanBramy){
+    case  OTWARTA:
+      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+      hamulec->hamuj(true);
+      if(!isOtwarte()){
+        stanBramy = ZATRZYMANA;
+      }
+      break;
+    case  ZAMKNIETA:
+      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+      hamulec->hamuj(true);
+      if(!isZamkniete()){
+        stanBramy = ZATRZYMANA;
+      }
+      break;
+    case  OTWIERA_SIE:
+      hamulec->hamuj(false);
+      getSilnik()->setMove(SilnikNapedu::MOVE::UP);
+      break;
+    case  ZAMYKA_SIE:
+      hamulec->hamuj(false);
+      getSilnik()->setMove(SilnikNapedu::MOVE::DOWN);
+      break;
+    case  ZATRZYMANA:
+      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+      hamulec->hamuj(true);
+      break;
+    case  USZKODZONA:
+      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+      hamulec->hamuj(true);
+      break;
+    default:
+      stanBramy = ZATRZYMANA;
+      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+      hamulec->hamuj(true);
+      break;
+    }
+    fixOutputs();
+    return stanBramy;
+  }
 
 public:
   Sterownik(Silnik24VDC * silnik24, Silnik230VAC * silnik230, Hamulec * hamulecSilnika){
@@ -82,14 +140,14 @@ public:
 
   inline bool isTyp230VAC() const{
     switch(getTypNapedu()){
-        case VIC_012x:
-        case VIC_042x: return true;
-        case VIC_010x:
-        case VIC_040x:
-        case VIC_0701:
-        case NIEOKRESLONY:
-        default:    return false;
-        }
+    case VIC_012x:
+    case VIC_042x: return true;
+    case VIC_010x:
+    case VIC_040x:
+    case VIC_0701:
+    case NIEOKRESLONY:
+    default:    return false;
+    }
   }
 
   inline NAPED getTypNapedu() const{ return typNapedu; }
@@ -99,6 +157,15 @@ public:
   inline bool isZakazOtwierania()const{ return !(wewy->gpioInZakazOtwierania.getInput()); }
   inline bool isZakazZamykania()const{ return !(wewy->gpioInZakazZamykania.getInput()); }
   inline bool isPozar()const{ return !(wewy->gpioInPozar.getInput()); }
+  inline bool isAlarmAkustyczny()const{ return !(wewy->gpioInAlarmAkust.getInput()); }
+  inline bool isRezerwa1()const{ return !(wewy->gpioInRezerwa1.getInput()); }
+  inline bool isRezerwa2()const{ return !(wewy->gpioInRezerwa2.getInput()); }
+
+  inline void setBuzzer(bool enable){ wewy->gpioOutBuzer.setOutput(enable); }
+
+  inline bool isAwaria()const{ return awaria; }
+
+  void setAwaria(bool enable){ awaria = enable; }
 
   StanBramy podnies(){
     bool mozna = (      // mozna podniesc jesli
@@ -109,26 +176,29 @@ public:
 
     switch(stanBramy){
     case  OTWARTA:
-      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
       break;
     case  ZAMKNIETA:
-    case  OTWIERA_SIE:
     case  ZATRZYMANA:
-      getSilnik()->setMove(SilnikNapedu::MOVE::UP);
-      stanBramy = (mozna) ? OTWIERA_SIE : OTWARTA;
+      if (mozna){
+        stanBramy = OTWIERA_SIE; // otwierac, jesli mozna
+        uint32_t licznik = Parameter::getValue(Parameter::Nazwa::LICZNIK);
+        Parameter::setValue(Parameter::Nazwa::LICZNIK, uint16_t(licznik + 1));
+      }
+      break;
+    case  OTWIERA_SIE:
+      if (!mozna) stanBramy = ZATRZYMANA; // otwierac, a jesli nie mozna to zatrzymac i juz
       break;
     case  ZAMYKA_SIE:
-      getSilnik()->setMove(SilnikNapedu::MOVE::FLOAT); // zatrzymaj a potem podnos
-      hamulec->hamuj(false);
-      stanBramy = ZATRZYMANA;
+      stanBramy = ZATRZYMANA; // najpierw zatrzymac
       break;
-    case  USZKODZONA:
-      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+    case  USZKODZONA: // poczekac, az uszkodzenie ustapi
       break;
     default:
       stanBramy = ZATRZYMANA;
       break;
     }
+    check();
+    fixOutputs();
     return stanBramy;
   }
 
@@ -136,41 +206,40 @@ public:
     bool mozna = (      // mozna podniesc jesli
         (!isZamkniete())    // nie jest zamkniete
         && (!isZakazZamykania()) // nie ma zakazu zamykania
-        && (!isPozar())   // nie ma pozaru
     );
 
     switch(stanBramy){
-    case  ZAMKNIETA:
-      hamulec->hamuj(false);
-      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+    case  ZAMKNIETA:  // zamknietej nie trzeba zamykac
       break;
     case  OTWARTA:
     case  ZATRZYMANA:
-    case  ZAMYKA_SIE:
-      hamulec->hamuj(false);
-      getSilnik()->setMove(SilnikNapedu::MOVE::DOWN);
-      //bool zezwolenie =
-      stanBramy = (mozna) ? ZAMYKA_SIE : ZAMKNIETA;
+      if (mozna){
+        stanBramy = ZAMYKA_SIE; // zamykac, jesli mozna
+        uint32_t licznik = Parameter::getValue(Parameter::Nazwa::LICZNIK);
+        Parameter::setValue(Parameter::Nazwa::LICZNIK,uint16_t(licznik + 1));
+      }
       break;
     case  OTWIERA_SIE:
-      getSilnik()->setMove(SilnikNapedu::MOVE::FLOAT); // zatrzymaj a potem opusc
-      hamulec->hamuj(false);
-      stanBramy = ZATRZYMANA;
+      stanBramy = ZATRZYMANA; // najpierw zatrzymac
       break;
-    case  USZKODZONA:
-      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+    case  ZAMYKA_SIE:
+      if (!mozna) stanBramy = ZATRZYMANA; // zamykac, a jesli nie mozna to zatrzymac i juz
+      break;
+    case  USZKODZONA: // poczekac, az uszkodzenie ustapi
       break;
     default:
       stanBramy = ZATRZYMANA;
       break;
     }
+    check();
+    fixOutputs();
     return stanBramy;
   }
 
   StanBramy zatrzymaj(){
-    getSilnik()->setMove(SilnikNapedu::MOVE::DOWN);
-    hamulec->hamuj(true);
     stanBramy = ZATRZYMANA;
+    check();
+    fixOutputs();
     return stanBramy;
   }
 

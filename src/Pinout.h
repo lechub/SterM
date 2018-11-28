@@ -52,7 +52,7 @@ public:
   Gpio gpioInKluczI = Gpio(GPIOE, 9);
   Gpio gpioInKluczII = Gpio(GPIOE, 10);
   Gpio gpioInPozar = Gpio(GPIOE, 11);
-  Gpio gpioInAlarmAku = Gpio(GPIOE, 12);
+  Gpio gpioInAlarmAkust = Gpio(GPIOE, 12);
   Gpio gpioInSiec230VAC = Gpio(GPIOE, 13);
   Gpio gpioInRezerwa1 = Gpio(GPIOE, 14);
   Gpio gpioInRezerwa2 = Gpio(GPIOE, 15);
@@ -71,7 +71,7 @@ public:
   Gpio gpioSCL = Gpio(GPIOB, 10);
   Gpio gpioSDA = Gpio(GPIOB, 11);
 
-  Led ledAlarm = Led(GPIOF, 2); //  Gpio gpioLedAwaria = Gpio(GPIOF, 2);
+  Led ledAwaria = Led(GPIOF, 2); //  Gpio gpioLedAwaria = Gpio(GPIOF, 2);
   Led ledPracaAku = Led(GPIOF, 3); //  Gpio gpioLedPracaAku = Gpio(GPIOF, 3);
 
   // to jest w Hardware/ADC
@@ -123,12 +123,12 @@ public:
     gpioInKluczI.setupFromClone(&gpioInBtnBACK);
     gpioInKluczII.setupFromClone(&gpioInBtnBACK);
     gpioInPozar.setupFromClone(&gpioInBtnBACK);
-    gpioInAlarmAku.setupFromClone(&gpioInBtnBACK);
+    gpioInAlarmAkust.setupFromClone(&gpioInBtnBACK);
     gpioInSiec230VAC.setupFromClone(&gpioInBtnBACK);
     gpioInRezerwa1.setupFromClone(&gpioInBtnBACK);
     gpioInRezerwa2.setupFromClone(&gpioInBtnBACK);
 
-    ledAlarm.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI ); //  Gpio gpioLedAwaria = Gpio(GPIOF, 2);
+    ledAwaria.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI ); //  Gpio gpioLedAwaria = Gpio(GPIOF, 2);
     ledPracaAku.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI ); //  Gpio gpioLedPracaAku = Gpio(GPIOF, 3);
 
   }

@@ -13,8 +13,14 @@
 
 
 class Praca {
+public:
+  static constexpr uint32_t TIME_POLL_PERIOD_MS = 53;
+
+
+
 private:
   Pinout * wewy = nullptr;
+
 
   bool isAwariaSieci230VAC(){
     return !wewy->gpioInSiec230VAC.getInput();
@@ -32,6 +38,7 @@ public:
     Sterownik::StanBramy brama = sterM->getStanBramy();
 
     if (isAwariaSieci230VAC()){   // obsluga bypassa, inwertera i/lub akumulatora
+      wewy->ledPracaAku.set(Led::Mode::MRUGA_SLOW); // sygnalizacja na LED-ie
       switch(brama){
       case  Sterownik::StanBramy::OTWIERA_SIE:
       case  Sterownik::StanBramy::ZAMYKA_SIE:
@@ -46,13 +53,15 @@ public:
         break;
       }
     }else{
+      wewy->ledPracaAku.set(Led::Mode::PULSUJE); // sygnalizacja na LED-ie
       wewy->gpioWlaczZasNaped.setOutputDown();
       wewy->gpioWlaczInwerter.setOutputDown();
     }
 
 
-    wewy->gpioOutSygnAkust.setOutput(sterM->isPozar()); // jesli pozar to na sygnalizator akustyczny
-    wewy->gpioOutPozar.setOutput(sterM->isPozar());
+      wewy->gpioOutPozar.setOutput(sterM->isPozar());
+      // sygnalizator akustyczny dziala gdy jest pozar i nie ma sygnalu alarmAkustyczny
+      wewy->gpioOutSygnAkust.setOutput((!sterM->isAlarmAkustyczny())&&(sterM->isPozar()));
 
     if (!wewy->gpioInOtworz.getInput()){  // otworz sygnalem OTWORZ
       sterM->podnies();
@@ -66,35 +75,12 @@ public:
       sterM->opusc();
     }
 
+    if (sterM->isAwaria()){
+      wewy->ledAwaria.set(Led::Mode::MRUGA_FAST);
+    }else {
+      wewy->ledAwaria.set(Led::Mode::ZGASZONA);
+    }
 
-    // wewy->gpioInOtworz;
-    //wewy->gpioInKluczI;
-    //wewy->gpioInKluczII;
-   // wewy->gpioInPozar;
-    wewy->gpioInAlarmAku;
-    //wewy->gpioInSiec230VAC;
-    wewy->gpioInRezerwa1;
-    wewy->gpioInRezerwa2;
-
-    // wyjscia
-    wewy->gpioOutPozar;
-    wewy->gpioOutZamkniete;
-    wewy->gpioOutOtwarte;
-    wewy->gpioOutSygnAkust;
-    wewy->gpioOutBuzer;
-    wewy->gpioWlaczBypass;
-
-    //
-    wewy->gpioWlacz230Zamknij;
-    wewy->gpioWlacz230Otworz;
-
-    //wewy->gpioWlaczInwerter;
-    //wewy->gpioWlaczZasNaped;
-    wewy->ledAlarm;
-    wewy->ledPracaAku;
-
-    //wewy->gpioLcdReset;
-    //wewy->gpioLcdBackLight;
 
   }
 
@@ -139,6 +125,8 @@ public:
 
    * */
 };
+
+extern Praca *praca;
 
 #endif /* PRACA_H_ */
 

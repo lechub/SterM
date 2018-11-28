@@ -48,6 +48,9 @@ private:
    * Do niego są porównywane wszystkie taski */
   static volatile uint32_t milisCounter;
 
+  /** znacznik globalnego blokowania tasków. */
+  static volatile bool holded;
+
   /** licznik obiektu QuickTask. Porównywany z licznikiem głównym 'milisCounter' w metodzie  'poll()'.
    * Gdy timectr == 0, to licznik jest zatrzymany - np. gdy odliczył czas.*/
   volatile uint32_t timectr;
@@ -198,6 +201,18 @@ public:
     while(getCounter() - tmp < milis ){ ; }
   }
 
+  /***
+   * Blokuje i odblokowuje wykonywanie powiązanych funkcji dla wszystkich taskow.
+   * Liczniki taskow odliczaja dalej.
+   * @param enable true - zatrzymuje, false - uruchamia.
+   */
+  static void hold(bool enable){
+    holded = enable;
+  }
+
+  static bool isHolded(){
+    return holded;
+  }
 
 };
 

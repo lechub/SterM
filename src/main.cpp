@@ -42,6 +42,7 @@
 #include "Hamulec.h"
 #include "Silnik24VDC.h"
 #include "Parameter.h"
+#include "Praca.h"
 
 // ----------------------------------------------------------------------------
 //
@@ -74,6 +75,8 @@ ST7032iFB st7032iDriver = ST7032iFB();
 Sterownik sterBramDym = Sterownik(&silnik24VDC, &silnik230VAC, &hamulec);
 Sterownik * sterM = &sterBramDym;
 
+Praca job = Praca();
+Praca *praca = &job;
 
 //volatile uint8_t lcdFrameBuffer[ST7032iFB::LCD_COL][ST7032iFB::LCD_ROW];
 //FrameBuffer lcd = FrameBuffer(ST7032iFB::LCD_COL, ST7032iFB::LCD_ROW, (uint8_t*)lcdFrameBuffer);
@@ -105,6 +108,8 @@ QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_
   // At this stage the system clock should have already been configured
   // at high speed.
 
+  QuickTask::hold(true);
+
   Hardware::init();
 
   pins.setup();
@@ -126,10 +131,11 @@ QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_
     st7032iDriver.init(i2c, &pins.gpioLcdBackLight, &pins.gpioLcdReset);
   }
 
-  HMI * hmi;
+  praca->init();
 
+  HMI * hmi;
   hmi = HMI::getInstance();
-  hmi->init(sterM, &keys, st7032iDriver.getFrameBuffer(), &menu);
+  hmi->init(sterM, &keys, st7032iDriver.getFrameBuffer(), &pins.gpioLcdBackLight, &menu, &pins.ledAwaria, &pins.ledPracaAku);
 
   hmi->lcd->clearScreen();
 
@@ -137,6 +143,7 @@ QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_
 
   hmi->lcd->cursorMode(FrameBuffer::CursorMode::HIDDEN);
 
+  sterM->init();
 
 //  if (!Parameter::initEepromMemory()){
 //    //---------------------->1234567890123456<
@@ -150,6 +157,7 @@ QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_
   QuickTask::delayMsWithActiveTasks(2000);
 
   //hmi->menu->goToEkran(Menu::EKRAN::e_AUTOMAT);
+  QuickTask::hold(false);
   do{
     Hardware::WDOG_Reload();          // przeladowanie Watch-doga
     QuickTask::poll();

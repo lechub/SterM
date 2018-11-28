@@ -117,8 +117,10 @@ public:
 		}
 
     void clearLine(uint16_t lineNr){
-      for (uint32_t i = 0; i <= BUFFERSIZE; i++)
-        *(bytes + i) = ' ';
+      if (lineNr >= getROWS()) return;
+      uint32_t offset = lineNr * getCOLUMNS();
+      for (uint32_t i = 0; i <= getCOLUMNS(); i++)
+        *(bytes + i + offset) = ' ';
     }
 
 		void homeScreen(void){
