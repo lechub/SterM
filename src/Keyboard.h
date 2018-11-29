@@ -26,6 +26,8 @@ public:
 		NONE = 0,
 		ENTER, CANCEL,
 		RIGHT, LEFT,
+		ENTER_CANCEL,
+		LEFT_RIGHT,
 	}Key;
 
 
@@ -58,11 +60,14 @@ private:
 
 	// unbuffered key state
 	Key getPressedKey(){
-		if (!keyRIGHT->getInput()) return Key::RIGHT;
-		if (!keyENTER->getInput()) return Key::ENTER;
-		if (!keyBACK->getInput()) return Key::CANCEL;
-		if (!keyLEFT->getInput()) return Key::LEFT;
-		return Key::NONE;
+	  Key key = Key::NONE;
+		if (!keyRIGHT->getInput()) key = Key::RIGHT;
+		if (!keyENTER->getInput()) key = Key::ENTER;
+		if (!keyBACK->getInput()) key = Key::CANCEL;
+		if (!keyLEFT->getInput()) key = Key::LEFT;
+		if ((!keyRIGHT->getInput()) && (!keyLEFT->getInput())) key = Key::LEFT_RIGHT;
+    if ((!keyENTER->getInput()) && (!keyBACK->getInput())) key = Key::ENTER_CANCEL;
+		return key;
 	}
 
 

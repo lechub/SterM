@@ -64,7 +64,7 @@ HBridge hBridgeSilnik = HBridge(&pins.gpioWyj3H, &pins.gpioWyj3L, &pins.gpioWyj4
 
 Hamulec hamulec = Hamulec(&hBridgeHamulec);
 
-Silnik24VDC silnik24VDC = Silnik24VDC(&hBridgeSilnik);
+Silnik24VDC silnik24VDC = Silnik24VDC(&hBridgeHamulec, &hBridgeSilnik);
 Silnik230VAC silnik230VAC = Silnik230VAC(&pins.gpioWlacz230Otworz, &pins.gpioWlacz230Zamknij);
 
 I2C_TypeDef * const I2C_FOR_LCD = I2C2;
@@ -114,6 +114,7 @@ QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_
 
   pins.setup();
 
+  QuickTask::delayMsWithStoppedTasks(100);
   Parameter::initEepromMemory();
 
   //  for(int i = 0; i < 5; i++ ){

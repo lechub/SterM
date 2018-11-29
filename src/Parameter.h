@@ -23,8 +23,8 @@ public:
 
 	typedef enum{
 		LICZNIK = 0,
-		FLAGS1 = 1,
-		RESERVED = 2,
+    NAPED = 1,
+    FLAGS1 = 2,
 		LAST_PARAMETER,
 	}Nazwa;
 

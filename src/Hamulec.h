@@ -24,7 +24,7 @@ private:
   HBridge * hBridge;
 
   bool hamowanie = false;
-  MODE mode = NORMALNIE;
+  MODE mode = OFF;
 
 public:
   Hamulec(HBridge * hbridge){

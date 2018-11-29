@@ -33,106 +33,106 @@ Archive member included to satisfy reference by file (symbol)
 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-mlock.o)
                               /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-nano-freer.o) (__malloc_lock)
 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_udivsi3.o)
-                              /tmp/cccILwi1.ltrans0.ltrans.o (__aeabi_uidiv)
+                              /tmp/cc7SBuJ4.ltrans0.ltrans.o (__aeabi_uidiv)
 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_divsi3.o)
-                              /tmp/cccILwi1.ltrans0.ltrans.o (__aeabi_idiv)
+                              /tmp/cc7SBuJ4.ltrans0.ltrans.o (__aeabi_idiv)
 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_dvmd_tls.o)
                               /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_udivsi3.o) (__aeabi_idiv0)
 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-memset.o)
-                              /tmp/cccILwi1.ltrans0.ltrans.o (memset)
+                              /tmp/cc7SBuJ4.ltrans0.ltrans.o (memset)
 
 Allocating common symbols
 Common symbol       size              file
 
-errno               0x4               /tmp/cccILwi1.ltrans0.ltrans.o
+errno               0x4               /tmp/cc7SBuJ4.ltrans0.ltrans.o
 
 Discarded input sections
 
- .text          0x0000000000000000        0x0 /tmp/cccILwi1.ltrans0.ltrans.o
- .data          0x0000000000000000        0x0 /tmp/cccILwi1.ltrans0.ltrans.o
- .bss           0x0000000000000000        0x0 /tmp/cccILwi1.ltrans0.ltrans.o
+ .text          0x0000000000000000        0x0 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .data          0x0000000000000000        0x0 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss           0x0000000000000000        0x0 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9__gnu_cxx27__verbose_terminate_handlerEv
-                0x0000000000000000       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata._ZZN9__gnu_cxx27__verbose_terminate_handlerEvE8__func__
-                0x0000000000000000       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.current_heap_end.3961
-                0x0000000000000000        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._sbrk    0x0000000000000000       0x68 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._sbrk    0x0000000000000000       0x68 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.__dso_handle
-                0x0000000000000000        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
- .text.raise    0x0000000000000000       0x1e /tmp/cccILwi1.ltrans0.ltrans.o
- .text.kill     0x0000000000000000       0x20 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.raise    0x0000000000000000       0x1e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.kill     0x0000000000000000       0x20 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata.__assert_func.str1.4
-                0x0000000000000000       0x43 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x43 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.__assert_func
-                0x0000000000000000       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata.assert_failed.str1.4
-                0x0000000000000000       0x2b /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x2b /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.assert_failed
-                0x0000000000000000       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.NVIC_SystemReset
-                0x0000000000000000       0x20 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x20 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.__reset_hardware
-                0x0000000000000000        0x8 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000        0x8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN8Hardware21delayMsWithBackgroundEm
-                0x0000000000000000       0x16 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x16 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN11FrameBuffer10cursorLeftEv
-                0x0000000000000000       0x28 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x28 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN11FrameBuffer10cursorLeftEm
-                0x0000000000000000       0x2a /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x2a /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Menu12printPatternEPKcm
-                0x0000000000000000       0xae /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0xae /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Menu4editEN8Keyboard3KeyE
-                0x0000000000000000       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .data._ZN9Parameter10nrOfParamsE
-                0x0000000000000000        0x2 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000        0x2 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.VirtAddVarTab
-                0x0000000000000000        0x6 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000        0x6 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata._ZL11I2C_FOR_LCD
-                0x0000000000000000        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.AsciiBcdToValue
-                0x0000000000000000       0x70 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x70 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.AsciiBcd2toByte
-                0x0000000000000000       0x70 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x70 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo18getByteAs2HexAsciiEv
-                0x0000000000000000       0x6c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x6c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo20get2BytesAs4HexAsciiEv
-                0x0000000000000000       0x60 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x60 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo9getUInt16Ev
-                0x0000000000000000       0x64 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x64 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo9getUInt32EPb
-                0x0000000000000000       0x5a /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x5a /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo18putByteAs2AsciiBCDEh
-                0x0000000000000000       0xce /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0xce /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo20put2BytesAs4AsciiBCDEt
-                0x0000000000000000       0x3a /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x3a /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo9putStringEPKc
-                0x0000000000000000       0x58 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x58 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo9putStringEPKcm
-                0x0000000000000000       0x70 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x70 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo9putUint16Et
-                0x0000000000000000       0x5e /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x5e /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo9putUint32Em
-                0x0000000000000000       0x56 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x56 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo6isFullEv
-                0x0000000000000000       0x4c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x4c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo5cloneEPS_
-                0x0000000000000000       0x7e /tmp/cccILwi1.ltrans0.ltrans.o
- .text.my_itoa  0x0000000000000000      0x14e /tmp/cccILwi1.ltrans0.ltrans.o
- .text.my_htoa  0x0000000000000000       0x82 /tmp/cccILwi1.ltrans0.ltrans.o
- .text.my_btoa  0x0000000000000000       0x5e /tmp/cccILwi1.ltrans0.ltrans.o
- .text.power10  0x0000000000000000       0x38 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x7e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.my_itoa  0x0000000000000000      0x14e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.my_htoa  0x0000000000000000       0x82 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.my_btoa  0x0000000000000000       0x5e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.power10  0x0000000000000000       0x38 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss._ZZN3I2C8irqErrorEvE3err
-                0x0000000000000000        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN3I2C8irqErrorEv
-                0x0000000000000000       0x30 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x30 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN3I2C15masterReadStartEm
-                0x0000000000000000       0xc8 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0xc8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB7delayMsEm
-                0x0000000000000000       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB8sendDataEh
-                0x0000000000000000       0x26 /tmp/cccILwi1.ltrans0.ltrans.o
- COMMON         0x0000000000000000        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x26 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ COMMON         0x0000000000000000        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text          0x0000000000000000        0x0 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
  .data          0x0000000000000000        0x0 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
  .bss           0x0000000000000000        0x0 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
@@ -271,7 +271,7 @@ MEMORY_ARRAY     0x0000000000000000 0x0000000000000000 xrw
 
 Linker script and memory map
 
-LOAD /tmp/cccILwi1.ltrans0.ltrans.o
+LOAD /tmp/cc7SBuJ4.ltrans0.ltrans.o
 LOAD /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a
 LOAD /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libm.a
 START GROUP
@@ -296,7 +296,7 @@ END GROUP
                 0x0000000020003800                __Main_Stack_Limit = (__stack - __Main_Stack_Size)
                 [!provide]                        PROVIDE (_Main_Stack_Limit = __Main_Stack_Limit)
                 0x0000000000000100                _Minimum_Stack_Size = 0x100
-                0x00000000200004a8                PROVIDE (_Heap_Begin = _end_noinit)
+                0x00000000200004ac                PROVIDE (_Heap_Begin = _end_noinit)
                 0x0000000020003800                PROVIDE (_Heap_Limit = (__stack - __Main_Stack_Size))
 
 .isr_vector     0x0000000008000000      0x294
@@ -304,27 +304,27 @@ END GROUP
                 0x0000000008000000                __vectors_start = ABSOLUTE (.)
                 0x0000000008000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
- .isr_vector    0x0000000008000000       0xc4 /tmp/cccILwi1.ltrans0.ltrans.o
+ .isr_vector    0x0000000008000000       0xc4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
                 0x0000000008000000                g_pfnVectors
  *(.cfmconfig)
  *(.after_vectors .after_vectors.*)
  .after_vectors
-                0x00000000080000c4      0x1d0 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080000c4      0x1d0 /tmp/cc7SBuJ4.ltrans0.ltrans.o
                 0x00000000080000c4                _start
                 0x0000000008000268                HardFault_Handler_C
 
 .inits          0x0000000008000294       0x48
                 0x0000000008000294                __data_regions_array_start = .
-                0x0000000008000294        0x4 LONG 0x8004644 LOADADDR (.data)
+                0x0000000008000294        0x4 LONG 0x8004b7c LOADADDR (.data)
                 0x0000000008000298        0x4 LONG 0x20000000 ADDR (.data)
                 0x000000000800029c        0x4 LONG 0x200000a4 (ADDR (.data) + SIZEOF (.data))
-                0x00000000080002a0        0x4 LONG 0x8004644 LOADADDR (.data_CCMRAM)
+                0x00000000080002a0        0x4 LONG 0x8004b7c LOADADDR (.data_CCMRAM)
                 0x00000000080002a4        0x4 LONG 0x0 ADDR (.data_CCMRAM)
                 0x00000000080002a8        0x4 LONG 0x0 (ADDR (.data_CCMRAM) + SIZEOF (.data_CCMRAM))
                 0x00000000080002ac                __data_regions_array_end = .
                 0x00000000080002ac                __bss_regions_array_start = .
                 0x00000000080002ac        0x4 LONG 0x200000a4 ADDR (.bss)
-                0x00000000080002b0        0x4 LONG 0x200004a8 (ADDR (.bss) + SIZEOF (.bss))
+                0x00000000080002b0        0x4 LONG 0x200004ac (ADDR (.bss) + SIZEOF (.bss))
                 0x00000000080002b4        0x4 LONG 0x0 ADDR (.bss_CCMRAM)
                 0x00000000080002b8        0x4 LONG 0x0 (ADDR (.bss_CCMRAM) + SIZEOF (.bss_CCMRAM))
                 0x00000000080002bc                __bss_regions_array_end = .
@@ -340,542 +340,573 @@ END GROUP
                 0x00000000080002bc                PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array)
- .init_array    0x00000000080002bc       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+ .init_array    0x00000000080002bc       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
                 0x00000000080002d4                PROVIDE (__init_array_end = .)
                 0x00000000080002d4                . = ALIGN (0x4)
                 0x00000000080002d4                PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array)
- .fini_array    0x00000000080002d4        0x8 /tmp/cccILwi1.ltrans0.ltrans.o
+ .fini_array    0x00000000080002d4        0x8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
                 0x00000000080002dc                PROVIDE (__fini_array_end = .)
 
 .flashtext
  *(.flashtext .flashtext.*)
 
-.text           0x00000000080002dc     0x4368
+.text           0x00000000080002dc     0x48a0
  *(.text .text.*)
  .text.__cxa_pure_virtual
-                0x00000000080002dc       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._exit    0x00000000080002f0        0xa /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080002dc       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._exit    0x00000000080002f0        0xa /tmp/cc7SBuJ4.ltrans0.ltrans.o
  *fill*         0x00000000080002fa        0x2 
- .text.abort    0x00000000080002fc       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+ .text.abort    0x00000000080002fc       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.__initialize_args
-                0x0000000008000310       0x20 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000310       0x20 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.__initialize_hardware_early
-                0x0000000008000330        0xc /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000330        0xc /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.__initialize_hardware
-                0x000000000800033c        0xc /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000000800033c        0xc /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.SystemInit
-                0x0000000008000348       0x8c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000348       0x8c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.SystemCoreClockUpdate
-                0x00000000080003d4       0xdc /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080003d4       0xdc /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.SetSysClock
-                0x00000000080004b0       0xdc /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080004b0       0xdc /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Gpio11setOutputUpEv
-                0x000000000800058c       0x20 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000000800058c       0x20 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Gpio13setOutputDownEv
-                0x00000000080005ac       0x1e /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080005ac       0x1e /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Gpio9setOutputEb
-                0x00000000080005ca       0x2e /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080005ca       0x2e /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Gpio8getInputEv
-                0x00000000080005f8       0x2c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080005f8       0x2c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN3Led3setENS_4ModeE
-                0x0000000008000624       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000624       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN3Led4tickEm
-                0x0000000008000640      0x124 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000640      0x124 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN8Keyboard13getPressedKeyEv
-                0x0000000008000764       0x82 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000764      0x122 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN8Keyboard16getUnbufferedKeyEv
-                0x00000000080007e6       0x1a /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000886       0x1a /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN3HMIC2Ev
-                0x0000000008000800       0x48 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080008a0       0x48 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN3HMI12setBackLightEb
-                0x0000000008000848       0x24 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080008e8       0x24 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN3HMI7monitorEv
-                0x000000000800086c       0xac /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000000800090c       0xac /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZL12hmi_callbackv
-                0x0000000008000918       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080009b8       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN3HMI11getInstanceEv
-                0x000000000800092c       0x10 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080009cc       0x10 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._Z41__static_initialization_and_destruction_0ii.lto_priv.0
-                0x000000000800093c       0x44 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080009dc       0x44 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._GLOBAL__sub_I_hmi
-                0x0000000008000980       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000a20       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.NVIC_SetPriority.lto_priv.6
-                0x0000000008000998       0xe8 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000a38       0xe8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text.SysTick_Config
-                0x0000000008000a80       0x48 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000b20       0x48 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Gpio7setMODEENS_8GpioModeE
-                0x0000000008000ac8       0x4a /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000b68       0x4a /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Gpio8setSpeedENS_9GpioSpeedE
-                0x0000000008000b12       0x4c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000bb2       0x4c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Gpio11setPullUpDnENS_8GpioPuPdE
-                0x0000000008000b5e       0x4a /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000bfe       0x4a /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Gpio8setOTypeENS_9GpioOTypeE
-                0x0000000008000ba8       0x54 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000c48       0x54 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4GpioC2EP12GPIO_TypeDeft
-                0x0000000008000bfc       0x4e /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x0000000008000c4a        0x2 
+                0x0000000008000c9c       0x4e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000008000cea        0x2 
  .text._ZN8Hardware13errorDispatchENS_9ErrorCodeE
-                0x0000000008000c4c       0x3c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000cec       0x3c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9QuickTask10getCounterEv
-                0x0000000008000c88       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000d28       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9QuickTask22delayMsWithActiveTasksEm
-                0x0000000008000c9c       0x34 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000d3c       0x34 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9QuickTask23delayMsWithStoppedTasksEm
-                0x0000000008000cd0       0x2e /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x0000000008000cfe        0x2 
+                0x0000000008000d70       0x2e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000008000d9e        0x2 
  .text._ZL13flash_latencym
-                0x0000000008000d00       0x34 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000da0       0x34 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZL12pll_start_lbmm
-                0x0000000008000d34       0xfc /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000dd4       0xfc /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZL7rccInitv
-                0x0000000008000e30       0x64 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000ed0       0x64 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN8Hardware4initEv
-                0x0000000008000e94       0x58 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000f34       0x58 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN8Hardware9WDOG_InitEv
-                0x0000000008000eec        0x8 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000f8c        0x8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN8Hardware11WDOG_ReloadEv
-                0x0000000008000ef4        0x8 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000f94        0x8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN8Hardware9NVIC_initEv
-                0x0000000008000efc        0x8 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000f9c        0x8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN8Hardware12delayMsDirtyEm
-                0x0000000008000f04       0x16 /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x0000000008000f1a        0x2 
+                0x0000000008000fa4       0x16 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000008000fba        0x2 
  .text._Z41__static_initialization_and_destruction_0ii.lto_priv.1
-                0x0000000008000f1c       0x48 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008000fbc       0x48 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._GLOBAL__sub_I__ZN8Hardware4initEv
-                0x0000000008000f64       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008001004       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo7isEmptyEv
-                0x0000000008000f7c       0x20 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000000800101c       0x20 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN4Fifo10isNotEmptyEv
-                0x0000000008000f9c       0x22 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000000800103c       0x22 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN8Keyboard13getFromBufferEv
-                0x0000000008000fbe       0x44 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000000800105e       0x44 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN8Keyboard6getKeyEv
-                0x0000000008001002       0x1a /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080010a2       0x1a /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN11FrameBuffer19checkCursorPositionEv
-                0x000000000800101c       0x26 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11FrameBuffer11cursorRightEv
-                0x0000000008001042       0x32 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11FrameBuffer6gotoXYEmm
-                0x0000000008001074       0x42 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11FrameBuffer5printEc
-                0x00000000080010b6       0x34 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11FrameBuffer5printEPKc
-                0x00000000080010ea       0x30 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11FrameBuffer10cursorModeENS_10CursorModeE
-                0x000000000800111a       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11FrameBuffer23printNumbersWithPatternEPKcm
-                0x0000000008001136       0x56 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Parameter12getConstDefsENS_5NazwaE
-                0x000000000800118c       0x5c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Parameter8getValueENS_5NazwaE
-                0x00000000080011e8       0x20 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Parameter8setValueENS_5NazwaEt
-                0x0000000008001208       0x42 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Parameter16adjustValueToFitENS_5NazwaEm
-                0x000000000800124a       0x56 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Menu4pollEv
-                0x00000000080012a0       0xcc /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Menu9showEkranEt
-                0x000000000800136c       0x60 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Parameter15getDefaultValueENS_5NazwaE
-                0x00000000080013cc       0x30 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Parameter13WriteVariableENS_5NazwaERt
-                0x00000000080013fc       0x70 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Parameter12ReadVariableENS_5NazwaERt
-                0x000000000800146c       0x78 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Parameter15fillFastDataTabEv
-                0x00000000080014e4       0xcc /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Parameter16initEepromMemoryEv
-                0x00000000080015b0       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Parameter14setEEpromValueENS_5NazwaEt
-                0x00000000080015cc       0x50 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Parameter14getEEpromValueENS_5NazwaE
-                0x000000000800161c       0x30 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN7HBridge13setOutputLineENS_4LINEENS_8POSITIONE
-                0x000000000800164c       0x92 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN7HBridge7setPlusENS_8POSITIONE
-                0x00000000080016de       0x22 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN7HBridge8setMinusENS_8POSITIONE
-                0x0000000008001700       0x22 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN7HBridge8setPowerENS_5POWERE
-                0x0000000008001722       0xde /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN7Hamulec5hamujEb
-                0x0000000008001800       0x70 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZNK9Sterownik9getSilnikEv
-                0x0000000008001870       0x2c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Sterownik10fixOutputsEv
-                0x000000000800189c       0x74 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Sterownik5checkEv
-                0x0000000008001910      0x1c4 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZNK9Sterownik11isTyp230VACEv
-                0x0000000008001ad4       0x26 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZNK9Sterownik12getTypNapeduEv
-                0x0000000008001afa       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZNK9Sterownik9isOtwarteEv
-                0x0000000008001b0e       0x1e /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZNK9Sterownik11isZamknieteEv
-                0x0000000008001b2c       0x1e /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZNK9Sterownik17isZakazOtwieraniaEv
-                0x0000000008001b4a       0x26 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZNK9Sterownik16isZakazZamykaniaEv
-                0x0000000008001b70       0x26 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZNK9Sterownik7isPozarEv
-                0x0000000008001b96       0x26 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZNK9Sterownik17isAlarmAkustycznyEv
-                0x0000000008001bbc       0x26 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Sterownik9setBuzzerEb
-                0x0000000008001be2       0x28 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZNK9Sterownik8isAwariaEv
-                0x0000000008001c0a       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x0000000008001c1e        0x2 
- .text._ZN9Sterownik7podniesEv
-                0x0000000008001c20       0xe8 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9Sterownik5opuscEv
-                0x0000000008001d08       0xd0 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZNK9Sterownik12getStanBramyEv
-                0x0000000008001dd8       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN5Praca19isAwariaSieci230VACEv
-                0x0000000008001dec       0x26 /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x0000000008001e12        0x2 
- .text._ZN5Praca4pollEv
-                0x0000000008001e14      0x1ac /tmp/cccILwi1.ltrans0.ltrans.o
- .text._Z13pracaCallbackv
-                0x0000000008001fc0       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._Z41__static_initialization_and_destruction_0ii.lto_priv.2
-                0x0000000008001fd8       0x38 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._GLOBAL__sub_I__Z13pracaCallbackv
-                0x0000000008002010       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9QuickTask4holdEb
-                0x0000000008002028       0x20 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Gpio7getModeEv
-                0x0000000008002048       0x2c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Gpio7getPullEv
-                0x0000000008002074       0x2c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Gpio8getSpeedEv
-                0x00000000080020a0       0x2c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Gpio8getOTypeEv
-                0x00000000080020cc       0x2e /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Gpio5setupENS_8GpioModeENS_9GpioOTypeENS_8GpioPuPdENS_9GpioSpeedE
-                0x00000000080020fa       0x60 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Gpio14setupFromCloneEPS_
-                0x000000000800215a       0x68 /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x00000000080021c2        0x2 
- .text._ZN12SilnikNapeduD2Ev
-                0x00000000080021c4       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN12SilnikNapeduC2Ev
-                0x00000000080021e0       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN12Silnik230VACC2EP4GpioS1_
-                0x00000000080021fc       0x3c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN12Silnik230VAC4initEv
-                0x0000000008002238       0x22 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN12Silnik230VAC7setMoveEN12SilnikNapedu4MOVEE
-                0x000000000800225a       0x6a /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN12Silnik230VAC7getMoveEv
-                0x00000000080022c4       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN7HBridgeC2EP4GpioS1_S1_S1_
-                0x00000000080022d8       0x42 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN7HBridge4initEv
-                0x000000000800231a       0x22 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11Silnik24VDCC2EP7HBridge
-                0x000000000800233c       0x34 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11Silnik24VDC4initEv
-                0x0000000008002370       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11Silnik24VDC7setMoveEN12SilnikNapedu4MOVEE
-                0x0000000008002388       0x7a /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11Silnik24VDC7getMoveEv
-                0x0000000008002402       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN7HamulecC2EP7HBridge
-                0x0000000008002416       0x26 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN7Hamulec4initEv
-                0x000000000800243c       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN3Led7preinitEv
-                0x0000000008002454       0x20 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN3LedC2EP12GPIO_TypeDefh
-                0x0000000008002474       0x30 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN3Led4initENS_4TypeENS_4ModeE
-                0x00000000080024a4       0x44 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN6Pinout5setupEv
-                0x00000000080024e8      0x28c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9SterownikC2EP11Silnik24VDCP12Silnik230VACP7Hamulec
-                0x0000000008002774       0x42 /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x00000000080027b6        0x2 
- .text._ZN9Sterownik4initEv
-                0x00000000080027b8       0x3c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN8Keyboard11addToBufferENS_3KeyE
-                0x00000000080027f4       0x2c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN8KeyboardC2EP4GpioS1_S1_S1_
-                0x0000000008002820       0x68 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN8Keyboard6co10msEv
-                0x0000000008002888       0x50 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11FrameBuffer7printXYEmmPKc
-                0x00000000080028d8       0x2c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11FrameBuffer11clearScreenEv
-                0x0000000008002904       0x30 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Menu4initEP9SterownikP8KeyboardP11FrameBuffer
-                0x0000000008002934       0x2c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN3HMI4initEP9SterownikP8KeyboardP11FrameBufferP4GpioP4MenuP3LedSB_
-                0x0000000008002960       0x52 /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x00000000080029b2        0x2 
- .text._ZN9ST7032iFBC2Ev
-                0x00000000080029b4       0x40 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9ST7032iFB14getFrameBufferEv
-                0x00000000080029f4       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN5Praca4initEv
-                0x0000000008002a08       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN6PinoutC2Ev
-                0x0000000008002a20      0x2ec /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4MenuC2Ev
-                0x0000000008002d0c       0x1e /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x0000000008002d2a        0x2 
- .text._ZL13keyb_callbackv
-                0x0000000008002d2c       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .text.main     0x0000000008002d40      0x128 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11Silnik24VDCD2Ev
-                0x0000000008002e68       0x24 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11Silnik24VDCD0Ev
-                0x0000000008002e8c       0x24 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN12Silnik230VACD2Ev
-                0x0000000008002eb0       0x24 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN12Silnik230VACD0Ev
-                0x0000000008002ed4       0x24 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._Z41__static_initialization_and_destruction_0ii.lto_priv.3
-                0x0000000008002ef8      0x168 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._GLOBAL__sub_I_pins
-                0x0000000008003060       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._GLOBAL__sub_D_pins
-                0x0000000008003078       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4FifoC2EPhm
-                0x0000000008003090       0x40 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Fifo3putEh
-                0x00000000080030d0       0x6e /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Fifo3getEv
-                0x000000000800313e       0x5a /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Fifo6putAllEPS_
-                0x0000000008003198       0x64 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Fifo9get_countEv
-                0x00000000080031fc       0x38 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11FrameBufferD2Ev
-                0x0000000008003234       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11FrameBufferD0Ev
-                0x0000000008003250       0x24 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9QuickTask4tickEm
-                0x0000000008003274       0x6c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9QuickTask4pollEv
-                0x00000000080032e0       0x68 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN9QuickTaskC2ENS_6QTTypeEPFvvEm
-                0x0000000008003348       0x94 /tmp/cccILwi1.ltrans0.ltrans.o
- .text.SysTick_Handler
-                0x00000000080033dc        0xe /tmp/cccILwi1.ltrans0.ltrans.o
- .text.itoaWithPattern
-                0x00000000080033ea       0xd2 /tmp/cccILwi1.ltrans0.ltrans.o
- .text.my_strcpy
-                0x00000000080034bc       0x5c /tmp/cccILwi1.ltrans0.ltrans.o
- .text.numberWithPattern
-                0x0000000008003518       0x2e /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x0000000008003546        0x2 
- .text.NVIC_EnableIRQ
-                0x0000000008003548       0x2c /tmp/cccILwi1.ltrans0.ltrans.o
- .text.NVIC_SetPriority.lto_priv.7
-                0x0000000008003574       0xe8 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Gpio16setAlternateFuncEh
-                0x000000000800365c       0xc8 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN4Fifo5flushEv
-                0x0000000008003724       0x1a /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN3I2CC2Ev
-                0x000000000800373e       0x2a /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN3I2C8setStateENS_5StateE
-                0x0000000008003768       0x2c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN3I2C6isBusyEv
-                0x0000000008003794       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN3I2C11getInstanceEv
-                0x00000000080037b0       0x10 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN3I2C4initEPNS_10DeviceDefsE
-                0x00000000080037c0       0x66 /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x0000000008003826        0x2 
- .text._ZN3I2C4initEv
-                0x0000000008003828      0x198 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN3I2C8irqEventEv
-                0x00000000080039c0       0xb8 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN3I2C16masterWriteBlockEP4Fifo
-                0x0000000008003a78      0x100 /tmp/cccILwi1.ltrans0.ltrans.o
- .text.I2C1_IRQHandler
-                0x0000000008003b78       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .text.I2C2_IRQHandler
-                0x0000000008003b8c       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._Z41__static_initialization_and_destruction_0ii.lto_priv.4
-                0x0000000008003ba0       0x44 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._GLOBAL__sub_I_i2cInstance
-                0x0000000008003be4       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZN11FrameBufferC2EmmPh
-                0x0000000008003bfc       0x50 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080010bc       0x26 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN11FrameBuffer7getROWSEv
-                0x0000000008003c4c       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080010e2       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN11FrameBuffer10getCOLUMNSEv
-                0x0000000008003c60       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080010f6       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBuffer11cursorRightEv
+                0x000000000800110a       0x32 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBuffer6gotoXYEmm
+                0x000000000800113c       0x42 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBuffer5printEc
+                0x000000000800117e       0x34 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBuffer5printEPKc
+                0x00000000080011b2       0x30 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBuffer7printXYEmmPKc
+                0x00000000080011e2       0x2c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBuffer9clearLineEt
+                0x000000000800120e       0x74 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBuffer10cursorModeENS_10CursorModeE
+                0x0000000008001282       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBuffer23printNumbersWithPatternEPKcm
+                0x000000000800129e       0x56 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN7HBridge13setOutputLineENS_4LINEENS_8POSITIONE
+                0x00000000080012f4       0x92 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN7HBridge7setPlusENS_8POSITIONE
+                0x0000000008001386       0x22 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN7HBridge8setMinusENS_8POSITIONE
+                0x00000000080013a8       0x22 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN7HBridge8setPowerENS_5POWERE
+                0x00000000080013ca       0xde /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11Silnik24VDC11setType1234Eb
+                0x00000000080014a8       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN7Hamulec7setModeENS_4MODEE
+                0x00000000080014c4       0x30 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN7Hamulec7setModeENS_4MODEEb
+                0x00000000080014f4       0x3a /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN7Hamulec5hamujEb
+                0x000000000800152e       0x70 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x000000000800159e        0x2 
+ .text._ZN9Parameter12getConstDefsENS_5NazwaE
+                0x00000000080015a0       0x5c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Parameter8getValueENS_5NazwaE
+                0x00000000080015fc       0x20 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Parameter8setValueENS_5NazwaEt
+                0x000000000800161c       0x42 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Parameter16adjustValueToFitENS_5NazwaEm
+                0x000000000800165e       0x56 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZNK9Sterownik9getSilnikEv
+                0x00000000080016b4       0x2c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik10fixOutputsEv
+                0x00000000080016e0       0x74 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik12checkPozycjaEv
+                0x0000000008001754       0x74 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik9checkRuchEv
+                0x00000000080017c8      0x154 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZNK9Sterownik11isTyp230VACEv
+                0x000000000800191c       0x26 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZNK9Sterownik12getTypNapeduEv
+                0x0000000008001942       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZNK9Sterownik9isOtwarteEv
+                0x0000000008001956       0x1e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZNK9Sterownik11isZamknieteEv
+                0x0000000008001974       0x1e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZNK9Sterownik17isZakazOtwieraniaEv
+                0x0000000008001992       0x1e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZNK9Sterownik16isZakazZamykaniaEv
+                0x00000000080019b0       0x1e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZNK9Sterownik7isPozarEv
+                0x00000000080019ce       0x26 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik9setBuzzerEb
+                0x00000000080019f4       0x28 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik9zatrzymajEv
+                0x0000000008001a1c       0x22 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000008001a3e        0x2 
+ .text._ZN9Sterownik8setNapedENS_5NAPEDE
+                0x0000000008001a40       0xf0 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik12setPrevNapedEv
+                0x0000000008001b30       0x60 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik12setNextNapedEv
+                0x0000000008001b90       0x64 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZNK9Sterownik13getOpisNapeduENS_5NAPEDE
+                0x0000000008001bf4       0x5c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Menu9showEkranEv
+                0x0000000008001c50       0x52 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000008001ca2        0x2 
+ .text._ZN4Menu4pollEv
+                0x0000000008001ca4       0xf0 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Menu9showEkranEt
+                0x0000000008001d94      0x130 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Parameter15getDefaultValueENS_5NazwaE
+                0x0000000008001ec4       0x30 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._Z23RTC_WriteBackupRegisterhm
+                0x0000000008001ef4       0x28 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._Z22RTC_ReadBackupRegisterh
+                0x0000000008001f1c       0x28 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Parameter13WriteVariableENS_5NazwaERt
+                0x0000000008001f44       0x36 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Parameter12ReadVariableENS_5NazwaERt
+                0x0000000008001f7a       0x36 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Parameter15fillFastDataTabEv
+                0x0000000008001fb0       0xcc /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Parameter16initEepromMemoryEv
+                0x000000000800207c       0x50 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Parameter14setEEpromValueENS_5NazwaEt
+                0x00000000080020cc       0x50 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Parameter14getEEpromValueENS_5NazwaE
+                0x000000000800211c       0x30 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZNK9Sterownik17isAlarmAkustycznyEv
+                0x000000000800214c       0x26 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZNK9Sterownik8isAwariaEv
+                0x0000000008002172       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik9isMotorOnEv
+                0x0000000008002186       0x44 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik7podniesEv
+                0x00000000080021ca       0x44 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik5opuscEv
+                0x000000000800220e       0x44 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik4pollEv
+                0x0000000008002252       0x16 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN5Praca19isAwariaSieci230VACEv
+                0x0000000008002268       0x26 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x000000000800228e        0x2 
+ .text._ZN5Praca4pollEv
+                0x0000000008002290      0x1c8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._Z13pracaCallbackv
+                0x0000000008002458       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._Z41__static_initialization_and_destruction_0ii.lto_priv.2
+                0x0000000008002470       0x38 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._GLOBAL__sub_I__Z13pracaCallbackv
+                0x00000000080024a8       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9QuickTask4holdEb
+                0x00000000080024c0       0x20 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Gpio7getModeEv
+                0x00000000080024e0       0x2c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Gpio7getPullEv
+                0x000000000800250c       0x2c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Gpio8getSpeedEv
+                0x0000000008002538       0x2c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Gpio8getOTypeEv
+                0x0000000008002564       0x2e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Gpio5setupENS_8GpioModeENS_9GpioOTypeENS_8GpioPuPdENS_9GpioSpeedE
+                0x0000000008002592       0x60 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Gpio14setupFromCloneEPS_
+                0x00000000080025f2       0x68 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x000000000800265a        0x2 
+ .text._ZN12SilnikNapeduD2Ev
+                0x000000000800265c       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN12SilnikNapeduC2Ev
+                0x0000000008002678       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN12Silnik230VACC2EP4GpioS1_
+                0x0000000008002694       0x3c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN12Silnik230VAC4initEv
+                0x00000000080026d0       0x22 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN12Silnik230VAC7setMoveEN12SilnikNapedu4MOVEE
+                0x00000000080026f2       0x6a /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN12Silnik230VAC7getMoveEv
+                0x000000000800275c       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN7HBridgeC2EP4GpioS1_S1_S1_
+                0x0000000008002770       0x42 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN7HBridge4initEv
+                0x00000000080027b2       0x22 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11Silnik24VDCC2EP7HBridgeS1_
+                0x00000000080027d4       0x40 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11Silnik24VDC4initEv
+                0x0000000008002814       0x22 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11Silnik24VDC7setMoveEN12SilnikNapedu4MOVEE
+                0x0000000008002836       0xde /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11Silnik24VDC7getMoveEv
+                0x0000000008002914       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN7HamulecC2EP7HBridge
+                0x0000000008002928       0x26 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN7Hamulec4initEv
+                0x000000000800294e       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN3Led7preinitEv
+                0x0000000008002966       0x20 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN3LedC2EP12GPIO_TypeDefh
+                0x0000000008002986       0x30 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN3Led4initENS_4TypeENS_4ModeE
+                0x00000000080029b6       0x44 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x00000000080029fa        0x2 
+ .text._ZN6Pinout5setupEv
+                0x00000000080029fc      0x28c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9SterownikC2EP11Silnik24VDCP12Silnik230VACP7Hamulec
+                0x0000000008002c88       0x48 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9Sterownik4initEv
+                0x0000000008002cd0       0x48 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN8Keyboard11addToBufferENS_3KeyE
+                0x0000000008002d18       0x2c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN8KeyboardC2EP4GpioS1_S1_S1_
+                0x0000000008002d44       0x68 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN8Keyboard6co10msEv
+                0x0000000008002dac       0x50 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBuffer11clearScreenEv
+                0x0000000008002dfc       0x30 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Menu4initEP9SterownikP8KeyboardP11FrameBuffer
+                0x0000000008002e2c       0x2c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN3HMI4initEP9SterownikP8KeyboardP11FrameBufferP4GpioP4MenuP3LedSB_
+                0x0000000008002e58       0x52 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000008002eaa        0x2 
+ .text._ZN9ST7032iFBC2Ev
+                0x0000000008002eac       0x40 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9ST7032iFB14getFrameBufferEv
+                0x0000000008002eec       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN5Praca4initEv
+                0x0000000008002f00       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN6PinoutC2Ev
+                0x0000000008002f18      0x2ec /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4MenuC2Ev
+                0x0000000008003204       0x1e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000008003222        0x2 
+ .text._ZL13keyb_callbackv
+                0x0000000008003224       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.main     0x0000000008003238      0x12c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11Silnik24VDCD2Ev
+                0x0000000008003364       0x24 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11Silnik24VDCD0Ev
+                0x0000000008003388       0x24 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN12Silnik230VACD2Ev
+                0x00000000080033ac       0x24 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN12Silnik230VACD0Ev
+                0x00000000080033d0       0x24 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._Z41__static_initialization_and_destruction_0ii.lto_priv.3
+                0x00000000080033f4      0x168 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._GLOBAL__sub_I_pins
+                0x000000000800355c       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._GLOBAL__sub_D_pins
+                0x0000000008003574       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4FifoC2EPhm
+                0x000000000800358c       0x40 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Fifo3putEh
+                0x00000000080035cc       0x6e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Fifo3getEv
+                0x000000000800363a       0x5a /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Fifo6putAllEPS_
+                0x0000000008003694       0x64 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Fifo9get_countEv
+                0x00000000080036f8       0x38 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBufferD2Ev
+                0x0000000008003730       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBufferD0Ev
+                0x000000000800374c       0x24 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9QuickTask4tickEm
+                0x0000000008003770       0x6c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9QuickTask4pollEv
+                0x00000000080037dc       0x68 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN9QuickTaskC2ENS_6QTTypeEPFvvEm
+                0x0000000008003844       0x94 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.SysTick_Handler
+                0x00000000080038d8        0xe /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.itoaWithPattern
+                0x00000000080038e6       0xd2 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.my_strcpy
+                0x00000000080039b8       0x5c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.numberWithPattern
+                0x0000000008003a14       0x2e /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000008003a42        0x2 
+ .text.NVIC_EnableIRQ
+                0x0000000008003a44       0x2c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.NVIC_SetPriority.lto_priv.7
+                0x0000000008003a70       0xe8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Gpio16setAlternateFuncEh
+                0x0000000008003b58       0xc8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN4Fifo5flushEv
+                0x0000000008003c20       0x1a /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN3I2CC2Ev
+                0x0000000008003c3a       0x2a /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN3I2C8setStateENS_5StateE
+                0x0000000008003c64       0x2c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN3I2C6isBusyEv
+                0x0000000008003c90       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN3I2C11getInstanceEv
+                0x0000000008003cac       0x10 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN3I2C4initEPNS_10DeviceDefsE
+                0x0000000008003cbc       0x66 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000008003d22        0x2 
+ .text._ZN3I2C4initEv
+                0x0000000008003d24      0x198 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN3I2C8irqEventEv
+                0x0000000008003ebc       0xb8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN3I2C16masterWriteBlockEP4Fifo
+                0x0000000008003f74      0x100 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.I2C1_IRQHandler
+                0x0000000008004074       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text.I2C2_IRQHandler
+                0x0000000008004088       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._Z41__static_initialization_and_destruction_0ii.lto_priv.4
+                0x000000000800409c       0x44 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._GLOBAL__sub_I_i2cInstance
+                0x00000000080040e0       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZN11FrameBufferC2EmmPh
+                0x00000000080040f8       0x50 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN11FrameBuffer9getBufferEv
-                0x0000000008003c74       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004148       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN11FrameBuffer7getLineEmP4Fifo
-                0x0000000008003c88       0x78 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000000800415c       0x78 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN3I2C13setSlaveAdresEt
-                0x0000000008003d00       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080041d4       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN3I2C14masterTransmitEP4Fifo
-                0x0000000008003d1c       0x20 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080041f0       0x20 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB11sendCommandENS_10LcdCommandE
-                0x0000000008003d3c       0x26 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004210       0x26 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB6isBusyEv
-                0x0000000008003d62       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004236       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB11setResetPinEb
-                0x0000000008003d7e       0x24 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004252       0x24 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB12setBackLightEb
-                0x0000000008003da2       0x24 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004276       0x24 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB6gotoXYEhh
-                0x0000000008003dc6       0x76 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000000800429a       0x76 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._Z13dummyCallbackv
-                0x0000000008003e3c        0xc /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004310        0xc /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB5callbEv
-                0x0000000008003e48       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000000800431c       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFBD2Ev
-                0x0000000008003e60       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004334       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFBD0Ev
-                0x0000000008003e7c       0x24 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004350       0x24 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB12delayMsDirtyEm
-                0x0000000008003ea0       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004374       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB4initEP3I2CP4GpioS3_
-                0x0000000008003eb8      0x168 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000000800438c      0x168 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB13sendCmdOrDataEbh
-                0x0000000008004020       0x66 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080044f4       0x66 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB11sendCommandEh
-                0x0000000008004086       0x26 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000000800455a       0x26 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB8sendLineEm
-                0x00000000080040ac       0x5c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004580       0x5c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._ZN9ST7032iFB7processEv
-                0x0000000008004108      0x108 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080045dc      0x108 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._Z41__static_initialization_and_destruction_0ii.lto_priv.5
-                0x0000000008004210       0x74 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080046e4       0x74 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._GLOBAL__sub_I__Z13dummyCallbackv
-                0x0000000008004284       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004758       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .text._GLOBAL__sub_D__Z13dummyCallbackv
-                0x000000000800429c       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .text._ZdlPvj  0x00000000080042b4        0x8 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
-                0x00000000080042b4                operator delete(void*, unsigned int)
- .text._ZdlPv   0x00000000080042bc        0x8 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_op.o)
-                0x00000000080042bc                operator delete(void*)
- .text.free     0x00000000080042c4       0x14 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-malloc.o)
-                0x00000000080042c4                free
- .text._free_r  0x00000000080042d8       0x94 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-nano-freer.o)
-                0x00000000080042d8                _free_r
- .text          0x000000000800436c        0xe /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-strlen.o)
-                0x000000000800436c                strlen
+                0x0000000008004770       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .text._ZdlPvj  0x0000000008004788        0x8 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
+                0x0000000008004788                operator delete(void*, unsigned int)
+ .text._ZdlPv   0x0000000008004790        0x8 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_op.o)
+                0x0000000008004790                operator delete(void*)
+ .text.free     0x0000000008004798       0x14 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-malloc.o)
+                0x0000000008004798                free
+ .text._free_r  0x00000000080047ac       0x94 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-nano-freer.o)
+                0x00000000080047ac                _free_r
+ .text          0x0000000008004840        0xe /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-strlen.o)
+                0x0000000008004840                strlen
  .text.__malloc_lock
-                0x000000000800437a        0x2 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-mlock.o)
-                0x000000000800437a                __malloc_lock
+                0x000000000800484e        0x2 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-mlock.o)
+                0x000000000800484e                __malloc_lock
  .text.__malloc_unlock
-                0x000000000800437c        0x2 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-mlock.o)
-                0x000000000800437c                __malloc_unlock
- *fill*         0x000000000800437e        0x2 
- .text          0x0000000008004380      0x114 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_udivsi3.o)
-                0x0000000008004380                __udivsi3
-                0x0000000008004380                __aeabi_uidiv
-                0x000000000800448c                __aeabi_uidivmod
- .text          0x0000000008004494        0x4 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_dvmd_tls.o)
-                0x0000000008004494                __aeabi_ldiv0
-                0x0000000008004494                __aeabi_idiv0
- .text.memset   0x0000000008004498       0x10 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-memset.o)
-                0x0000000008004498                memset
+                0x0000000008004850        0x2 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-mlock.o)
+                0x0000000008004850                __malloc_unlock
+ *fill*         0x0000000008004852        0x2 
+ .text          0x0000000008004854      0x114 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_udivsi3.o)
+                0x0000000008004854                __udivsi3
+                0x0000000008004854                __aeabi_uidiv
+                0x0000000008004960                __aeabi_uidivmod
+ .text          0x0000000008004968        0x4 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+                0x0000000008004968                __aeabi_ldiv0
+                0x0000000008004968                __aeabi_idiv0
+ .text.memset   0x000000000800496c       0x10 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-memset.o)
+                0x000000000800496c                memset
  *(.rodata .rodata.* .constdata .constdata.*)
  .rodata._ZZ18__cxa_pure_virtualE8__func__
-                0x00000000080044a8       0x13 /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x00000000080044bb        0x1 
+                0x000000000800497c       0x13 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x000000000800498f        0x1 
  .rodata.abort.str1.4
-                0x00000000080044bc       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004990       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata._ZN3Led4tickEm
-                0x00000000080044d0       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080049a4       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata._ZN8Hardware13errorDispatchENS_9ErrorCodeE
-                0x00000000080044ec       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000080049c0       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .rodata._ZN9Sterownik8setNapedENS_5NAPEDE
+                0x00000000080049d4       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .rodata._ZNK9Sterownik13getOpisNapeduENS_5NAPEDE.str1.4
+                0x00000000080049ec       0x49 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000008004a35        0x3 
+ .rodata._ZNK9Sterownik13getOpisNapeduENS_5NAPEDE
+                0x0000000008004a38       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata._ZN4Menu9showEkranEt.str1.4
-                0x0000000008004500       0x25 /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x0000000008004525        0x3 
+                0x0000000008004a50       0x56 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000008004aa6        0x2 
  .rodata._ZN9Parameter14paramDefsTableE
-                0x0000000008004528       0x20 /tmp/cccILwi1.ltrans0.ltrans.o
- .rodata._ZN9Sterownik5checkEv
-                0x0000000008004548       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .rodata._ZN9Sterownik7podniesEv
-                0x0000000008004560       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .rodata._ZN9Sterownik5opuscEv
-                0x0000000008004578       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004aa8       0x20 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata.main.str1.4
-                0x0000000008004590       0x28 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004ac8       0x28 /tmp/cc7SBuJ4.ltrans0.ltrans.o
                                          0x25 (size before relaxing)
  .rodata._ZTV11Silnik24VDC
-                0x00000000080045b8       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004af0       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata._ZTV12Silnik230VAC
-                0x00000000080045d0       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004b08       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata._ZTV12SilnikNapedu
-                0x00000000080045e8       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004b20       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata._ZTV11FrameBuffer
-                0x0000000008004600       0x10 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004b38       0x10 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata._ZN9ST7032iFB7processEv
-                0x0000000008004610       0x24 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004b48       0x24 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .rodata._ZTV9ST7032iFB
-                0x0000000008004634       0x10 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000008004b6c       0x10 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  *(vtable)
  *(.eh_frame*)
  *(.glue_7)
- .glue_7        0x0000000008004644        0x0 linker stubs
+ .glue_7        0x0000000008004b7c        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0000000008004644        0x0 linker stubs
+ .glue_7t       0x0000000008004b7c        0x0 linker stubs
 
-.vfp11_veneer   0x0000000008004644        0x0
- .vfp11_veneer  0x0000000008004644        0x0 linker stubs
+.vfp11_veneer   0x0000000008004b7c        0x0
+ .vfp11_veneer  0x0000000008004b7c        0x0 linker stubs
 
-.v4_bx          0x0000000008004644        0x0
- .v4_bx         0x0000000008004644        0x0 linker stubs
+.v4_bx          0x0000000008004b7c        0x0
+ .v4_bx         0x0000000008004b7c        0x0 linker stubs
 
-.iplt           0x0000000008004644        0x0
- .iplt          0x0000000008004644        0x0 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
+.iplt           0x0000000008004b7c        0x0
+ .iplt          0x0000000008004b7c        0x0 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
 
-.rel.dyn        0x0000000008004644        0x0
- .rel.iplt      0x0000000008004644        0x0 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
+.rel.dyn        0x0000000008004b7c        0x0
+ .rel.iplt      0x0000000008004b7c        0x0 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0000000008004644                . = ALIGN (0x4)
-                0x0000000008004644                __exidx_start = .
+                0x0000000008004b7c                . = ALIGN (0x4)
+                0x0000000008004b7c                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0000000008004644                __exidx_end = .
-                0x0000000008004644                . = ALIGN (0x4)
-                0x0000000008004644                _etext = .
-                0x0000000008004644                __etext = .
+                0x0000000008004b7c                __exidx_end = .
+                0x0000000008004b7c                . = ALIGN (0x4)
+                0x0000000008004b7c                _etext = .
+                0x0000000008004b7c                __etext = .
 
-.data_CCMRAM    0x0000000000000000        0x0 load address 0x0000000008004644
+.data_CCMRAM    0x0000000000000000        0x0 load address 0x0000000008004b7c
  FILL mask 0xff
  *(.data.CCMRAM .data.CCMRAM.*)
                 0x0000000000000000                . = ALIGN (0x4)
-                0x0000000008004644                _sidata = LOADADDR (.data)
+                0x0000000008004b7c                _sidata = LOADADDR (.data)
 
-.data           0x0000000020000000       0xa4 load address 0x0000000008004644
+.data           0x0000000020000000       0xa4 load address 0x0000000008004b7c
  FILL mask 0xff
                 0x0000000020000000                _sdata = .
                 0x0000000020000000                __data_start__ = .
  *(.data_begin .data_begin.*)
- .data_begin    0x0000000020000000        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+ .data_begin    0x0000000020000000        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  *(.data .data.*)
  .data.argv.4310
-                0x0000000020000004        0x8 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000020000004        0x8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .data.SystemCoreClock
-                0x000000002000000c        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000002000000c        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .data.AHBPrescTable
-                0x0000000020000010       0x10 /tmp/cccILwi1.ltrans0.ltrans.o
- .data.i2cDefs  0x0000000020000020       0x10 /tmp/cccILwi1.ltrans0.ltrans.o
- .data.sterM    0x0000000020000030        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
- .data.praca    0x0000000020000034        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000020000010       0x10 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .data.i2cDefs  0x0000000020000020       0x10 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .data.sterM    0x0000000020000030        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .data.praca    0x0000000020000034        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .data._ZN9QuickTask6holdedE
-                0x0000000020000038        0x1 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000020000038        0x1 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  *fill*         0x0000000020000039        0x3 ff
  .data._impure_ptr
                 0x000000002000003c        0x4 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-impure.o)
@@ -883,106 +914,106 @@ END GROUP
  .data.impure_data
                 0x0000000020000040       0x60 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-impure.o)
  *(.data_end .data_end.*)
- .data_end      0x00000000200000a0        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+ .data_end      0x00000000200000a0        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
                 0x00000000200000a4                . = ALIGN (0x4)
                 0x00000000200000a4                _edata = .
                 0x00000000200000a4                __data_end__ = .
 
-.igot.plt       0x00000000200000a4        0x0 load address 0x00000000080046e8
+.igot.plt       0x00000000200000a4        0x0 load address 0x0000000008004c20
  .igot.plt      0x00000000200000a4        0x0 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
 
 .bss_CCMRAM     0x0000000000000000        0x0
  *(.bss.CCMRAM .bss.CCMRAM.*)
 
-.bss            0x00000000200000a4      0x404
+.bss            0x00000000200000a4      0x408
                 0x00000000200000a4                __bss_start__ = .
                 0x00000000200000a4                _sbss = .
  *(.bss_begin .bss_begin.*)
- .bss_begin     0x00000000200000a4        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+ .bss_begin     0x00000000200000a4        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  *(.bss .bss.*)
  .bss.name.4309
-                0x00000000200000a8        0x1 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000200000a8        0x1 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  *fill*         0x00000000200000a9        0x3 
- .bss.hmi       0x00000000200000ac       0x24 /tmp/cccILwi1.ltrans0.ltrans.o
- .bss.hmiQtsk   0x00000000200000d0       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+ .bss.hmi       0x00000000200000ac       0x24 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss.hmiQtsk   0x00000000200000d0       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.gpioPomSygnL
-                0x00000000200000e4        0x8 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000200000e4        0x8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.gpioPomZas24V
-                0x00000000200000ec        0x8 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000200000ec        0x8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss._ZN8Hardware11adcDmaErrorE
-                0x00000000200000f4        0x1 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000200000f4        0x1 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  *fill*         0x00000000200000f5        0x3 
  .bss.fastCopyofData
-                0x00000000200000f8        0x8 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000200000f8        0x8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.pracaQtsk
-                0x0000000020000100       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000020000100       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss._ZZN8Keyboard6co10msEvE6oldKey
-                0x0000000020000114        0x1 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000020000114        0x1 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  *fill*         0x0000000020000115        0x3 
- .bss.pins      0x0000000020000118      0x180 /tmp/cccILwi1.ltrans0.ltrans.o
- .bss.keys      0x0000000020000298       0x2c /tmp/cccILwi1.ltrans0.ltrans.o
+ .bss.pins      0x0000000020000118      0x180 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss.keys      0x0000000020000298       0x2c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.hBridgeHamulec
-                0x00000000200002c4       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000200002c4       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.hBridgeSilnik
-                0x00000000200002d8       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .bss.hamulec   0x00000000200002ec        0x8 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000200002d8       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss.hamulec   0x00000000200002ec        0x8 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.silnik24VDC
-                0x00000000200002f4        0xc /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000200002f4       0x10 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.silnik230VAC
-                0x0000000020000300       0x10 /tmp/cccILwi1.ltrans0.ltrans.o
- .bss.i2c       0x0000000020000310        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000020000304       0x10 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss.i2c       0x0000000020000314        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.st7032iDriver
-                0x0000000020000314       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000020000318       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.sterBramDym
-                0x0000000020000330       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .bss.job       0x0000000020000344        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
- .bss.menu      0x0000000020000348       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
- .bss.keybQtsk  0x0000000020000360       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .bss.taskbase  0x0000000020000374        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000020000334       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss.job       0x0000000020000348        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss.menu      0x000000002000034c       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss.keybQtsk  0x0000000020000364       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss.taskbase  0x0000000020000378        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss._ZN9QuickTask12milisCounterE
-                0x0000000020000378        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x000000002000037c        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.i2cInstance
-                0x000000002000037c        0xc /tmp/cccILwi1.ltrans0.ltrans.o
- .bss.buffer    0x0000000020000388       0x64 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000020000380        0xc /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss.buffer    0x000000002000038c       0x64 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.dataFrame
-                0x00000000200003ec       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x00000000200003f0       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss._ZN9ST7032iFB14callbackObjectE
-                0x0000000020000404        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000020000408        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.st7032Task
-                0x0000000020000408       0x14 /tmp/cccILwi1.ltrans0.ltrans.o
- .bss.dataTab1  0x000000002000041c       0x25 /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x0000000020000441        0x3 
+                0x000000002000040c       0x14 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss.dataTab1  0x0000000020000420       0x25 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000020000445        0x3 
  .bss.frame_buffer
-                0x0000000020000444       0x1c /tmp/cccILwi1.ltrans0.ltrans.o
- .bss.dataTab2  0x0000000020000460       0x25 /tmp/cccILwi1.ltrans0.ltrans.o
- *fill*         0x0000000020000485        0x3 
- .bss.dataFifo  0x0000000020000488       0x18 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000020000448       0x1c /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .bss.dataTab2  0x0000000020000464       0x25 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ *fill*         0x0000000020000489        0x3 
+ .bss.dataFifo  0x000000002000048c       0x18 /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .bss.__malloc_free_list
-                0x00000000200004a0        0x4 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-nano-mallocr.o)
-                0x00000000200004a0                __malloc_free_list
+                0x00000000200004a4        0x4 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-nano-mallocr.o)
+                0x00000000200004a4                __malloc_free_list
  *(COMMON)
  *(.bss_end .bss_end.*)
- .bss_end       0x00000000200004a4        0x4 /tmp/cccILwi1.ltrans0.ltrans.o
-                0x00000000200004a8                . = ALIGN (0x4)
-                0x00000000200004a8                __bss_end__ = .
-                0x00000000200004a8                _ebss = .
+ .bss_end       0x00000000200004a8        0x4 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+                0x00000000200004ac                . = ALIGN (0x4)
+                0x00000000200004ac                __bss_end__ = .
+                0x00000000200004ac                _ebss = .
 
 .noinit_CCMRAM
  *(.noinit.CCMRAM .noinit.CCMRAM.*)
 
-.noinit         0x00000000200004a8        0x0
-                0x00000000200004a8                _noinit = .
+.noinit         0x00000000200004ac        0x0
+                0x00000000200004ac                _noinit = .
  *(.noinit .noinit.*)
-                0x00000000200004a8                . = ALIGN (0x4)
-                0x00000000200004a8                _end_noinit = .
+                0x00000000200004ac                . = ALIGN (0x4)
+                0x00000000200004ac                _end_noinit = .
                 [!provide]                        PROVIDE (end = _end_noinit)
                 [!provide]                        PROVIDE (_end = _end_noinit)
                 [!provide]                        PROVIDE (__end = _end_noinit)
                 [!provide]                        PROVIDE (__end__ = _end_noinit)
 
-._check_stack   0x00000000200004a8      0x100
-                0x00000000200005a8                . = (. + _Minimum_Stack_Size)
- *fill*         0x00000000200004a8      0x100 
+._check_stack   0x00000000200004ac      0x100
+                0x00000000200005ac                . = (. + _Minimum_Stack_Size)
+ *fill*         0x00000000200004ac      0x100 
 
 .b1text
  *(.b1text)
@@ -1029,13 +1060,13 @@ END GROUP
 
 .comment        0x0000000000000000       0x7f
  *(.comment)
- .comment       0x0000000000000000       0x7f /tmp/cccILwi1.ltrans0.ltrans.o
+ .comment       0x0000000000000000       0x7f /tmp/cc7SBuJ4.ltrans0.ltrans.o
                                          0x80 (size before relaxing)
 
 .ARM.attributes
                 0x0000000000000000       0x2f
  .ARM.attributes
-                0x0000000000000000       0x2f /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000       0x2f /tmp/cc7SBuJ4.ltrans0.ltrans.o
  .ARM.attributes
                 0x000000000000002f       0x2c /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
  .ARM.attributes
@@ -1071,42 +1102,42 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000      0x7a0
+.debug_aranges  0x0000000000000000      0x810
  *(.debug_aranges)
  .debug_aranges
-                0x0000000000000000      0x7a0 /tmp/cccILwi1.ltrans0.ltrans.o
+                0x0000000000000000      0x810 /tmp/cc7SBuJ4.ltrans0.ltrans.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x6efe
+.debug_info     0x0000000000000000     0x739a
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x0000000000000000     0x6efe /tmp/cccILwi1.ltrans0.ltrans.o
+ .debug_info    0x0000000000000000     0x739a /tmp/cc7SBuJ4.ltrans0.ltrans.o
 
-.debug_abbrev   0x0000000000000000      0x7dd
+.debug_abbrev   0x0000000000000000      0x80d
  *(.debug_abbrev)
- .debug_abbrev  0x0000000000000000      0x7dd /tmp/cccILwi1.ltrans0.ltrans.o
+ .debug_abbrev  0x0000000000000000      0x80d /tmp/cc7SBuJ4.ltrans0.ltrans.o
 
-.debug_line     0x0000000000000000     0x1bb9
+.debug_line     0x0000000000000000     0x1d13
  *(.debug_line)
- .debug_line    0x0000000000000000     0x1bb9 /tmp/cccILwi1.ltrans0.ltrans.o
+ .debug_line    0x0000000000000000     0x1d13 /tmp/cc7SBuJ4.ltrans0.ltrans.o
 
-.debug_frame    0x0000000000000000     0x1f1c
+.debug_frame    0x0000000000000000     0x20e0
  *(.debug_frame)
- .debug_frame   0x0000000000000000     0x1dc4 /tmp/cccILwi1.ltrans0.ltrans.o
- .debug_frame   0x0000000000001dc4       0x28 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
- .debug_frame   0x0000000000001dec       0x28 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_op.o)
- .debug_frame   0x0000000000001e14       0x40 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-malloc.o)
- .debug_frame   0x0000000000001e54       0x2c /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-nano-freer.o)
- .debug_frame   0x0000000000001e80       0x2c /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-nano-mallocr.o)
- .debug_frame   0x0000000000001eac       0x30 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-mlock.o)
- .debug_frame   0x0000000000001edc       0x20 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_udivsi3.o)
- .debug_frame   0x0000000000001efc       0x20 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-memset.o)
+ .debug_frame   0x0000000000000000     0x1f88 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+ .debug_frame   0x0000000000001f88       0x28 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
+ .debug_frame   0x0000000000001fb0       0x28 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_op.o)
+ .debug_frame   0x0000000000001fd8       0x40 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-malloc.o)
+ .debug_frame   0x0000000000002018       0x2c /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x0000000000002044       0x2c /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x0000000000002070       0x30 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-mlock.o)
+ .debug_frame   0x00000000000020a0       0x20 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_frame   0x00000000000020c0       0x20 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-memset.o)
 
-.debug_str      0x0000000000000000     0x20a9
+.debug_str      0x0000000000000000     0x2164
  *(.debug_str)
- .debug_str     0x0000000000000000     0x20a9 /tmp/cccILwi1.ltrans0.ltrans.o
-                                       0x2249 (size before relaxing)
+ .debug_str     0x0000000000000000     0x2164 /tmp/cc7SBuJ4.ltrans0.ltrans.o
+                                       0x2326 (size before relaxing)
 
 .debug_loc
  *(.debug_loc)
@@ -1127,5 +1158,5 @@ END GROUP
  *(.debug_varnames)
 OUTPUT(sterM.elf elf32-littlearm)
 
-.debug_ranges   0x0000000000000000      0x7c0
- .debug_ranges  0x0000000000000000      0x7c0 /tmp/cccILwi1.ltrans0.ltrans.o
+.debug_ranges   0x0000000000000000      0x800
+ .debug_ranges  0x0000000000000000      0x800 /tmp/cc7SBuJ4.ltrans0.ltrans.o

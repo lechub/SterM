@@ -25,13 +25,17 @@ private:
 public:
 
   typedef enum {
-    ZATRZYMANA,   // silnik stoi, krańcówki niewłączone
+    POSRODKU,   // miedzy dolem a gora
     OTWARTA,  // górna krańcówka włączona
     ZAMKNIETA,   // dolna krańcówka włączona
-    OTWIERA_SIE,   // silnik idzie do góry, krańcówki niewłączone
-    ZAMYKA_SIE,   // silnik idzie w dół, krańcówki niewłączone
     USZKODZONA,   // stan niewłaściwy, np. obie krańcówki włączone
-  }StanBramy;
+  }Pozycja;
+
+  typedef enum {
+    STOP,   // zatrzymany silnik
+    OTWORZYC,   // silnik idzie do góry,
+    ZAMKNAC,   // silnik idzie w dół,
+  }Ruch;
 
   typedef enum{
     NIEOKRESLONY,
@@ -49,7 +53,8 @@ private:
   Pinout *wewy = nullptr;
 
   NAPED typNapedu = NIEOKRESLONY;
-  StanBramy stanBramy = ZATRZYMANA;
+  Pozycja pozycja = POSRODKU;
+  Ruch ruch = STOP;
 
   bool awaria = false;
 
@@ -66,61 +71,64 @@ private:
   }
 
   void fixOutputs(){
-    wewy->gpioOutOtwarte.setOutput(stanBramy == OTWARTA);
-    wewy->gpioOutZamkniete.setOutput(stanBramy == ZAMKNIETA);
-    setBuzzer((stanBramy == ZAMYKA_SIE)||(stanBramy == OTWIERA_SIE));
-    if (stanBramy == USZKODZONA) awaria = true;
+    wewy->gpioOutOtwarte.setOutput(pozycja == OTWARTA);
+    wewy->gpioOutZamkniete.setOutput(pozycja == ZAMKNIETA);
+    setBuzzer((ruch == ZAMKNAC)||(ruch == OTWORZYC));
+    if (pozycja == USZKODZONA) awaria = true;
   }
 
 
-  StanBramy check(){
-    if (isOtwarte()) stanBramy = OTWARTA;
-    if (isZamkniete()) stanBramy = ZAMKNIETA;
+  Pozycja checkPozycja(){
     if (isOtwarte() && isZamkniete()){
-      stanBramy = USZKODZONA;
+      pozycja = USZKODZONA;
     }else{
-      if (stanBramy == USZKODZONA) stanBramy = ZATRZYMANA;
-    }
-
-    switch(stanBramy){
-    case  OTWARTA:
-      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
-      hamulec->hamuj(true);
-      if(!isOtwarte()){
-        stanBramy = ZATRZYMANA;
+      if (isOtwarte()){
+        pozycja = OTWARTA;
+      }else if (isZamkniete()){
+        pozycja = ZAMKNIETA;
+      }else{
+        pozycja = POSRODKU;
       }
-      break;
-    case  ZAMKNIETA:
-      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
-      hamulec->hamuj(true);
-      if(!isZamkniete()){
-        stanBramy = ZATRZYMANA;
-      }
-      break;
-    case  OTWIERA_SIE:
-      hamulec->hamuj(false);
-      getSilnik()->setMove(SilnikNapedu::MOVE::UP);
-      break;
-    case  ZAMYKA_SIE:
-      hamulec->hamuj(false);
-      getSilnik()->setMove(SilnikNapedu::MOVE::DOWN);
-      break;
-    case  ZATRZYMANA:
-      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
-      hamulec->hamuj(true);
-      break;
-    case  USZKODZONA:
-      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
-      hamulec->hamuj(true);
-      break;
-    default:
-      stanBramy = ZATRZYMANA;
-      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
-      hamulec->hamuj(true);
-      break;
     }
     fixOutputs();
-    return stanBramy;
+    return pozycja;
+  }
+
+  void checkRuch(){
+    checkPozycja();
+    switch(ruch){
+    case  Ruch::OTWORZYC:
+      if(      // mozna podniesc jesli
+          (!isOtwarte())    // nie jest otwarte
+          && (!isZakazOtwierania()) // nie ma zakazu otwierania
+          && (!isPozar())   // nie ma pozaru
+      ){
+        hamulec->hamuj(false);
+        getSilnik()->setMove(SilnikNapedu::MOVE::UP);
+      }else{
+        getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+        hamulec->hamuj(true);
+      }
+      break;
+    case  Ruch::ZAMKNAC:
+      if(      // mozna podniesc jesli
+          (!isZamkniete())    // nie jest zamkniete
+          && (!isZakazZamykania()) // nie ma zakazu zamykania
+      ){
+        hamulec->hamuj(false);
+        getSilnik()->setMove(SilnikNapedu::MOVE::DOWN);
+      }else{
+        getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+        hamulec->hamuj(true);
+      }
+      break;
+    case  Ruch::STOP:
+    default:
+      ruch = Ruch::STOP;
+      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+      hamulec->hamuj(true);
+      break;
+    }
   }
 
 public:
@@ -131,6 +139,7 @@ public:
   }
 
   bool init(){
+    typNapedu = (NAPED)(Parameter::getValue(Parameter::Nazwa::NAPED));
     wewy = &pins;
     silnik24VDC->init();
     silnik230VAC->init();
@@ -154,8 +163,8 @@ public:
 
   inline bool isOtwarte()const{ return wewy->gpioInKrancOtwarte.getInput(); }
   inline bool isZamkniete()const{ return wewy->gpioInKrancZamkniete.getInput(); }
-  inline bool isZakazOtwierania()const{ return !(wewy->gpioInZakazOtwierania.getInput()); }
-  inline bool isZakazZamykania()const{ return !(wewy->gpioInZakazZamykania.getInput()); }
+  inline bool isZakazOtwierania()const{ return wewy->gpioInZakazOtwierania.getInput(); }
+  inline bool isZakazZamykania()const{ return wewy->gpioInZakazZamykania.getInput(); }
   inline bool isPozar()const{ return !(wewy->gpioInPozar.getInput()); }
   inline bool isAlarmAkustyczny()const{ return !(wewy->gpioInAlarmAkust.getInput()); }
   inline bool isRezerwa1()const{ return !(wewy->gpioInRezerwa1.getInput()); }
@@ -165,98 +174,104 @@ public:
 
   inline bool isAwaria()const{ return awaria; }
 
+  Ruch getRuch(){ return ruch; }
+
+  bool isMotorOn(){
+    SilnikNapedu::MOVE move = getSilnik()->getMove();
+    return ((move == SilnikNapedu::MOVE::DOWN) || (move == SilnikNapedu::MOVE::UP));
+  }
+
   void setAwaria(bool enable){ awaria = enable; }
 
-  StanBramy podnies(){
-    bool mozna = (      // mozna podniesc jesli
-        (!isOtwarte())    // nie jest otwarte
-        && (!isZakazOtwierania()) // nie ma zakazu otwierania
-        && (!isPozar())   // nie ma pozaru
-    );
-
-    switch(stanBramy){
-    case  OTWARTA:
-      break;
-    case  ZAMKNIETA:
-    case  ZATRZYMANA:
-      if (mozna){
-        stanBramy = OTWIERA_SIE; // otwierac, jesli mozna
-        uint32_t licznik = Parameter::getValue(Parameter::Nazwa::LICZNIK);
-        Parameter::setValue(Parameter::Nazwa::LICZNIK, uint16_t(licznik + 1));
-      }
-      break;
-    case  OTWIERA_SIE:
-      if (!mozna) stanBramy = ZATRZYMANA; // otwierac, a jesli nie mozna to zatrzymac i juz
-      break;
-    case  ZAMYKA_SIE:
-      stanBramy = ZATRZYMANA; // najpierw zatrzymac
-      break;
-    case  USZKODZONA: // poczekac, az uszkodzenie ustapi
-      break;
-    default:
-      stanBramy = ZATRZYMANA;
-      break;
+  Pozycja podnies(){
+    if (ruch != Ruch::OTWORZYC){
+      uint32_t licznik = Parameter::getValue(Parameter::Nazwa::LICZNIK);
+      Parameter::setValue(Parameter::Nazwa::LICZNIK, uint16_t(licznik + 1));
     }
-    check();
-    fixOutputs();
-    return stanBramy;
+    ruch = Ruch::OTWORZYC;
+    checkRuch();
+    return pozycja;
   }
 
-  StanBramy opusc(){
-    bool mozna = (      // mozna podniesc jesli
-        (!isZamkniete())    // nie jest zamkniete
-        && (!isZakazZamykania()) // nie ma zakazu zamykania
-    );
-
-    switch(stanBramy){
-    case  ZAMKNIETA:  // zamknietej nie trzeba zamykac
-      break;
-    case  OTWARTA:
-    case  ZATRZYMANA:
-      if (mozna){
-        stanBramy = ZAMYKA_SIE; // zamykac, jesli mozna
-        uint32_t licznik = Parameter::getValue(Parameter::Nazwa::LICZNIK);
-        Parameter::setValue(Parameter::Nazwa::LICZNIK,uint16_t(licznik + 1));
-      }
-      break;
-    case  OTWIERA_SIE:
-      stanBramy = ZATRZYMANA; // najpierw zatrzymac
-      break;
-    case  ZAMYKA_SIE:
-      if (!mozna) stanBramy = ZATRZYMANA; // zamykac, a jesli nie mozna to zatrzymac i juz
-      break;
-    case  USZKODZONA: // poczekac, az uszkodzenie ustapi
-      break;
-    default:
-      stanBramy = ZATRZYMANA;
-      break;
+  Pozycja opusc(){
+    if (ruch != Ruch::ZAMKNAC){
+      uint32_t licznik = Parameter::getValue(Parameter::Nazwa::LICZNIK);
+      Parameter::setValue(Parameter::Nazwa::LICZNIK, uint16_t(licznik + 1));
     }
-    check();
-    fixOutputs();
-    return stanBramy;
+    ruch = Ruch::ZAMKNAC;
+    checkRuch();
+    return pozycja;
   }
 
-  StanBramy zatrzymaj(){
-    stanBramy = ZATRZYMANA;
-    check();
-    fixOutputs();
-    return stanBramy;
+  Pozycja zatrzymaj(){
+    ruch = Ruch::STOP;
+    checkRuch();
+    return pozycja;
   }
 
-  StanBramy getStanBramy() const{
-    return stanBramy;
+  void poll(){
+    checkRuch();
   }
 
   void setNaped(NAPED nowyTypNapedu){
+    zatrzymaj();
     typNapedu = nowyTypNapedu;
+    Parameter::setValue(Parameter::Nazwa::NAPED, (uint16_t)typNapedu);
     switch(typNapedu){
-    case VIC_012x: hamulec->setMode(Hamulec::MODE::PRZECIWNIE, false); break;
-    case VIC_0701: hamulec->setMode(Hamulec::MODE::NORMALNIE, false); break;
-    case VIC_042x: hamulec->setMode(Hamulec::MODE::OFF, false); break;
-    case VIC_010x: hamulec->setMode(Hamulec::MODE::OFF, false); break;
-    case VIC_040x: hamulec->setMode(Hamulec::MODE::OFF, false); break;
+    case VIC_012x:
+      silnik24VDC->setType1234(false);
+      hamulec->setMode(Hamulec::MODE::PRZECIWNIE, false);
+      break;
+    case VIC_042x:
+      silnik24VDC->setType1234(false);
+      hamulec->setMode(Hamulec::MODE::OFF, false);
+      break;
+    case VIC_0701:
+      silnik24VDC->setType1234(false);
+      hamulec->setMode(Hamulec::MODE::NORMALNIE, false);
+      break;
+    case VIC_010x:
+      hamulec->setMode(Hamulec::MODE::OFF, false);
+      silnik24VDC->setType1234(true);
+      break;
+    case VIC_040x:
+      hamulec->setMode(Hamulec::MODE::OFF, false);
+      silnik24VDC->setType1234(false);
+      break;
     case NIEOKRESLONY:
-    default:    return  hamulec->setMode(Hamulec::MODE::OFF, false); break;
+    default:
+      silnik24VDC->setType1234(false);
+      hamulec->setMode(Hamulec::MODE::OFF, false); break;
+    }
+  }
+
+  void setPrevNaped(){
+    int8_t typ = (uint8_t)getTypNapedu();
+    if (--typ <= NAPED::NIEOKRESLONY){
+      typ = int8_t(NAPED::VIC_0701);
+    }
+    setNaped((NAPED)(typ));
+  }
+
+  void setNextNaped(){
+    int8_t typ = (uint8_t)getTypNapedu();
+    if (++typ > NAPED::VIC_0701){
+      typ = (int8_t)NAPED::VIC_012x;
+    }
+    setNaped((NAPED)(typ));
+  }
+
+  const char * getOpisNapedu()const{ return getOpisNapedu(typNapedu); }
+
+  const char * getOpisNapedu(NAPED naped)const{
+    switch(naped){  //-----1234567890123456
+    case VIC_012x: return "VIC_012x"; break;
+    case VIC_0701: return "VIC_0701"; break;
+    case VIC_042x: return "VIC_042x"; break;
+    case VIC_010x: return "VIC_010x"; break;
+    case VIC_040x: return "VIC_040x"; break;
+    case NIEOKRESLONY:
+    default:       return "NIEOKRESLONY"; break;
     }
   }
 
