@@ -73,8 +73,14 @@ private:
   void fixOutputs(){
     wewy->gpioOutOtwarte.setOutput(pozycja == OTWARTA);
     wewy->gpioOutZamkniete.setOutput(pozycja == ZAMKNIETA);
-    setBuzzer((ruch == ZAMKNAC)||(ruch == OTWORZYC));
-    if (pozycja == USZKODZONA) awaria = true;
+    setBuzzer(
+        ((ruch == ZAMKNAC)&&(pozycja != ZAMKNIETA))
+        ||((ruch == OTWORZYC)&&(pozycja != OTWARTA)));
+    if (pozycja == USZKODZONA){
+      awaria = true;
+    }else{
+      awaria = false;
+    }
   }
 
 
@@ -131,6 +137,36 @@ private:
     }
   }
 
+  void initNaped(){
+     switch(typNapedu){
+     case VIC_012x:
+       silnik24VDC->setType1234(false);
+       hamulec->setMode(Hamulec::MODE::NORMALNIE , false);
+       break;
+     case VIC_042x:
+       silnik24VDC->setType1234(false);
+       hamulec->setMode(Hamulec::MODE::OFF, false);
+       break;
+     case VIC_0701:
+       silnik24VDC->setType1234(false);
+       hamulec->setMode(Hamulec::MODE::PRZECIWNIE, false);
+       break;
+     case VIC_010x:
+       hamulec->setMode(Hamulec::MODE::OFF, false);
+       silnik24VDC->setType1234(true);
+       break;
+     case VIC_040x:
+       hamulec->setMode(Hamulec::MODE::OFF, false);
+       silnik24VDC->setType1234(false);
+       break;
+     case NIEOKRESLONY:
+     default:
+       silnik24VDC->setType1234(false);
+       hamulec->setMode(Hamulec::MODE::OFF, false); break;
+     }
+   }
+
+
 public:
   Sterownik(Silnik24VDC * silnik24, Silnik230VAC * silnik230, Hamulec * hamulecSilnika){
     silnik24VDC = silnik24;
@@ -139,11 +175,12 @@ public:
   }
 
   bool init(){
-    typNapedu = (NAPED)(Parameter::getValue(Parameter::Nazwa::NAPED));
     wewy = &pins;
     silnik24VDC->init();
     silnik230VAC->init();
     hamulec->init();
+    typNapedu = (NAPED)(Parameter::getValue(Parameter::Nazwa::NAPED));
+    initNaped();
     return true;
   }
 
@@ -157,6 +194,10 @@ public:
     case NIEOKRESLONY:
     default:    return false;
     }
+  }
+
+  inline bool isBrakeAtStop(){
+    return getTypNapedu() == NAPED::VIC_012x;
   }
 
   inline NAPED getTypNapedu() const{ return typNapedu; }
@@ -217,32 +258,7 @@ public:
     zatrzymaj();
     typNapedu = nowyTypNapedu;
     Parameter::setValue(Parameter::Nazwa::NAPED, (uint16_t)typNapedu);
-    switch(typNapedu){
-    case VIC_012x:
-      silnik24VDC->setType1234(false);
-      hamulec->setMode(Hamulec::MODE::PRZECIWNIE, false);
-      break;
-    case VIC_042x:
-      silnik24VDC->setType1234(false);
-      hamulec->setMode(Hamulec::MODE::OFF, false);
-      break;
-    case VIC_0701:
-      silnik24VDC->setType1234(false);
-      hamulec->setMode(Hamulec::MODE::NORMALNIE, false);
-      break;
-    case VIC_010x:
-      hamulec->setMode(Hamulec::MODE::OFF, false);
-      silnik24VDC->setType1234(true);
-      break;
-    case VIC_040x:
-      hamulec->setMode(Hamulec::MODE::OFF, false);
-      silnik24VDC->setType1234(false);
-      break;
-    case NIEOKRESLONY:
-    default:
-      silnik24VDC->setType1234(false);
-      hamulec->setMode(Hamulec::MODE::OFF, false); break;
-    }
+    initNaped();
   }
 
   void setPrevNaped(){
@@ -265,20 +281,21 @@ public:
 
   const char * getOpisNapedu(NAPED naped)const{
     switch(naped){  //-----1234567890123456
-    case VIC_012x: return "VIC_012x"; break;
-    case VIC_0701: return "VIC_0701"; break;
-    case VIC_042x: return "VIC_042x"; break;
-    case VIC_010x: return "VIC_010x"; break;
-    case VIC_040x: return "VIC_040x"; break;
+    case VIC_012x: return "VIC-012x"; break;
+    case VIC_0701: return "VIC-0701"; break;
+    case VIC_042x: return "VIC-042x"; break;
+    case VIC_010x: return "VIC-010x"; break;
+    case VIC_040x: return "VIC-040x"; break;
     case NIEOKRESLONY:
     default:       return "NIEOKRESLONY"; break;
     }
   }
 
-  bool gotoSafePosition(){
-    silnik24VDC->setMove(SilnikNapedu::MOVE::FLOAT);
-    silnik230VAC->setMove(SilnikNapedu::MOVE::FLOAT);
-    hamulec->setMode(Hamulec::MODE::OFF, false);
+  bool gotoSafePosition(bool enable){
+    silnik24VDC->gotoSafePosition(enable);
+    silnik230VAC->gotoSafePosition(enable);
+    hamulec->gotoSafePosition(enable);
+    if (enable) setNaped(typNapedu);
     return true;
   }
 

@@ -21,7 +21,7 @@ void Menu::poll(){
   case e_START:
   {
     switch(key){
-    case Keyboard::Key::ENTER: ekran = EKRAN::e_1_NAPED;  break;
+    case Keyboard::Key::ENTER: goToEkran(EKRAN::e_1_NAPED_WYBOR);  break;
     case Keyboard::Key::ENTER_CANCEL:  // zerowanie licznika
       Parameter::setValue(Parameter::Nazwa::LICZNIK, 0);
       break;
@@ -40,8 +40,8 @@ void Menu::poll(){
   {
     //Sterownik::NAPED naped = sterM->getTypNapedu();
     switch(key){
-    case Keyboard::Key::ENTER: ekran = EKRAN::e_1_NAPED_WYBOR;  break;
-    case Keyboard::Key::CANCEL: ekran = EKRAN::e_START;  break;
+    case Keyboard::Key::ENTER: goToEkran(EKRAN::e_1_NAPED_WYBOR);  break;
+    case Keyboard::Key::CANCEL: goToEkran(EKRAN::e_START);  break;
     case Keyboard::Key::LEFT:
     case Keyboard::Key::RIGHT:
     default:
@@ -53,7 +53,8 @@ void Menu::poll(){
   {
     switch(key){
     case Keyboard::Key::ENTER:
-      ekran = EKRAN::e_1_NAPED;
+    case Keyboard::Key::CANCEL:
+      goToEkran(EKRAN::e_START);
       break;
     case Keyboard::Key::LEFT:  sterM->setPrevNaped(); break;
     case Keyboard::Key::RIGHT:  sterM->setNextNaped(); break;
@@ -115,9 +116,13 @@ void Menu::showEkran(uint16_t val){
     lcd->gotoXY(0,0);
     //--------------------------->1234567890123456<
     lcd->printNumbersWithPattern("LICZNIK: 000000 ", val);
-    lcd->gotoXY(0,1);
-    //----------0123456789012345
-    lcd->print("    MARTECH     ");
+//    //----------0123456789012345
+//    lcd->printXY(0,1, "    MARTECH     ");
+    lcd->clearLine(1);
+    //--------------->1234567890123456<
+    lcd->printXY(0, 1, "[");
+    lcd->print( sterM->getOpisNapedu());
+    lcd->print("]");
     break;
   }
   case e_1_NAPED:{

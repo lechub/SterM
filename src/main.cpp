@@ -132,7 +132,6 @@ QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_
     st7032iDriver.init(i2c, &pins.gpioLcdBackLight, &pins.gpioLcdReset);
   }
 
-  praca->init();
 
   HMI * hmi;
   hmi = HMI::getInstance();
@@ -144,7 +143,9 @@ QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_
 
   hmi->lcd->cursorMode(FrameBuffer::CursorMode::HIDDEN);
 
-  sterM->init();
+  //sterM->init();
+
+  praca->init();
 
 //  if (!Parameter::initEepromMemory()){
 //    //---------------------->1234567890123456<

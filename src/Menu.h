@@ -60,6 +60,8 @@ public:
 
   void goToEkran(EKRAN nowyEkran){
     ekran = nowyEkran;
+    if (ekran == EKRAN::e_START) sterM->gotoSafePosition(false);
+    if (ekran == EKRAN::e_1_NAPED_WYBOR) sterM->gotoSafePosition(true);
     editMode = false;
 
     //		switch(ekran){
@@ -87,7 +89,7 @@ public:
     uint16_t val = 1;
     switch(ekran){
     case e_START:
-      val = Parameter::getValue(Parameter::Nazwa::LICZNIK);
+      val = (uint16_t)Parameter::getValue(Parameter::Nazwa::LICZNIK);
       break;
     case e_1_NAPED:
       break;

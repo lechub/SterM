@@ -9,7 +9,8 @@
 #define SILNIKNAPEDU_H_
 
 class SilnikNapedu {
-
+protected:
+  bool safePosition = true;
 public:
   typedef enum{
     UP,     // naped idzie do gory
@@ -21,6 +22,9 @@ public:
 
  virtual void setMove(MOVE newMove) = 0;
  virtual MOVE getMove() = 0;
+ virtual bool gotoSafePosition(bool enable) = 0;
+
+ bool isInSafePosition(){ return safePosition; }
 
  virtual ~SilnikNapedu(){}
 };

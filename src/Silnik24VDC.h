@@ -34,11 +34,18 @@ public:
     hBridge34->init();
   }
 
+  bool gotoSafePosition(bool enable){
+    setMove(MOVE::FLOAT);
+    safePosition = enable;
+     return safePosition;
+   }
+
   void setType1234(bool enable){
     type1234 = enable;
   }
 
   void setMove(MOVE newMove){
+    if (safePosition) newMove = MOVE::FLOAT;
     move = newMove;
     if (type1234){
       switch (move){

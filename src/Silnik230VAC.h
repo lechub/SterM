@@ -42,7 +42,16 @@ public:
     gpioOtworz->setOutputDown();
   }
 
+
+  bool gotoSafePosition(bool enable){
+    setMove(MOVE::FLOAT);
+    safePosition = enable;
+     return true;
+   }
+
+
   void setMove(MOVE newMove){
+    if (safePosition) newMove = MOVE::FLOAT;
     move = newMove;
     switch (move){
     case MOVE::UP:

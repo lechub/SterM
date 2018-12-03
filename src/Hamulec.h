@@ -24,6 +24,7 @@ private:
   HBridge * hBridge;
 
   bool hamowanie = false;
+  bool safePosition = true;
   MODE mode = OFF;
 
 public:
@@ -31,8 +32,15 @@ public:
     hBridge = hbridge;
   }
 
+  bool gotoSafePosition(bool enable){
+    safePosition = enable;
+    if (safePosition)setMode(OFF);
+     return safePosition;
+   }
+
   void init(){
     hBridge->init();
+    gotoSafePosition(true);
   }
 
   /**
@@ -40,8 +48,9 @@ public:
    * @param newMode
    */
   void setMode(MODE newMode){
+    //if (safePosition) newMode = MODE::OFF; // wymuszenie safePosition
     mode = newMode;
-    if (mode != OFF)    // jesli off to nie ruszac tego bridge-a
+    if (mode == OFF)    // jesli off to nie ruszac tego bridge-a
       hBridge->setPower(HBridge::POWER::FLOAT);
   }
 
@@ -53,22 +62,24 @@ public:
 
   void hamuj(bool state){
     hamowanie = state;
-    switch(mode){
+    MODE tmpMode = mode;
+    if (safePosition) tmpMode = OFF;
+    switch(tmpMode){
     case MODE::NORMALNIE:
       if (hamowanie){
         hBridge->setPower(HBridge::POWER::STRAIGHT);
       }else{
-        hBridge->setPower(HBridge::POWER::FLOAT);
+        hBridge->setPower(HBridge::POWER::HOLD_DOWN);
       }
       break;
     case MODE::PRZECIWNIE:
       if (hamowanie){
-             hBridge->setPower(HBridge::POWER::FLOAT);
+             hBridge->setPower(HBridge::POWER::HOLD_DOWN);
            }else{
              hBridge->setPower(HBridge::POWER::STRAIGHT);
            }
       break;
-    case MODE::OFF:
+    case MODE::OFF: break;  // wylaczone, nie rusza hbridge'a
     default:
       //hBridge->setPower(HBridge::POWER::FLOAT);
       break;
@@ -77,6 +88,7 @@ public:
 
   MODE getMode(){ return mode; }
   bool isHamuje(){ return hamowanie; }
+  bool isInSafePosition(){ return safePosition; }
 
 };
 
