@@ -85,6 +85,10 @@ Praca *praca = &job;
 
 Menu menu = Menu();
 
+
+/***
+ * procedura sterowania mostkami H. docelowo przenieść do przerwania (co 200us)
+ */
 void hBridgePoll(){
   hBridgeHamulec.poll();
   hBridgeSilnik.poll();
