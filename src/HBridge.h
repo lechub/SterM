@@ -12,67 +12,75 @@
 
 class HBridge {
 
-
 public:
-  typedef enum{
-     STRAIGHT,     // plus na +24V a minus na masie
-     INVERT,   // plus ma masie a minus na +24V
-     FLOAT,  // naped bez zasilania
-     HOLD_UP,  // oba bieguny na plusie
-     HOLD_DOWN,  // oba bieguny na minusie
-   }POWER;
+  static constexpr uint32_t TIME_POLL_PERIOD_MS = 1;
 
- protected:
-  typedef enum{
-    HIGH, LOW, FOATING
-  }POSITION;
 
   typedef enum{
-    PLUS, MINUS
-  }LINE;
+    STRAIGHT,     // plus na +24V a minus na masie
+    INVERT,   // plus ma masie a minus na +24V
+    FLOAT,  // naped bez zasilania
+    HOLD_UP,  // oba bieguny na plusie
+    HOLD_DOWN,  // oba bieguny na minusie
+  }POWER;
+
+protected:
+  typedef enum{
+    HIGH, LOW, FLOATING
+  }PULL;
+
+  //  typedef enum{
+  //    PLUS, MINUS
+  //  }LINE;
 
   Gpio * gpioPH;
   Gpio * gpioPL;
   Gpio * gpioMH;
   Gpio * gpioML;
-  POSITION posPlus = POSITION::FOATING;
-  POSITION posMinus = POSITION::FOATING;
-  POWER power = POWER::FLOAT;
+  PULL pPlus = PULL::LOW;
+  PULL pMinus = PULL::LOW;
+  PULL pPlusSet = PULL::FLOATING;
+  PULL pMinusSet = PULL::FLOATING;
+  POWER pState  = POWER::HOLD_DOWN;
+  //  POWER pNew  = POWER::FLOAT;  //
 
-  void setOutputLine(LINE line, POSITION ouputPosition){
-    Gpio * high;
-    Gpio * low;
-    switch(line){
-    case LINE::PLUS:
-      posPlus = ouputPosition;
-      high = gpioPH;
-      low = gpioPL;
-      break;
-    case LINE::MINUS:
-    default:
-      posMinus = ouputPosition;
-      high = gpioMH;
-      low = gpioML;
-      break;
-    }
-
+  void setPullPlus(PULL ouputPosition){
+    pPlus = ouputPosition;
     switch(ouputPosition){
-    case POSITION::HIGH:    //
-      low->setOutputDown(); // najpierw wylaczyc dolny
-      high->setOutputUp();   // a potem wlaczyc gorny
+    case PULL::HIGH:    //
+      gpioPL->setOutputDown(); // najpierw wylaczyc dolny
+      gpioPH->setOutputUp();   // a potem wlaczyc gorny
       break;
-    case POSITION::LOW:
-      high->setOutputDown();   // najpierw wylaczyc gorny
-      low->setOutputUp();     //  a potem wlaczyc dolny
+    case PULL::LOW:
+      gpioPH->setOutputDown();   // najpierw wylaczyc gorny
+      gpioPL->setOutputUp();     //  a potem wlaczyc dolny
       break;
-    case POSITION::FOATING: // cokolwiek innego - wszystko wylaczyc w diably
+    case PULL::FLOATING: // cokolwiek innego - wszystko wylaczyc w diably
     default:
-      high->setOutputDown();
-      low->setOutputDown();
+      gpioPH->setOutputDown();
+      gpioPL->setOutputDown();
       break;
     }
   }
 
+  void setPullMinus(PULL ouputPosition){
+    pMinus = ouputPosition;
+    switch(ouputPosition){
+    case PULL::HIGH:    //
+      gpioML->setOutputDown(); // najpierw wylaczyc dolny
+      gpioMH->setOutputUp();   // a potem wlaczyc gorny
+      break;
+    case PULL::LOW:
+      gpioMH->setOutputDown();   // najpierw wylaczyc gorny
+      gpioML->setOutputUp();     //  a potem wlaczyc dolny
+      break;
+    case PULL::FLOATING: // cokolwiek innego - wszystko wylaczyc w diably
+    default:
+      gpioMH->setOutputDown();
+      gpioML->setOutputDown();
+      break;
+    }
+  }
 
 public:
   HBridge(Gpio * gpioPlusH, Gpio * gpioPlusL, Gpio * gpioMinusH, Gpio * gpioMinusL){
@@ -82,57 +90,101 @@ public:
     gpioML = gpioMinusL;
   }
 
-  void setPlus(POSITION ouputPosition){
-    setOutputLine(LINE::PLUS, ouputPosition);
-  }
-
-  void setMinus(POSITION ouputPosition){
-    setOutputLine(LINE::MINUS, ouputPosition);
-  }
+  //  void setPlus(PULL ouputPosition){
+  //    setOutputLine(LINE::PLUS, ouputPosition);
+  //  }
+  //
+  //  void setMinus(PULL ouputPosition){
+  //    setOutputLine(LINE::MINUS, ouputPosition);
+  //  }
 
   void init(){
-    setPlus(POSITION::FOATING);
-    setMinus(POSITION::FOATING);
+    setPullMinus(PULL::FLOATING);
+    setPullPlus(PULL::FLOATING);
+    setPower(POWER::FLOAT);
   }
 
+  //  void setPower(POWER powerMode){
+  //    power = powerMode;
+  //    switch (power){
+  //    case POWER::STRAIGHT:
+  //      setPlus(PULL::FLOATING);
+  //      setMinus(PULL::LOW);
+  //      setPlus(PULL::HIGH);
+  //      break;
+  //    case POWER::INVERT:   // naped idzie w dol
+  //      setMinus(PULL::FLOATING);
+  //      setPlus(PULL::LOW);
+  //      setMinus(PULL::HIGH);
+  //      break;
+  //    case POWER::HOLD_UP:  // oba bieguny na plusie
+  //      setMinus(PULL::FLOATING);
+  //      setPlus(PULL::FLOATING);
+  //      setMinus(PULL::HIGH);
+  //      setPlus(PULL::HIGH);
+  //      break;
+  //    case POWER::HOLD_DOWN:  // oba bieguny na minusie
+  //      setMinus(PULL::FLOATING);
+  //      setPlus(PULL::FLOATING);
+  //      setMinus(PULL::LOW);
+  //      setPlus(PULL::LOW);
+  //      break;
+  //    case POWER::FLOAT:  // naped bez zasilania
+  //    default:
+  //      setMinus(PULL::FLOATING);
+  //      setPlus(PULL::FLOATING);
+  //    }
+  //  }
+
   void setPower(POWER powerMode){
-    power = powerMode;
-    switch (power){
+    pState = powerMode;
+    switch(pState){
     case POWER::STRAIGHT:
-      setPlus(POSITION::FOATING);
-      setMinus(POSITION::LOW);
-      setPlus(POSITION::HIGH);
+      pMinusSet = PULL::LOW;
+      pPlusSet = PULL::HIGH;
       break;
     case POWER::INVERT:   // naped idzie w dol
-      setMinus(POSITION::FOATING);
-      setPlus(POSITION::LOW);
-      setMinus(POSITION::HIGH);
+      pPlusSet = PULL::LOW;
+      pMinusSet = PULL::HIGH;
       break;
     case POWER::HOLD_UP:  // oba bieguny na plusie
-      setMinus(POSITION::FOATING);
-      setPlus(POSITION::FOATING);
-      setMinus(POSITION::HIGH);
-      setPlus(POSITION::HIGH);
+      pPlusSet = PULL::HIGH;
+      pMinusSet = PULL::HIGH;
       break;
     case POWER::HOLD_DOWN:  // oba bieguny na minusie
-      setMinus(POSITION::FOATING);
-      setPlus(POSITION::FOATING);
-      setMinus(POSITION::LOW);
-      setPlus(POSITION::LOW);
+      pPlusSet = PULL::LOW;
+      pMinusSet = PULL::LOW;
       break;
     case POWER::FLOAT:  // naped bez zasilania
     default:
-      setMinus(POSITION::FOATING);
-      setPlus(POSITION::FOATING);
+      pPlusSet = PULL::FLOATING;
+      pMinusSet = PULL::FLOATING;
+    }
+
+
+
+  }
+
+  POWER getPowerMode(){ return pState; }
+
+  //  PULL getPositionPlus(){ return posPlus; }
+  //  PULL getPositionMinus() { return posMinus; }
+
+  void poll(){
+    if ((pMinus != pMinusSet) || (pPlus != pPlusSet)){
+      if ((pMinus == PULL::FLOATING) && (pPlus == PULL::FLOATING)){
+        setPullMinus(pMinusSet);
+        setPullPlus(pPlusSet);
+      }else{
+        setPullMinus(PULL::FLOATING);
+        setPullPlus(PULL::FLOATING);
+      }
     }
   }
 
-  POWER getPowerMode(){ return power; }
-  POSITION getPositionPlus(){ return posPlus; }
-  POSITION getPositionMinus() { return posMinus; }
-
-
-
 };
+
+
+
 
 #endif /* HBRIDGE_H_ */

@@ -28,6 +28,7 @@ void QuickTask::tick(uint32_t milis){
 	}
 }
 
+
 void QuickTask::poll(){
   if (holded) return;
 	QuickTask * tsk = taskbase;

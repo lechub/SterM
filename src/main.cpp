@@ -55,12 +55,14 @@
 // (currently OS_USE_TRACE_ITM, OS_USE_TRACE_SEMIHOSTING_DEBUG/_STDOUT).
 //
 
+void hBridgePoll();
+
 Pinout pins = Pinout();
 
 Keyboard keys = Keyboard(&pins.gpioInBtnBACK, &pins.gpioInBtnLEFT, &pins.gpioInBtnRIGHT, &pins.gpioInBtnENTER);
 
-HBridge hBridgeHamulec = HBridge(&pins.gpioWyj1H, &pins.gpioWyj1L, &pins.gpioWyj2H, &pins.gpioWyj2L);
-HBridge hBridgeSilnik = HBridge(&pins.gpioWyj3H, &pins.gpioWyj3L, &pins.gpioWyj4H, &pins.gpioWyj4L);
+HBridge hBridgeHamulec  = HBridge(&pins.gpioWyj1H, &pins.gpioWyj1L, &pins.gpioWyj2H, &pins.gpioWyj2L);
+HBridge hBridgeSilnik   = HBridge(&pins.gpioWyj3H, &pins.gpioWyj3L, &pins.gpioWyj4H, &pins.gpioWyj4L);
 
 Hamulec hamulec = Hamulec(&hBridgeHamulec);
 
@@ -83,6 +85,10 @@ Praca *praca = &job;
 
 Menu menu = Menu();
 
+void hBridgePoll(){
+  hBridgeHamulec.poll();
+  hBridgeSilnik.poll();
+}
 
 
 /** Wywolanie metody monitor() */
@@ -90,6 +96,9 @@ void static inline keyb_callback(){  keys.co10ms(); }
 
 // periodycznie wykonywana funkcja monitor() opakowana w aku_callback()
 QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_KEYB_MS);
+
+// periodycznie wykonywana funkcja monitor() opakowana w aku_callback()
+QuickTask hBridgeQtsk(QuickTask::QT_PERIODIC, hBridgePoll, HBridge::TIME_POLL_PERIOD_MS);
 
 
 // ----- main() ---------------------------------------------------------------
@@ -162,11 +171,10 @@ QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_
   QuickTask::hold(false);
   do{
     Hardware::WDOG_Reload();          // przeladowanie Watch-doga
-    QuickTask::poll();
-    //komunikacja();  // bez opoznien
+    QuickTask::poll();                // przegląd i uruchamianie tasków
+    //komunikacja();  // w tle, bez opoznien
 
   } while (true);     // do konca swiata
-
 }
 
 #ifdef  USE_FULL_ASSERT
