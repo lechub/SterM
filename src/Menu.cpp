@@ -12,6 +12,7 @@
 #include "FrameBuffer.h"
 #include "HMI.h"
 #include "Parameter.h"
+#include "Praca.h"
 
 void Menu::poll(){
 
@@ -107,6 +108,17 @@ void Menu::printPattern(const char * pattern, uint32_t value){
 }
 
 
+static inline char getJobSymbol(){
+  Praca::JOB job = praca->getJob();
+  switch(job){
+  case Praca::JOB::OTWIERANIE: return 'O';
+  case Praca::JOB::ZAMYKANIE:  return 'Z';
+  case Praca::JOB::STOI:
+  default:  return '-';
+  }
+}
+
+
 void Menu::showEkran(uint16_t val){
   //Parameter::Nazwa param = Parameter::Nazwa::NONE;
 
@@ -123,6 +135,12 @@ void Menu::showEkran(uint16_t val){
     lcd->printXY(0, 1, "[");
     lcd->print( sterM->getOpisNapedu());
     lcd->print("]");
+    lcd->gotoXY(11,1);
+    lcd->print(getJobSymbol());
+    lcd->print(sterM->isPozar() ? 'P' : '-');
+    lcd->print(sterM->isAlarmAkustyczny() ? 'S' : '-');
+    lcd->print(sterM->isAwaria() ? 'A' : '-');
+    lcd->print(praca->isAwariaSieci230VAC() ? 'V' : '-');
     break;
   }
   case e_1_NAPED:{

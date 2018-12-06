@@ -37,6 +37,7 @@ public:
     ZAMKNAC,   // silnik idzie w dół,
   }Ruch;
 
+
   typedef enum{
     NIEOKRESLONY,
     VIC_012x, // 230VAC z hamulcem o odwrotnej logice
@@ -73,9 +74,7 @@ private:
   void fixOutputs(){
     wewy->gpioOutOtwarte.setOutput(pozycja == OTWARTA);
     wewy->gpioOutZamkniete.setOutput(pozycja == ZAMKNIETA);
-    setBuzzer(
-        ((ruch == ZAMKNAC)&&(pozycja != ZAMKNIETA))
-        ||((ruch == OTWORZYC)&&(pozycja != OTWARTA)));
+
     if (pozycja == USZKODZONA){
       awaria = true;
     }else{
@@ -104,11 +103,7 @@ private:
     checkPozycja();
     switch(ruch){
     case  Ruch::OTWORZYC:
-      if(      // mozna podniesc jesli
-          (!isOtwarte())    // nie jest otwarte
-          && (!isZakazOtwierania()) // nie ma zakazu otwierania
-          && (!isPozar())   // nie ma pozaru
-      ){
+      if (isOpenPossible()){
         hamulec->hamuj(false);
         getSilnik()->setMove(SilnikNapedu::MOVE::UP);
       }else{
@@ -117,10 +112,7 @@ private:
       }
       break;
     case  Ruch::ZAMKNAC:
-      if(      // mozna podniesc jesli
-          (!isZamkniete())    // nie jest zamkniete
-          && (!isZakazZamykania()) // nie ma zakazu zamykania
-      ){
+      if (isClosePossible()){
         hamulec->hamuj(false);
         getSilnik()->setMove(SilnikNapedu::MOVE::DOWN);
       }else{
@@ -138,33 +130,33 @@ private:
   }
 
   void initNaped(){
-     switch(typNapedu){
-     case VIC_012x:
-       silnik24VDC->setType1234(false);
-       hamulec->setMode(Hamulec::MODE::NORMALNIE , false);
-       break;
-     case VIC_042x:
-       silnik24VDC->setType1234(false);
-       hamulec->setMode(Hamulec::MODE::OFF, false);
-       break;
-     case VIC_0701:
-       silnik24VDC->setType1234(false);
-       hamulec->setMode(Hamulec::MODE::PRZECIWNIE, false);
-       break;
-     case VIC_010x:
-       hamulec->setMode(Hamulec::MODE::OFF, false);
-       silnik24VDC->setType1234(true);
-       break;
-     case VIC_040x:
-       hamulec->setMode(Hamulec::MODE::OFF, false);
-       silnik24VDC->setType1234(false);
-       break;
-     case NIEOKRESLONY:
-     default:
-       silnik24VDC->setType1234(false);
-       hamulec->setMode(Hamulec::MODE::OFF, false); break;
-     }
-   }
+    switch(typNapedu){
+    case VIC_012x:
+      silnik24VDC->setType1234(false);
+      hamulec->setMode(Hamulec::MODE::NORMALNIE , false);
+      break;
+    case VIC_042x:
+      silnik24VDC->setType1234(false);
+      hamulec->setMode(Hamulec::MODE::OFF, false);
+      break;
+    case VIC_0701:
+      silnik24VDC->setType1234(false);
+      hamulec->setMode(Hamulec::MODE::PRZECIWNIE, false);
+      break;
+    case VIC_010x:
+      hamulec->setMode(Hamulec::MODE::OFF, false);
+      silnik24VDC->setType1234(true);
+      break;
+    case VIC_040x:
+      hamulec->setMode(Hamulec::MODE::OFF, false);
+      silnik24VDC->setType1234(false);
+      break;
+    case NIEOKRESLONY:
+    default:
+      silnik24VDC->setType1234(false);
+      hamulec->setMode(Hamulec::MODE::OFF, false); break;
+    }
+  }
 
 
 public:
@@ -214,6 +206,21 @@ public:
   inline void setBuzzer(bool enable){ wewy->gpioOutBuzer.setOutput(enable); }
 
   inline bool isAwaria()const{ return awaria; }
+
+  inline bool isOpenPossible(){
+    return (      // mozna podniesc jesli
+        (!isOtwarte())    // nie jest otwarte
+        && (!isZakazOtwierania()) // nie ma zakazu otwierania
+        && (!isPozar())   // nie ma pozaru
+    );
+  }
+
+  inline bool isClosePossible(){
+    return (      // mozna podniesc jesli
+        (!isZamkniete())    // nie jest zamkniete
+        && (!isZakazZamykania()) // nie ma zakazu zamykania
+    );
+  }
 
   Ruch getRuch(){ return ruch; }
 
