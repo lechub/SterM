@@ -1,0 +1,6 @@
+
+1. Opóźnienie dla sterownania mostków, po włączeniu przekaźnika zasilania 24V
+
+2. PWM dla mostka - soft-start.
+
+

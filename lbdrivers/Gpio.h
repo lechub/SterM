@@ -14,7 +14,6 @@
 
 class Gpio{
 
-
 public:
   typedef enum { //MODER
     INPUT 			= 0b00,

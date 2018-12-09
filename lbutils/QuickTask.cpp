@@ -10,6 +10,8 @@
 
 QuickTask * taskbase = 0;
 volatile uint32_t QuickTask::milisCounter;
+volatile bool QuickTask::holded = true;
+
 
 void QuickTask::tick(uint32_t milis){
 	QuickTask::milisCounter += milis;
@@ -26,7 +28,9 @@ void QuickTask::tick(uint32_t milis){
 	}
 }
 
+
 void QuickTask::poll(){
+  if (holded) return;
 	QuickTask * tsk = taskbase;
 	while (tsk != nullptr){
 		if (tsk->flags == QuickTask::QT_STOPPED){

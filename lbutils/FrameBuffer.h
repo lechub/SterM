@@ -112,9 +112,16 @@ public:
 		}
 
 		void clearScreen(){
-			for (uint32_t i = 0; i < BUFFERSIZE; i++)
-				*(bytes + cursorPosition) = ' ';
+			for (uint32_t i = 0; i <= BUFFERSIZE; i++)
+				*(bytes + i) = ' ';
 		}
+
+    void clearLine(uint16_t lineNr){
+      if (lineNr >= getROWS()) return;
+      uint32_t offset = lineNr * getCOLUMNS();
+      for (uint32_t i = 0; i <= getCOLUMNS(); i++)
+        *(bytes + i + offset) = ' ';
+    }
 
 		void homeScreen(void){
 			cursorPosition = 0;

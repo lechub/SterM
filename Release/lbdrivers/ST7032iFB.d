@@ -7,7 +7,7 @@ lbdrivers/ST7032iFB.o: ../lbdrivers/ST7032iFB.cpp \
  ../system/include/cmsis/cmsis_gcc.h \
  ../system/include/cmsis/core_cmFunc.h \
  ../system/include/cmsis/system_stm32f0xx.h ../lbutils/Fifo.h \
- ../src/Hardware.h ../lbdrivers/I2C.h
+ ../src/Hardware.h ../lbdrivers/I2C.h ../lbutils/QuickTask.h
 
 ../lbdrivers/ST7032iFB.h:
 
@@ -40,3 +40,5 @@ lbdrivers/ST7032iFB.o: ../lbdrivers/ST7032iFB.cpp \
 ../src/Hardware.h:
 
 ../lbdrivers/I2C.h:
+
+../lbutils/QuickTask.h:

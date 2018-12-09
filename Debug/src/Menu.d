@@ -8,7 +8,8 @@ src/Menu.o: ../src/Menu.cpp ../src/Menu.h ../src/Keyboard.h \
  ../lbutils/myUtils.h ../lbutils/QuickTask.h ../lbutils/FrameBuffer.h \
  ../lbutils/Fifo.h ../src/Sterownik.h ../src/Silnik230VAC.h \
  ../src/SilnikNapedu.h ../src/Silnik24VDC.h ../src/HBridge.h \
- ../src/Hamulec.h ../src/Pinout.h ../lbutils/Led.h ../src/HMI.h
+ ../src/Hamulec.h ../src/Pinout.h ../lbutils/Led.h ../src/Parameter.h \
+ ../src/HMI.h ../src/Praca.h
 
 ../src/Menu.h:
 
@@ -58,4 +59,8 @@ src/Menu.o: ../src/Menu.cpp ../src/Menu.h ../src/Keyboard.h \
 
 ../lbutils/Led.h:
 
+../src/Parameter.h:
+
 ../src/HMI.h:
+
+../src/Praca.h:

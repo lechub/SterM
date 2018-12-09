@@ -58,47 +58,53 @@ public:
 	static constexpr uint8_t DATA = 0b01000000;
 
 
-  static constexpr  uint32_t LCD_REFRESH_INTERVAL_MILISECOND  = 500;
+  static constexpr  uint32_t LCD_REFRESH_INTERVAL_MILISECOND  = 150;
 
 	FrameBuffer * frameBuffer = nullptr;
 	Fifo		* fifo = nullptr;
 
 
-
-
 private:
 	typedef enum{
-		WAIT_START,
-		LINE1_SEND,
-		WAIT1,
-		LINE2_SEND,
-		WAIT2,
-		CURSOR_POS_SET,
-		WAIT3,
-		CURSOR_MODE_SET,
-		WAIT4,
+    START,
+    WAIT_GOTO_L1,
+		GOTO_LINE1,
+    WAIT_LINE1,
+		SEND_LINE1,
+		WAIT_GOTO_L2,
+    GOTO_LINE2,
+    WAIT_LINE2,
+    SEND_LINE2,
 	}LcdStage;
 
 
-	bool sendCommand(uint8_t cmd);
+  bool sendCommand(uint8_t cmd);
+  inline bool sendCommand(LcdCommand cmd){ return sendCommand((uint8_t)cmd); }
 	bool sendData(uint8_t cmd);
 	bool sendCmdOrData(bool isCMD, uint8_t byteValue);
 
-	static void (* pollFunction)();
+	inline bool isBusy(){
+	  return i2c->isBusy();
+	}
+
+	//static void (ST7032iFB::* pollFunction)();
+	static ST7032iFB * callbackObject;
 
 	I2C * i2c = nullptr;
 	Gpio * gpioBackLight = nullptr;
 	Gpio * gpioResetLCD = nullptr;
-	LcdStage lcdStage = LcdStage::WAIT_START;
+	LcdStage lcdStage = LcdStage::START;
 
 	void delayMs(uint32_t milis);
 	void delayMsDirty(uint32_t milis);
  // static void setPollFunction(void (ST7032iFB::*pollF)());
-  void setPollFunction();
+  //void setPollFunction();
+//  void stageCheck();
+//	void ST7032iFB::setPollFunction(void (ST7032iFB::* pollF)());
 public:
 
 	ST7032iFB() {
-	  setPollFunction();
+	  //setPollFunction();
 	}
 	virtual ~ST7032iFB();
 
@@ -107,7 +113,19 @@ public:
 	void setResetPin(bool newstate){ gpioResetLCD->setOutput(newstate); }
 	void setBackLight(bool newstate){ gpioBackLight->setOutput(newstate); }
 
-	bool gotoXY(uint8_t Row, uint8_t Col);
+	inline bool gotoXY(uint8_t Col, uint8_t Row){
+	  if (Col > LCD_COL) return false;
+	  uint32_t offset = 0;
+	  switch(Row){
+    case 1: offset = LCD_L2; break;
+    case 2: offset = LCD_L3; break;
+    case 3: offset = LCD_L4; break;
+    case 0:
+    default: offset = LCD_L1; break;
+	  }
+	  return sendCommand(uint8_t(LCD_DDRAM_WRITE | offset | Col)) ;
+	}
+
 	bool print(char znak);
 	bool print(const char * str);
 	bool clearScreen(void);
@@ -131,12 +149,15 @@ public:
 	}
 
 
-	bool sendCommand(LcdCommand cmd);
+	//bool sendCommand(LcdCommand cmd);
 	bool sendByte(uint8_t dataByte);
 	bool sendLine(uint32_t lineNr);
 	void process();	// wywolywac cyklicznie
 
 	FrameBuffer * getFrameBuffer(){ return frameBuffer; };
+
+
+	static void callb();
 
 };
 
