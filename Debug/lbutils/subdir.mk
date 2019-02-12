@@ -4,26 +4,38 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../lbutils/myUtils.c 
+../lbutils/eeprom.c \
+../lbutils/myUtils.c \
+../lbutils/stm32f0xx_flash.c 
 
 CPP_SRCS += \
 ../lbutils/Fifo.cpp \
 ../lbutils/FrameBuffer.cpp \
-../lbutils/QuickTask.cpp 
+../lbutils/QuickTask.cpp \
+../lbutils/RTClock.cpp \
+../lbutils/VEprom.cpp 
 
 OBJS += \
 ./lbutils/Fifo.o \
 ./lbutils/FrameBuffer.o \
 ./lbutils/QuickTask.o \
-./lbutils/myUtils.o 
+./lbutils/RTClock.o \
+./lbutils/VEprom.o \
+./lbutils/eeprom.o \
+./lbutils/myUtils.o \
+./lbutils/stm32f0xx_flash.o 
 
 C_DEPS += \
-./lbutils/myUtils.d 
+./lbutils/eeprom.d \
+./lbutils/myUtils.d \
+./lbutils/stm32f0xx_flash.d 
 
 CPP_DEPS += \
 ./lbutils/Fifo.d \
 ./lbutils/FrameBuffer.d \
-./lbutils/QuickTask.d 
+./lbutils/QuickTask.d \
+./lbutils/RTClock.d \
+./lbutils/VEprom.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

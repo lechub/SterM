@@ -12,7 +12,7 @@ CPP_SRCS += \
 ../src/Hamulec.cpp \
 ../src/Hardware.cpp \
 ../src/Menu.cpp \
-../src/Parameter.cpp \
+../src/Pomiar.cpp \
 ../src/Praca.cpp \
 ../src/Silnik230VAC.cpp \
 ../src/Silnik24VDC.cpp \
@@ -26,7 +26,7 @@ OBJS += \
 ./src/Hamulec.o \
 ./src/Hardware.o \
 ./src/Menu.o \
-./src/Parameter.o \
+./src/Pomiar.o \
 ./src/Praca.o \
 ./src/Silnik230VAC.o \
 ./src/Silnik24VDC.o \
@@ -44,7 +44,7 @@ CPP_DEPS += \
 ./src/Hamulec.d \
 ./src/Hardware.d \
 ./src/Menu.d \
-./src/Parameter.d \
+./src/Pomiar.d \
 ./src/Praca.d \
 ./src/Silnik230VAC.d \
 ./src/Silnik24VDC.d \

@@ -8,10 +8,10 @@
 #include "Menu.h"
 
 #include <ctype.h>
+#include <VEprom.h>
 #include "Keyboard.h"
 #include "FrameBuffer.h"
 #include "HMI.h"
-#include "Parameter.h"
 #include "Praca.h"
 
 void Menu::poll(){
@@ -24,13 +24,13 @@ void Menu::poll(){
     switch(key){
     case Keyboard::Key::ENTER: goToEkran(EKRAN::e_1_NAPED_WYBOR);  break;
     case Keyboard::Key::ENTER_CANCEL:  // zerowanie licznika
-      Parameter::setValue(Parameter::Nazwa::LICZNIK, 0);
+      VEprom::writeWord(VEprom::VirtAdres::LICZNIK, 0);
       break;
     case Keyboard::Key::LEFT:
-      Parameter::setValue(Parameter::Nazwa::LICZNIK, (uint16_t)(Parameter::getValue(Parameter::Nazwa::LICZNIK)-1));
+      VEprom::subtractFromValue(VEprom::VirtAdres::LICZNIK, 1);
       break;
     case Keyboard::Key::RIGHT:
-      Parameter::setValue(Parameter::Nazwa::LICZNIK, (uint16_t)(Parameter::getValue(Parameter::Nazwa::LICZNIK)+1));
+      VEprom::addToValue(VEprom::VirtAdres::LICZNIK, 1);
       break;
     default:
       break;

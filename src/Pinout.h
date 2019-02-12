@@ -9,11 +9,15 @@
 
 #include "Gpio.h"
 #include "Led.h"
+#include "Pomiar.h"
+
+#define PCB_VERSION 3
 
 class Pinout {
 
 public:
 
+#if PCB_VERSION == 1
   //Wyjscia
   Gpio gpioOutPozar = Gpio(GPIOA, 0);
   Gpio gpioOutZamkniete = Gpio(GPIOA, 1);
@@ -64,9 +68,9 @@ public:
   Gpio gpioUart1Tx = Gpio(GPIOB, 6);
   Gpio gpioUart1Rx = Gpio(GPIOB, 7);
 
-  Gpio gpioUart2Dir = Gpio(GPIOD, 6);
+  Gpio gpioUart2Dir = Gpio(GPIOD, 4);
   Gpio gpioUart2Tx = Gpio(GPIOD, 5);
-  Gpio gpioUart2Rx = Gpio(GPIOD, 4);
+  Gpio gpioUart2Rx = Gpio(GPIOD, 6);
 
   Gpio gpioSCL = Gpio(GPIOB, 10);
   Gpio gpioSDA = Gpio(GPIOB, 11);
@@ -78,7 +82,87 @@ public:
   //  Gpio gpioPomSygnL = Gpio(GPIOC, 0);
   //  Gpio gpioPomZas24V = Gpio(GPIOC, 1);
 
+#elif PCB_VERSION == 3
 
+  //Wyjscia
+   Gpio gpioOutPozar      = Gpio(GPIOF, 9);
+   Gpio gpioOutZamkniete  = Gpio(GPIOF, 3);
+   Gpio gpioOutOtwarte    = Gpio(GPIOF, 2);
+   Gpio gpioOutRelSprawny = Gpio(GPIOE, 5);
+   Gpio gpioOutSygnAkust  = Gpio(GPIOE, 4);
+   Gpio gpioOutBuzer      = Gpio(GPIOA, 11);
+
+   Gpio gpioWlaczBypass = Gpio(GPIOC, 7);
+   Gpio gpioWlacz230Zamknij = Gpio(GPIOC, 6);
+   Gpio gpioWlacz230Otworz = Gpio(GPIOC, 9);
+   Gpio gpioWlaczInwerter = Gpio(GPIOA, 8);
+//   Gpio gpioWlaczZasNaped = Gpio(GPIOC, 8);
+
+
+   Gpio gpioWyj1H = Gpio(GPIOD, 15);
+   Gpio gpioWyj2H = Gpio(GPIOD, 14);
+   Gpio gpioWyj3H = Gpio(GPIOE, 9);
+   Gpio gpioWyj4H = Gpio(GPIOE, 11);
+   Gpio gpioWyj1L = Gpio(GPIOD, 13);
+   Gpio gpioWyj2L = Gpio(GPIOD, 12);
+   Gpio gpioWyj3L = Gpio(GPIOE, 8);
+   Gpio gpioWyj4L = Gpio(GPIOE, 10);
+
+   Gpio gpioInBtnBACK = Gpio(GPIOC, 4);
+   Gpio gpioInBtnLEFT = Gpio(GPIOB, 0);
+   Gpio gpioInBtnRIGHT = Gpio(GPIOB, 1);
+   Gpio gpioInBtnENTER = Gpio(GPIOB, 2);
+
+   Gpio gpioInKrancZamkniete = Gpio(GPIOB, 15);
+   Gpio gpioInKrancOtwarte = Gpio(GPIOB, 14);
+   Gpio gpioInZakazZamykania = Gpio(GPIOB, 13);
+   Gpio gpioInZakazOtwierania = Gpio(GPIOB, 12);
+   Gpio gpioInOtworz = Gpio(GPIOE, 15);
+   Gpio gpioInKluczI = Gpio(GPIOE, 14);
+   Gpio gpioInKluczII = Gpio(GPIOE, 13);
+   Gpio gpioInPozar = Gpio(GPIOE, 12);
+   Gpio gpioInAlarmAkust = Gpio(GPIOA, 7);
+   Gpio gpioInSiec230VAC = Gpio(GPIOA, 6);
+   Gpio gpioInRezerwa1 = Gpio(GPIOA, 5);
+   Gpio gpioInRezerwa2 = Gpio(GPIOA, 4);
+
+   Gpio gpioLcdReset = Gpio(GPIOC, 5);
+   Gpio gpioLcdBackLight = Gpio(GPIOE, 2);
+
+   Gpio gpioUart1Dir = Gpio(GPIOA, 12);
+   Gpio gpioUart1Tx = Gpio(GPIOB, 6);
+   Gpio gpioUart1Rx = Gpio(GPIOB, 7);
+
+   Gpio gpioUart2Dir = Gpio(GPIOD, 4);
+   Gpio gpioUart2Tx = Gpio(GPIOD, 5);
+   Gpio gpioUart2Rx = Gpio(GPIOD, 6);
+
+   Gpio gpioSCL = Gpio(GPIOB, 10);
+   Gpio gpioSDA = Gpio(GPIOB, 11);
+
+   Led ledAwaria    = Led(GPIOA, 0);
+   Led ledOK        = Led(GPIOA, 1);
+   Led ledPracaAku  = Led(GPIOA, 2);
+
+   Gpio stacyjka    = Gpio(GPIOD, 8);
+   Gpio keyDown     = Gpio(GPIOD, 9);
+   Gpio keyStop     = Gpio(GPIOD, 10);
+   Gpio keyUp       = Gpio(GPIOD, 11);
+
+   Gpio gpioOVCdetect = Gpio(GPIOA, 15);
+
+   // to jest w Hardware/ADC
+   //  Gpio gpioPomSygnL = Gpio(GPIOF, 10);
+   //  Gpio gpioPomW1 = Gpio(GPIOC, 0);
+   //  Gpio gpioPomW2 = Gpio(GPIOC, 1);
+   //  Gpio gpioPomW3 = Gpio(GPIOC, 2);
+   //  Gpio gpioPomW4 = Gpio(GPIOC, 3);
+   //  Gpio gpioPomCurr = Gpio(GPIOA, 3);
+
+
+
+
+#endif
 
 
   void setup(){
@@ -92,6 +176,7 @@ public:
     gpioOutPozar.setup( Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::LowSpeed);
     gpioOutZamkniete.setupFromClone(&gpioOutPozar);
     gpioOutOtwarte.setupFromClone(&gpioOutPozar);
+    gpioOutRelSprawny.setupFromClone(&gpioOutPozar);
     gpioOutSygnAkust.setupFromClone(&gpioOutPozar);
     gpioOutBuzer.setupFromClone(&gpioOutPozar);
 
@@ -99,7 +184,7 @@ public:
     gpioWlacz230Zamknij.setupFromClone(&gpioOutPozar);
     gpioWlacz230Otworz.setupFromClone(&gpioOutPozar);
     gpioWlaczInwerter.setupFromClone(&gpioOutPozar);
-    gpioWlaczZasNaped.setupFromClone(&gpioOutPozar);
+    //gpioWlaczZasNaped.setupFromClone(&gpioOutPozar);
 
     gpioWyj1H.setup(Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::HighSpeed);
     gpioWyj2H.setupFromClone(&gpioWyj1H);
@@ -128,8 +213,16 @@ public:
     gpioInRezerwa1.setupFromClone(&gpioInBtnBACK);
     gpioInRezerwa2.setupFromClone(&gpioInBtnBACK);
 
-    ledAwaria.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI ); //  Gpio gpioLedAwaria = Gpio(GPIOF, 2);
-    ledPracaAku.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI ); //  Gpio gpioLedPracaAku = Gpio(GPIOF, 3);
+    stacyjka.setupFromClone(&gpioInBtnBACK);
+    keyDown.setupFromClone(&gpioInBtnBACK);
+    keyStop.setupFromClone(&gpioInBtnBACK);
+    keyUp.setupFromClone(&gpioInBtnBACK);
+
+    gpioOVCdetect.setup(Gpio::GpioMode::INPUT, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::MaximumSpeed);
+
+    ledAwaria.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
+    ledPracaAku.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
+    ledOK.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
 
   }
 

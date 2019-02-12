@@ -9,12 +9,12 @@
 #define STEROWNIK_H_
 
 //#include "Led.h"
+#include <VEprom.h>
 #include "Silnik230VAC.h"
 
 #include "Silnik24VDC.h"
 #include "Hamulec.h"
 #include "Pinout.h"
-#include "Parameter.h"
 
 class Sterownik {
 
@@ -171,7 +171,7 @@ public:
     silnik24VDC->init();
     silnik230VAC->init();
     hamulec->init();
-    typNapedu = (NAPED)(Parameter::getValue(Parameter::Nazwa::NAPED));
+    typNapedu = (NAPED)VEprom::readWord(VEprom::VirtAdres::NAPED);
     initNaped();
     return true;
   }
@@ -233,8 +233,8 @@ public:
 
   Pozycja podnies(){
     if (ruch != Ruch::OTWORZYC){
-      uint32_t licznik = Parameter::getValue(Parameter::Nazwa::LICZNIK);
-      Parameter::setValue(Parameter::Nazwa::LICZNIK, uint16_t(licznik + 1));
+      uint32_t licznik = VEprom::readWord(VEprom::VirtAdres::LICZNIK);  //Parameter::getValue(Parameter::Nazwa::LICZNIK);
+      VEprom::writeWord(VEprom::VirtAdres::LICZNIK, uint16_t(licznik + 1));    //Parameter::setValue(Parameter::Nazwa::LICZNIK, uint16_t(licznik + 1));
     }
     ruch = Ruch::OTWORZYC;
     checkRuch();
@@ -243,8 +243,11 @@ public:
 
   Pozycja opusc(){
     if (ruch != Ruch::ZAMKNAC){
-      uint32_t licznik = Parameter::getValue(Parameter::Nazwa::LICZNIK);
-      Parameter::setValue(Parameter::Nazwa::LICZNIK, uint16_t(licznik + 1));
+      uint32_t licznik = VEprom::readWord(VEprom::VirtAdres::LICZNIK);
+      VEprom::writeWord(VEprom::VirtAdres::LICZNIK, uint16_t(licznik + 1));
+
+//      uint32_t licznik = Parameter::getValue(Parameter::Nazwa::LICZNIK);
+//      Parameter::setValue(Parameter::Nazwa::LICZNIK, uint16_t(licznik + 1));
     }
     ruch = Ruch::ZAMKNAC;
     checkRuch();
@@ -264,7 +267,8 @@ public:
   void setNaped(NAPED nowyTypNapedu){
     zatrzymaj();
     typNapedu = nowyTypNapedu;
-    Parameter::setValue(Parameter::Nazwa::NAPED, (uint16_t)typNapedu);
+    VEprom::writeWord(VEprom::VirtAdres::NAPED, typNapedu);
+    //Parameter::setValue(Parameter::Nazwa::NAPED, (uint16_t)typNapedu);
     initNaped();
   }
 

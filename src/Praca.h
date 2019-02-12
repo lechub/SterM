@@ -75,7 +75,7 @@ public:
 
     bool zas24Necessary = ( isOpenRequest() || isCloseRequest() || sterM->isBrakeAtStop()  );
 
-    wewy->gpioWlaczZasNaped.setOutput(zas24Necessary);
+   // wewy->gpioWlaczZasNaped.setOutput(zas24Necessary);
     wewy->gpioWlaczInwerter.setOutput(zas24Necessary && sterM->isTyp230VAC() && isAwariaSieci230VAC());
 
     bool turnBuzzerOn = false;

@@ -8,12 +8,12 @@
 #ifndef MENU_H_
 #define MENU_H_
 
+#include <VEprom.h>
 #include "Keyboard.h"
 #include "FrameBuffer.h"
 #include "Sterownik.h"
 //#include ""
 //#include "HMI.h"
-#include "Parameter.h"
 
 class Menu {
 
@@ -89,7 +89,7 @@ public:
     uint16_t val = 1;
     switch(ekran){
     case e_START:
-      val = (uint16_t)Parameter::getValue(Parameter::Nazwa::LICZNIK);
+      val = VEprom::readWord(VEprom::VirtAdres::NAPED);
       break;
     case e_1_NAPED:
       break;

@@ -43,60 +43,168 @@ public:
 
 protected:
   GPIO_TypeDef *	gpio;
-  uint16_t	pinNr;
+  uint8_t	pinNr;
 
 public:
 
-  // setting gpio registers
-
-  inline void setMODE(const GpioMode mode){
-    gpio->MODER  &= ~(GPIO_MODER_MODER0 << (pinNr * 2));
-    gpio->MODER |= ((uint32_t)mode << (pinNr * 2));
-  }
-
   //SetSpeed i setOType tylko dla trybu GPIO_Mode_OUT i GPIO_Mode_AF
 
+  //***********************************************
+  // Static methods for doing without objects
+
+  static inline void setMODE(GPIO_TypeDef* gpioReg, uint8_t pin, const GpioMode mode){
+    gpioReg->MODER  &= ~(GPIO_MODER_MODER0 << (pin * 2));
+    gpioReg->MODER |= ((uint32_t)mode << (pin * 2));
+  }
+
+  static inline void setSpeed(GPIO_TypeDef* gpioReg, uint8_t pin, const GpioSpeed speed){
+    gpioReg->OSPEEDR &= ~(GPIO_OSPEEDER_OSPEEDR0 << (pin * 2));
+    gpioReg->OSPEEDR |= ((uint32_t)(speed) << (pin * 2));
+  }
+
+  static inline void setPullUpDn(GPIO_TypeDef* gpioReg, uint8_t pin, const GpioPuPd pupd){
+    gpioReg->PUPDR &= ~(GPIO_PUPDR_PUPDR0 << ((uint16_t)pin * 2));
+    gpioReg->PUPDR |= (((uint32_t)pupd) << (pin * 2));
+  }
+
+  /* Output mode configuration */
+  static inline void setOType(GPIO_TypeDef* gpioReg, uint8_t pin, const GpioOType otype){
+    gpioReg->OTYPER &= (uint16_t)(~((GPIO_OTYPER_OT_0) << (pin)));
+    gpioReg->OTYPER |= (uint16_t)(((uint16_t)otype) << (pin));
+  }
+
+  static inline GpioMode getMode(GPIO_TypeDef* gpioReg, uint8_t pin){
+    uint32_t tmp = gpioReg->MODER >>(pin * 2);
+    return GpioMode(tmp & GPIO_MODER_MODER0);
+  }
+
+  static inline GpioPuPd getPull(GPIO_TypeDef* gpioReg, uint8_t pin){
+    uint32_t tmp = gpioReg->PUPDR >>(pin * 2);
+    return GpioPuPd(tmp & GPIO_PUPDR_PUPDR0);
+  }
+
+  static inline GpioSpeed getSpeed(GPIO_TypeDef* gpioReg, uint8_t pin){
+    uint32_t tmp = gpioReg->OSPEEDR >>(pin * 2);
+    return GpioSpeed(tmp & GPIO_OSPEEDER_OSPEEDR0);
+  }
+
+  static inline GpioOType getOType(GPIO_TypeDef* gpioReg, uint8_t pin){
+    uint32_t tmp = gpioReg->OTYPER >> pin;
+    return GpioOType(tmp & GPIO_OTYPER_OT_0);
+  }
+
+  static inline void setup(GPIO_TypeDef* gpioReg, uint8_t pin, GpioMode mode, GpioOType oType, GpioPuPd pupd, GpioSpeed speed){
+    setMODE(gpioReg, pin, mode);
+    setOType(gpioReg, pin, oType);
+    setPullUpDn(gpioReg, pin, pupd);
+    setSpeed(gpioReg, pin, speed);
+  }
+
+  static inline void setOutputUp(GPIO_TypeDef* gpioReg, uint8_t pin){
+    gpioReg->BSRR = (1<<pin);
+  }
+  static inline void setOutputDown(GPIO_TypeDef* gpioReg, uint8_t pin){
+    gpioReg->BSRR = (1<<(pin + 16l));
+  }
+
+  static inline void setOutput(GPIO_TypeDef* gpioReg, uint8_t pin, bool newstate){
+    newstate ? setOutputUp(gpioReg, pin) : setOutputDown(gpioReg, pin);
+  }
+
+  static inline bool getOutput(GPIO_TypeDef* gpioReg, uint8_t pin){
+    return (gpioReg->ODR & (1<<pin));
+  }
+
+  static inline void toggleOutput(GPIO_TypeDef* gpioReg, uint8_t pin){
+    getOutput(gpioReg, pin) ? setOutputDown(gpioReg, pin) : setOutputUp(gpioReg, pin);
+  }
+
+
+  static inline bool getInput(GPIO_TypeDef* gpioReg, uint8_t pin){
+    return (gpioReg->IDR & (1<<pin));
+  }
+
+  static void setupFromClone(GPIO_TypeDef* gpioRegDest, uint8_t pinDest, GPIO_TypeDef* gpioRegSrc, uint8_t pinSrc){
+      setMODE(gpioRegDest, pinDest, getMode(gpioRegSrc, pinSrc));
+      setOType(gpioRegDest, pinDest, getOType(gpioRegSrc, pinSrc));
+      setPullUpDn(gpioRegDest, pinDest, getPull(gpioRegSrc, pinSrc));
+      setSpeed(gpioRegDest, pinDest, getSpeed(gpioRegSrc, pinSrc));
+    }
+
+  static bool setAlternateFunc(GPIO_TypeDef* gpioReg, uint8_t pin, uint8_t alternateFunction){
+      if (alternateFunction > 7) return false;
+      constexpr uint32_t BitMask = 0b00111; // najstarszy zarezerwowany
+      uint32_t val = alternateFunction;
+      if (pin < 8){
+        uint8_t offset = uint8_t(pin * 4);
+        uint32_t tmp = gpioReg->AFR[0];
+        tmp &= ~(BitMask << offset);
+        tmp |= val << offset;
+        gpioReg->AFR[0] = tmp;
+      }
+      if ((pin >= 8)&&(pin < 16)){
+        uint8_t offset = uint8_t((pin - 8) * 4);
+        uint32_t tmp = gpioReg->AFR[1];
+        tmp &= ~(BitMask << offset);
+        tmp |= val << offset;
+        gpioReg->AFR[1] = tmp;
+      }
+      return true;
+    }
+
+  static inline uint8_t getAlternativeFunc(GPIO_TypeDef* gpioReg, uint8_t pin){
+     constexpr uint32_t BitMask = 0b00111;
+     uint32_t tmp = 0;
+     if (pin < 8){
+       tmp = (gpioReg->AFR[0]) >> (pin * 4);
+     }
+     if ((pin >= 8)&&(pin < 16)){
+       tmp = (gpioReg->AFR[1]) >> ((pin - 8) * 4);
+     }
+     return uint8_t(tmp  & BitMask);
+   }
+
+
+  //***********************************************
+  // Methods for Gpio object
+
+  inline void setMODE(const GpioMode mode){
+    setMODE(gpio, pinNr, mode);
+  }
+
   inline void setSpeed(const GpioSpeed speed){
-    gpio->OSPEEDR &= ~(GPIO_OSPEEDER_OSPEEDR0 << (pinNr * 2));
-    gpio->OSPEEDR |= ((uint32_t)(speed) << (pinNr * 2));
+    setSpeed(gpio, pinNr, speed);
   }
 
   inline void setPullUpDn(const GpioPuPd pupd){
-    gpio->PUPDR &= ~(GPIO_PUPDR_PUPDR0 << ((uint16_t)pinNr * 2));
-    gpio->PUPDR |= (((uint32_t)pupd) << (pinNr * 2));
+    setPullUpDn(gpio, pinNr, pupd);
   }
 
   /* Output mode configuration */
   inline void setOType(const GpioOType otype){
-    gpio->OTYPER &= (uint16_t)(~((GPIO_OTYPER_OT_0) << (pinNr)));
-    gpio->OTYPER |= (uint16_t)(((uint16_t)otype) << (pinNr));
+    setOType(gpio, pinNr, otype);
   }
 
 
   // getting gpio registers
 
   inline GpioMode getMode(){
-    uint32_t tmp = gpio->MODER >>(pinNr * 2);
-    return GpioMode(tmp & GPIO_MODER_MODER0);
+    return getMode(gpio, pinNr);
   }
 
   inline GpioPuPd getPull(){
-    uint32_t tmp = gpio->PUPDR >>(pinNr * 2);
-    return GpioPuPd(tmp & GPIO_PUPDR_PUPDR0);
+    return getPull(gpio, pinNr);
   }
 
   inline GpioSpeed getSpeed(){
-    uint32_t tmp = gpio->OSPEEDR >>(pinNr * 2);
-    return GpioSpeed(tmp & GPIO_OSPEEDER_OSPEEDR0);
+    return getSpeed(gpio, pinNr);
   }
 
   inline GpioOType getOType(){
-    uint32_t tmp = gpio->OTYPER >> pinNr;
-    return GpioOType(tmp & GPIO_OTYPER_OT_0);
+    return getOType(gpio, pinNr);
   }
 
-
-  Gpio(GPIO_TypeDef * gpioDef, uint16_t pin_Nr){
+  Gpio(GPIO_TypeDef * gpioDef, uint8_t pin_Nr){
     gpio = gpioDef;
     pinNr = pin_Nr;
     setMODE(GpioMode::ANALOG);  // for power save
@@ -105,7 +213,7 @@ public:
     setOType(GpioOType::OpenDrain);
   }
 
-  Gpio(GPIO_TypeDef * gpioDef, const uint16_t pin_Nr, GpioMode mode, GpioOType oType, GpioPuPd pupd, GpioSpeed speed){
+  Gpio(GPIO_TypeDef * gpioDef, const uint8_t pin_Nr, GpioMode mode, GpioOType oType, GpioPuPd pupd, GpioSpeed speed){
     gpio = gpioDef;
     pinNr = pin_Nr;
     setMODE(mode);
@@ -116,23 +224,27 @@ public:
 
 
   inline void setOutputUp(){
-    gpio->BSRR = (1<<pinNr);
-  }
-  inline void setOutputDown(){
-    gpio->BSRR = (1<<(pinNr + 16l));
+    setOutputUp(gpio, pinNr);
   }
 
-  inline void setOutput(bool newstate){ newstate? setOutputUp() : setOutputDown(); }
+  inline void setOutputDown(){
+    setOutputDown(gpio, pinNr);
+  }
+
+  inline void setOutput(bool newstate){
+    setOutput(gpio, pinNr, newstate);
+  }
 
   inline bool getOutput(){
-    return (gpio->ODR & (1<<pinNr));
+    return getOutput(gpio, pinNr);
   }
 
-  inline void toggleOutput(){ getOutput()? setOutputDown() : setOutputUp(); }
-
+  inline void toggleOutput(){
+    toggleOutput(gpio, pinNr);
+  }
 
   inline bool getInput(){
-    return (gpio->IDR & (1<<pinNr));
+    return getInput(gpio, pinNr);
   }
 
 
@@ -144,44 +256,57 @@ public:
   }
 
   void setupFromClone(Gpio * dolly){
-    setMODE(dolly->getMode());
-    setOType(dolly->getOType());
-    setPullUpDn(dolly->getPull());
-    setSpeed(dolly->getSpeed());
+    setupFromClone(gpio, pinNr, dolly->gpio, dolly->pinNr);
   }
 
   bool setAlternateFunc(uint8_t alternateFunction){
-    if (alternateFunction > 7) return false;
-    constexpr uint32_t BitMask = 0b00111; // najstarszy zarezerwowany
-    uint32_t val = alternateFunction;
-    if (pinNr < 8){
-      uint8_t offset = uint8_t(pinNr * 4);
-      uint32_t tmp = gpio->AFR[0];
-      tmp &= ~(BitMask << offset);
-      tmp |= val << offset;
-      gpio->AFR[0] = tmp;
-    }
-    if ((pinNr >= 8)&&(pinNr < 16)){
-      uint8_t offset = uint8_t((pinNr - 8) * 4);
-      uint32_t tmp = gpio->AFR[1];
-      tmp &= ~(BitMask << offset);
-      tmp |= val << offset;
-      gpio->AFR[1] = tmp;
-    }
-    return true;
+    return setAlternateFunc(gpio, pinNr, alternateFunction);
   }
 
  inline uint8_t getAlternativeFunc(){
-   constexpr uint32_t BitMask = 0b00111;
-   uint32_t tmp = 0;
-   if (pinNr < 8){
-     tmp = (gpio->AFR[0]) >> (pinNr * 4);
-   }
-   if ((pinNr >= 8)&&(pinNr < 16)){
-     tmp = (gpio->AFR[1]) >> ((pinNr - 8) * 4);
-   }
-   return uint8_t(tmp  & BitMask);
+   return getAlternativeFunc(gpio, pinNr);
  }
+
+
+//  void setupFromClone(Gpio * dolly){
+//    setMODE(dolly->getMode());
+//    setOType(dolly->getOType());
+//    setPullUpDn(dolly->getPull());
+//    setSpeed(dolly->getSpeed());
+//  }
+//
+//  bool setAlternateFunc(uint8_t alternateFunction){
+//    if (alternateFunction > 7) return false;
+//    constexpr uint32_t BitMask = 0b00111; // najstarszy zarezerwowany
+//    uint32_t val = alternateFunction;
+//    if (pinNr < 8){
+//      uint8_t offset = uint8_t(pinNr * 4);
+//      uint32_t tmp = gpio->AFR[0];
+//      tmp &= ~(BitMask << offset);
+//      tmp |= val << offset;
+//      gpio->AFR[0] = tmp;
+//    }
+//    if ((pinNr >= 8)&&(pinNr < 16)){
+//      uint8_t offset = uint8_t((pinNr - 8) * 4);
+//      uint32_t tmp = gpio->AFR[1];
+//      tmp &= ~(BitMask << offset);
+//      tmp |= val << offset;
+//      gpio->AFR[1] = tmp;
+//    }
+//    return true;
+//  }
+//
+// inline uint8_t getAlternativeFunc(){
+//   constexpr uint32_t BitMask = 0b00111;
+//   uint32_t tmp = 0;
+//   if (pinNr < 8){
+//     tmp = (gpio->AFR[0]) >> (pinNr * 4);
+//   }
+//   if ((pinNr >= 8)&&(pinNr < 16)){
+//     tmp = (gpio->AFR[1]) >> ((pinNr - 8) * 4);
+//   }
+//   return uint8_t(tmp  & BitMask);
+// }
 
 };
 
