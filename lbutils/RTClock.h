@@ -93,6 +93,7 @@ public:
 
     PWR->CR &= ~(PWR_CR_DBP);                // Access to RTC and Backup registers disabled
 
+    return true;
   }
 
 

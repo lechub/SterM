@@ -119,10 +119,6 @@ PB11     ------> I2C2_SDA
   while (READ_BIT(i2c->base->CR1, I2C_CR1_PE) == 0){;}  // odczekanie na koniec resetu I2C
   //	while(!(i2c->base->CR1 & I2C_CR1_PE)){;}	// odczekanie na koniec resetu I2C
 
-
-
-
-
   return true;
 }
 
