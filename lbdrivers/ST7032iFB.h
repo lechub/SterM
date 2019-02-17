@@ -58,7 +58,11 @@ public:
 	static constexpr uint8_t DATA = 0b01000000;
 
 
+<<<<<<< HEAD
   static constexpr  uint32_t LCD_REFRESH_INTERVAL_MILISECOND  = 120;
+=======
+  static constexpr  uint32_t LCD_REFRESH_INTERVAL_MILISECOND  = 150;
+>>>>>>> branch 'master' of ssh://git@github.com/lechub/sterM
 
 	FrameBuffer * frameBuffer = nullptr;
 	Fifo		* fifo = nullptr;

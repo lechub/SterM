@@ -1,3 +1,3 @@
 # SterM
-sterownik M
+sterownik M - wersja prototypowa nr 1
 
