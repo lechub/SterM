@@ -143,7 +143,6 @@ bool ST7032iFB::sendLine(uint32_t lineNr){
   return i2c->masterTransmit(fifo);
 }
 
-
 void ST7032iFB::process(){
   LcdStage stage = lcdStage;
   switch(stage){
@@ -154,7 +153,7 @@ void ST7032iFB::process(){
   case LcdStage::GOTO_LINE1:
     if (!isBusy()){
       sendCommand(LcdCommand::LCD_HOME);
-      lcdStage = LcdStage::WAIT_LINE1;
+      lcdStage = LcdStage::SEND_LINE1;
     }
     break;
   case LcdStage::WAIT_LINE1:
@@ -163,7 +162,7 @@ void ST7032iFB::process(){
   case LcdStage::SEND_LINE1:
     if (!isBusy()){
       sendLine(0);
-      lcdStage = LcdStage::WAIT_GOTO_L2;
+      lcdStage = LcdStage::GOTO_LINE2;
     }
     break;
   case LcdStage::WAIT_GOTO_L2:
@@ -172,7 +171,7 @@ void ST7032iFB::process(){
   case LcdStage::GOTO_LINE2:
     if (!isBusy()){
       gotoXY(0,1);
-      lcdStage = LcdStage::WAIT_LINE2;
+      lcdStage = LcdStage::SEND_LINE2;
     }
     break;
   case LcdStage::WAIT_LINE2:
@@ -181,7 +180,7 @@ void ST7032iFB::process(){
   case LcdStage::SEND_LINE2:
     if (!isBusy()){
       sendLine(1);
-      lcdStage = LcdStage::START;
+      lcdStage = LcdStage::GOTO_LINE1;
     }
     break;
   default:
@@ -190,6 +189,54 @@ void ST7032iFB::process(){
   }
 }
 
+
+
+//void ST7032iFB::process(){
+//  LcdStage stage = lcdStage;
+//  switch(stage){
+//  case LcdStage::START:
+//  case LcdStage::WAIT_GOTO_L1:
+//    lcdStage = LcdStage::GOTO_LINE1;
+//    break;
+//  case LcdStage::GOTO_LINE1:
+//    if (!isBusy()){
+//      sendCommand(LcdCommand::LCD_HOME);
+//      lcdStage = LcdStage::WAIT_LINE1;
+//    }
+//    break;
+//  case LcdStage::WAIT_LINE1:
+//    lcdStage = LcdStage::SEND_LINE1;
+//    break;
+//  case LcdStage::SEND_LINE1:
+//    if (!isBusy()){
+//      sendLine(0);
+//      lcdStage = LcdStage::WAIT_GOTO_L2;
+//    }
+//    break;
+//  case LcdStage::WAIT_GOTO_L2:
+//    lcdStage = LcdStage::GOTO_LINE2;
+//    break;
+//  case LcdStage::GOTO_LINE2:
+//    if (!isBusy()){
+//      gotoXY(0,1);
+//      lcdStage = LcdStage::WAIT_LINE2;
+//    }
+//    break;
+//  case LcdStage::WAIT_LINE2:
+//    lcdStage = LcdStage::SEND_LINE2;
+//       break;
+//  case LcdStage::SEND_LINE2:
+//    if (!isBusy()){
+//      sendLine(1);
+//      lcdStage = LcdStage::START;
+//    }
+//    break;
+//  default:
+//    lcdStage = LcdStage::START;
+//    break;
+//  }
+//}
+//
 
 
 
