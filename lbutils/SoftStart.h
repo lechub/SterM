@@ -39,6 +39,7 @@ private:
 //    Gpio::setup(GPIOE, 11, Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
 //  }
 
+
   static void inline initTIM1(){
     RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;   // turn timer TIM1 enable
 
