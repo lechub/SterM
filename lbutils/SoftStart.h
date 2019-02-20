@@ -42,7 +42,7 @@ private:
   static void inline initTIM1(){
     RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;   // turn timer TIM1 enable
 
-    TIM1->PSC = (Hardware::getPCLK() / (PWM_FREQUENCY_HZ * PWM_RESOLUTION*2)) -1; // 48MHz/(20kHz * 200*2) = 12 Set prescaler for clock i.e 8MHz
+    TIM1->PSC = uint16_t((Hardware::getPCLK() / (PWM_FREQUENCY_HZ * PWM_RESOLUTION*2)) -1); // 48MHz/(20kHz * 200*2) = 12 Set prescaler for clock i.e 8MHz
     TIM1->ARR = PWM_RESOLUTION; // (2) Set ARR = 200, as timer clock is 8MHz and center-aligned counting, the period is 50 us
 
     // TIM1 channel 1
