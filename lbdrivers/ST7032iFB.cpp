@@ -13,11 +13,10 @@ void dummyCallback();
 
 void dummyCallback(){
 
-  ST7032iFB::callb();
+  ST7032iFB::poll();
 }
 
-void ST7032iFB::callb(){
-//  (pollFunction)();
+void ST7032iFB::poll(){
   callbackObject->process();
 }
 
@@ -41,9 +40,6 @@ Fifo dataFifo = Fifo(dataTab2, ST7032iFB::LCD_CHARS_AMOUNT +5);
 
 //void (ST7032iFB::* pollFunction)() = nullptr;
 
-ST7032iFB::~ST7032iFB() {
-  // TODO Auto-generated destructor stub
-}
 
 // Functions for ST7032I
 
@@ -55,13 +51,7 @@ void ST7032iFB::delayMsDirty(uint32_t milis){
   Hardware::delayMsDirty(milis);
 }
 
-//void ST7032iFB::setPollFunction(void (ST7032iFB::*pollF)()){
-//  st7032Task.setCallback(pollF);
-//}
 
-//void ST7032iFB::setPollFunction(){
-//  st7032Task.setCallback((void(*)())(&ST7032iFB::process));
-//}
 
 // LCD initialization procedure
 void ST7032iFB::init(I2C * i2cPort, Gpio * backLightPin, Gpio * resetLCDPin){
@@ -75,6 +65,7 @@ void ST7032iFB::init(I2C * i2cPort, Gpio * backLightPin, Gpio * resetLCDPin){
   fifo = &dataFifo;
   lcdStage = LcdStage::START;
   i2c = i2cPort;
+  i2c->setCompletedCallback(this);
   i2c->setSlaveAdres(ST7032I_ADDRESS<<1); // czemu do k.... nędzy adres jest przesuniety???
 
 
@@ -148,36 +139,36 @@ void ST7032iFB::process(){
   LcdStage stage = lcdStage;
   switch(stage){
   case LcdStage::START:
-  case LcdStage::WAIT_GOTO_L1:
-    lcdStage = LcdStage::GOTO_LINE1;
-    break;
+//  case LcdStage::WAIT_GOTO_L1:
+//    lcdStage = LcdStage::GOTO_LINE1;
+//    break;
   case LcdStage::GOTO_LINE1:
     if (!isBusy()){
       sendCommand(LcdCommand::LCD_HOME);
-      lcdStage = LcdStage::WAIT_LINE1;
+      lcdStage = LcdStage::SEND_LINE1;
     }
     break;
-  case LcdStage::WAIT_LINE1:
-    lcdStage = LcdStage::SEND_LINE1;
-    break;
+//  case LcdStage::WAIT_LINE1:
+//    lcdStage = LcdStage::SEND_LINE1;
+//    break;
   case LcdStage::SEND_LINE1:
     if (!isBusy()){
       sendLine(0);
-      lcdStage = LcdStage::WAIT_GOTO_L2;
+      lcdStage = LcdStage::GOTO_LINE2;
     }
     break;
-  case LcdStage::WAIT_GOTO_L2:
-    lcdStage = LcdStage::GOTO_LINE2;
-    break;
+//  case LcdStage::WAIT_GOTO_L2:
+//    lcdStage = LcdStage::GOTO_LINE2;
+//    break;
   case LcdStage::GOTO_LINE2:
     if (!isBusy()){
       gotoXY(0,1);
-      lcdStage = LcdStage::WAIT_LINE2;
+      lcdStage = LcdStage::SEND_LINE2;
     }
     break;
-  case LcdStage::WAIT_LINE2:
-    lcdStage = LcdStage::SEND_LINE2;
-       break;
+//  case LcdStage::WAIT_LINE2:
+//    lcdStage = LcdStage::SEND_LINE2;
+//       break;
   case LcdStage::SEND_LINE2:
     if (!isBusy()){
       sendLine(1);

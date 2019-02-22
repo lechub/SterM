@@ -14,6 +14,7 @@
 //namespace STM32F0xx {
 
 //#include "systemDefs.h"
+#include <CallbackInterface.h>
 #include <stdint.h>
 #include "Gpio.h"
 #include "Fifo.h"
@@ -50,10 +51,19 @@ private:
 
   DeviceDefs * volatile i2c = nullptr;
   Fifo * volatile data = nullptr;
+  CallbackInterface * jobDoneCallback = nullptr;
+
+
   volatile uint16_t slaveAdr = 0;
   volatile State state = State::IDLE;
 
 //  I2C(){} // private, bo to singleton
+
+  void callCompletedCallback(){
+      if (jobDoneCallback != nullptr){
+        jobDoneCallback->callbackFunction();
+      }
+    }
 
   void setState(State newstate){
     if (newstate == State::IDLE){
@@ -96,6 +106,10 @@ public:
   void irqEvent();
 
   void irqError();
+
+  void setCompletedCallback(CallbackInterface * i2cCallb){
+    jobDoneCallback = i2cCallb;
+  }
 
 };
 

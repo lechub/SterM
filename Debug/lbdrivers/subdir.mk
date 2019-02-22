@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../lbdrivers/CallbackInterface.cpp \
 ../lbdrivers/I2C.cpp \
 ../lbdrivers/ST7032iFB.cpp 
 
 OBJS += \
+./lbdrivers/CallbackInterface.o \
 ./lbdrivers/I2C.o \
 ./lbdrivers/ST7032iFB.o 
 
 CPP_DEPS += \
+./lbdrivers/CallbackInterface.d \
 ./lbdrivers/I2C.d \
 ./lbdrivers/ST7032iFB.d 
 

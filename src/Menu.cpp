@@ -164,6 +164,52 @@ void Menu::showEkran(uint16_t val){
     lcd->print(">");
     break;
   }
+  case e_WEJSCIA:
+  {
+    //--------------->|****|----|*-*-|<
+    //--------------->1234567890123456<
+    lcd->gotoXY(0,0);
+    sterM->wewy->gpioInKrancZamkniete.getInput() ?
+        lcd->print("-") : lcd->print("*");
+    sterM->wewy->gpioInKrancOtwarte.getInput() ?
+        lcd->print("-") : lcd->print("*");
+    sterM->wewy->gpioInZakazZamykania.getInput() ?
+        lcd->print("-") : lcd->print("*");
+    sterM->wewy->gpioInZakazOtwierania.getInput() ?
+        lcd->print("-") : lcd->print("*");
+    sterM->wewy->gpioInKluczI.getInput() ?
+        lcd->print("-") : lcd->print("*");
+    sterM->wewy->gpioInKluczII.getInput() ?
+        lcd->print("-") : lcd->print("*");
+    sterM->wewy->gpioInPozar.getInput() ?
+        lcd->print("-") : lcd->print("*");
+
+    lcd->print(" ");  // przerwa
+
+    sterM->wewy->gpioInKrancZamkniete.getInput() ?
+        lcd->print("_") : lcd->print("*");
+    sterM->wewy->gpioInKrancOtwarte.getInput() ?
+        lcd->print("_") : lcd->print("*");
+    sterM->wewy->gpioInZakazZamykania.getInput() ?
+        lcd->print("_") : lcd->print("*");
+    sterM->wewy->gpioInZakazOtwierania.getInput() ?
+        lcd->print("_") : lcd->print("*");
+    sterM->wewy->gpioInKluczI.getInput() ?
+        lcd->print("_") : lcd->print("*");
+    sterM->wewy->gpioInKluczII.getInput() ?
+        lcd->print("_") : lcd->print("*");
+    sterM->wewy->gpioInPozar.getInput() ?
+        lcd->print("_") : lcd->print("*");
+
+    lcd->clearLine(1);
+    //--------------->1234567890123456<
+    lcd->printXY(0, 1, "<");
+    lcd->print( sterM->getOpisNapedu(npd));
+    lcd->print(">");
+    break;
+  }
+  ,
+     e_WYJSCIA,
   break;
   default:
     break;

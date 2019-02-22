@@ -140,13 +140,14 @@ void I2C::irqEvent(){
     i2c->base->TXDR = uint8_t(frame->get());
   }
 
-//  if (READ_BIT(base->ISR, I2C_ISR_TXE)){ // nastepny bajt do wyslania
-//    i2c->base->TXDR = uint8_t(frame->get());
-//  }
+  //  if (READ_BIT(base->ISR, I2C_ISR_TXE)){ // nastepny bajt do wyslania
+  //    i2c->base->TXDR = uint8_t(frame->get());
+  //  }
 
   if (READ_BIT(base->ISR, I2C_ISR_STOPF)){
     SET_BIT(base->ICR, I2C_ICR_STOPCF);
     setState(State::IDLE);
+    callCompletedCallback();
   }
 
 }
@@ -264,7 +265,7 @@ Overrun/Underrun (OVR)
 Timeout detection (TIMEOUT)
 PEC error detection (PECERR)
 Alert pin event detection (ALERT)
-*/
+ */
 
 
 //} /* namespace STM32F4 */

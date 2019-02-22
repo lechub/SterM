@@ -5,8 +5,8 @@ lbutils/SoftStart.o: ../lbutils/SoftStart.cpp ../lbutils/SoftStart.h \
  ../system/include/cmsis/cmsis_gcc.h \
  ../system/include/cmsis/core_cmFunc.h \
  ../system/include/cmsis/system_stm32f0xx.h ../src/Hardware.h \
- ../lbdrivers/I2C.h ../lbdrivers/Gpio.h ../lbutils/Fifo.h \
- ../lbutils/myUtils.h
+ ../lbdrivers/I2C.h ../lbdrivers/CallbackInterface.h ../lbdrivers/Gpio.h \
+ ../lbutils/Fifo.h ../lbutils/myUtils.h
 
 ../lbutils/SoftStart.h:
 
@@ -29,6 +29,8 @@ lbutils/SoftStart.o: ../lbutils/SoftStart.cpp ../lbutils/SoftStart.h \
 ../src/Hardware.h:
 
 ../lbdrivers/I2C.h:
+
+../lbdrivers/CallbackInterface.h:
 
 ../lbdrivers/Gpio.h:
 

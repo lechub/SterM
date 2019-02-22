@@ -8,6 +8,7 @@
 #ifndef ST7032IFB_H_
 #define ST7032IFB_H_
 
+#include <CallbackInterface.h>
 #include <stdint.h>
 #include "FrameBuffer.h"
 #include "I2C.h"
@@ -17,7 +18,7 @@
 #define LCD5V 1		//
 
 
-class ST7032iFB {
+class ST7032iFB : public CallbackInterface {
 public:
 
 	// ---------------------- Constant Definition ----------------------------------
@@ -67,13 +68,13 @@ public:
 private:
 	typedef enum{
     START,
-    WAIT_GOTO_L1,
+//    WAIT_GOTO_L1,
 		GOTO_LINE1,
-    WAIT_LINE1,
+//    WAIT_LINE1,
 		SEND_LINE1,
-		WAIT_GOTO_L2,
+//		WAIT_GOTO_L2,
     GOTO_LINE2,
-    WAIT_LINE2,
+//    WAIT_LINE2,
     SEND_LINE2,
 	}LcdStage;
 
@@ -101,14 +102,22 @@ private:
   //void setPollFunction();
 //  void stageCheck();
 //	void ST7032iFB::setPollFunction(void (ST7032iFB::* pollF)());
+
+
+
+
 public:
 
 	ST7032iFB() {
 	  //setPollFunction();
 	}
-	virtual ~ST7032iFB();
+	virtual ~ST7032iFB(){	}
 
 	void init(I2C * i2cPort, Gpio * backLightPin, Gpio * resetLCDPin);
+
+	virtual void callbackFunction(){
+
+	}
 
 	void setResetPin(bool newstate){ gpioResetLCD->setOutput(newstate); }
 	void setBackLight(bool newstate){ gpioBackLight->setOutput(newstate); }
@@ -126,8 +135,8 @@ public:
 	  return sendCommand(uint8_t(LCD_DDRAM_WRITE | offset | Col)) ;
 	}
 
-	bool print(char znak);
-	bool print(const char * str);
+	//bool print(char znak);
+	//bool print(const char * str);
 	bool clearScreen(void);
 	bool lcd_Home(void){ return sendCommand(LcdCommand::LCD_HOME); }
 	bool lcd_ON(){ return sendCommand(LcdCommand::LCD_ON); }
@@ -157,7 +166,7 @@ public:
 	FrameBuffer * getFrameBuffer(){ return frameBuffer; };
 
 
-	static void callb();
+	static void poll();
 
 };
 

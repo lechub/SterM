@@ -22,7 +22,8 @@ public:
     e_START,
     e_1_NAPED,
     e_1_NAPED_WYBOR,
-
+    e_WEJSCIA,
+    e_WYJSCIA,
   }EKRAN;
 
 
