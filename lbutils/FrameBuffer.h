@@ -167,6 +167,30 @@ public:
       return result;
     }
 
+    /**
+     * @brief Zapisuje liczby według wzorca
+     * np.pattern= "[0000]" i initValues="#<>B" zapisze "[#<>B]"
+     * znaki specjalne:
+     * 0 - znaczace liczby wlacznie z wiodacymi zerami
+     *
+     *@param pattern wskaznik do tekstu - szablonu, w ktorym bedzie umieszczony wynik
+     *@param initValue  liczba, ktora bedzie skonwertowana na ASCII i umieszczona we wzorze
+     * @return true, jesli wszystkie cyfry sie zmiescily
+     */
+    bool printSymbolsWithPattern(const char *pattern, const char * values, const char MARKER){
+      uint32_t valIndex = 0;
+      while (*pattern != '\0'){
+        char znak = *pattern;
+        if (znak == MARKER){
+          znak = values[valIndex++];
+        }
+        print(znak);
+        pattern++;
+      }
+      return true;
+    }
+
+
 };
 
 #endif /* FRAMEBUFFER_H_ */

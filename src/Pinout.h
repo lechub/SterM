@@ -75,8 +75,8 @@ public:
   Gpio gpioSCL = Gpio(GPIOB, 10);
   Gpio gpioSDA = Gpio(GPIOB, 11);
 
-  Led ledAwaria = Led(GPIOF, 2); //  Gpio gpioLedAwaria = Gpio(GPIOF, 2);
-  Led ledPracaAku = Led(GPIOF, 3); //  Gpio gpioLedPracaAku = Gpio(GPIOF, 3);
+  Led ledPozar = Led(GPIOF, 2); //  Gpio gpioLedAwaria = Gpio(GPIOF, 2);
+  Led ledAwaria1 = Led(GPIOF, 3); //  Gpio gpioLedPracaAku = Gpio(GPIOF, 3);
 
   // to jest w Hardware/ADC
   //  Gpio gpioPomSygnL = Gpio(GPIOC, 0);
@@ -140,9 +140,9 @@ public:
    Gpio gpioSCL = Gpio(GPIOB, 10);
    Gpio gpioSDA = Gpio(GPIOB, 11);
 
-   Led ledAwaria    = Led(GPIOA, 0);
-   Led ledOK        = Led(GPIOA, 1);
-   Led ledPracaAku  = Led(GPIOA, 2);
+   Led ledPozar     = Led(GPIOA, 0);
+   Led ledGotowosc  = Led(GPIOA, 1);
+   Led ledAwaria1  = Led(GPIOA, 2);
 
    Gpio stacyjka    = Gpio(GPIOD, 8);
    Gpio keyDown     = Gpio(GPIOD, 9);
@@ -165,7 +165,7 @@ public:
 #endif
 
 
-  void setup(){
+  void init(){
 
     RCC->AHBENR |= RCC_AHBENR_GPIOAEN | RCC_AHBENR_GPIOBEN
         |RCC_AHBENR_GPIOCEN | RCC_AHBENR_GPIODEN
@@ -186,19 +186,21 @@ public:
     gpioWlaczInwerter.setupFromClone(&gpioOutPozar);
     //gpioWlaczZasNaped.setupFromClone(&gpioOutPozar);
 
-    gpioWyj1H.setup(Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::HighSpeed);
-    gpioWyj2H.setupFromClone(&gpioWyj1H);
-    gpioWyj3H.setupFromClone(&gpioWyj1H);
-    gpioWyj4H.setupFromClone(&gpioWyj1H);
-    gpioWyj1L.setupFromClone(&gpioWyj1H);
-    gpioWyj2L.setupFromClone(&gpioWyj1H);
-    gpioWyj3L.setupFromClone(&gpioWyj1H);
-    gpioWyj4L.setupFromClone(&gpioWyj1H);
+    // sterowanie silnikiem i hamulcem samo zainicjuje gpio
+//    gpioWyj1H.setup(Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::HighSpeed);
+//    gpioWyj2H.setupFromClone(&gpioWyj1H);
+//    gpioWyj3H.setupFromClone(&gpioWyj1H);
+//    gpioWyj4H.setupFromClone(&gpioWyj1H);
+//    gpioWyj1L.setupFromClone(&gpioWyj1H);
+//    gpioWyj2L.setupFromClone(&gpioWyj1H);
+//    gpioWyj3L.setupFromClone(&gpioWyj1H);
+//    gpioWyj4L.setupFromClone(&gpioWyj1H);
 
     gpioInBtnBACK.setup(Gpio::GpioMode::INPUT, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::LowSpeed);
     gpioInBtnLEFT.setupFromClone(&gpioInBtnBACK);
     gpioInBtnRIGHT.setupFromClone(&gpioInBtnBACK);
     gpioInBtnENTER.setupFromClone(&gpioInBtnBACK);
+
     gpioInKrancZamkniete.setupFromClone(&gpioInBtnBACK);
     gpioInKrancOtwarte.setupFromClone(&gpioInBtnBACK);
 
@@ -220,14 +222,15 @@ public:
 
     gpioOVCdetect.setup(Gpio::GpioMode::INPUT, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::MaximumSpeed);
 
-    ledAwaria.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
-    ledPracaAku.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
-    ledOK.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
+    // zainicjowane w HMI
+//    ledAwaria.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
+//    ledPracaAku.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
+//    ledOK.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
 
   }
 
 };
 
-extern Pinout pins;
+extern Pinout * pins;
 
 #endif /* PINOUT_H_ */

@@ -12,13 +12,14 @@
 #include <string.h>
 #include "Keyboard.h"
 #include "Menu.h"
+#include "ST7032iFB.h"
 
 class HMI {
 public:
 	static constexpr uint32_t CZAS_WYJSCIA_Z_MENU_MS = 30 * 1000;	// pol minuty
 	static constexpr uint32_t TIME_PERIOD_MONITOR_MS = 5;
 
-  static constexpr uint32_t TIME_BACKLIGHT_ACTIVE_MS = 10000;    // 10 sekund po jakimkolwiek klawiszu
+  static constexpr uint32_t TIME_BACKLIGHT_ACTIVE_MS = 2 * 60 * 1000;    // 2 minuty po jakimkolwiek klawiszu
   static constexpr uint32_t TIME_STARTUP_INDICATION_MS = 5000;
 
 private:
@@ -31,39 +32,44 @@ public:
 	FrameBuffer * lcd = nullptr;
 	Keyboard * keyboard = nullptr;
 	Menu * menu = nullptr;
-  Led * ledAlarm = nullptr;
-  Led * ledPracaAku = nullptr;
+  Led * ledPozarRed = nullptr;
+  Led * ledAwariaYellow = nullptr;
+  Led * ledGotowoscGreen = nullptr;
   Gpio * backLight = nullptr;
 
 	HMI(){;}
 
-//	HMI(Sterownik * psterownik, Keyboard * pkeys, FrameBuffer * plcd, Menu * pmenu, Led * ledAlarmRed, Led * ledPracaAkuYellow){
-//		init(psterownik, pkeys, plcd, pmenu, ledAlarmRed, ledPracaAkuYellow);
-//	}
-
-	void init(Sterownik * sterownik, Keyboard * pkeys, FrameBuffer * plcd, Gpio * gpioBackLight, Menu * pmenu, Led * ledAlarmRed, Led * ledPracaAkuYellow) {
+	void init(Sterownik * sterownik, Keyboard * pkeys, ST7032iFB * lcdDriver, Menu * pmenu, Led * ledPozar_Red, Led * ledAwaria_Yellow, Led * ledGotowosc_Green) {
 		ster = sterownik;
-		lcd = plcd;
+		lcd = lcdDriver->getFrameBuffer();
 		keyboard = pkeys;
-		backLight = gpioBackLight;
-    ledAlarm = ledAlarmRed;
-    ledPracaAku = ledPracaAkuYellow;
+		backLight = lcdDriver->getBackLight();
+    ledPozarRed = ledPozar_Red;
+    ledAwariaYellow = ledAwaria_Yellow;
+    ledGotowoscGreen = ledGotowosc_Green;
+
+		keyboard->init();
 		menu = pmenu;
 		menu->init(ster, keyboard, lcd);
+
+		ledPozarRed->init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
+		ledAwariaYellow->init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
+		ledGotowoscGreen->init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );
+
 		//startupDelayMs = 0L;
 		//backlightTimeMs = 0L;
 	}
 
-
 	void setBackLight(bool enable){ backLight->setOutput(enable); }
 
-	void monitor(){
+	void poll(){
 
 	  // Po uruchomieniu mrugamy diodami przez @HMI::TIME_STARTUP_INDICATION_MS
-	  if (startupDelayMs < TIME_STARTUP_INDICATION_MS){
+	  if (isStartup()){
 	    startupDelayMs += TIME_PERIOD_MONITOR_MS;
-      ledAlarm->set(Led::Mode::PULSUJE_NIEROWNO);
-      ledPracaAku->set(Led::Mode::PULSUJE_NIEROWNO);
+	    ledPozarRed->set(Led::Mode::PULSUJE_NIEROWNO);
+      ledAwariaYellow->set(Led::Mode::PULSUJE_NIEROWNO);
+      ledGotowoscGreen->set(Led::Mode::PULSUJE_NIEROWNO);
 	  }
 
 	  // wlaczac podswietlenie na TIME_BACKLIGHT_ACTIVE_MS milisekund po nacisnieciu jakiegos klawisza
@@ -78,8 +84,9 @@ public:
 	  }
 
 		// sterowanie LED-ami
-    ledAlarm->tick(TIME_PERIOD_MONITOR_MS);
-    ledPracaAku->tick(TIME_PERIOD_MONITOR_MS);
+    ledPozarRed->tick(TIME_PERIOD_MONITOR_MS);
+    ledAwariaYellow->tick(TIME_PERIOD_MONITOR_MS);
+    ledGotowoscGreen->tick(TIME_PERIOD_MONITOR_MS);
 
     // reszta kolejki odpytywania
     menu->poll();
@@ -87,6 +94,13 @@ public:
 
 	static HMI * getInstance();
 
+	inline bool isStartup(){
+	  return startupDelayMs < TIME_STARTUP_INDICATION_MS;
+	}
+
+  inline bool isBackLightInUse(){
+    return backLight->getOutput();
+  }
 
 };	// class HMI
 

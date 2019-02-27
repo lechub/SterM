@@ -167,7 +167,7 @@ public:
   }
 
   bool init(){
-    wewy = &pins;
+    wewy = pins;
     silnik24VDC->init();
     silnik230VAC->init();
     hamulec->init();
@@ -198,7 +198,7 @@ public:
   inline bool isZamkniete()const{ return wewy->gpioInKrancZamkniete.getInput(); }
   inline bool isZakazOtwierania()const{ return wewy->gpioInZakazOtwierania.getInput(); }
   inline bool isZakazZamykania()const{ return wewy->gpioInZakazZamykania.getInput(); }
-  inline bool isPozar()const{ return !(wewy->gpioInPozar.getInput()); }
+  inline bool isPozar()const{ return !((wewy->gpioInPozar.getInput())&&(wewy->gpioInAlarmAkust.getInput())); }
   inline bool isAlarmAkustyczny()const{ return !(wewy->gpioInAlarmAkust.getInput()); }
   inline bool isRezerwa1()const{ return !(wewy->gpioInRezerwa1.getInput()); }
   inline bool isRezerwa2()const{ return !(wewy->gpioInRezerwa2.getInput()); }
@@ -232,23 +232,14 @@ public:
   void setAwaria(bool enable){ awaria = enable; }
 
   Pozycja podnies(){
-    if (ruch != Ruch::OTWORZYC){
-      uint32_t licznik = VEprom::readWord(VEprom::VirtAdres::LICZNIK);  //Parameter::getValue(Parameter::Nazwa::LICZNIK);
-      VEprom::writeWord(VEprom::VirtAdres::LICZNIK, uint16_t(licznik + 1));    //Parameter::setValue(Parameter::Nazwa::LICZNIK, uint16_t(licznik + 1));
-    }
+    if (ruch != Ruch::OTWORZYC) VEprom::addToValue(VEprom::VirtAdres::LICZNIK, 1);
     ruch = Ruch::OTWORZYC;
     checkRuch();
     return pozycja;
   }
 
   Pozycja opusc(){
-    if (ruch != Ruch::ZAMKNAC){
-      uint32_t licznik = VEprom::readWord(VEprom::VirtAdres::LICZNIK);
-      VEprom::writeWord(VEprom::VirtAdres::LICZNIK, uint16_t(licznik + 1));
-
-//      uint32_t licznik = Parameter::getValue(Parameter::Nazwa::LICZNIK);
-//      Parameter::setValue(Parameter::Nazwa::LICZNIK, uint16_t(licznik + 1));
-    }
+    if (ruch != Ruch::ZAMKNAC) VEprom::addToValue(VEprom::VirtAdres::LICZNIK, 1);
     ruch = Ruch::ZAMKNAC;
     checkRuch();
     return pozycja;
@@ -268,29 +259,37 @@ public:
     zatrzymaj();
     typNapedu = nowyTypNapedu;
     VEprom::writeWord(VEprom::VirtAdres::NAPED, typNapedu);
-    //Parameter::setValue(Parameter::Nazwa::NAPED, (uint16_t)typNapedu);
     initNaped();
   }
 
+
+  static NAPED getPrevNaped(NAPED naped){
+    uint8_t typ = (uint8_t)naped;
+     if (--typ <= NAPED::NIEOKRESLONY){
+       typ = int8_t(NAPED::VIC_0701);
+     }
+     return (NAPED)typ;
+   }
+
+   static NAPED getNextNaped(NAPED naped){
+     uint8_t typ = (uint8_t)naped;
+     if (++typ > NAPED::VIC_0701){
+       typ = (int8_t)NAPED::VIC_012x;
+     }
+     return (NAPED)typ;
+   }
+
   void setPrevNaped(){
-    int8_t typ = (uint8_t)getTypNapedu();
-    if (--typ <= NAPED::NIEOKRESLONY){
-      typ = int8_t(NAPED::VIC_0701);
-    }
-    setNaped((NAPED)(typ));
+    setNaped(getPrevNaped(getTypNapedu()));
   }
 
   void setNextNaped(){
-    int8_t typ = (uint8_t)getTypNapedu();
-    if (++typ > NAPED::VIC_0701){
-      typ = (int8_t)NAPED::VIC_012x;
-    }
-    setNaped((NAPED)(typ));
+    setNaped(getNextNaped(getTypNapedu()));
   }
 
   const char * getOpisNapedu()const{ return getOpisNapedu(typNapedu); }
 
-  const char * getOpisNapedu(NAPED naped)const{
+  static const char * getOpisNapedu(NAPED naped){
     switch(naped){  //-----1234567890123456
     case VIC_012x: return "VIC-012x"; break;
     case VIC_0701: return "VIC-0701"; break;

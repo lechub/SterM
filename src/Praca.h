@@ -43,8 +43,8 @@ private:
 public:
 
   void init(){
-    wewy = &pins;
-    sterM->init();
+    wewy = pins;
+    //sterM->init();
     sterM->gotoSafePosition(false);
   }
 
@@ -68,8 +68,6 @@ public:
 
   void poll(){
     sterM->poll();   // tutaj jest check
-
-
 
     // otwarcie, zamkniecie lub zatrzymanie
 
@@ -146,19 +144,29 @@ public:
 
 
 
-    // mruganie diodą awaria
-    if (sterM->isAwaria()){
-      wewy->ledAwaria.set(Led::Mode::MRUGA_FAST);
+    // mruganie diodą pozar
+    if (sterM->isPozar()){
+      wewy->ledPozar.set(Led::Mode::MRUGA_FAST);
     }else {
-      wewy->ledAwaria.set(Led::Mode::ZGASZONA);
+      wewy->ledPozar.set(Led::Mode::ZGASZONA);
+    }
+
+    // mruganie diodą awarii
+    if (sterM->isAwaria()){dfbgdf
+      wewy->ledAwaria1.set(Led::Mode::MRUGA_SLOW); // sygnalizacja na LED-ie
+    }else{
+      wewy->ledAwaria1.set(Led::Mode::ZGASZONA);
     }
 
     // mruganie diodą pracy buforowej
-    if (isAwariaSieci230VAC()){
-      wewy->ledPracaAku.set(Led::Mode::MRUGA_SLOW); // sygnalizacja na LED-ie
+    if (){
+      wewy->ledGotowosc.set(Led::Mode::PULSUJE); // sygnalizacja na LED-ie
+    }else if (sterM->isMotorOn()){
+      wewy->ledGotowosc.set(Led::Mode::MRUGA_SLOW);
     }else{
-      wewy->ledPracaAku.set(Led::Mode::ZGASZONA);
+      wewy->ledGotowosc.set(Led::Mode::SWIECI);
     }
+
 
   }
 

@@ -99,6 +99,11 @@ public:
   //  }
 
   void init(){
+    gpioPH->setup(Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::HighSpeed);
+    gpioPL->setupFromClone(gpioPH);
+    gpioMH->setupFromClone(gpioPH);
+    gpioML->setupFromClone(gpioPH);
+
     setPullMinus(PULL::FLOATING);
     setPullPlus(PULL::FLOATING);
     setPower(POWER::FLOAT);

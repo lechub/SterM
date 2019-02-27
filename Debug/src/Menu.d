@@ -11,7 +11,9 @@ src/Menu.o: ../src/Menu.cpp ../src/Menu.h ../lbutils/VEprom.h \
  ../lbutils/Fifo.h ../src/Sterownik.h ../src/Silnik230VAC.h \
  ../src/SilnikNapedu.h ../src/Silnik24VDC.h ../src/HBridge.h \
  ../src/Hamulec.h ../src/Pinout.h ../lbutils/Led.h ../src/Pomiar.h \
- ../src/HMI.h ../src/Praca.h
+ ../lbdrivers/Password.h ../src/Keyboard.h ../lbutils/Settings.h \
+ ../src/HMI.h ../lbdrivers/ST7032iFB.h ../lbdrivers/CallbackInterface.h \
+ ../lbdrivers/I2C.h ../lbdrivers/Gpio.h ../src/Praca.h
 
 ../src/Menu.h:
 
@@ -71,6 +73,20 @@ src/Menu.o: ../src/Menu.cpp ../src/Menu.h ../lbutils/VEprom.h \
 
 ../src/Pomiar.h:
 
+../lbdrivers/Password.h:
+
+../src/Keyboard.h:
+
+../lbutils/Settings.h:
+
 ../src/HMI.h:
+
+../lbdrivers/ST7032iFB.h:
+
+../lbdrivers/CallbackInterface.h:
+
+../lbdrivers/I2C.h:
+
+../lbdrivers/Gpio.h:
 
 ../src/Praca.h:

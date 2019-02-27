@@ -12,7 +12,7 @@ HMI hmi = HMI();
 
 
 /** Wywolanie metody monitor() */
-void static inline hmi_callback(){  hmi.monitor(); }
+void static inline hmi_callback(){  hmi.poll(); }
 
 
 

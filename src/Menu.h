@@ -12,18 +12,42 @@
 #include "Keyboard.h"
 #include "FrameBuffer.h"
 #include "Sterownik.h"
-//#include ""
+#include "Password.h"
+#include "Settings.h"
 //#include "HMI.h"
 
 class Menu {
 
+
 public:
+
+  static constexpr char CHAR_IN_ACTIVE = '*';
+  static constexpr char CHAR_IN_NOACTIVE = '-';
+
+  /*
+   * e_START
+   * |
+   * e_MAIN
+   * |-# e_HASLO
+   * |   |-[12345]
+   * |      |-<> e_UST_NAPED <> e_RESET_LICZNIKA   <>  e_UST_ZEGAR   <> e_UST_HASLO
+   * |-<> e_WYJSCIA  <> e_WEJSCIA
+   * */
+
+
   typedef enum{
-    e_START,
-    e_1_NAPED,
-    e_1_NAPED_WYBOR,
+    e_INIT,
+    e_MAIN,
     e_WEJSCIA,
     e_WYJSCIA,
+    e_HASLO,
+    e_uNAPED,
+    e_uNAPED_USTAW,
+    e_uRESET_LICZNIKA,
+    e_uZEGAR,
+    e_uZEGAR_USTAW,
+    e_uNOWE_HASLO,
+    e_uHASLO_USTAW,
   }EKRAN;
 
 
@@ -38,6 +62,8 @@ private:
   Keyboard * keys;
   FrameBuffer * lcd;
   //Praca * praca;
+  Password pass;
+  Sterownik::NAPED napedM = Sterownik::NAPED::NIEOKRESLONY;
 
   uint32_t refreshDelay;
 
@@ -53,24 +79,19 @@ public:
     keys = pKeys;
     lcd = pLcd;
     //praca = ster->getPraca();
+    pass.init();
 
-    ekran = EKRAN::e_START;
+    ekran = EKRAN::e_INIT;
     //goToEkran(EKRAN::e_AUTOMAT);
   }
 
 
   void goToEkran(EKRAN nowyEkran){
     ekran = nowyEkran;
-    if (ekran == EKRAN::e_START) sterM->gotoSafePosition(false);
-    if (ekran == EKRAN::e_1_NAPED_WYBOR) sterM->gotoSafePosition(true);
+    if (ekran == EKRAN::e_INIT) sterM->gotoSafePosition(false);
+    if (ekran == EKRAN::e_uNAPED) sterM->gotoSafePosition(true);
     editMode = false;
 
-    //		switch(ekran){
-    //		case e_AUTOMAT:				 break;
-    //
-    //		default:
-    // break;
-    //		}
     showEkran();
   }
 
@@ -84,28 +105,31 @@ public:
   void printPattern(const char * pattern, uint32_t value);
 
 
-  // tylko wyswietlenie - w trybie przegladania
-  void showEkran(){
-    editMode = false;
-    uint16_t val = 1;
-    switch(ekran){
-    case e_START:
-      val = VEprom::readWord(VEprom::VirtAdres::NAPED);
-      break;
-    case e_1_NAPED:
-      break;
-    case e_1_NAPED_WYBOR:
-      break;
-    default:
-      break;
-    }
+  bool processHaslo(Keyboard::Key key);
 
-    showEkran(val);
-  }
+
+//  // tylko wyswietlenie - w trybie przegladania
+//  void showEkran(){
+//    editMode = false;
+//    uint16_t val = 1;
+//    switch(ekran){
+//    case e_START:
+//      val = VEprom::readWord(VEprom::VirtAdres::NAPED);
+//      break;
+//    case e_1_NAPED:
+//      break;
+//    case e_1_NAPED_WYBOR:
+//      break;
+//    default:
+//      break;
+//    }
+//
+//    showEkran(val);
+//  }
 
   bool edit(Keyboard::Key key);
 
-  void showEkran(uint16_t val);
+  void showEkran();
 
   void poll();
 

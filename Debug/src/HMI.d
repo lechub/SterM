@@ -10,7 +10,9 @@ src/HMI.o: ../src/HMI.cpp ../src/HMI.h ../src/Sterownik.h \
  ../src/HBridge.h ../src/Hamulec.h ../src/Pinout.h ../lbutils/Led.h \
  ../src/Pomiar.h ../src/Keyboard.h ../lbutils/Button.h ../lbutils/Fifo.h \
  ../lbutils/myUtils.h ../lbutils/QuickTask.h ../src/Menu.h \
- ../lbutils/FrameBuffer.h ../lbutils/Fifo.h
+ ../lbutils/FrameBuffer.h ../lbutils/Fifo.h ../lbdrivers/Password.h \
+ ../src/Keyboard.h ../lbutils/Settings.h ../lbdrivers/ST7032iFB.h \
+ ../lbdrivers/CallbackInterface.h ../lbdrivers/I2C.h ../lbdrivers/Gpio.h
 
 ../src/HMI.h:
 
@@ -71,3 +73,17 @@ src/HMI.o: ../src/HMI.cpp ../src/HMI.h ../src/Sterownik.h \
 ../lbutils/FrameBuffer.h:
 
 ../lbutils/Fifo.h:
+
+../lbdrivers/Password.h:
+
+../src/Keyboard.h:
+
+../lbutils/Settings.h:
+
+../lbdrivers/ST7032iFB.h:
+
+../lbdrivers/CallbackInterface.h:
+
+../lbdrivers/I2C.h:
+
+../lbdrivers/Gpio.h:

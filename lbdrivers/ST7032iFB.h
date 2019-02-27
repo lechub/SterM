@@ -165,6 +165,7 @@ public:
 
 	FrameBuffer * getFrameBuffer(){ return frameBuffer; };
 
+	Gpio * getBackLight(){ return gpioBackLight; }
 
 	static void poll();
 

@@ -82,6 +82,12 @@ public:
 		for (uint16_t i = 0; i<BUFFERSIZE; i++)	buffer[i] = NONE;
 	}
 
+	void init(){
+	  keyBACK->setup(Gpio::GpioMode::INPUT, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::LowSpeed);
+	  keyLEFT->setupFromClone(keyBACK);
+	  keyRIGHT->setupFromClone(keyBACK);
+	  keyENTER->setupFromClone(keyBACK);
+	}
 
 	void co10ms(){
 		static Key oldKey = NONE;

@@ -21,6 +21,7 @@ public:
     SoftVersion,
     LICZNIK,
     NAPED,
+    PASSWORD,
     FLAGS1,
     Adres,
     COUNT,
@@ -30,8 +31,9 @@ public:
 
   static bool init(){
     FLASH_Unlock();
-    return (EE_Init() == FLASH_Status::FLASH_COMPLETE);
+    bool result = (EE_Init() == FLASH_Status::FLASH_COMPLETE);
     FLASH_Lock();
+    return result;
   }
 
   static bool writeWord(VirtAdres virtAdres, uint16_t val){

@@ -26,17 +26,18 @@
 
 void hBridgePoll();
 
-Pinout pins = Pinout();
+Pinout pinout = Pinout();
+Pinout * pins = &pinout;
 
-Keyboard keys = Keyboard(&pins.gpioInBtnBACK, &pins.gpioInBtnLEFT, &pins.gpioInBtnRIGHT, &pins.gpioInBtnENTER);
+Keyboard keys = Keyboard(&pinout.gpioInBtnBACK, &pinout.gpioInBtnLEFT, &pinout.gpioInBtnRIGHT, &pinout.gpioInBtnENTER);
 
-HBridge hBridgeHamulec  = HBridge(&pins.gpioWyj1H, &pins.gpioWyj1L, &pins.gpioWyj2H, &pins.gpioWyj2L);
-HBridge hBridgeSilnik   = HBridge(&pins.gpioWyj3H, &pins.gpioWyj3L, &pins.gpioWyj4H, &pins.gpioWyj4L);
+HBridge hBridgeHamulec  = HBridge(&pinout.gpioWyj1H, &pinout.gpioWyj1L, &pinout.gpioWyj2H, &pinout.gpioWyj2L);
+HBridge hBridgeSilnik   = HBridge(&pinout.gpioWyj3H, &pinout.gpioWyj3L, &pinout.gpioWyj4H, &pinout.gpioWyj4L);
 
 Hamulec hamulec = Hamulec(&hBridgeHamulec);
 
 Silnik24VDC silnik24VDC = Silnik24VDC(&hBridgeHamulec, &hBridgeSilnik);
-Silnik230VAC silnik230VAC = Silnik230VAC(&pins.gpioWlacz230Otworz, &pins.gpioWlacz230Zamknij);
+Silnik230VAC silnik230VAC = Silnik230VAC(&pinout.gpioWlacz230Otworz, &pinout.gpioWlacz230Zamknij);
 
 I2C_TypeDef * const I2C_FOR_LCD = I2C2;
 I2C::DeviceDefs i2cDefs;
@@ -94,7 +95,7 @@ void main(void) {
 
   Hardware::init();
 
-  pins.setup();
+  pins->init();
 
   QuickTask::delayMsWithStoppedTasks(100);
   VEprom::init();
@@ -108,16 +109,14 @@ void main(void) {
   {
     i2cDefs.base = I2C_FOR_LCD;
     i2cDefs.i2cFreqkHz = 100;
-    i2cDefs.sda = &pins.gpioSDA;
-    i2cDefs.scl = &pins.gpioSCL;
+    i2cDefs.sda = &pins->gpioSDA;
+    i2cDefs.scl = &pins->gpioSCL;
     i2c->init(&i2cDefs);
-    st7032iDriver.init(i2c, &pins.gpioLcdBackLight, &pins.gpioLcdReset);
+    st7032iDriver.init(i2c, &pins->gpioLcdBackLight, &pins->gpioLcdReset);
   }
 
-
-  HMI * hmi;
-  hmi = HMI::getInstance();
-  hmi->init(sterM, &keys, st7032iDriver.getFrameBuffer(), &pins.gpioLcdBackLight, &menu, &pins.ledAwaria, &pins.ledPracaAku);
+  HMI * hmi = HMI::getInstance();
+  hmi->init(sterM, &keys, &st7032iDriver, &menu, &pins->ledPozar, &pins->ledAwaria1, &pins->ledGotowosc);
 
   hmi->lcd->clearScreen();
 
@@ -125,8 +124,7 @@ void main(void) {
 
   hmi->lcd->cursorMode(FrameBuffer::CursorMode::HIDDEN);
 
-  //sterM->init();
-
+  sterM->init();
   praca->init();
 
   //  if (!Parameter::initEepromMemory()){
@@ -136,11 +134,11 @@ void main(void) {
   //  }
 
   //---------------------->1234567890123456<
-  hmi->lcd->printXY(0,0,  " Sterownik bram ");//  i2c->dirtyDelayMs(500);
-  hmi->lcd->printXY(0,1,  "pozarowych v.1.0");
-  QuickTask::delayMsWithActiveTasks(2000);
+//  hmi->lcd->printXY(0,0,  " Sterownik bram ");//  i2c->dirtyDelayMs(500);
+//  hmi->lcd->printXY(0,1,  "pozarowych v.1.0");
+//  QuickTask::delayMsWithActiveTasks(2000);
 
-  //hmi->menu->goToEkran(Menu::EKRAN::e_AUTOMAT);
+  hmi->menu->goToEkran(Menu::EKRAN::e_INIT);
   QuickTask::hold(false);
   do{
     Hardware::WDOG_Reload();          // przeladowanie Watch-doga
