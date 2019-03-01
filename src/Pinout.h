@@ -76,7 +76,7 @@ public:
   Gpio gpioSDA = Gpio(GPIOB, 11);
 
   Led ledPozar = Led(GPIOF, 2); //  Gpio gpioLedAwaria = Gpio(GPIOF, 2);
-  Led ledAwaria1 = Led(GPIOF, 3); //  Gpio gpioLedPracaAku = Gpio(GPIOF, 3);
+  Led ledAwaria = Led(GPIOF, 3); //  Gpio gpioLedPracaAku = Gpio(GPIOF, 3);
 
   // to jest w Hardware/ADC
   //  Gpio gpioPomSygnL = Gpio(GPIOC, 0);
@@ -141,8 +141,8 @@ public:
    Gpio gpioSDA = Gpio(GPIOB, 11);
 
    Led ledPozar     = Led(GPIOA, 0);
-   Led ledGotowosc  = Led(GPIOA, 1);
-   Led ledAwaria1  = Led(GPIOA, 2);
+   Led ledAwaria  = Led(GPIOA, 1);
+   Led ledGotowosc  = Led(GPIOA, 2);
 
    Gpio stacyjka    = Gpio(GPIOD, 8);
    Gpio keyDown     = Gpio(GPIOD, 9);

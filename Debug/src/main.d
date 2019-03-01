@@ -12,10 +12,10 @@ src/main.o: ../src/main.cpp ../system/include/diag/Trace.h \
  ../lbutils/stm32f0xx_flash.h ../src/Silnik230VAC.h ../lbdrivers/Gpio.h \
  ../src/SilnikNapedu.h ../src/Silnik24VDC.h ../src/HBridge.h \
  ../src/Hamulec.h ../src/Pinout.h ../lbutils/Led.h ../src/Pomiar.h \
- ../src/Keyboard.h ../lbutils/Button.h ../src/HMI.h ../src/Menu.h \
+ ../src/HMI.h ../src/Keyboard.h ../lbutils/Button.h ../src/Menu.h \
  ../lbutils/FrameBuffer.h ../lbutils/Fifo.h ../lbdrivers/Password.h \
  ../src/Keyboard.h ../lbutils/Settings.h ../lbdrivers/ST7032iFB.h \
- ../lbdrivers/I2C.h ../src/Praca.h
+ ../lbdrivers/I2C.h ../src/Front.h ../src/Praca.h
 
 ../system/include/diag/Trace.h:
 
@@ -75,11 +75,11 @@ src/main.o: ../src/main.cpp ../system/include/diag/Trace.h \
 
 ../src/Pomiar.h:
 
+../src/HMI.h:
+
 ../src/Keyboard.h:
 
 ../lbutils/Button.h:
-
-../src/HMI.h:
 
 ../src/Menu.h:
 
@@ -96,5 +96,7 @@ src/main.o: ../src/main.cpp ../system/include/diag/Trace.h \
 ../lbdrivers/ST7032iFB.h:
 
 ../lbdrivers/I2C.h:
+
+../src/Front.h:
 
 ../src/Praca.h:

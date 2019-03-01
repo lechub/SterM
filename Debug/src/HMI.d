@@ -12,7 +12,8 @@ src/HMI.o: ../src/HMI.cpp ../src/HMI.h ../src/Sterownik.h \
  ../lbutils/myUtils.h ../lbutils/QuickTask.h ../src/Menu.h \
  ../lbutils/FrameBuffer.h ../lbutils/Fifo.h ../lbdrivers/Password.h \
  ../src/Keyboard.h ../lbutils/Settings.h ../lbdrivers/ST7032iFB.h \
- ../lbdrivers/CallbackInterface.h ../lbdrivers/I2C.h ../lbdrivers/Gpio.h
+ ../lbdrivers/CallbackInterface.h ../lbdrivers/I2C.h ../lbdrivers/Gpio.h \
+ ../src/Front.h
 
 ../src/HMI.h:
 
@@ -87,3 +88,5 @@ src/HMI.o: ../src/HMI.cpp ../src/HMI.h ../src/Sterownik.h \
 ../lbdrivers/I2C.h:
 
 ../lbdrivers/Gpio.h:
+
+../src/Front.h:

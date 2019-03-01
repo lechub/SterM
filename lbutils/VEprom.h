@@ -24,6 +24,7 @@ public:
     PASSWORD,
     FLAGS1,
     Adres,
+    OPOZN_ZAMK_POZAR,
     COUNT,
   }VirtAdres;
 

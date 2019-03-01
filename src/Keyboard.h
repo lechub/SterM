@@ -57,7 +57,6 @@ private:
 	Gpio *keyRIGHT;// =  Gpio(GPIOC,8, Gpio::GpioMode::INPUT, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::Speed1);
 	Gpio *keyENTER;// =  Gpio(GPIOA,12, Gpio::GpioMode::INPUT, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::Speed1);
 
-
 	// unbuffered key state
 	Key getPressedKey(){
 	  Key key = Key::NONE;

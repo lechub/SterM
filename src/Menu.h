@@ -40,6 +40,7 @@ public:
     e_MAIN,
     e_WEJSCIA,
     e_WYJSCIA,
+    e_FRONT,
     e_HASLO,
     e_uNAPED,
     e_uNAPED_USTAW,
@@ -48,6 +49,8 @@ public:
     e_uZEGAR_USTAW,
     e_uNOWE_HASLO,
     e_uHASLO_USTAW,
+    e_uOPOZN_ZAM_POZ,
+    e_uOPOZN_Z_P_USTAW,
   }EKRAN;
 
 
@@ -61,14 +64,13 @@ private:
   Sterownik * ster;
   Keyboard * keys;
   FrameBuffer * lcd;
-  //Praca * praca;
   Password pass;
-  Sterownik::NAPED napedM = Sterownik::NAPED::NIEOKRESLONY;
+  //Sterownik::NAPED napedM = Sterownik::NAPED::NIEOKRESLONY;
+  uint32_t tmpValue = 0;  // do przechowania wartosci tymczasowych
 
   uint32_t refreshDelay;
 
   EKRAN ekran;
-  //Parameter::Nazwa editParam = Parameter::Nazwa::NONE;
   uint16_t editValue = 0;
   bool editMode = false;
 
@@ -78,11 +80,10 @@ public:
     ster = pSter;
     keys = pKeys;
     lcd = pLcd;
-    //praca = ster->getPraca();
     pass.init();
 
     ekran = EKRAN::e_INIT;
-    //goToEkran(EKRAN::e_AUTOMAT);
+    //goToEkran(EKRAN::e_INIT);
   }
 
 
@@ -95,39 +96,11 @@ public:
     showEkran();
   }
 
-  //	void goToEdit(Parameter::Nazwa param){
-  //		editParam = param;
-  //		editValue = Parameter::getValue(editParam);
-  //		editMode = true;
-  //		showEkran(editValue);
-  //	}
-
   void printPattern(const char * pattern, uint32_t value);
-
 
   bool processHaslo(Keyboard::Key key);
 
-
-//  // tylko wyswietlenie - w trybie przegladania
-//  void showEkran(){
-//    editMode = false;
-//    uint16_t val = 1;
-//    switch(ekran){
-//    case e_START:
-//      val = VEprom::readWord(VEprom::VirtAdres::NAPED);
-//      break;
-//    case e_1_NAPED:
-//      break;
-//    case e_1_NAPED_WYBOR:
-//      break;
-//    default:
-//      break;
-//    }
-//
-//    showEkran(val);
-//  }
-
-  bool edit(Keyboard::Key key);
+  //bool edit(Keyboard::Key key);
 
   void showEkran();
 

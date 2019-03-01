@@ -39,7 +39,7 @@
 /* Define the size of the sectors to be used */
 #define PAGE_SIZE             ((uint32_t)(0x0400 * 2))  /* Page size = 1 or 2 KByte */
 /* Variables' number */
-#define NB_OF_VAR             ((uint8_t)10) // tu zmieniac max ilosc komorek
+#define NB_OF_VAR             10 // tu zmieniac max ilosc komorek
 
 /* EEPROM start address in Flash */
 /*EEPROM emulation start address:

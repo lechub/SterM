@@ -11,11 +11,11 @@
 #include "QuickTask.h"
 #include "Hardware.h"
 #include "Sterownik.h"
-#include "Pinout.h"
-#include "Keyboard.h"
+//#include "Pinout.h"
+//#include "Keyboard.h"
 #include "HMI.h"
-#include "ST7032iFB.h"
-#include "I2C.h"
+//#include "ST7032iFB.h"
+//#include "I2C.h"
 #include "Hamulec.h"
 #include "Silnik24VDC.h"
 #include "VEprom.h"
@@ -30,6 +30,8 @@ Pinout pinout = Pinout();
 Pinout * pins = &pinout;
 
 Keyboard keys = Keyboard(&pinout.gpioInBtnBACK, &pinout.gpioInBtnLEFT, &pinout.gpioInBtnRIGHT, &pinout.gpioInBtnENTER);
+
+Front front = Front(&pins->keyUp, &pins->keyStop, &pins->keyDown, &pins->stacyjka);
 
 HBridge hBridgeHamulec  = HBridge(&pinout.gpioWyj1H, &pinout.gpioWyj1L, &pinout.gpioWyj2H, &pinout.gpioWyj2L);
 HBridge hBridgeSilnik   = HBridge(&pinout.gpioWyj3H, &pinout.gpioWyj3L, &pinout.gpioWyj4H, &pinout.gpioWyj4L);
@@ -50,9 +52,6 @@ Sterownik * sterM = &sterBramDym;
 Praca job = Praca();
 Praca *praca = &job;
 
-//volatile uint8_t lcdFrameBuffer[ST7032iFB::LCD_COL][ST7032iFB::LCD_ROW];
-//FrameBuffer lcd = FrameBuffer(ST7032iFB::LCD_COL, ST7032iFB::LCD_ROW, (uint8_t*)lcdFrameBuffer);
-
 Menu menu = Menu();
 
 
@@ -65,11 +64,11 @@ void hBridgePoll(){
 }
 
 
-/** Wywolanie metody monitor() */
-void static inline keyb_callback(){  keys.co10ms(); }
+///** Wywolanie metody monitor() */
+//void static inline keyb_callback(){  keys.co10ms(); }
 
-// periodycznie wykonywana funkcja monitor() opakowana w aku_callback()
-QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_KEYB_MS);
+//// periodycznie wykonywana funkcja monitor() opakowana w aku_callback()
+//QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_KEYB_MS);
 
 // periodycznie wykonywana funkcja monitor() opakowana w aku_callback()
 QuickTask hBridgeQtsk(QuickTask::QT_PERIODIC, hBridgePoll, HBridge::TIME_POLL_PERIOD_MS);
@@ -88,8 +87,6 @@ QuickTask hBridgeQtsk(QuickTask::QT_PERIODIC, hBridgePoll, HBridge::TIME_POLL_PE
 
 //int main(int argc, char* argv[]) {
 void main(void) {
-  // At this stage the system clock should have already been configured
-  // at high speed.
 
   QuickTask::hold(true);
 
@@ -99,12 +96,6 @@ void main(void) {
 
   QuickTask::delayMsWithStoppedTasks(100);
   VEprom::init();
-
-  //  for(int i = 0; i < 5; i++ ){
-  //    pins.ledAlarm.toggleOutput();
-  //    pins.ledPracaAku.toggleOutput();
-  //    QuickTask::delayMsWithStoppedTasks(1000);
-  //  }
 
   {
     i2cDefs.base = I2C_FOR_LCD;
@@ -116,7 +107,7 @@ void main(void) {
   }
 
   HMI * hmi = HMI::getInstance();
-  hmi->init(sterM, &keys, &st7032iDriver, &menu, &pins->ledPozar, &pins->ledAwaria1, &pins->ledGotowosc);
+  hmi->init(sterM, &keys, &front, &st7032iDriver, &menu, &pins->ledPozar, &pins->ledAwaria, &pins->ledGotowosc);
 
   hmi->lcd->clearScreen();
 
@@ -126,17 +117,6 @@ void main(void) {
 
   sterM->init();
   praca->init();
-
-  //  if (!Parameter::initEepromMemory()){
-  //    //---------------------->1234567890123456<
-  //    hmi->lcd->printXY(1,0,  "  BLAD EEPROM!  ");
-  //    while(true){;}
-  //  }
-
-  //---------------------->1234567890123456<
-//  hmi->lcd->printXY(0,0,  " Sterownik bram ");//  i2c->dirtyDelayMs(500);
-//  hmi->lcd->printXY(0,1,  "pozarowych v.1.0");
-//  QuickTask::delayMsWithActiveTasks(2000);
 
   hmi->menu->goToEkran(Menu::EKRAN::e_INIT);
   QuickTask::hold(false);

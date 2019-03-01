@@ -72,9 +72,8 @@ private:
   }
 
   void fixOutputs(){
-    wewy->gpioOutOtwarte.setOutput(pozycja == OTWARTA);
-    wewy->gpioOutZamkniete.setOutput(pozycja == ZAMKNIETA);
-
+//    wewy->gpioOutOtwarte.setOutput(pozycja == OTWARTA);
+//    wewy->gpioOutZamkniete.setOutput(pozycja == ZAMKNIETA);
     if (pozycja == USZKODZONA){
       awaria = true;
     }else{
@@ -128,6 +127,19 @@ private:
       break;
     }
   }
+
+
+  void checkRelays(){
+    wewy->gpioOutOtwarte.setOutput(!isOtwarte());
+    wewy->gpioOutZamkniete.setOutput(!isZamkniete());
+    wewy->gpioOutRelSprawny.setOutput(!isAwaria()); // Awaria ma odwrocona logike
+    wewy->gpioOutPozar.setOutput(wewy->gpioInPozar.getInput());
+    bool alarmAkust = false;
+    if (isPozar()) alarmAkust = true;
+    if (isAlarmAkustyczny() && (!isZamkniete())) alarmAkust = true;
+    wewy->gpioOutSygnAkust.setOutput(alarmAkust);
+  }
+
 
   void initNaped(){
     switch(typNapedu){
@@ -198,8 +210,9 @@ public:
   inline bool isZamkniete()const{ return wewy->gpioInKrancZamkniete.getInput(); }
   inline bool isZakazOtwierania()const{ return wewy->gpioInZakazOtwierania.getInput(); }
   inline bool isZakazZamykania()const{ return wewy->gpioInZakazZamykania.getInput(); }
-  inline bool isPozar()const{ return !((wewy->gpioInPozar.getInput())&&(wewy->gpioInAlarmAkust.getInput())); }
+  inline bool isPozar()const{ return !wewy->gpioInPozar.getInput(); }
   inline bool isAlarmAkustyczny()const{ return !(wewy->gpioInAlarmAkust.getInput()); }
+  inline bool isPozarOrAlarmAkust()const{ return isPozar() || isAlarmAkustyczny(); }
   inline bool isRezerwa1()const{ return !(wewy->gpioInRezerwa1.getInput()); }
   inline bool isRezerwa2()const{ return !(wewy->gpioInRezerwa2.getInput()); }
 
@@ -211,7 +224,7 @@ public:
     return (      // mozna podniesc jesli
         (!isOtwarte())    // nie jest otwarte
         && (!isZakazOtwierania()) // nie ma zakazu otwierania
-        && (!isPozar())   // nie ma pozaru
+        && (!isPozarOrAlarmAkust())   // nie ma pozaru
     );
   }
 
@@ -253,6 +266,7 @@ public:
 
   void poll(){
     checkRuch();
+    checkRelays();
   }
 
   void setNaped(NAPED nowyTypNapedu){

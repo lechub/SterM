@@ -42,7 +42,7 @@ void Menu::poll(){
       break;
     }
     case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_WEJSCIA);  break;
-    case Keyboard::Key::LEFT: goToEkran(EKRAN::e_WYJSCIA);  break;
+    case Keyboard::Key::LEFT: goToEkran(EKRAN::e_FRONT);  break;
     default: break;
     }
     break;
@@ -58,13 +58,23 @@ void Menu::poll(){
   }
   case e_WYJSCIA:  {
     switch(key){
-    case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_MAIN);  break;
+    case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_FRONT);  break;
     case Keyboard::Key::LEFT: goToEkran(EKRAN::e_WEJSCIA);  break;
     case Keyboard::Key::CANCEL: goToEkran(EKRAN::e_MAIN);  break;
     default: break;
     }
     break;
   }
+  case e_FRONT:  {
+    switch(key){
+    case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_MAIN);  break;
+    case Keyboard::Key::LEFT: goToEkran(EKRAN::e_WYJSCIA);  break;
+    case Keyboard::Key::CANCEL: goToEkran(EKRAN::e_MAIN);  break;
+    default: break;
+    }
+    break;
+  }
+
 
   case e_HASLO:  {
     if (key == Keyboard::Key::NONE) break;
@@ -80,11 +90,11 @@ void Menu::poll(){
   case e_uNAPED:  {
     switch(key){
     case Keyboard::Key::ENTER:{
-      napedM = sterM->getTypNapedu();
+      tmpValue = (uint16_t)(sterM->getTypNapedu());
       goToEkran(EKRAN::e_uNAPED_USTAW);break;
     }
     case Keyboard::Key::CANCEL: goToEkran(EKRAN::e_MAIN);break;
-    case Keyboard::Key::LEFT:  goToEkran(EKRAN::e_uNOWE_HASLO); break;
+    case Keyboard::Key::LEFT:  goToEkran(EKRAN::e_uOPOZN_ZAM_POZ); break;
     case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_uRESET_LICZNIKA); break;
     default:
       break;
@@ -95,14 +105,16 @@ void Menu::poll(){
   case e_uNAPED_USTAW:  {
     switch(key){
     case Keyboard::Key::ENTER:{
-      sterM->setNaped(napedM);
+      Sterownik::NAPED nap = (Sterownik::NAPED)(tmpValue);
+      sterM->setNaped(nap);
+      goToEkran(EKRAN::e_MAIN);
+      break;
     }
-    // no break;
     case Keyboard::Key::CANCEL:
       goToEkran(EKRAN::e_MAIN);
       break;
-    case Keyboard::Key::LEFT:  napedM = Sterownik::getPrevNaped(napedM); break;
-    case Keyboard::Key::RIGHT:  napedM = Sterownik::getNextNaped(napedM); break;
+    case Keyboard::Key::LEFT:  tmpValue = Sterownik::getPrevNaped((Sterownik::NAPED)(tmpValue)); break;
+    case Keyboard::Key::RIGHT:  tmpValue = Sterownik::getNextNaped((Sterownik::NAPED)(tmpValue)); break;
     default:
       break;
     }
@@ -151,7 +163,7 @@ void Menu::poll(){
     }
     case Keyboard::Key::CANCEL: goToEkran(EKRAN::e_MAIN); break;
     case Keyboard::Key::LEFT:  goToEkran(EKRAN::e_uZEGAR); break;
-    case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_uNAPED); break;
+    case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_uOPOZN_ZAM_POZ); break;
     default:
       break;
     }
@@ -173,8 +185,59 @@ void Menu::poll(){
     break;
   }
 
+  case e_uOPOZN_ZAM_POZ:  {
+    switch(key){
+    case Keyboard::Key::ENTER:{
+      tmpValue = VEprom::readWord(VEprom::VirtAdres::OPOZN_ZAMK_POZAR);
+      if (tmpValue > MAX_OPOZN_ZAMK_POZ_sek) tmpValue = 1;
+      goToEkran(EKRAN::e_uOPOZN_Z_P_USTAW);
+      break;
+    }
+    case Keyboard::Key::CANCEL: goToEkran(EKRAN::e_MAIN);break;
+    case Keyboard::Key::LEFT:  goToEkran(EKRAN::e_uNOWE_HASLO); break;
+    case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_uNAPED); break;
+    default:
+      break;
+    }
+    break;
+  }
+
+  case e_uOPOZN_Z_P_USTAW: {
+    switch(key){
+    case Keyboard::Key::ENTER:{
+      VEprom::writeWord(VEprom::VirtAdres::OPOZN_ZAMK_POZAR, (uint16_t)tmpValue);
+      goToEkran(EKRAN::e_MAIN);
+      break;
+    }
+    case Keyboard::Key::CANCEL: goToEkran(EKRAN::e_MAIN);break;
+    case Keyboard::Key::LEFT:
+      if (tmpValue > 0) tmpValue--;
+      break;
+    case Keyboard::Key::RIGHT:
+      if (tmpValue < MAX_OPOZN_ZAMK_POZ_sek) tmpValue++;
+      break;
+    default:
+      break;
+    }
+    break;
+
+    Password::Status stat = pass.collect(key);
+    switch(stat){
+    case Password::Status::MATCH:
+    case Password::Status::FULL:
+    {
+      pass.save();
+      goToEkran(EKRAN::e_MAIN);
+      break;
+    }
+    default: break;
+    }
+    break;
+  }
+
   default: break;
   }
+
 
   showEkran();
 
@@ -211,20 +274,6 @@ static inline char getJobSymbol(){
 }
 
 
-/*
-e_INIT,
-e_MAIN,
-e_WEJSCIA,
-e_WYJSCIA,
-e_HASLO,
-e_uNAPED,
-e_uNAPED_USTAW,
-e_uRESET_LICZNIKA,
-e_uZEGAR,
-e_uZEGAR_USTAW,
-e_uNOWE_HASLO,
-e_uHASLO_USTAW,
- */
 void Menu::showEkran(){
 
   switch(ekran){
@@ -281,10 +330,8 @@ void Menu::showEkran(){
   break;
 
   case e_WYJSCIA:{
-    //--------->|****|----|*-*-|<
-    //--------->1234567890123456<
-    lcd->gotoXY(0,0);
-    lcd->print("     WYJSCIA    ");  // przerwa
+    //----------------->1234567890123456<
+    lcd->printXY(0, 0, "     WYJSCIA    ");  // przerwa
     lcd->gotoXY(0,1);
     lcd->print("WY:|");  // przerwa
     lcd->print(pins->gpioOutZamkniete.getOutput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
@@ -297,8 +344,23 @@ void Menu::showEkran(){
   }
   break;
 
-  case e_HASLO:
-  {
+
+  case e_FRONT:{
+    //----------------->1234567890123456<
+    lcd->printXY(0, 0, " KLAW. FRONT    ");  // przerwa
+    lcd->gotoXY(0,1);
+    lcd->print("kl:");  // przerwa
+    lcd->print(pins->stacyjka.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(" g:");  // przerwa
+    lcd->print(pins->keyUp.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(" s:");  // przerwa
+    lcd->print(pins->keyStop.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(" d:");  // przerwa
+    lcd->print(pins->keyDown.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+  }
+  break;
+
+  case e_HASLO:  {
     //---------------->1234567890123456<
     lcd->printXY(0, 0,"  PODAJ HASLO:  ");  // przerwa
     //----------------->1234567890123456<
@@ -307,25 +369,14 @@ void Menu::showEkran(){
     lcd->gotoXY(0, 1);
     //--------------------------->1234567890123456<
     lcd->printSymbolsWithPattern("    [-----]     ", values, '-');
+    break;
   }
-  break;
-
-  //  case e_1_NAPED:{
-  //    //--------------->1234567890123456<
-  //    lcd->printXY(0,0," <Wybor napedu>  " );
-  //    Sterownik::NAPED npd = sterM->getTypNapedu();
-  //    lcd->clearLine(1);
-  //    //--------------->1234567890123456<
-  //    lcd->printXY(0, 1, sterM->getOpisNapedu(npd) );
-  //    break;
-  //  }
 
   case e_uNAPED:
   {
-    //---------------->1234567890123456<
-    lcd->printXY(0, 0,"  USTAW_NAPED:  ");  // przerwa
-    lcd->gotoXY(0, 1);
-    lcd->print(      "   #-WEJSCIE    ");  // przerwa
+    //----------------->1234567890123456<
+    lcd->printXY(0, 0, "  USTAW_NAPED:  ");  // przerwa
+    lcd->printXY(0, 1, "   #-WEJSCIE    ");  // przerwa
   }
   break;
   case e_uNAPED_USTAW:
@@ -334,7 +385,7 @@ void Menu::showEkran(){
     lcd->printXY(0,0," Wybierz naped: " );
     lcd->clearLine(1);
     lcd->printXY(0, 1, "<");
-    lcd->print(Sterownik::getOpisNapedu(napedM));
+    lcd->print(Sterownik::getOpisNapedu((Sterownik::NAPED)tmpValue));
     lcd->print(">");
     break;
   }
@@ -360,12 +411,11 @@ void Menu::showEkran(){
   {
     //---------- ----->1234567890123456<
     lcd->printXY(0, 0,"  USTAW HASLO   ");  // przerwa
-    lcd->gotoXY(0, 1);
-    lcd->print(      "  #-ROZPOCZNIJ  ");  // przerwa
+    lcd->printXY(0, 1,"  #-ROZPOCZNIJ  ");  // przerwa
   }
   break;
-  case e_uHASLO_USTAW:
-    //--------- -------->1234567890123456<
+  case e_uHASLO_USTAW:{
+    //----------------->1234567890123456<
     lcd->printXY(0, 0, "  NOWE HASLO:   ");
     char values[6];
     pass.getAsChars(values);
@@ -373,16 +423,30 @@ void Menu::showEkran(){
     //--------------------------->1234567890123456<
     lcd->printSymbolsWithPattern("    [-----]     ", values, '-');
     break;
+  }
+  case e_uOPOZN_ZAM_POZ:
+    //----------------->1234567890123456<
+    lcd->printXY(0, 0, "OPOZN. ZAMYK. P.");
+    lcd->printXY(0, 1,"  #-ROZPOCZNIJ  ");  // przerwa
+    break;
 
+  case e_uOPOZN_Z_P_USTAW:{
+    //----------------->1234567890123456<
+    lcd->printXY(0, 0, "OPOZN. ZAMYK. P.");
+    //char charBuf[8];
+    //my_itoa((int32_t)(tmpValue & 0x0ffff), charBuf);
+    lcd->gotoXY(0, 1);
+    //--------------------------->1234567890123456<
+    lcd->printNumbersWithPattern("  [000] sekund  ", tmpValue & 0x0ffff);
+    break;
+  }
   default:
     break;
   }
 }
 
 
-
-
-bool Menu::edit(Keyboard::Key key){
-  return true;
-}
+//bool Menu::edit(Keyboard::Key key){
+//  return true;
+//}
 

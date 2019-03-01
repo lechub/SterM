@@ -8,7 +8,12 @@ src/Praca.o: ../src/Praca.cpp ../src/Praca.h ../src/Pinout.h \
  ../src/Pomiar.h ../lbdrivers/systemDefs.h ../src/Sterownik.h \
  ../lbutils/VEprom.h ../lbutils/eeprom.h ../lbutils/stm32f0xx_flash.h \
  ../src/Silnik230VAC.h ../src/SilnikNapedu.h ../src/Silnik24VDC.h \
- ../src/HBridge.h ../src/Hamulec.h ../lbutils/QuickTask.h
+ ../src/HBridge.h ../src/Hamulec.h ../src/Front.h ../src/HMI.h \
+ ../src/Keyboard.h ../lbutils/Button.h ../lbutils/Fifo.h \
+ ../lbutils/myUtils.h ../lbutils/QuickTask.h ../src/Menu.h \
+ ../lbutils/FrameBuffer.h ../lbutils/Fifo.h ../lbdrivers/Password.h \
+ ../src/Keyboard.h ../lbutils/Settings.h ../lbdrivers/ST7032iFB.h \
+ ../lbdrivers/CallbackInterface.h ../lbdrivers/I2C.h ../lbdrivers/Gpio.h
 
 ../src/Praca.h:
 
@@ -54,4 +59,36 @@ src/Praca.o: ../src/Praca.cpp ../src/Praca.h ../src/Pinout.h \
 
 ../src/Hamulec.h:
 
+../src/Front.h:
+
+../src/HMI.h:
+
+../src/Keyboard.h:
+
+../lbutils/Button.h:
+
+../lbutils/Fifo.h:
+
+../lbutils/myUtils.h:
+
 ../lbutils/QuickTask.h:
+
+../src/Menu.h:
+
+../lbutils/FrameBuffer.h:
+
+../lbutils/Fifo.h:
+
+../lbdrivers/Password.h:
+
+../src/Keyboard.h:
+
+../lbutils/Settings.h:
+
+../lbdrivers/ST7032iFB.h:
+
+../lbdrivers/CallbackInterface.h:
+
+../lbdrivers/I2C.h:
+
+../lbdrivers/Gpio.h:

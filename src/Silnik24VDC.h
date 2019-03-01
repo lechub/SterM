@@ -51,11 +51,11 @@ public:
       switch (move){
       case MOVE::UP:
         hBridge12->setPower(HBridge::POWER::STRAIGHT);
-        hBridge34->setPower(HBridge::POWER::STRAIGHT);
+        hBridge34->setPower(HBridge::POWER::INVERT);
         break;
       case MOVE::DOWN:   // naped idzie w dol
         hBridge12->setPower(HBridge::POWER::INVERT);
-        hBridge34->setPower(HBridge::POWER::STRAIGHT);
+        hBridge34->setPower(HBridge::POWER::INVERT);
         break;
       case MOVE::HOLD_UP:  // oba bieguny na plusie
       case MOVE::HOLD_DOWN:  // oba bieguny na minusie

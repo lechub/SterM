@@ -10,6 +10,8 @@
 
 #include "Pinout.h"
 #include "Sterownik.h"
+#include "Front.h"
+#include "HMI.h"
 
 
 class Praca {
@@ -37,6 +39,8 @@ private:
   //State24V state24v = STANDBY;
   JOB job = JOB::STOI;
   uint32_t motorDelayMs = 500;
+  bool isOpenedOn230Fail = false;
+  bool is230Fail = false;
 
 
 
@@ -55,13 +59,17 @@ public:
   inline bool isOpenRequest(){
     if (!sterM->isOpenPossible()) return false;
     return (!wewy->gpioInOtworz.getInput())     // otworz sygnalem OTWORZ
-        || (!wewy->gpioInKluczII.getInput());   // otworz sygnalem Klucz_II
+        || (!wewy->gpioInKluczII.getInput())   // otworz sygnalem Klucz_II
+        || (HMI::getInstance()->front->getState() == Front::State::UP)   // otworz z klawiatury na drzwiach
+        ;
   }
 
   inline bool isCloseRequest(){
     if (!sterM->isClosePossible()) return false;
     return (!wewy->gpioInKluczI.getInput())   // zamknij sygnalem KL_I
-        || (sterM->isPozar());               // zamknij sygnalem pozaru
+        || (sterM->isPozarOrAlarmAkust())               // zamknij sygnalem pozaru
+        || (HMI::getInstance()->front->getState() == Front::State::DOWN)   // otworz z klawiatury na drzwiach
+        ;
   }
 
 
@@ -71,31 +79,46 @@ public:
 
     // otwarcie, zamkniecie lub zatrzymanie
 
-    bool zas24Necessary = ( isOpenRequest() || isCloseRequest() || sterM->isBrakeAtStop()  );
+    bool moveRequest = ( isOpenRequest() || isCloseRequest());
 
-   // wewy->gpioWlaczZasNaped.setOutput(zas24Necessary);
-    wewy->gpioWlaczInwerter.setOutput(zas24Necessary && sterM->isTyp230VAC() && isAwariaSieci230VAC());
+    if (!isAwariaSieci230VAC()){ isOpenedOn230Fail = false; }   // reset licznika otwarc dla awarii sieci
+
+
+    // wewy->gpioWlaczZasNaped.setOutput(zas24Necessary);
+    wewy->gpioWlaczInwerter.setOutput(sterM->isTyp230VAC() && isAwariaSieci230VAC() && moveRequest);
 
     bool turnBuzzerOn = false;
 
-    if (zas24Necessary){
+    if (moveRequest){
       motorDelayMs = (motorDelayMs < TIME_POLL_PERIOD_MS) ? 0 : motorDelayMs - TIME_POLL_PERIOD_MS;
       if (motorDelayMs == 0){
         if(isCloseRequest()){
           if (job != JOB::ZAMYKANIE){
             job = JOB::ZAMYKANIE;
-            motorDelayMs = TIME_MOTOR_DELAY_MS;
+            motorDelayMs = (sterM->isPozarOrAlarmAkust()) ?                     // opoznienie wlaczenia napedu
+                VEprom::readWord(VEprom::VirtAdres::OPOZN_ZAMK_POZAR) * 1000ul + TIME_MOTOR_DELAY_MS:  // jesli pozar to opoznienie pozarowe
+                TIME_MOTOR_DELAY_MS;        // bez pozaru, to zwykle opoznienie 0.5 s
             sterM->zatrzymaj();
           }else{
             sterM->opusc();
             turnBuzzerOn = true;
           }
         }else if(isOpenRequest()){
-          if (job != JOB::OTWIERANIE){
-            job = JOB::OTWIERANIE;
+          if (job != JOB::OTWIERANIE){    // nalezy otwierac
+            if (isAwariaSieci230VAC()){   // gdy brak sieci to tylko 1 raz
+              if (isOpenedOn230Fail){
+                job = JOB::STOI;
+              }else{
+                isOpenedOn230Fail = true;
+                job = JOB::OTWIERANIE;
+              }
+            }else{
+              job = JOB::OTWIERANIE;
+            }
             motorDelayMs = TIME_MOTOR_DELAY_MS;
             sterM->zatrzymaj();
           }else{
+            //            if (isOpenedOn230Fail)
             sterM->podnies();
             turnBuzzerOn = true;
           }
@@ -110,64 +133,47 @@ public:
       sterM->zatrzymaj();
       motorDelayMs = TIME_MOTOR_DELAY_MS;
     }
-    if (motorDelayMs > TIME_MOTOR_DELAY_MS) motorDelayMs = TIME_MOTOR_DELAY_MS;
+    constexpr uint32_t maxDelay = TIME_MOTOR_DELAY_MS + MAX_OPOZN_ZAMK_POZ_sek * 1000;
+    if (motorDelayMs > (maxDelay)) motorDelayMs = maxDelay;
 
     sterM->setBuzzer(turnBuzzerOn);
 
-    //    // włączanie przekaźnika od akumulatora i inwertera
-    //    if (sterM->isMotorOn() || sterM->isBrakeAtStop()){
-    //      wewy->gpioWlaczZasNaped.setOutputUp();    // jesli ruszamy brama, to trzeba napiecia
+    //    // propagacja sygnału pożarowego
+    //    wewy->gpioOutPozar.setOutput(sterM->isPozar());
     //
-    //      // inwerter wlaczamy tylko gdy awaria sieci 230VAC
-    //      wewy->gpioWlaczInwerter.setOutput(sterM->isTyp230VAC() && isAwariaSieci230VAC());
-    //    }else{
-    //      wewy->gpioWlaczZasNaped.setOutputDown();
-    //      wewy->gpioWlaczInwerter.setOutputDown();
-    //    }
-    //
-    //  // otwarcie, zamkniecie lub zatrzymanie
-    //
-    //    if ((!wewy->gpioInOtworz.getInput()) || (!wewy->gpioInKluczII.getInput())){  // otworz sygnalem OTWORZ i Klucz_II
-    //      sterM->podnies();
-    //    }else  if ((!wewy->gpioInKluczI.getInput()) || (sterM->isPozar())){  // zamknij sygnalem KL_I lub pozarem
-    //      sterM->opusc();
-    //    }else{
-    //      sterM->zatrzymaj();
-    //    }
-    //
-
-    // propagacja sygnału pożarowego
-    wewy->gpioOutPozar.setOutput(sterM->isPozar());
-
-    // sygnalizator akustyczny dziala gdy jest pozar i nie ma sygnalu alarmAkustyczny
-    wewy->gpioOutSygnAkust.setOutput((!sterM->isAlarmAkustyczny())&&(sterM->isPozar()));
+    //    // sygnalizator akustyczny dziala gdy jest pozar i nie ma sygnalu alarmAkustyczny
+    //    wewy->gpioOutSygnAkust.setOutput((!sterM->isAlarmAkustyczny())&&(sterM->isPozar()));
 
 
+    checkLEDs();
 
+  }
+
+  void inline checkLEDs(){
     // mruganie diodą pozar
     if (sterM->isPozar()){
       wewy->ledPozar.set(Led::Mode::MRUGA_FAST);
-    }else {
+    }else if(sterM->isAlarmAkustyczny()){
+      wewy->ledPozar.set(Led::Mode::MRUGA_SLOW);
+    }else{
       wewy->ledPozar.set(Led::Mode::ZGASZONA);
     }
 
     // mruganie diodą awarii
-    if (sterM->isAwaria()){dfbgdf
-      wewy->ledAwaria1.set(Led::Mode::MRUGA_SLOW); // sygnalizacja na LED-ie
+    if (sterM->isAwaria()){
+      wewy->ledAwaria.set(Led::Mode::MRUGA_SLOW); // sygnalizacja na LED-ie
     }else{
-      wewy->ledAwaria1.set(Led::Mode::ZGASZONA);
+      wewy->ledAwaria.set(Led::Mode::ZGASZONA);
     }
 
     // mruganie diodą pracy buforowej
-    if (){
+    if (isAwariaSieci230VAC()){
       wewy->ledGotowosc.set(Led::Mode::PULSUJE); // sygnalizacja na LED-ie
     }else if (sterM->isMotorOn()){
       wewy->ledGotowosc.set(Led::Mode::MRUGA_SLOW);
     }else{
       wewy->ledGotowosc.set(Led::Mode::SWIECI);
     }
-
-
   }
 
   inline JOB getJob()const { return job; }
@@ -178,48 +184,4 @@ extern Praca *praca;
 
 #endif /* PRACA_H_ */
 
-//  if (zas24Necessary){
-//      motorDelayMs = (motorDelayMs < TIME_POLL_PERIOD_MS) ? 0 : motorDelayMs - TIME_POLL_PERIOD_MS;
-//      if (motorDelayMs == 0){
-//        switch(ruch){
-//        case Sterownik::Ruch::ZAMKNAC:
-//          if(isCloseRequest()){
-//            sterM->opusc();
-//            turnBuzzerOn = true;
-//          }else{
-//            motorDelayMs = TIME_MOTOR_DELAY_MS;
-//            ruch = Sterownik::Ruch::STOP;
-//          }
-//          break;
-//        case Sterownik::Ruch::OTWORZYC:
-//          if(isOpenRequest()){
-//            sterM->podnies();
-//            turnBuzzerOn = true;
-//          }else{
-//            motorDelayMs = TIME_MOTOR_DELAY_MS;
-//            ruch = Sterownik::Ruch::STOP;
-//          }
-//          break;
-//        case Sterownik::Ruch::STOP:
-//        default:
-//          if (isOpenRequest()) ruch = Sterownik::Ruch::OTWORZYC;
-//          else if (isCloseRequest()) ruch = Sterownik::Ruch::ZAMKNAC;
-//          else{
-//            motorDelayMs = TIME_MOTOR_DELAY_MS;
-//            ruch = Sterownik::Ruch::STOP;
-//          }
-//          break;
-//        }
-//      }else{
-//        ruch = Sterownik::Ruch::STOP;
-//      }
-//    }else{
-//      motorDelayMs = TIME_MOTOR_DELAY_MS;
-//      ruch = Sterownik::Ruch::STOP;
-//    }
-//    if (motorDelayMs > TIME_MOTOR_DELAY_MS) motorDelayMs = TIME_MOTOR_DELAY_MS;
-//    if (ruch == Sterownik::Ruch::STOP) sterM->zatrzymaj();
-//
-//    sterM->setBuzzer(turnBuzzerOn);
-//
 

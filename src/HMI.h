@@ -13,6 +13,7 @@
 #include "Keyboard.h"
 #include "Menu.h"
 #include "ST7032iFB.h"
+#include "Front.h"
 
 class HMI {
 public:
@@ -31,6 +32,7 @@ public:
 	Sterownik * ster = nullptr;
 	FrameBuffer * lcd = nullptr;
 	Keyboard * keyboard = nullptr;
+	Front * front;
 	Menu * menu = nullptr;
   Led * ledPozarRed = nullptr;
   Led * ledAwariaYellow = nullptr;
@@ -39,10 +41,11 @@ public:
 
 	HMI(){;}
 
-	void init(Sterownik * sterownik, Keyboard * pkeys, ST7032iFB * lcdDriver, Menu * pmenu, Led * ledPozar_Red, Led * ledAwaria_Yellow, Led * ledGotowosc_Green) {
+	void init(Sterownik * sterownik, Keyboard * pkeys, Front * frontKeys, ST7032iFB * lcdDriver, Menu * pmenu, Led * ledPozar_Red, Led * ledAwaria_Yellow, Led * ledGotowosc_Green) {
 		ster = sterownik;
 		lcd = lcdDriver->getFrameBuffer();
 		keyboard = pkeys;
+		front = frontKeys;
 		backLight = lcdDriver->getBackLight();
     ledPozarRed = ledPozar_Red;
     ledAwariaYellow = ledAwaria_Yellow;
@@ -89,6 +92,8 @@ public:
     ledGotowoscGreen->tick(TIME_PERIOD_MONITOR_MS);
 
     // reszta kolejki odpytywania
+    keyboard->co10ms();
+    front->poll();
     menu->poll();
 	}
 
