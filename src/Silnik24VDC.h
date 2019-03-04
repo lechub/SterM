@@ -8,7 +8,8 @@
 #ifndef SILNIK24VDC_H_
 #define SILNIK24VDC_H_
 
-#include "HBridge.h"
+#include "HBridgePWM.h"
+#include "HBridgeGPIO.h"
 #include "SilnikNapedu.h"
 
 class Silnik24VDC : public SilnikNapedu{
@@ -84,7 +85,6 @@ public:
       }
     }
   }
-
 
 
   MOVE getMove(){

@@ -17,30 +17,40 @@ public:
   static constexpr uint32_t PWM_RESOLUTION = 200;
 
 private:
-  static void setGpiosAsPWM(){
+  Gpio leftH = Gpio(GPIOE, 9);
+  Gpio rightH = Gpio(GPIOE, 11);
+
+  //
+  void setGpiosAsPWM(){
     Gpio::setup(GPIOE, 8, Gpio::GpioMode::ALTERNATE, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
-    Gpio::setup(GPIOE, 9, Gpio::GpioMode::ALTERNATE, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
+
+    //    Gpio::setup(GPIOE, 9, Gpio::GpioMode::ALTERNATE, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
+    leftH.setup(Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
+
     Gpio::setup(GPIOE, 10, Gpio::GpioMode::ALTERNATE, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
-    Gpio::setup(GPIOE, 11, Gpio::GpioMode::ALTERNATE, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
+
+    //    Gpio::setup(GPIOE, 11, Gpio::GpioMode::ALTERNATE, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
+    rightH.setup(Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
+
     Gpio::setAlternateFunc(GPIOE, 8, 0);  // AF0
-    Gpio::setAlternateFunc(GPIOE, 9, 0);  // AF0
+    //    Gpio::setAlternateFunc(GPIOE, 9, 0);  // AF0
     Gpio::setAlternateFunc(GPIOE, 10, 0);  // AF0
-    Gpio::setAlternateFunc(GPIOE, 11, 0);  // AF0
+    //    Gpio::setAlternateFunc(GPIOE, 11, 0);  // AF0
   }
 
-//  static void setGpiosAsOutput(){
-//    Gpio::setOutputDown(GPIOE, 8);
-//    Gpio::setOutputDown(GPIOE, 9);
-//    Gpio::setOutputDown(GPIOE, 10);
-//    Gpio::setOutputDown(GPIOE, 11);
-//    Gpio::setup(GPIOE, 8, Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
-//    Gpio::setup(GPIOE, 9, Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
-//    Gpio::setup(GPIOE, 10, Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
-//    Gpio::setup(GPIOE, 11, Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
-//  }
+  //  static void setGpiosAsOutput(){
+  //    Gpio::setOutputDown(GPIOE, 8);
+  //    Gpio::setOutputDown(GPIOE, 9);
+  //    Gpio::setOutputDown(GPIOE, 10);
+  //    Gpio::setOutputDown(GPIOE, 11);
+  //    Gpio::setup(GPIOE, 8, Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
+  //    Gpio::setup(GPIOE, 9, Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
+  //    Gpio::setup(GPIOE, 10, Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
+  //    Gpio::setup(GPIOE, 11, Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
+  //  }
 
 
-  static void inline initTIM1(){
+  void inline initTIM1(){
     RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;   // turn timer TIM1 enable
 
     TIM1->PSC = uint16_t((Hardware::getPCLK() / (PWM_FREQUENCY_HZ * PWM_RESOLUTION*2)) -1); // 48MHz/(20kHz * 200*2) = 12 Set prescaler for clock i.e 8MHz
@@ -70,11 +80,37 @@ private:
 
 
 public:
-  static void init(){
+  void init(){
     initTIM1();
     setGpiosAsPWM();
 
   }
+
+  void setLeftPWM(uint16_t pwm){
+    TIM1->CCR1 = pwm;
+  }
+
+  void setRightPWM(uint16_t pwm){
+    TIM1->CCR2 = pwm;
+  }
+
+  void setLeftH(bool level){
+    if (leftH.getOutput() != level){
+      setRightPWM(0);
+      TIM1->EGR |= TIM_EGR_UG; //   Force update generation (UG = 1)
+    }
+    leftH.setOutput(level);
+  }
+
+  void setRightH(bool level){
+    if (rightH.getOutput() != level){
+      setLeftPWM(0);
+      TIM1->EGR |= TIM_EGR_UG; //   Force update generation (UG = 1)
+      leftH.setOutput(level);
+    }
+  }
+
+
 
 };
 

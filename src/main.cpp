@@ -33,8 +33,9 @@ Keyboard keys = Keyboard(&pinout.gpioInBtnBACK, &pinout.gpioInBtnLEFT, &pinout.g
 
 Front front = Front(&pins->keyUp, &pins->keyStop, &pins->keyDown, &pins->stacyjka);
 
-HBridge hBridgeHamulec  = HBridge(&pinout.gpioWyj1H, &pinout.gpioWyj1L, &pinout.gpioWyj2H, &pinout.gpioWyj2L);
-HBridge hBridgeSilnik   = HBridge(&pinout.gpioWyj3H, &pinout.gpioWyj3L, &pinout.gpioWyj4H, &pinout.gpioWyj4L);
+HBridgeGPIO hBridgeHamulec  = HBridgeGPIO(&pinout.gpioWyj1H, &pinout.gpioWyj1L, &pinout.gpioWyj2H, &pinout.gpioWyj2L);
+//HBridge hBridgeSilnik   = HBridgePWM(&pinout.gpioWyj3H, &pinout.gpioWyj3L, &pinout.gpioWyj4H, &pinout.gpioWyj4L);
+HBridgePWM hBridgeSilnik   = HBridgePWM();
 
 Hamulec hamulec = Hamulec(&hBridgeHamulec);
 

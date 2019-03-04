@@ -7,8 +7,11 @@ src/Front.o: ../src/Front.cpp ../src/Front.h ../lbdrivers/Gpio.h \
  ../system/include/cmsis/system_stm32f0xx.h ../src/Sterownik.h \
  ../lbutils/VEprom.h ../lbdrivers/systemDefs.h ../lbutils/eeprom.h \
  ../lbutils/stm32f0xx_flash.h ../src/Silnik230VAC.h ../src/SilnikNapedu.h \
- ../src/Silnik24VDC.h ../src/HBridge.h ../src/Hamulec.h ../src/Pinout.h \
- ../lbutils/Led.h ../src/Pomiar.h
+ ../src/Silnik24VDC.h ../src/HBridgePWM.h ../src/HBridge.h \
+ ../lbutils/SoftStart.h ../src/Hardware.h ../lbdrivers/I2C.h \
+ ../lbdrivers/CallbackInterface.h ../lbdrivers/Gpio.h ../lbutils/Fifo.h \
+ ../lbutils/myUtils.h ../src/HBridgeGPIO.h ../src/Hamulec.h \
+ ../src/Pinout.h ../lbutils/Led.h ../src/Pomiar.h
 
 ../src/Front.h:
 
@@ -44,7 +47,25 @@ src/Front.o: ../src/Front.cpp ../src/Front.h ../lbdrivers/Gpio.h \
 
 ../src/Silnik24VDC.h:
 
+../src/HBridgePWM.h:
+
 ../src/HBridge.h:
+
+../lbutils/SoftStart.h:
+
+../src/Hardware.h:
+
+../lbdrivers/I2C.h:
+
+../lbdrivers/CallbackInterface.h:
+
+../lbdrivers/Gpio.h:
+
+../lbutils/Fifo.h:
+
+../lbutils/myUtils.h:
+
+../src/HBridgeGPIO.h:
 
 ../src/Hamulec.h:
 

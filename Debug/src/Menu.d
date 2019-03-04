@@ -9,11 +9,13 @@ src/Menu.o: ../src/Menu.cpp ../src/Menu.h ../lbutils/VEprom.h \
  ../lbdrivers/Gpio.h ../lbdrivers/systemDefs.h ../lbutils/Fifo.h \
  ../lbutils/myUtils.h ../lbutils/QuickTask.h ../lbutils/FrameBuffer.h \
  ../lbutils/Fifo.h ../src/Sterownik.h ../src/Silnik230VAC.h \
- ../src/SilnikNapedu.h ../src/Silnik24VDC.h ../src/HBridge.h \
- ../src/Hamulec.h ../src/Pinout.h ../lbutils/Led.h ../src/Pomiar.h \
- ../lbdrivers/Password.h ../src/Keyboard.h ../lbutils/Settings.h \
- ../src/HMI.h ../lbdrivers/ST7032iFB.h ../lbdrivers/CallbackInterface.h \
- ../lbdrivers/I2C.h ../lbdrivers/Gpio.h ../src/Front.h ../src/Praca.h
+ ../src/SilnikNapedu.h ../src/Silnik24VDC.h ../src/HBridgePWM.h \
+ ../src/HBridge.h ../lbutils/SoftStart.h ../src/Hardware.h \
+ ../lbdrivers/I2C.h ../lbdrivers/CallbackInterface.h ../lbdrivers/Gpio.h \
+ ../src/HBridgeGPIO.h ../src/Hamulec.h ../src/Pinout.h ../lbutils/Led.h \
+ ../src/Pomiar.h ../lbdrivers/Password.h ../src/Keyboard.h \
+ ../lbutils/Settings.h ../src/HMI.h ../lbdrivers/ST7032iFB.h \
+ ../lbdrivers/I2C.h ../src/Front.h ../src/Praca.h
 
 ../src/Menu.h:
 
@@ -63,7 +65,21 @@ src/Menu.o: ../src/Menu.cpp ../src/Menu.h ../lbutils/VEprom.h \
 
 ../src/Silnik24VDC.h:
 
+../src/HBridgePWM.h:
+
 ../src/HBridge.h:
+
+../lbutils/SoftStart.h:
+
+../src/Hardware.h:
+
+../lbdrivers/I2C.h:
+
+../lbdrivers/CallbackInterface.h:
+
+../lbdrivers/Gpio.h:
+
+../src/HBridgeGPIO.h:
 
 ../src/Hamulec.h:
 
@@ -83,11 +99,7 @@ src/Menu.o: ../src/Menu.cpp ../src/Menu.h ../lbutils/VEprom.h \
 
 ../lbdrivers/ST7032iFB.h:
 
-../lbdrivers/CallbackInterface.h:
-
 ../lbdrivers/I2C.h:
-
-../lbdrivers/Gpio.h:
 
 ../src/Front.h:
 

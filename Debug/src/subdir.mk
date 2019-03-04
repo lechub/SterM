@@ -8,7 +8,6 @@ C_SRCS += \
 
 CPP_SRCS += \
 ../src/Front.cpp \
-../src/HBridge.cpp \
 ../src/HMI.cpp \
 ../src/Hamulec.cpp \
 ../src/Hardware.cpp \
@@ -23,7 +22,6 @@ CPP_SRCS += \
 
 OBJS += \
 ./src/Front.o \
-./src/HBridge.o \
 ./src/HMI.o \
 ./src/Hamulec.o \
 ./src/Hardware.o \
@@ -42,7 +40,6 @@ C_DEPS += \
 
 CPP_DEPS += \
 ./src/Front.d \
-./src/HBridge.d \
 ./src/HMI.d \
 ./src/Hamulec.d \
 ./src/Hardware.d \
