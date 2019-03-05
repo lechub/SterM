@@ -17,9 +17,9 @@ public:
 
 
   typedef enum{
-    STRAIGHT,     // plus na +24V a minus na masie
-    INVERT,   // plus ma masie a minus na +24V
-    FLOAT,  // naped bez zasilania
+    LeftToRight,     // plus z lewej a minus z prawej
+    RightToLeft,   // plus z prawej a minus z lewej
+    HOLD_FLOAT,  // oba bieguny bez zasilania
     HOLD_UP,  // oba bieguny na plusie
     HOLD_DOWN,  // oba bieguny na minusie
   }POWER;
@@ -34,8 +34,21 @@ public:
   virtual ~HBridge(){}
   virtual void setPower(POWER powerMode) = 0;
   virtual POWER getPowerMode() = 0;
-  virtual void poll() = 0;
+  //virtual void poll() = 0;
   virtual void init() = 0;
+
+
+//  virtual void poll(){
+//      if ((pMinus != pMinusSet) || (pPlus != pPlusSet)){
+//        if ((pMinus == PULL::FLOATING) && (pPlus == PULL::FLOATING)){
+//          setPullMinus(pMinusSet);
+//          setPullPlus(pPlusSet);
+//        }else{
+//          setPullMinus(PULL::FLOATING);
+//          setPullPlus(PULL::FLOATING);
+//        }
+//      }
+//    }
 
 };
 

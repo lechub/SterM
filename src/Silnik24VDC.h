@@ -51,12 +51,12 @@ public:
     if (type1234){
       switch (move){
       case MOVE::UP:
-        hBridge12->setPower(HBridge::POWER::STRAIGHT);
-        hBridge34->setPower(HBridge::POWER::INVERT);
+        hBridge12->setPower(HBridge::POWER::LeftToRight);
+        hBridge34->setPower(HBridge::POWER::RightToLeft);
         break;
       case MOVE::DOWN:   // naped idzie w dol
-        hBridge12->setPower(HBridge::POWER::INVERT);
-        hBridge34->setPower(HBridge::POWER::INVERT);
+        hBridge12->setPower(HBridge::POWER::RightToLeft);
+        hBridge34->setPower(HBridge::POWER::RightToLeft);
         break;
       case MOVE::HOLD_UP:  // oba bieguny na plusie
       case MOVE::HOLD_DOWN:  // oba bieguny na minusie
@@ -68,10 +68,10 @@ public:
     }else{
       switch (move){
       case MOVE::UP:
-        hBridge34->setPower(HBridge::POWER::STRAIGHT);
+        hBridge34->setPower(HBridge::POWER::LeftToRight);
         break;
       case MOVE::DOWN:   // naped idzie w dol
-        hBridge34->setPower(HBridge::POWER::INVERT);
+        hBridge34->setPower(HBridge::POWER::RightToLeft);
         break;
       case MOVE::HOLD_UP:  // oba bieguny na plusie
         hBridge34->setPower(HBridge::POWER::HOLD_UP);
@@ -81,7 +81,7 @@ public:
         break;
       case MOVE::FLOAT:  // naped bez zasilania
       default:
-        hBridge34->setPower(HBridge::POWER::FLOAT);
+        hBridge34->setPower(HBridge::POWER::HOLD_FLOAT);
       }
     }
   }

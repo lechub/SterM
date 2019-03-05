@@ -79,17 +79,17 @@ public:
 
     setPullMinus(PULL::FLOATING);
     setPullPlus(PULL::FLOATING);
-    setPower(POWER::FLOAT);
+    setPower(POWER::HOLD_FLOAT);
   }
 
   virtual void setPower(POWER powerMode){
     pState = powerMode;
     switch(pState){
-    case POWER::STRAIGHT:
+    case POWER::LeftToRight:
       pMinusSet = PULL::LOW;
       pPlusSet = PULL::HIGH;
       break;
-    case POWER::INVERT:   // naped idzie w dol
+    case POWER::RightToLeft:   // naped idzie w dol
       pPlusSet = PULL::LOW;
       pMinusSet = PULL::HIGH;
       break;
@@ -101,7 +101,7 @@ public:
       pPlusSet = PULL::LOW;
       pMinusSet = PULL::LOW;
       break;
-    case POWER::FLOAT:  // naped bez zasilania
+    case POWER::HOLD_FLOAT:  // naped bez zasilania
     default:
       pPlusSet = PULL::FLOATING;
       pMinusSet = PULL::FLOATING;
