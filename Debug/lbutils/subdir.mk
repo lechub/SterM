@@ -13,7 +13,6 @@ CPP_SRCS += \
 ../lbutils/FrameBuffer.cpp \
 ../lbutils/QuickTask.cpp \
 ../lbutils/RTClock.cpp \
-../lbutils/SoftStart.cpp \
 ../lbutils/VEprom.cpp 
 
 OBJS += \
@@ -21,7 +20,6 @@ OBJS += \
 ./lbutils/FrameBuffer.o \
 ./lbutils/QuickTask.o \
 ./lbutils/RTClock.o \
-./lbutils/SoftStart.o \
 ./lbutils/VEprom.o \
 ./lbutils/eeprom.o \
 ./lbutils/myUtils.o \
@@ -37,7 +35,6 @@ CPP_DEPS += \
 ./lbutils/FrameBuffer.d \
 ./lbutils/QuickTask.d \
 ./lbutils/RTClock.d \
-./lbutils/SoftStart.d \
 ./lbutils/VEprom.d 
 
 

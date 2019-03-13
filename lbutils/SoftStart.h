@@ -13,7 +13,7 @@
 
 class SoftStart {
 public:
-  static constexpr uint32_t PWM_FREQUENCY_HZ = 20000;
+  static constexpr uint32_t PWM_FREQUENCY_HZ = 10000;
   static constexpr uint32_t PWM_RESOLUTION = 200;
   static constexpr uint16_t PWM_MAX = PWM_RESOLUTION + 1;
   static constexpr uint16_t PWM_MIN = 0;
@@ -136,14 +136,14 @@ public:
 
   void setLeftL(bool level){
     bool lvl = level;
-    if (level && (leftH.getOutput())) lvl = false;
+    if (level && (getLeftH())) lvl = false;
     setLeftPWM( lvl ? PWM_MAX : PWM_MIN);
     //TIM1->EGR |= TIM_EGR_UG; //   Force update generation (UG = 1)
   }
 
   void setRightL(bool level){
     bool lvl = level;
-    if (level && (rightH.getOutput())) lvl = false;
+    if (level && (getRightH())) lvl = false;
     setRightPWM( lvl ? PWM_MAX : PWM_MIN);
     //  TIM1->EGR |= TIM_EGR_UG; //   Force update generation (UG = 1)
   }

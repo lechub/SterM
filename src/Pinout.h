@@ -92,9 +92,9 @@ public:
    Gpio gpioOutSygnAkust  = Gpio(GPIOE, 4);
    Gpio gpioOutBuzer      = Gpio(GPIOA, 11);
 
-   Gpio gpioWlaczBypass = Gpio(GPIOC, 7);
    Gpio gpioWlacz230Zamknij = Gpio(GPIOC, 6);
    Gpio gpioWlacz230Otworz = Gpio(GPIOC, 9);
+   Gpio gpioWlaczBypass = Gpio(GPIOC, 7);
    Gpio gpioWlaczInwerter = Gpio(GPIOA, 8);
 //   Gpio gpioWlaczZasNaped = Gpio(GPIOC, 8);
 
@@ -180,9 +180,9 @@ public:
     gpioOutSygnAkust.setupFromClone(&gpioOutPozar);
     gpioOutBuzer.setupFromClone(&gpioOutPozar);
 
-    gpioWlaczBypass.setupFromClone(&gpioOutPozar);
     gpioWlacz230Zamknij.setupFromClone(&gpioOutPozar);
     gpioWlacz230Otworz.setupFromClone(&gpioOutPozar);
+    gpioWlaczBypass.setupFromClone(&gpioOutPozar);
     gpioWlaczInwerter.setupFromClone(&gpioOutPozar);
     //gpioWlaczZasNaped.setupFromClone(&gpioOutPozar);
 

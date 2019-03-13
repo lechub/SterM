@@ -20,7 +20,6 @@ private:
   HBridge * hBridge12;
   HBridge * hBridge34;
 
-  MOVE move = MOVE::FLOAT;
   bool type1234 = false;
 
 public:
@@ -35,11 +34,6 @@ public:
     hBridge34->init();
   }
 
-  bool gotoSafePosition(bool enable){
-    setMove(MOVE::FLOAT);
-    safePosition = enable;
-     return safePosition;
-   }
 
   void setType1234(bool enable){
     type1234 = enable;
@@ -87,9 +81,6 @@ public:
   }
 
 
-  MOVE getMove(){
-    return move;
-  }
 
 };
 

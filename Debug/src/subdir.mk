@@ -8,30 +8,22 @@ C_SRCS += \
 
 CPP_SRCS += \
 ../src/Front.cpp \
+../src/HBridgePWM.cpp \
 ../src/HMI.cpp \
-../src/Hamulec.cpp \
 ../src/Hardware.cpp \
 ../src/Menu.cpp \
 ../src/Pomiar.cpp \
 ../src/Praca.cpp \
-../src/Silnik230VAC.cpp \
-../src/Silnik24VDC.cpp \
-../src/SilnikNapedu.cpp \
-../src/Sterownik.cpp \
 ../src/main.cpp 
 
 OBJS += \
 ./src/Front.o \
+./src/HBridgePWM.o \
 ./src/HMI.o \
-./src/Hamulec.o \
 ./src/Hardware.o \
 ./src/Menu.o \
 ./src/Pomiar.o \
 ./src/Praca.o \
-./src/Silnik230VAC.o \
-./src/Silnik24VDC.o \
-./src/SilnikNapedu.o \
-./src/Sterownik.o \
 ./src/_write.o \
 ./src/main.o 
 
@@ -40,16 +32,12 @@ C_DEPS += \
 
 CPP_DEPS += \
 ./src/Front.d \
+./src/HBridgePWM.d \
 ./src/HMI.d \
-./src/Hamulec.d \
 ./src/Hardware.d \
 ./src/Menu.d \
 ./src/Pomiar.d \
 ./src/Praca.d \
-./src/Silnik230VAC.d \
-./src/Silnik24VDC.d \
-./src/SilnikNapedu.d \
-./src/Sterownik.d \
 ./src/main.d 
 
 

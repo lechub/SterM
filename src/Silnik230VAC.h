@@ -27,7 +27,6 @@ private:
   Gpio * gpioZamknij;
   Gpio * gpioOtworz;
 
-  MOVE move = MOVE::FLOAT;
 
 public:
   Silnik230VAC(Gpio * gpioZamk, Gpio * gpioOtw) {
@@ -41,14 +40,6 @@ public:
     gpioZamknij->setOutputDown();
     gpioOtworz->setOutputDown();
   }
-
-
-  bool gotoSafePosition(bool enable){
-    setMove(MOVE::FLOAT);
-    safePosition = enable;
-     return true;
-   }
-
 
   void setMove(MOVE newMove){
     if (safePosition) newMove = MOVE::FLOAT;
@@ -71,9 +62,7 @@ public:
     }
   }
 
-  MOVE getMove(){
-    return move;
-  }
+
 
 
 

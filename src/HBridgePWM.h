@@ -11,15 +11,23 @@
 #include "Gpio.h"
 #include "HBridge.h"
 #include "SoftStart.h"
+#include "Sterownik.h"
 
 class HBridgePWM : public HBridge {
 
-  static constexpr uint32_t SOFTSTART_MIN_TIME_mS = 2000;
+  static constexpr uint32_t SOFTSTART_MIN_TIME_mS = 1000;
   static constexpr uint32_t SOFTSTART_MAX_TIME_mS = 4000;
 
 public:
 
 protected:
+
+  typedef enum{
+    S1_LOW_OFF,
+    S2_HI_OFF,
+    S3_HI_ON,
+    S4_LOW_ON,
+  }Stage;
 
   SoftStart sStart = SoftStart();
   Gpio ovc = Gpio(GPIOA, 15);
@@ -27,9 +35,55 @@ protected:
   //  uint16_t  pwmLeft = 0;
   uint16_t  pwm = 0;
   uint32_t stepPwm = 0;
-  uint32_t timePwmMs = 0;
+  uint32_t stageTimeMs = 0;
 
   POWER pState  = POWER::HOLD_FLOAT;
+  Stage stage = S1_LOW_OFF;
+
+  uint32_t switchDelay = 0;
+
+  void setStage(Stage st){
+    stage = st;
+    switch(stage){
+    case Stage::S3_HI_ON:{
+      switch(pState){
+      case POWER::HOLD_UP:
+        if (sStart.getLeftPWM() == 0) sStart.setLeftH(true);
+        if (sStart.getRightPWM() == 0) sStart.setRightH(true);
+        break;
+      case POWER::LeftToRight:
+        if (sStart.getLeftPWM() == 0) sStart.setLeftH(true);
+        break;
+      case POWER::RightToLeft:
+        if (sStart.getRightPWM() == 0) sStart.setRightH(true);
+        break;
+      default: break;
+      }
+    }
+    break;
+    case Stage::S4_LOW_ON: {
+      switch(pState){
+      case POWER::HOLD_DOWN:
+        if (!sStart.getLeftH()) sStart.setLeftL(true);
+        if (!sStart.getRightH()) sStart.setRightL(true);
+        break;
+      case POWER::LeftToRight:  // wlaczane przez PWM-a
+      case POWER::RightToLeft:
+      default: break;
+      }
+    }
+    break;
+    case Stage::S2_HI_OFF:
+      sStart.setLeftH(false);
+      sStart.setRightH(false);
+      break;
+    case Stage::S1_LOW_OFF:
+    default:
+      sStart.setLeftL(false);
+      sStart.setRightL(false);
+      break;
+    }
+  }
 
 
 public:
@@ -40,6 +94,7 @@ public:
     ovc.setup(Gpio::GpioMode::INPUT, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
     sStart.init();
     setPower(POWER::HOLD_FLOAT);
+    setStage(Stage::S1_LOW_OFF);
   }
 
 
@@ -47,182 +102,20 @@ public:
     return !ovc.getInput();
   }
 
-  void setPower(POWER powerMode){
-    if (powerMode == pState) return;
+  virtual void setPower(POWER powerMode){
+    if (pState == powerMode) return;
     pState = powerMode;
-
-    sStart.setLeftL(false);
-    sStart.setRightL(false);
-    sStart.setLeftH(false);
-    sStart.setRightH(false);
-    pwm = 0;
-    timePwmMs = 0;
-
-    switch(pState){
-    case POWER::LeftToRight:
-      sStart.setRightPWM(50);
-      sStart.setLeftH(true);
-      break;
-    case POWER::RightToLeft:   // naped idzie w dol
-      sStart.setLeftPWM(50);
-      sStart.setRightH(true);
-      break;
-    case POWER::HOLD_UP:  // oba bieguny na plusie
-      sStart.setLeftH(true);
-      sStart.setRightH(true);
-      break;
-    case POWER::HOLD_DOWN:  // oba bieguny na minusie
-      sStart.setLeftL(true);
-      sStart.setRightL(true);
-      break;
-    case POWER::HOLD_FLOAT:  // naped bez zasilania
-    default:
-      break;
-    }
+    setStage(Stage::S1_LOW_OFF);
+    stageTimeMs = 0;
   }
-
 
 
   POWER getPowerMode(){ return pState; }
 
-  void poll(){
-    if ((pState != POWER::LeftToRight)&& (pState != POWER::RightToLeft)) return;
-    if (pwm >= SoftStart::PWM_RESOLUTION) return;
-    stepPwm += TIME_POLL_PERIOD_MS;
-    timePwmMs += TIME_POLL_PERIOD_MS;
-    if (timePwmMs > SOFTSTART_MAX_TIME_mS){   // przekroczenie czasu dla PWM?
-      setPower(POWER::HOLD_DOWN);
-      return;
-    }
-    uint16_t newPWM = pwm;
-    constexpr uint32_t STEP = SOFTSTART_MIN_TIME_mS/(SoftStart::PWM_RESOLUTION);
-    if (isOVCDetected()){
-      newPWM = (newPWM >= 2 )? uint16_t(newPWM - 2) : 0;
-    }else {
-      if (stepPwm >= STEP){
-        stepPwm -= STEP;
-        newPWM++;
-      }
-    }
-    if (pwm != newPWM){
-      pwm = newPWM;
-      switch(pState){
-      case POWER::LeftToRight: sStart.setRightPWM(pwm); break;
-      case POWER::RightToLeft: sStart.setLeftPWM(pwm);  break;
-      default: break;
-      }
-    }
-
-  }
+  void poll();
 
 };
 
 
-/*
- *
- protected:
-
-  SoftStart sStart = SoftStart();
-  PULL pLeft = PULL::LOW;
-  PULL pRight = PULL::LOW;
-  PULL pLeftSet = PULL::FLOATING;
-  PULL pRightSet = PULL::FLOATING;
-  uint16_t  pwmLeft = 0;
-  uint16_t  pwmRight = 0;
-
-  POWER pState  = POWER::HOLD_DOWN;
-
-  void setPullLeft(PULL ouputPosition, uint16_t pwm){
-    pLeft = ouputPosition;
-    switch(ouputPosition){
-    case PULL::HIGH:    //
-      sStart.setLeftPWM(pwm);   //  gpioPL->setOutputDown(); // najpierw wylaczyc dolny
-      sStart.setLeftH(true);  //  gpioPH->setOutputUp();   // a potem wlaczyc gorny
-      break;
-    case PULL::LOW:
-      sStart.setLeftH(false);   //  gpioPH->setOutputDown();   // najpierw wylaczyc gorny
-      sStart.setLeftPWM(pwm);  //  gpioPL->setOutputUp();     //  a potem wlaczyc dolny
-      break;
-    case PULL::FLOATING: // cokolwiek innego - wszystko wylaczyc w diably
-    default:
-      sStart.setLeftH(false);   //  gpioPH->setOutputDown();
-      sStart.setLeftPWM(pwm);  //   gpioPL->setOutputDown();
-      break;
-    }
-  }
-
-  void setPullRight(PULL ouputPosition, uint16_t pwm){
-    pRight = ouputPosition;
-    switch(ouputPosition){
-    case PULL::HIGH:    //
-      sStart.setRightPWM(pwm); //  gpioML->setOutputDown(); // najpierw wylaczyc dolny
-      sStart.setRightH(true); //  gpioMH->setOutputUp();   // a potem wlaczyc gorny
-      break;
-    case PULL::LOW:
-      sStart.setRightH(false); //  gpioMH->setOutputDown();   // najpierw wylaczyc gorny
-      sStart.setRightPWM(pwm); //  gpioML->setOutputUp();     //  a potem wlaczyc dolny
-      break;
-    case PULL::FLOATING: // cokolwiek innego - wszystko wylaczyc w diably
-    default:
-      sStart.setRightH(false); //  gpioMH->setOutputDown();
-      sStart.setRightPWM(pwm); //  gpioML->setOutputDown();
-      break;
-    }
-  }
-
-public:
-  HBridgePWM(){  }
-
-
-  virtual void init(){
-    sStart.init();
-    setPullRight(PULL::FLOATING, 0);
-    setPullLeft(PULL::FLOATING, 0);
-    setPower(POWER::HOLD_FLOAT);
-  }
-
-
-
-  void setPower(POWER powerMode){
-    pState = powerMode;
-    switch(pState){
-    case POWER::LeftToRight:
-      pRightSet = PULL::LOW;
-      pLeftSet = PULL::HIGH;
-      break;
-    case POWER::RightToLeft:   // naped idzie w dol
-      pLeftSet = PULL::LOW;
-      pRightSet = PULL::HIGH;
-      break;
-    case POWER::HOLD_UP:  // oba bieguny na plusie
-      pLeftSet = PULL::HIGH;
-      pRightSet = PULL::HIGH;
-      break;
-    case POWER::HOLD_DOWN:  // oba bieguny na minusie
-      pLeftSet = PULL::LOW;
-      pRightSet = PULL::LOW;
-      break;
-    case POWER::HOLD_FLOAT:  // naped bez zasilania
-    default:
-      pLeftSet = PULL::FLOATING;
-      pRightSet = PULL::FLOATING;
-    }
-
-  }
-
-  POWER getPowerMode(){ return pState; }
-
-  void poll(){
-    if ((pRight != pRightSet) || (pLeft != pLeftSet)){
-      if ((pRight == PULL::FLOATING) && (pLeft == PULL::FLOATING)){
-        setPullRight(pRightSet, 0);
-        setPullLeft(pLeftSet, 0);
-      }else{
-        setPullRight(PULL::FLOATING, 0);
-        setPullLeft(PULL::FLOATING, 0);
-      }
-    }
-  }
- * */
 
 #endif /* HBRIDGEPWM_H_ */

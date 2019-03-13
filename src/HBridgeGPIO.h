@@ -13,115 +13,120 @@
 
 class HBridgeGPIO : public HBridge {
 
-public:
+protected:
+  typedef enum{
+    S1_LOW_OFF,
+    S2_HI_OFF,
+    S3_HI_ON,
+    S4_LOW_ON,
+  }Stage;
 
-  Gpio * gpioPH;
-  Gpio * gpioPL;
-  Gpio * gpioMH;
-  Gpio * gpioML;
-  PULL pPlus = PULL::LOW;
-  PULL pMinus = PULL::LOW;
-  PULL pPlusSet = PULL::FLOATING;
-  PULL pMinusSet = PULL::FLOATING;
+  Gpio * gpioLeftH;
+  Gpio * gpioLeftL;
+  Gpio * gpioRightH;
+  Gpio * gpioRightL;
+
   POWER pState  = POWER::HOLD_DOWN;
+  Stage stage = S1_LOW_OFF;
 
-  void setPullPlus(PULL ouputPosition){
-    pPlus = ouputPosition;
-    switch(ouputPosition){
-    case PULL::HIGH:    //
-      gpioPL->setOutputDown(); // najpierw wylaczyc dolny
-      gpioPH->setOutputUp();   // a potem wlaczyc gorny
+  uint32_t stageTimeMs = 0;
+
+  void setStage(Stage st){
+    stage = st;
+    switch(stage){
+    case Stage::S3_HI_ON:{
+      switch(pState){
+      case POWER::HOLD_UP:
+        if (!gpioLeftL->getOutput()) gpioLeftH->setOutputUp();
+        if (!gpioRightL->getOutput()) gpioRightH->setOutputUp();
+        break;
+      case POWER::LeftToRight:
+        if (!gpioLeftL->getOutput()) gpioLeftH->setOutputUp();
+        break;
+      case POWER::RightToLeft:
+        if (!gpioRightL->getOutput()) gpioRightH->setOutputUp();
+        break;
+      default: break;
+      }
+    }
+    break;
+    case Stage::S4_LOW_ON: {
+      switch(pState){
+      case POWER::HOLD_DOWN:
+        if (!gpioLeftH->getOutput()) gpioLeftL->setOutputUp();
+        if (!gpioRightH->getOutput()) gpioRightL->setOutputUp();
+        break;
+      case POWER::LeftToRight:
+        if (!gpioRightH->getOutput()) gpioRightL->setOutputUp();
+        break;
+      case POWER::RightToLeft:
+        if (!gpioLeftH->getOutput()) gpioLeftL->setOutputUp();
+        break;
+      default: break;
+      }
+    }
+    break;
+    case Stage::S2_HI_OFF:
+      gpioLeftH->setOutputDown();
+      gpioRightH->setOutputDown();
       break;
-    case PULL::LOW:
-      gpioPH->setOutputDown();   // najpierw wylaczyc gorny
-      gpioPL->setOutputUp();     //  a potem wlaczyc dolny
-      break;
-    case PULL::FLOATING: // cokolwiek innego - wszystko wylaczyc w diably
+    case Stage::S1_LOW_OFF:
     default:
-      gpioPH->setOutputDown();
-      gpioPL->setOutputDown();
+      gpioLeftL->setOutputDown();
+      gpioRightL->setOutputDown();
       break;
     }
   }
 
-  void setPullMinus(PULL ouputPosition){
-    pMinus = ouputPosition;
-    switch(ouputPosition){
-    case PULL::HIGH:    //
-      gpioML->setOutputDown(); // najpierw wylaczyc dolny
-      gpioMH->setOutputUp();   // a potem wlaczyc gorny
-      break;
-    case PULL::LOW:
-      gpioMH->setOutputDown();   // najpierw wylaczyc gorny
-      gpioML->setOutputUp();     //  a potem wlaczyc dolny
-      break;
-    case PULL::FLOATING: // cokolwiek innego - wszystko wylaczyc w diably
-    default:
-      gpioMH->setOutputDown();
-      gpioML->setOutputDown();
-      break;
-    }
-  }
 
 public:
-  HBridgeGPIO(Gpio * gpioPlusH, Gpio * gpioPlusL, Gpio * gpioMinusH, Gpio * gpioMinusL){
-    gpioPH = gpioPlusH;
-    gpioPL = gpioPlusL;
-    gpioMH = gpioMinusH;
-    gpioML = gpioMinusL;
+  HBridgeGPIO(Gpio * gpioLeftHigh, Gpio * gpioLeftLow, Gpio * gpioRightHigh, Gpio * gpioRightLow){
+    gpioLeftH = gpioLeftHigh;
+    gpioLeftL = gpioLeftLow;
+    gpioRightH = gpioRightHigh;
+    gpioRightL = gpioRightLow;
   }
 
   virtual void init(){
-    gpioPH->setup(Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::HighSpeed);
-    gpioPL->setupFromClone(gpioPH);
-    gpioMH->setupFromClone(gpioPH);
-    gpioML->setupFromClone(gpioPH);
+    gpioLeftH->setup(Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::HighSpeed);
+    gpioLeftH->setOutputDown();
+    gpioLeftL->setupFromClone(gpioLeftH);
+    gpioLeftL->setOutputDown();
+    gpioRightH->setupFromClone(gpioLeftH);
+    gpioRightH->setOutputDown();
+    gpioRightL->setupFromClone(gpioLeftH);
+    gpioRightL->setOutputDown();
 
-    setPullMinus(PULL::FLOATING);
-    setPullPlus(PULL::FLOATING);
     setPower(POWER::HOLD_FLOAT);
+    setStage(Stage::S1_LOW_OFF);
   }
 
   virtual void setPower(POWER powerMode){
+    if (pState == powerMode) return;
     pState = powerMode;
-    switch(pState){
-    case POWER::LeftToRight:
-      pMinusSet = PULL::LOW;
-      pPlusSet = PULL::HIGH;
-      break;
-    case POWER::RightToLeft:   // naped idzie w dol
-      pPlusSet = PULL::LOW;
-      pMinusSet = PULL::HIGH;
-      break;
-    case POWER::HOLD_UP:  // oba bieguny na plusie
-      pPlusSet = PULL::HIGH;
-      pMinusSet = PULL::HIGH;
-      break;
-    case POWER::HOLD_DOWN:  // oba bieguny na minusie
-      pPlusSet = PULL::LOW;
-      pMinusSet = PULL::LOW;
-      break;
-    case POWER::HOLD_FLOAT:  // naped bez zasilania
-    default:
-      pPlusSet = PULL::FLOATING;
-      pMinusSet = PULL::FLOATING;
-    }
+    setStage(Stage::S1_LOW_OFF);
   }
 
   virtual POWER getPowerMode(){ return pState; }
 
-
   virtual void poll(){
-    if ((pMinus != pMinusSet) || (pPlus != pPlusSet)){
-      if ((pMinus == PULL::FLOATING) && (pPlus == PULL::FLOATING)){
-        setPullMinus(pMinusSet);
-        setPullPlus(pPlusSet);
-      }else{
-        setPullMinus(PULL::FLOATING);
-        setPullPlus(PULL::FLOATING);
-      }
+    //
+    stageTimeMs += TIME_POLL_PERIOD_MS;
+    if (stageTimeMs < TIME_SWITCH_DELAY_MS) return;
+    stageTimeMs = 0;
+
+    Stage st = stage;
+    switch(st){
+    case Stage::S1_LOW_OFF: setStage(S2_HI_OFF); break;
+    case Stage::S2_HI_OFF: setStage(S3_HI_ON); break;
+    case Stage::S3_HI_ON: setStage(S4_LOW_ON); break;
+    case Stage::S4_LOW_ON: break;
+    default:
+      setPower(POWER::HOLD_FLOAT);
+      break;
     }
   }
+
 
 };
 

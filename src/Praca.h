@@ -83,9 +83,10 @@ public:
 
     if (!isAwariaSieci230VAC()){ isOpenedOn230Fail = false; }   // reset licznika otwarc dla awarii sieci
 
-
     // wewy->gpioWlaczZasNaped.setOutput(zas24Necessary);
-    wewy->gpioWlaczInwerter.setOutput(sterM->isTyp230VAC() && isAwariaSieci230VAC() && moveRequest);
+    bool inverterInUse = sterM->isTyp230VAC() && isAwariaSieci230VAC() && moveRequest;
+    wewy->gpioWlaczInwerter.setOutput(inverterInUse);
+    wewy->gpioWlaczBypass.setOutput(inverterInUse);
 
     bool turnBuzzerOn = false;
 

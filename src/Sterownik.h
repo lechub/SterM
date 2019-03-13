@@ -79,6 +79,9 @@ private:
     }else{
       awaria = false;
     }
+
+    getSilnik()->gotoSafePosition(isAwaria());
+
   }
 
 
@@ -95,6 +98,7 @@ private:
       }
     }
     fixOutputs();
+
     return pozycja;
   }
 
@@ -195,6 +199,18 @@ public:
     case VIC_010x:
     case VIC_040x:
     case VIC_0701:
+    case NIEOKRESLONY:
+    default:    return false;
+    }
+  }
+
+  inline bool isSoftStartUse() const{
+    switch(getTypNapedu()){
+    case VIC_0701: return true;
+    case VIC_012x:
+    case VIC_042x:
+    case VIC_010x:
+    case VIC_040x:
     case NIEOKRESLONY:
     default:    return false;
     }

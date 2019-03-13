@@ -14,7 +14,7 @@ class HBridge {
 
 public:
   static constexpr uint32_t TIME_POLL_PERIOD_MS = 1;
-
+  static constexpr uint32_t TIME_SWITCH_DELAY_MS = 5;
 
   typedef enum{
     LeftToRight,     // plus z lewej a minus z prawej
@@ -34,7 +34,7 @@ public:
   virtual ~HBridge(){}
   virtual void setPower(POWER powerMode) = 0;
   virtual POWER getPowerMode() = 0;
-  //virtual void poll() = 0;
+  virtual void poll() = 0;
   virtual void init() = 0;
 
 
