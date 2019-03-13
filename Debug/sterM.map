@@ -33,188 +33,188 @@ Archive member included to satisfy reference by file (symbol)
 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-mlock.o)
                               /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-nano-freer.o) (__malloc_lock)
 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_udivsi3.o)
-                              /tmp/ccjyvOsg.ltrans0.ltrans.o (__aeabi_uidiv)
+                              /tmp/ccQ51pnu.ltrans0.ltrans.o (__aeabi_uidiv)
 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_divsi3.o)
-                              /tmp/ccjyvOsg.ltrans0.ltrans.o (__aeabi_idiv)
+                              /tmp/ccQ51pnu.ltrans0.ltrans.o (__aeabi_idiv)
 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_dvmd_tls.o)
                               /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v6-m/libgcc.a(_udivsi3.o) (__aeabi_idiv0)
 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-memset.o)
-                              /tmp/ccjyvOsg.ltrans0.ltrans.o (memset)
+                              /tmp/ccQ51pnu.ltrans0.ltrans.o (memset)
 
 Allocating common symbols
 Common symbol       size              file
 
-errno               0x4               /tmp/ccjyvOsg.ltrans0.ltrans.o
+errno               0x4               /tmp/ccQ51pnu.ltrans0.ltrans.o
 
 Discarded input sections
 
- .text          0x0000000000000000        0x0 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .data          0x0000000000000000        0x0 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss           0x0000000000000000        0x0 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .text          0x0000000000000000        0x0 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .data          0x0000000000000000        0x0 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss           0x0000000000000000        0x0 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9__gnu_cxx27__verbose_terminate_handlerEv
-                0x0000000000000000       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZZN9__gnu_cxx27__verbose_terminate_handlerEvE8__func__
-                0x0000000000000000       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.current_heap_end.3961
-                0x0000000000000000        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .text._sbrk    0x0000000000000000       0x68 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .text._sbrk    0x0000000000000000       0x68 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.__dso_handle
-                0x0000000000000000        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .text.raise    0x0000000000000000       0x1e /tmp/ccjyvOsg.ltrans0.ltrans.o
- .text.kill     0x0000000000000000       0x20 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .text.raise    0x0000000000000000       0x1e /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .text.kill     0x0000000000000000       0x20 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata.__assert_func.str1.4
-                0x0000000000000000       0x43 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x43 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.__assert_func
-                0x0000000000000000       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata.assert_failed.str1.4
-                0x0000000000000000       0x2b /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x2b /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.assert_failed
-                0x0000000000000000       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.NVIC_SystemReset
-                0x0000000000000000       0x20 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x20 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.__reset_hardware
-                0x0000000000000000        0x8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZL15SOTWARE_VERSION.lto_priv.12
-                0x0000000000000000        0x2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZL22MAX_OPOZN_ZAMK_POZ_sek.lto_priv.8
-                0x0000000000000000        0x2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9QuickTask22delayMsWithActiveTasksEm
-                0x0000000000000000       0x34 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x34 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Hardware21delayMsWithBackgroundEm
-                0x0000000000000000       0x16 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x16 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer10cursorLeftEv
-                0x0000000000000000       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer10cursorLeftEm
-                0x0000000000000000       0x2a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x2a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZL15SOTWARE_VERSION.lto_priv.13
-                0x0000000000000000        0x2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZL22MAX_OPOZN_ZAMK_POZ_sek.lto_priv.9
-                0x0000000000000000        0x2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Menu12printPatternEPKcm
-                0x0000000000000000       0xb0 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xb0 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .data._ZN6Pomiar12TS_CAL1_30oCE
-                0x0000000000000000        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .data._ZN6Pomiar13TS_CAL2_110oCE
-                0x0000000000000000        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZN6Pomiar7adcDefsE
-                0x0000000000000000       0x40 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x40 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6Pomiar13getBattery_mVEt
-                0x0000000000000000       0x3c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x3c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6Pomiar13getCurrent_mAEt
-                0x0000000000000000       0x3c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x3c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6Pomiar12getOutput_mVEt
-                0x0000000000000000       0x3c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x3c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6Pomiar5setupEPNS_6AdcDefE
-                0x0000000000000000       0x1a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x1a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6Pomiar12initAdcGpiosEv
-                0x0000000000000000       0x60 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x60 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6Pomiar7initADCEv
-                0x0000000000000000      0x150 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000      0x150 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6Pomiar7initDmaEv
-                0x0000000000000000       0x64 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x64 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZL15SOTWARE_VERSION.lto_priv.14
-                0x0000000000000000        0x2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZL22MAX_OPOZN_ZAMK_POZ_sek.lto_priv.10
-                0x0000000000000000        0x2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZL15SOTWARE_VERSION.lto_priv.15
-                0x0000000000000000        0x2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZL22MAX_OPOZN_ZAMK_POZ_sek.lto_priv.11
-                0x0000000000000000        0x2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZL11I2C_FOR_LCD
-                0x0000000000000000        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.AsciiBcdToValue
-                0x0000000000000000       0x70 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x70 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.AsciiBcd2toByte
-                0x0000000000000000       0x70 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x70 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo18getByteAs2HexAsciiEv
-                0x0000000000000000       0x6c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x6c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo20get2BytesAs4HexAsciiEv
-                0x0000000000000000       0x60 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x60 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo9getUInt16Ev
-                0x0000000000000000       0x64 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x64 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo9getUInt32EPb
-                0x0000000000000000       0x5a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x5a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo18putByteAs2AsciiBCDEh
-                0x0000000000000000       0xce /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xce /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo20put2BytesAs4AsciiBCDEt
-                0x0000000000000000       0x3a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x3a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo9putStringEPKc
-                0x0000000000000000       0x58 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x58 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo9putStringEPKcm
-                0x0000000000000000       0x70 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x70 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo9putUint16Et
-                0x0000000000000000       0x5e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x5e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo9putUint32Em
-                0x0000000000000000       0x56 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x56 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo6isFullEv
-                0x0000000000000000       0x4c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x4c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo5cloneEPS_
-                0x0000000000000000       0x7e /tmp/ccjyvOsg.ltrans0.ltrans.o
- .text.my_itoa  0x0000000000000000      0x14e /tmp/ccjyvOsg.ltrans0.ltrans.o
- .text.my_htoa  0x0000000000000000       0x82 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .text.my_btoa  0x0000000000000000       0x5e /tmp/ccjyvOsg.ltrans0.ltrans.o
- .text.power10  0x0000000000000000       0x38 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x7e /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .text.my_itoa  0x0000000000000000      0x14e /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .text.my_htoa  0x0000000000000000       0x82 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .text.my_btoa  0x0000000000000000       0x5e /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .text.power10  0x0000000000000000       0x38 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_SetLatency
-                0x0000000000000000       0x4c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x4c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_PrefetchBufferCmd
-                0x0000000000000000       0x54 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x54 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_GetPrefetchBufferStatus
-                0x0000000000000000       0x34 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x34 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_EraseAllPages
-                0x0000000000000000       0x68 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x68 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_ProgramWord
-                0x0000000000000000       0xd0 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xd0 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_Unlock
-                0x0000000000000000       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_Lock
-                0x0000000000000000       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_Launch
-                0x0000000000000000       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_Erase
-                0x0000000000000000       0xdc /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xdc /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_EnableWRP
-                0x0000000000000000      0x100 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000      0x100 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_RDPConfig
-                0x0000000000000000       0xf8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xf8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_UserConfig
-                0x0000000000000000      0x100 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000      0x100 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_BOOTConfig
-                0x0000000000000000       0xa4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xa4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_BOOT0Config
-                0x0000000000000000       0xa4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xa4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_BOOT0SWConfig
-                0x0000000000000000       0xa4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xa4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_VDDAConfig
-                0x0000000000000000       0xa4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xa4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_SRAMParityConfig
-                0x0000000000000000       0xa4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xa4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_WriteUser
-                0x0000000000000000       0x80 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x80 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_ProgramData
-                0x0000000000000000       0xa4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xa4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_GetUser
-                0x0000000000000000       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_GetWRP
-                0x0000000000000000       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_OB_GetRDP
-                0x0000000000000000       0x38 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x38 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_ITConfig
-                0x0000000000000000       0x78 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x78 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_GetFlagStatus
-                0x0000000000000000       0x64 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x64 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_ClearFlag
-                0x0000000000000000       0x34 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x34 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss._ZZN3I2C8irqErrorEvE3err
-                0x0000000000000000        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2C8irqErrorEv
-                0x0000000000000000       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2C15masterReadStartEm
-                0x0000000000000000       0xc8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0xc8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB7delayMsEm
-                0x0000000000000000       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB8sendDataEh
-                0x0000000000000000       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
- COMMON         0x0000000000000000        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ COMMON         0x0000000000000000        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text          0x0000000000000000        0x0 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
  .data          0x0000000000000000        0x0 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
  .bss           0x0000000000000000        0x0 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
@@ -353,7 +353,7 @@ MEMORY_ARRAY     0x0000000000000000 0x0000000000000000 xrw
 
 Linker script and memory map
 
-LOAD /tmp/ccjyvOsg.ltrans0.ltrans.o
+LOAD /tmp/ccQ51pnu.ltrans0.ltrans.o
 LOAD /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a
 LOAD /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libm.a
 START GROUP
@@ -386,12 +386,12 @@ END GROUP
                 0x0000000008000000                __vectors_start = ABSOLUTE (.)
                 0x0000000008000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
- .isr_vector    0x0000000008000000       0xc4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .isr_vector    0x0000000008000000       0xc4 /tmp/ccQ51pnu.ltrans0.ltrans.o
                 0x0000000008000000                g_pfnVectors
  *(.cfmconfig)
  *(.after_vectors .after_vectors.*)
  .after_vectors
-                0x00000000080000c4      0x1d0 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080000c4      0x1d0 /tmp/ccQ51pnu.ltrans0.ltrans.o
                 0x00000000080000c4                _start
                 0x0000000008000268                HardFault_Handler_C
 
@@ -422,13 +422,13 @@ END GROUP
                 0x00000000080002bc                PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array)
- .init_array    0x00000000080002bc       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .init_array    0x00000000080002bc       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
                 0x00000000080002d4                PROVIDE (__init_array_end = .)
                 0x00000000080002d4                . = ALIGN (0x4)
                 0x00000000080002d4                PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array)
- .fini_array    0x00000000080002d4        0x8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .fini_array    0x00000000080002d4        0x8 /tmp/ccQ51pnu.ltrans0.ltrans.o
                 0x00000000080002dc                PROVIDE (__fini_array_end = .)
 
 .flashtext
@@ -437,628 +437,628 @@ END GROUP
 .text           0x00000000080002dc     0x789c
  *(.text .text.*)
  .text.__cxa_pure_virtual
-                0x00000000080002dc       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .text._exit    0x00000000080002f0        0xa /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080002dc       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .text._exit    0x00000000080002f0        0xa /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x00000000080002fa        0x2 
- .text.abort    0x00000000080002fc       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .text.abort    0x00000000080002fc       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.__initialize_args
-                0x0000000008000310       0x20 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000310       0x20 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.__initialize_hardware_early
-                0x0000000008000330        0xc /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000330        0xc /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.__initialize_hardware
-                0x000000000800033c        0xc /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800033c        0xc /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.SystemInit
-                0x0000000008000348       0x8c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000348       0x8c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.SystemCoreClockUpdate
-                0x00000000080003d4       0xdc /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080003d4       0xdc /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.SetSysClock
-                0x00000000080004b0       0xdc /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080004b0       0xdc /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio8getInputEP12GPIO_TypeDefh
-                0x000000000800058c       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800058c       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio8getInputEv
-                0x00000000080005bc       0x22 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080005bc       0x22 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN5Front11getkeyStateEv
-                0x00000000080005de       0x80 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080005de       0x80 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN5Front11isKeyActiveEv
-                0x000000000800065e       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800065e       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik9isOtwarteEv
-                0x0000000008000682       0x1e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000682       0x1e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik11isZamknieteEv
-                0x00000000080006a0       0x1e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080006a0       0x1e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik7isPozarEv
-                0x00000000080006be       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080006be       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik17isAlarmAkustycznyEv
-                0x00000000080006e4       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080006e4       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik19isPozarOrAlarmAkustEv
-                0x000000000800070a       0x2e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800070a       0x2e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN5Front4pollEv
-                0x0000000008000738       0xe4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000738       0xe4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio7setMODEEP12GPIO_TypeDefhNS_8GpioModeE
-                0x000000000800081c       0x4e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800081c       0x4e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio8setSpeedEP12GPIO_TypeDefhNS_9GpioSpeedE
-                0x000000000800086a       0x50 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800086a       0x50 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio11setPullUpDnEP12GPIO_TypeDefhNS_8GpioPuPdE
-                0x00000000080008ba       0x4e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080008ba       0x4e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio8setOTypeEP12GPIO_TypeDefhNS_9GpioOTypeE
-                0x0000000008000908       0x56 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000908       0x56 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio5setupEP12GPIO_TypeDefhNS_8GpioModeENS_9GpioOTypeENS_8GpioPuPdENS_9GpioSpeedE
-                0x000000000800095e       0x6a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800095e       0x6a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio11setOutputUpEP12GPIO_TypeDefh
-                0x00000000080009c8       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080009c8       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio13setOutputDownEP12GPIO_TypeDefh
-                0x00000000080009ec       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080009ec       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio9setOutputEP12GPIO_TypeDefhb
-                0x0000000008000a12       0x44 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000a12       0x44 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio9getOutputEP12GPIO_TypeDefh
-                0x0000000008000a56       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000a56       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio16setAlternateFuncEP12GPIO_TypeDefhh
-                0x0000000008000a86       0xc8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000a86       0xc8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio7setMODEENS_8GpioModeE
-                0x0000000008000b4e       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000b4e       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio8setSpeedENS_9GpioSpeedE
-                0x0000000008000b74       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000b74       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio11setPullUpDnENS_8GpioPuPdE
-                0x0000000008000b9a       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000b9a       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio8setOTypeENS_9GpioOTypeE
-                0x0000000008000bc0       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000bc0       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio9setOutputEb
-                0x0000000008000be6       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000be6       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio9getOutputEv
-                0x0000000008000c0c       0x22 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000c0c       0x22 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio5setupENS_8GpioModeENS_9GpioOTypeENS_8GpioPuPdENS_9GpioSpeedE
-                0x0000000008000c2e       0x60 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000c2e       0x60 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008000c8e        0x2 
  .text._ZN7HBridgeD2Ev
-                0x0000000008000c90       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000c90       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Hardware9getSYSCLKEv
-                0x0000000008000cac       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000cac       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Hardware7getHCLKEv
-                0x0000000008000cc0       0x54 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000cc0       0x54 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Hardware7getPCLKEv
-                0x0000000008000d14       0x48 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000d14       0x48 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart13setGpiosAsPWMEv
-                0x0000000008000d5c       0x78 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000d5c       0x78 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart8initTIM1Ev
-                0x0000000008000dd4       0xc8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000dd4       0xc8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart4initEv
-                0x0000000008000e9c       0x1e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000e9c       0x1e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart8getLeftHEv
-                0x0000000008000eba       0x1a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000eba       0x1a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart9getRightHEv
-                0x0000000008000ed4       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000ed4       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart10setLeftPWMEm
-                0x0000000008000ef0       0x50 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000ef0       0x50 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart10getLeftPWMEv
-                0x0000000008000f40       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000f40       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart11setRightPWMEm
-                0x0000000008000f58       0x50 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000f58       0x50 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart11getRightPWMEv
-                0x0000000008000fa8       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000fa8       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart8setLeftLEb
-                0x0000000008000fc0       0x5e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008000fc0       0x5e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart9setRightLEb
-                0x000000000800101e       0x5e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800101e       0x5e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart8setLeftHEb
-                0x000000000800107c       0x4c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800107c       0x4c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SoftStart9setRightHEb
-                0x00000000080010c8       0x52 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080010c8       0x52 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik14isSoftStartUseEv
-                0x000000000800111a       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800111a       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik12getTypNapeduEv
-                0x000000000800113e       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800113e       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN10HBridgePWM8setStageENS_5StageE
-                0x0000000008001152      0x170 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001152      0x170 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN10HBridgePWM4initEv
-                0x00000000080012c2       0x46 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080012c2       0x46 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN10HBridgePWM13isOVCDetectedEv
-                0x0000000008001308       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001308       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN10HBridgePWM8setPowerEN7HBridge5POWERE
-                0x000000000800132c       0x3c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800132c       0x3c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN10HBridgePWM12getPowerModeEv
-                0x0000000008001368       0x16 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001368       0x16 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x000000000800137e        0x2 
  .text._ZN10HBridgePWM4pollEv
-                0x0000000008001380      0x20c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001380      0x20c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN10HBridgePWMD2Ev
-                0x000000000800158c       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800158c       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN10HBridgePWMD0Ev
-                0x00000000080015b0       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080015b0       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio11setOutputUpEv
-                0x00000000080015d4       0x1e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080015d4       0x1e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio13setOutputDownEv
-                0x00000000080015f2       0x1e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080015f2       0x1e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3Led3setENS_4ModeE
-                0x0000000008001610       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001610       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3Led4tickEm
-                0x000000000800162c      0x124 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800162c      0x124 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Keyboard11addToBufferENS_3KeyE
-                0x0000000008001750       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001750       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Keyboard13getPressedKeyEv
-                0x000000000800177c      0x122 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800177c      0x122 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x000000000800189e        0x2 
  .text._ZN8Keyboard6co10msEv
-                0x00000000080018a0       0x50 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080018a0       0x50 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Keyboard16getUnbufferedKeyEv
-                0x00000000080018f0       0x1a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080018f0       0x1a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3HMIC2Ev
-                0x000000000800190a       0x4e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800190a       0x4e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3HMI12setBackLightEb
-                0x0000000008001958       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001958       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3HMI4pollEv
-                0x000000000800197c       0xd4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800197c       0xd4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3HMI9isStartupEv
-                0x0000000008001a50       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001a50       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZL12hmi_callbackv
-                0x0000000008001a74       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001a74       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3HMI11getInstanceEv
-                0x0000000008001a88       0x10 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001a88       0x10 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._Z41__static_initialization_and_destruction_0ii.lto_priv.0
-                0x0000000008001a98       0x44 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001a98       0x44 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._GLOBAL__sub_I_hmi
-                0x0000000008001adc       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001adc       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.NVIC_SetPriority.lto_priv.6
-                0x0000000008001af4       0xe8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001af4       0xe8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.SysTick_Config
-                0x0000000008001bdc       0x48 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001bdc       0x48 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4GpioC2EP12GPIO_TypeDefh
-                0x0000000008001c24       0x4e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001c24       0x4e /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008001c72        0x2 
  .text._ZN8Hardware13errorDispatchENS_9ErrorCodeE
-                0x0000000008001c74       0x3c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001c74       0x3c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9QuickTask10getCounterEv
-                0x0000000008001cb0       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001cb0       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9QuickTask23delayMsWithStoppedTasksEm
-                0x0000000008001cc4       0x2e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001cc4       0x2e /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008001cf2        0x2 
  .text._ZL13flash_latencym
-                0x0000000008001cf4       0x34 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001cf4       0x34 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZL12pll_start_lbmm
-                0x0000000008001d28       0xfc /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001d28       0xfc /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZL7rccInitv
-                0x0000000008001e24       0x64 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001e24       0x64 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Hardware4initEv
-                0x0000000008001e88       0x58 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001e88       0x58 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Hardware9WDOG_InitEv
-                0x0000000008001ee0        0x8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001ee0        0x8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Hardware11WDOG_ReloadEv
-                0x0000000008001ee8        0x8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001ee8        0x8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Hardware9NVIC_initEv
-                0x0000000008001ef0        0x8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001ef0        0x8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Hardware12delayMsDirtyEm
-                0x0000000008001ef8       0x16 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001ef8       0x16 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008001f0e        0x2 
  .text._Z41__static_initialization_and_destruction_0ii.lto_priv.1
-                0x0000000008001f10       0x48 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001f10       0x48 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._GLOBAL__sub_I__ZN8Hardware4initEv
-                0x0000000008001f58       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001f58       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6VEprom9writeWordENS_9VirtAdresEt
-                0x0000000008001f70       0x54 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001f70       0x54 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6VEprom8readWordENS_9VirtAdresEPt
-                0x0000000008001fc4       0x6c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008001fc4       0x6c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6VEprom8readWordENS_9VirtAdresE
-                0x0000000008002030       0x34 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002030       0x34 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo7isEmptyEv
-                0x0000000008002064       0x20 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002064       0x20 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo10isNotEmptyEv
-                0x0000000008002084       0x22 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002084       0x22 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Keyboard13getFromBufferEv
-                0x00000000080020a6       0x44 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080020a6       0x44 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Keyboard6getKeyEv
-                0x00000000080020ea       0x1a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080020ea       0x1a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer14setRefreshNeedEv
-                0x0000000008002104       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002104       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer19checkCursorPositionEv
-                0x0000000008002118       0x3e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002118       0x3e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK11FrameBuffer7getROWSEv
-                0x0000000008002156       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002156       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK11FrameBuffer10getCOLUMNSEv
-                0x000000000800216a       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800216a       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer11cursorRightEv
-                0x000000000800217e       0x3a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800217e       0x3a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer6gotoXYEmm
-                0x00000000080021b8       0x5a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080021b8       0x5a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer5printEc
-                0x0000000008002212       0x3c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002212       0x3c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer5printEPKc
-                0x000000000800224e       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800224e       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer7printXYEmmPKc
-                0x000000000800227e       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800227e       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer9clearLineEt
-                0x00000000080022aa       0x7c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080022aa       0x7c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer10cursorModeENS_10CursorModeE
-                0x0000000008002326       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002326       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer23printNumbersWithPatternEPKcm
-                0x0000000008002342       0x56 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002342       0x56 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer23printSymbolsWithPatternEPKcS1_c
-                0x0000000008002398       0x70 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002398       0x70 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11Silnik24VDC11setType1234Eb
-                0x0000000008002408       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002408       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN7Hamulec16gotoSafePositionEb
-                0x0000000008002424       0x34 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002424       0x34 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN7Hamulec7setModeENS_4MODEE
-                0x0000000008002458       0x38 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002458       0x38 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN7Hamulec7setModeENS_4MODEEb
-                0x0000000008002490       0x3a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002490       0x3a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN7Hamulec5hamujEb
-                0x00000000080024ca       0xb2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080024ca       0xb2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik9getSilnikEv
-                0x000000000800257c       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800257c       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik10fixOutputsEv
-                0x00000000080025a8       0x44 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080025a8       0x44 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik12checkPozycjaEv
-                0x00000000080025ec       0x74 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080025ec       0x74 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik9checkRuchEv
-                0x0000000008002660       0xea /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002660       0xea /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x000000000800274a        0x2 
  .text._ZN9Sterownik9initNapedEv
-                0x000000000800274c       0xcc /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800274c       0xcc /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik11isTyp230VACEv
-                0x0000000008002818       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002818       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik17isZakazOtwieraniaEv
-                0x000000000800283e       0x1e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800283e       0x1e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik16isZakazZamykaniaEv
-                0x000000000800285c       0x1e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800285c       0x1e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik8isAwariaEv
-                0x000000000800287a       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800287a       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik14isOpenPossibleEv
-                0x000000000800288e       0x58 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800288e       0x58 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik15isClosePossibleEv
-                0x00000000080028e6       0x42 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080028e6       0x42 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik9zatrzymajEv
-                0x0000000008002928       0x22 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002928       0x22 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik8setNapedENS_5NAPEDE
-                0x000000000800294a       0x3a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800294a       0x3a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik12getPrevNapedENS_5NAPEDE
-                0x0000000008002984       0x44 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002984       0x44 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik12getNextNapedENS_5NAPEDE
-                0x00000000080029c8       0x48 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080029c8       0x48 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK9Sterownik13getOpisNapeduEv
-                0x0000000008002a10       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002a10       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik13getOpisNapeduENS_5NAPEDE
-                0x0000000008002a2c       0x58 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002a2c       0x58 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik16gotoSafePositionEb
-                0x0000000008002a84       0x6e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002a84       0x6e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Password3addEN8Keyboard3KeyE
-                0x0000000008002af2       0x7a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002af2       0x7a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Password9getCharAtEh
-                0x0000000008002b6c       0x7c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002b6c       0x7c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Password6isFullEv
-                0x0000000008002be8       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002be8       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Password7isMatchEv
-                0x0000000008002c0e       0x44 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002c0e       0x44 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Password4saveEt
-                0x0000000008002c52       0x1e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002c52       0x1e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Password5clearEv
-                0x0000000008002c70       0x1a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002c70       0x1a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Password4saveEv
-                0x0000000008002c8a       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002c8a       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Password9getStatusEv
-                0x0000000008002ca2       0x32 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002ca2       0x32 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Password7collectEN8Keyboard3KeyE
-                0x0000000008002cd4       0x36 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002cd4       0x36 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Password10getAsCharsEPc
-                0x0000000008002d0a       0x4e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002d0a       0x4e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZL18getProgMainVersionv
-                0x0000000008002d58        0xc /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002d58        0xc /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZL17getProgSubVersionv
-                0x0000000008002d64        0xc /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002d64        0xc /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Menu9goToEkranENS_5EKRANE
-                0x0000000008002d70       0x58 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002d70       0x58 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3HMI16isBackLightInUseEv
-                0x0000000008002dc8       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002dc8       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN5Praca19isAwariaSieci230VACEv
-                0x0000000008002de4       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002de4       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK5Praca6getJobEv
-                0x0000000008002e0a       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002e0a       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008002e1e        0x2 
  .text._ZN4Menu4pollEv
-                0x0000000008002e20      0x4ec /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008002e20      0x4ec /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZL12getJobSymbolv
-                0x000000000800330c       0x3c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800330c       0x3c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Menu9showEkranEv
-                0x0000000008003348      0x784 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003348      0x784 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6VEprom10addToValueENS_9VirtAdresEt
-                0x0000000008003acc       0x6a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003acc       0x6a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik11checkRelaysEv
-                0x0000000008003b36       0xf6 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003b36       0xf6 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik9setBuzzerEb
-                0x0000000008003c2c       0x28 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003c2c       0x28 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik9isMotorOnEv
-                0x0000000008003c54       0x44 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003c54       0x44 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik7podniesEv
-                0x0000000008003c98       0x32 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003c98       0x32 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik5opuscEv
-                0x0000000008003cca       0x32 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003cca       0x32 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik4pollEv
-                0x0000000008003cfc       0x1e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003cfc       0x1e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN5Front8getStateEv
-                0x0000000008003d1a       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003d1a       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008003d2e        0x2 
  .text._ZN5Praca13isOpenRequestEv
-                0x0000000008003d30       0x80 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003d30       0x80 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN5Praca14isCloseRequestEv
-                0x0000000008003db0       0x74 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003db0       0x74 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN5Praca4pollEv
-                0x0000000008003e24      0x224 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008003e24      0x224 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN5Praca9checkLEDsEv
-                0x0000000008004048       0xe0 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004048       0xe0 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._Z13pracaCallbackv
-                0x0000000008004128       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004128       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._Z41__static_initialization_and_destruction_0ii.lto_priv.2
-                0x0000000008004140       0x38 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004140       0x38 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._GLOBAL__sub_I__Z13pracaCallbackv
-                0x0000000008004178       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004178       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9QuickTask4holdEb
-                0x0000000008004190       0x20 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004190       0x20 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN17CallbackInterfaceD2Ev
-                0x00000000080041b0       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080041b0       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio7getModeEP12GPIO_TypeDefh
-                0x00000000080041cc       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080041cc       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio7getPullEP12GPIO_TypeDefh
-                0x00000000080041fc       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080041fc       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio8getSpeedEP12GPIO_TypeDefh
-                0x000000000800422c       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800422c       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio8getOTypeEP12GPIO_TypeDefh
-                0x000000000800425c       0x32 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800425c       0x32 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio14setupFromCloneEP12GPIO_TypeDefhS1_h
-                0x000000000800428e       0x9c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800428e       0x9c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio14setupFromCloneEPS_
-                0x000000000800432a       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800432a       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6VEprom4initEv
-                0x000000000800434e       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800434e       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK12SilnikNapedu7getMoveEv
-                0x000000000800437a       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800437a       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN12SilnikNapedu16gotoSafePositionEb
-                0x000000000800438e       0x36 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800438e       0x36 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN12SilnikNapeduD2Ev
-                0x00000000080043c4       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080043c4       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN12SilnikNapeduC2Ev
-                0x00000000080043e0       0x28 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080043e0       0x28 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN12Silnik230VACC2EP4GpioS1_
-                0x0000000008004408       0x34 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004408       0x34 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN12Silnik230VAC4initEv
-                0x000000000800443c       0x22 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800443c       0x22 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN12Silnik230VAC7setMoveEN12SilnikNapedu4MOVEE
-                0x000000000800445e       0x78 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800445e       0x78 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x00000000080044d6        0x2 
  .text._ZN9SoftStartC2Ev
-                0x00000000080044d8       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080044d8       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN7HBridgeC2Ev
-                0x0000000008004508       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004508       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN10HBridgePWMC2Ev
-                0x0000000008004524       0x78 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004524       0x78 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11HBridgeGPIO8setStageENS_5StageE
-                0x000000000800459c      0x1b8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800459c      0x1b8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11HBridgeGPIOC2EP4GpioS1_S1_S1_
-                0x0000000008004754       0x54 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004754       0x54 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11HBridgeGPIO4initEv
-                0x00000000080047a8       0x92 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080047a8       0x92 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11HBridgeGPIO8setPowerEN7HBridge5POWERE
-                0x000000000800483a       0x32 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800483a       0x32 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11HBridgeGPIO12getPowerModeEv
-                0x000000000800486c       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800486c       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11HBridgeGPIO4pollEv
-                0x0000000008004880       0x82 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004880       0x82 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008004902        0x2 
  .text._ZN11Silnik24VDCC2EP7HBridgeS1_
-                0x0000000008004904       0x3c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004904       0x3c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11Silnik24VDC4initEv
-                0x0000000008004940       0x32 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004940       0x32 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11Silnik24VDC7setMoveEN12SilnikNapedu4MOVEE
-                0x0000000008004972      0x144 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004972      0x144 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN7HamulecC2EP7HBridge
-                0x0000000008004ab6       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004ab6       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN7Hamulec4initEv
-                0x0000000008004ae2       0x2a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004ae2       0x2a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3Led7preinitEv
-                0x0000000008004b0c       0x20 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004b0c       0x20 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3LedC2EP12GPIO_TypeDefh
-                0x0000000008004b2c       0x2e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004b2c       0x2e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3Led4initENS_4TypeENS_4ModeE
-                0x0000000008004b5a       0x44 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004b5a       0x44 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008004b9e        0x2 
  .text._ZN6Pinout4initEv
-                0x0000000008004ba0      0x240 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004ba0      0x240 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9SterownikC2EP11Silnik24VDCP12Silnik230VACP7Hamulec
-                0x0000000008004de0       0x48 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004de0       0x48 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9Sterownik4initEv
-                0x0000000008004e28       0x54 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004e28       0x54 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8KeyboardC2EP4GpioS1_S1_S1_
-                0x0000000008004e7c       0x68 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004e7c       0x68 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Keyboard4initEv
-                0x0000000008004ee4       0x50 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004ee4       0x50 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer11clearScreenEv
-                0x0000000008004f34       0x38 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004f34       0x38 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8PasswordC2Ev
-                0x0000000008004f6c       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004f6c       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN8Password4initEv
-                0x0000000008004f90       0x48 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004f90       0x48 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Menu4initEP9SterownikP8KeyboardP11FrameBuffer
-                0x0000000008004fd8       0x36 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008004fd8       0x36 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x000000000800500e        0x2 
  .text._ZN17CallbackInterfaceC2Ev
-                0x0000000008005010       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005010       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFBC2Ev
-                0x000000000800502c       0x48 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800502c       0x48 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFBD2Ev
-                0x0000000008005074       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005074       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFBD0Ev
-                0x0000000008005098       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005098       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB16callbackFunctionEv
-                0x00000000080050bc        0xe /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080050bc        0xe /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB14getFrameBufferEv
-                0x00000000080050ca       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080050ca       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB12getBackLightEv
-                0x00000000080050de       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080050de       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN5FrontC2EP4GpioS1_S1_S1_
-                0x00000000080050f2       0x36 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080050f2       0x36 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3HMI4initEP9SterownikP8KeyboardP5FrontP9ST7032iFBP4MenuP3LedSB_SB_
-                0x0000000008005128       0xa2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005128       0xa2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x00000000080051ca        0x2 
  .text._ZN5Praca4initEv
-                0x00000000080051cc       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080051cc       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN6PinoutC2Ev
-                0x00000000080051f8      0x350 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080051f8      0x350 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4MenuC2Ev
-                0x0000000008005548       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005548       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._Z11hBridgePollv
-                0x0000000008005578       0x20 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .text.main     0x0000000008005598      0x12c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005578       0x20 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .text.main     0x0000000008005598      0x12c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11Silnik24VDCD2Ev
-                0x00000000080056c4       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080056c4       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11Silnik24VDCD0Ev
-                0x00000000080056e8       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080056e8       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11HBridgeGPIOD2Ev
-                0x000000000800570c       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800570c       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11HBridgeGPIOD0Ev
-                0x0000000008005730       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005730       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN12Silnik230VACD2Ev
-                0x0000000008005754       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005754       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN12Silnik230VACD0Ev
-                0x0000000008005778       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005778       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._Z41__static_initialization_and_destruction_0ii.lto_priv.3
-                0x000000000800579c      0x194 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800579c      0x194 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._GLOBAL__sub_I_pinout
-                0x0000000008005930       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005930       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._GLOBAL__sub_D_pinout
-                0x0000000008005948       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005948       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4FifoC2EPhm
-                0x0000000008005960       0x40 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005960       0x40 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo3putEh
-                0x00000000080059a0       0x6e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080059a0       0x6e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo3getEv
-                0x0000000008005a0e       0x5a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005a0e       0x5a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo6putAllEPS_
-                0x0000000008005a68       0x64 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005a68       0x64 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo9get_countEv
-                0x0000000008005acc       0x38 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005acc       0x38 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBufferD2Ev
-                0x0000000008005b04       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005b04       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBufferD0Ev
-                0x0000000008005b20       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005b20       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9QuickTask4tickEm
-                0x0000000008005b44       0x6c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005b44       0x6c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9QuickTask4pollEv
-                0x0000000008005bb0       0x68 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005bb0       0x68 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9QuickTaskC2ENS_6QTTypeEPFvvEm
-                0x0000000008005c18       0x94 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005c18       0x94 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.SysTick_Handler
-                0x0000000008005cac        0xe /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008005cac        0xe /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008005cba        0x2 
- .text.EE_Init  0x0000000008005cbc      0x3d4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .text.EE_Init  0x0000000008005cbc      0x3d4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.EE_ReadVariable
-                0x0000000008006090       0xc8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006090       0xc8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.EE_WriteVariable
-                0x0000000008006158       0x5e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006158       0x5e /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x00000000080061b6        0x2 
  .text.EE_Format
-                0x00000000080061b8       0x68 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080061b8       0x68 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.EE_FindValidPage
-                0x0000000008006220       0xb0 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006220       0xb0 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.EE_VerifyPageFullWriteVariable
-                0x00000000080062d0       0xe0 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080062d0       0xe0 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.EE_PageTransfer
-                0x00000000080063b0      0x1c8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080063b0      0x1c8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.itoaWithPattern
-                0x0000000008006578       0xd2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006578       0xd2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.my_strcpy
-                0x000000000800664a       0x5c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800664a       0x5c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.numberWithPattern
-                0x00000000080066a6       0x2e /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080066a6       0x2e /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_Unlock
-                0x00000000080066d4       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080066d4       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_Lock
-                0x0000000008006700       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006700       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_ErasePage
-                0x0000000008006718       0x78 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006718       0x78 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_ProgramHalfWord
-                0x0000000008006790       0x74 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006790       0x74 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_GetStatus
-                0x0000000008006804       0x5c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006804       0x5c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.FLASH_WaitForLastOperation
-                0x0000000008006860       0x5a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006860       0x5a /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x00000000080068ba        0x2 
  .text.NVIC_EnableIRQ
-                0x00000000080068bc       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080068bc       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.NVIC_SetPriority.lto_priv.7
-                0x00000000080068e8       0xe8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080068e8       0xe8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Gpio16setAlternateFuncEh
-                0x00000000080069d0       0x2a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080069d0       0x2a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN4Fifo5flushEv
-                0x00000000080069fa       0x1a /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080069fa       0x1a /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2CC2Ev
-                0x0000000008006a14       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006a14       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2C21callCompletedCallbackEv
-                0x0000000008006a44       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006a44       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2C8setStateENS_5StateE
-                0x0000000008006a6a       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006a6a       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2C6isBusyEv
-                0x0000000008006a96       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006a96       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008006ab2        0x2 
  .text._ZN3I2C11getInstanceEv
-                0x0000000008006ab4       0x10 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006ab4       0x10 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2C4initEPNS_10DeviceDefsE
-                0x0000000008006ac4       0x66 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006ac4       0x66 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008006b2a        0x2 
  .text._ZN3I2C4initEv
-                0x0000000008006b2c      0x198 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006b2c      0x198 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2C8irqEventEv
-                0x0000000008006cc4       0xc0 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006cc4       0xc0 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2C16masterWriteBlockEP4Fifo
-                0x0000000008006d84      0x100 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006d84      0x100 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.I2C1_IRQHandler
-                0x0000000008006e84       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006e84       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text.I2C2_IRQHandler
-                0x0000000008006e98       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006e98       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._Z41__static_initialization_and_destruction_0ii.lto_priv.4
-                0x0000000008006eac       0x44 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006eac       0x44 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._GLOBAL__sub_I_i2cInstance
-                0x0000000008006ef0       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006ef0       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBufferC2EmmPh
-                0x0000000008006f08       0x54 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006f08       0x54 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZNK11FrameBuffer9getBufferEv
-                0x0000000008006f5c       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006f5c       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN11FrameBuffer7getLineEmP4Fifo
-                0x0000000008006f70       0x78 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006f70       0x78 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2C13setSlaveAdresEt
-                0x0000000008006fe8       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008006fe8       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2C14masterTransmitEP4Fifo
-                0x0000000008007004       0x20 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007004       0x20 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN3I2C20setCompletedCallbackEP17CallbackInterface
-                0x0000000008007024       0x16 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007024       0x16 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB11sendCommandENS_10LcdCommandE
-                0x000000000800703a       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800703a       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB6isBusyEv
-                0x0000000008007060       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007060       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB11setResetPinEb
-                0x000000000800707c       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800707c       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB12setBackLightEb
-                0x00000000080070a0       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080070a0       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB6gotoXYEhh
-                0x00000000080070c4       0x76 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080070c4       0x76 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._Z13dummyCallbackv
-                0x000000000800713a        0xc /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800713a        0xc /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008007146        0x2 
  .text._ZN9ST7032iFB4pollEv
-                0x0000000008007148       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007148       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB12delayMsDirtyEm
-                0x0000000008007160       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007160       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB4initEP3I2CP4GpioS3_
-                0x0000000008007178      0x178 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007178      0x178 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB13sendCmdOrDataEbh
-                0x00000000080072f0       0x66 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080072f0       0x66 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB11sendCommandEh
-                0x0000000008007356       0x26 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007356       0x26 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB8sendLineEm
-                0x000000000800737c       0x5c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800737c       0x5c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZN9ST7032iFB7processEv
-                0x00000000080073d8       0xe8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080073d8       0xe8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._Z41__static_initialization_and_destruction_0ii.lto_priv.5
-                0x00000000080074c0       0x74 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080074c0       0x74 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._GLOBAL__sub_I__Z13dummyCallbackv
-                0x0000000008007534       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007534       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._GLOBAL__sub_D__Z13dummyCallbackv
-                0x000000000800754c       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800754c       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .text._ZdlPvj  0x0000000008007564        0x8 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
                 0x0000000008007564                operator delete(void*, unsigned int)
  .text._ZdlPv   0x000000000800756c        0x8 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_op.o)
@@ -1087,52 +1087,52 @@ END GROUP
                 0x0000000008007748                memset
  *(.rodata .rodata.* .constdata .constdata.*)
  .rodata._ZZ18__cxa_pure_virtualE8__func__
-                0x0000000008007758       0x13 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007758       0x13 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x000000000800776b        0x1 
  .rodata.abort.str1.4
-                0x000000000800776c       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800776c       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZN5Front4pollEv
-                0x0000000008007780       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007780       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZN10HBridgePWM4pollEv
-                0x0000000008007794       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007794       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZTV10HBridgePWM
-                0x00000000080077a8       0x20 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080077a8       0x20 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZTV7HBridge
-                0x00000000080077c8       0x20 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080077c8       0x20 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZN3Led4tickEm
-                0x00000000080077e8       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080077e8       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZN8Hardware13errorDispatchENS_9ErrorCodeE
-                0x0000000008007804       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007804       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZN9Sterownik9initNapedEv
-                0x0000000008007818       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007818       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZN9Sterownik13getOpisNapeduENS_5NAPEDE.str1.4
-                0x0000000008007830       0x49 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007830       0x49 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000008007879        0x3 
  .rodata._ZN9Sterownik13getOpisNapeduENS_5NAPEDE
-                0x000000000800787c       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000000800787c       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZN4Menu4pollEv
-                0x0000000008007894       0x3c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007894       0x3c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZN4Menu9showEkranEv.str1.4
-                0x00000000080078d0      0x1ac /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000080078d0      0x1ac /tmp/ccQ51pnu.ltrans0.ltrans.o
                                         0x1b1 (size before relaxing)
  .rodata._ZN4Menu9showEkranEv
-                0x0000000008007a7c       0x3c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007a7c       0x3c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZTV9ST7032iFB
-                0x0000000008007ab8       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007ab8       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZTV11Silnik24VDC
-                0x0000000008007acc       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007acc       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZTV11HBridgeGPIO
-                0x0000000008007ae8       0x20 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007ae8       0x20 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZTV12Silnik230VAC
-                0x0000000008007b08       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007b08       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZTV12SilnikNapedu
-                0x0000000008007b24       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007b24       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZTV17CallbackInterface
-                0x0000000008007b40       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007b40       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZTV11FrameBuffer
-                0x0000000008007b54       0x10 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007b54       0x10 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .rodata._ZN9ST7032iFB7processEv
-                0x0000000008007b64       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000008007b64       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *(vtable)
  *(.eh_frame*)
  *(.glue_7)
@@ -1175,21 +1175,21 @@ END GROUP
                 0x0000000020000000                _sdata = .
                 0x0000000020000000                __data_start__ = .
  *(.data_begin .data_begin.*)
- .data_begin    0x0000000020000000        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .data_begin    0x0000000020000000        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *(.data .data.*)
  .data.argv.4310
-                0x0000000020000004        0x8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000004        0x8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .data.SystemCoreClock
-                0x000000002000000c        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000002000000c        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .data.AHBPrescTable
-                0x0000000020000010       0x10 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .data.pins     0x0000000020000020        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .data.i2cDefs  0x0000000020000024       0x10 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .data.sterM    0x0000000020000034        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .data.job      0x0000000020000038       0x10 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .data.praca    0x0000000020000048        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000010       0x10 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .data.pins     0x0000000020000020        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .data.i2cDefs  0x0000000020000024       0x10 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .data.sterM    0x0000000020000034        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .data.job      0x0000000020000038       0x10 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .data.praca    0x0000000020000048        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .data._ZN9QuickTask6holdedE
-                0x000000002000004c        0x1 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000002000004c        0x1 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x000000002000004d        0x3 ff
  .data._impure_ptr
                 0x0000000020000050        0x4 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-impure.o)
@@ -1197,7 +1197,7 @@ END GROUP
  .data.impure_data
                 0x0000000020000054       0x60 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-impure.o)
  *(.data_end .data_end.*)
- .data_end      0x00000000200000b4        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .data_end      0x00000000200000b4        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
                 0x00000000200000b8                . = ALIGN (0x4)
                 0x00000000200000b8                _edata = .
                 0x00000000200000b8                __data_end__ = .
@@ -1212,73 +1212,73 @@ END GROUP
                 0x00000000200000b8                __bss_start__ = .
                 0x00000000200000b8                _sbss = .
  *(.bss_begin .bss_begin.*)
- .bss_begin     0x00000000200000b8        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .bss_begin     0x00000000200000b8        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *(.bss .bss.*)
  .bss.name.4309
-                0x00000000200000bc        0x1 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000200000bc        0x1 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss._ZZN8Keyboard6co10msEvE6oldKey
-                0x00000000200000bd        0x1 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000200000bd        0x1 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x00000000200000be        0x2 
- .bss.hmi       0x00000000200000c0       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.hmiQtsk   0x00000000200000ec       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .bss.hmi       0x00000000200000c0       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.hmiQtsk   0x00000000200000ec       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.gpioPomSygnL
-                0x0000000020000100        0x8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000100        0x8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.gpioPomZas24V
-                0x0000000020000108        0x8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000108        0x8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss._ZN8Hardware11adcDmaErrorE
-                0x0000000020000110        0x1 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000110        0x1 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000020000111        0x3 
  .bss.pracaQtsk
-                0x0000000020000114       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.pinout    0x0000000020000128      0x1b8 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.keys      0x00000000200002e0       0x2c /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.front     0x000000002000030c       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000114       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.pinout    0x0000000020000128      0x1b8 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.keys      0x00000000200002e0       0x2c /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.front     0x000000002000030c       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.hBridgeHamulec
-                0x0000000020000320       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000320       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.hBridgeSilnik
-                0x000000002000033c       0x30 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.hamulec   0x000000002000036c        0x8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000002000033c       0x30 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.hamulec   0x000000002000036c        0x8 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.silnik24VDC
-                0x0000000020000374       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000374       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.silnik230VAC
-                0x0000000020000388       0x10 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.i2c       0x0000000020000398        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000388       0x10 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.i2c       0x0000000020000398        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.st7032iDriver
-                0x000000002000039c       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000002000039c       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.sterBramDym
-                0x00000000200003b8       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.menu      0x00000000200003cc       0x24 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000200003b8       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.menu      0x00000000200003cc       0x24 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.hBridgeQtsk
-                0x00000000200003f0       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.taskbase  0x0000000020000404        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000200003f0       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.taskbase  0x0000000020000404        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss._ZN9QuickTask12milisCounterE
-                0x0000000020000408        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000408        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.VirtAddVarTab
-                0x000000002000040c       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.DataVar   0x0000000020000420        0x2 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x000000002000040c       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.DataVar   0x0000000020000420        0x2 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000020000422        0x2 
  .bss.i2cInstance
-                0x0000000020000424       0x10 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.buffer    0x0000000020000434       0x64 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000424       0x10 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.buffer    0x0000000020000434       0x64 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.dataFrame
-                0x0000000020000498       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000020000498       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss._ZN9ST7032iFB14callbackObjectE
-                0x00000000200004b0        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000200004b0        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.st7032Task
-                0x00000000200004b4       0x14 /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.dataTab1  0x00000000200004c8       0x25 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000200004b4       0x14 /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.dataTab1  0x00000000200004c8       0x25 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x00000000200004ed        0x3 
  .bss.frame_buffer
-                0x00000000200004f0       0x1c /tmp/ccjyvOsg.ltrans0.ltrans.o
- .bss.dataTab2  0x000000002000050c       0x25 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x00000000200004f0       0x1c /tmp/ccQ51pnu.ltrans0.ltrans.o
+ .bss.dataTab2  0x000000002000050c       0x25 /tmp/ccQ51pnu.ltrans0.ltrans.o
  *fill*         0x0000000020000531        0x3 
- .bss.dataFifo  0x0000000020000534       0x18 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .bss.dataFifo  0x0000000020000534       0x18 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .bss.__malloc_free_list
                 0x000000002000054c        0x4 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-nano-mallocr.o)
                 0x000000002000054c                __malloc_free_list
  *(COMMON)
  *(.bss_end .bss_end.*)
- .bss_end       0x0000000020000550        0x4 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .bss_end       0x0000000020000550        0x4 /tmp/ccQ51pnu.ltrans0.ltrans.o
                 0x0000000020000554                . = ALIGN (0x4)
                 0x0000000020000554                __bss_end__ = .
                 0x0000000020000554                _ebss = .
@@ -1345,13 +1345,13 @@ END GROUP
 
 .comment        0x0000000000000000       0x7f
  *(.comment)
- .comment       0x0000000000000000       0x7f /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .comment       0x0000000000000000       0x7f /tmp/ccQ51pnu.ltrans0.ltrans.o
                                          0x80 (size before relaxing)
 
 .ARM.attributes
                 0x0000000000000000       0x2f
  .ARM.attributes
-                0x0000000000000000       0x2f /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000       0x2f /tmp/ccQ51pnu.ltrans0.ltrans.o
  .ARM.attributes
                 0x000000000000002f       0x2c /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
  .ARM.attributes
@@ -1390,26 +1390,26 @@ END GROUP
 .debug_aranges  0x0000000000000000      0xbe8
  *(.debug_aranges)
  .debug_aranges
-                0x0000000000000000      0xbe8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+                0x0000000000000000      0xbe8 /tmp/ccQ51pnu.ltrans0.ltrans.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
 .debug_info     0x0000000000000000     0x9d9c
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x0000000000000000     0x9d9c /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .debug_info    0x0000000000000000     0x9d9c /tmp/ccQ51pnu.ltrans0.ltrans.o
 
 .debug_abbrev   0x0000000000000000      0x8d8
  *(.debug_abbrev)
- .debug_abbrev  0x0000000000000000      0x8d8 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .debug_abbrev  0x0000000000000000      0x8d8 /tmp/ccQ51pnu.ltrans0.ltrans.o
 
 .debug_line     0x0000000000000000     0x2b7f
  *(.debug_line)
- .debug_line    0x0000000000000000     0x2b7f /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .debug_line    0x0000000000000000     0x2b7f /tmp/ccQ51pnu.ltrans0.ltrans.o
 
 .debug_frame    0x0000000000000000     0x306c
  *(.debug_frame)
- .debug_frame   0x0000000000000000     0x2f14 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .debug_frame   0x0000000000000000     0x2f14 /tmp/ccQ51pnu.ltrans0.ltrans.o
  .debug_frame   0x0000000000002f14       0x28 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_ops.o)
  .debug_frame   0x0000000000002f3c       0x28 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libstdc++_nano.a(del_op.o)
  .debug_frame   0x0000000000002f64       0x40 /home/opt/arm-toolchains/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg_nano.a(lib_a-malloc.o)
@@ -1421,7 +1421,7 @@ END GROUP
 
 .debug_str      0x0000000000000000     0x2d33
  *(.debug_str)
- .debug_str     0x0000000000000000     0x2d33 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .debug_str     0x0000000000000000     0x2d33 /tmp/ccQ51pnu.ltrans0.ltrans.o
                                        0x2f94 (size before relaxing)
 
 .debug_loc
@@ -1444,4 +1444,4 @@ END GROUP
 OUTPUT(sterM.elf elf32-littlearm)
 
 .debug_ranges   0x0000000000000000      0xc28
- .debug_ranges  0x0000000000000000      0xc28 /tmp/ccjyvOsg.ltrans0.ltrans.o
+ .debug_ranges  0x0000000000000000      0xc28 /tmp/ccQ51pnu.ltrans0.ltrans.o
