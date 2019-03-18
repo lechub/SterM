@@ -23,6 +23,10 @@ public:
       (Keyboard::Key::RIGHT << (3*1))  |
       (Keyboard::Key::ENTER << (3*0)) ;       // E><B
 
+  static constexpr uint8_t ServicePassLength = 8;
+  static const Keyboard::Key servicePassword[Password::ServicePassLength];
+
+
   typedef enum{
     NOT_FULL,
     FULL,
@@ -35,6 +39,9 @@ private:
   uint16_t password;
   uint8_t index;
 
+  Keyboard::Key servicePasKey[ServicePassLength];
+  uint8_t indexService;
+
 
 
   void add(Keyboard::Key key){
@@ -45,18 +52,27 @@ private:
     index++;
   }
 
-  char getCharAt(uint8_t pos){
-      if (pos >= length) return '-';
-      uint8_t offset = uint8_t(pos * 3);
-      Keyboard::Key key = Keyboard::Key((password >> offset) & 0b0111);
-      switch(key){
-      case Keyboard::Key::ENTER: return 'E';
-      case Keyboard::Key::CANCEL: return 'B';
-      case Keyboard::Key::LEFT: return '<';
-      case Keyboard::Key::RIGHT: return '>';
-      default: return '-';
-      }
+  void addService(Keyboard::Key key){
+    if (indexService >= ServicePassLength) return;
+    servicePasKey[indexService++] = key;
+  }
+
+  char keyToChar(Keyboard::Key key){
+    switch(key){
+    case Keyboard::Key::ENTER: return 'E';
+    case Keyboard::Key::CANCEL: return 'B';
+    case Keyboard::Key::LEFT: return '<';
+    case Keyboard::Key::RIGHT: return '>';
+    default: return '-';
     }
+  }
+
+  char getCharAt(uint8_t pos){
+    if (pos >= length) return '-';
+    uint8_t offset = uint8_t(pos * 3);
+    Keyboard::Key key = Keyboard::Key((password >> offset) & 0b0111);
+    return keyToChar(key);
+  }
 
   bool isFull(){
     return (index >= length);
@@ -91,9 +107,9 @@ public:
   }
 
   void clear(){
-     password = 0;
-     index = 0;
-   }
+    password = 0;
+    index = 0;
+  }
 
   void save(){
     save(password);
@@ -123,7 +139,6 @@ public:
       add(key);
     }
     return getStatus();
-
   }
 
   void getAsChars(char * tab){
@@ -131,6 +146,42 @@ public:
       tab[i] = getCharAt(i);
     }
   }
+
+  //--------------  Service Password -----------
+
+
+
+  void getServiceChars(char * tab){
+    for (uint8_t i = 0; i < ServicePassLength; i++){
+      tab[i] = keyToChar(servicePasKey[i]);
+    }
+  }
+
+  void clearService(){
+    for (int i = 0; i<ServicePassLength; i++){
+      servicePasKey[i] = Keyboard::Key::NONE;
+    }
+    indexService = 0;
+  }
+
+  Status getServiceStatus(){
+    if (indexService >= ServicePassLength){
+      for (int i = 0; i<ServicePassLength; i++){
+        if (servicePassword[i] != servicePasKey[i]) return Status::FULL;
+      }
+      return Status::MATCH;
+    }
+    return Status::NOT_FULL;
+  }
+
+  Status collectService(Keyboard::Key key){
+    if (key != Keyboard::Key::NONE){
+      addService(key);
+    }
+    return getServiceStatus();
+  }
+
+
 
 };
 

@@ -1,16 +1,13 @@
-src/Silnik24VDC.o: ../src/Silnik24VDC.cpp ../src/Silnik24VDC.h \
- ../src/HBridge.h ../lbdrivers/Gpio.h ../lbdrivers/systemDefs.h \
- ../system/include/cmsis/stm32f0xx.h ../system/include/cmsis/core_cm0.h \
+lbutils/VEprom.o: ../lbutils/VEprom.cpp ../lbutils/VEprom.h \
+ ../lbdrivers/systemDefs.h ../system/include/cmsis/stm32f0xx.h \
+ ../system/include/cmsis/core_cm0.h \
  ../system/include/cmsis/core_cmInstr.h \
  ../system/include/cmsis/cmsis_gcc.h \
  ../system/include/cmsis/core_cmFunc.h \
- ../system/include/cmsis/system_stm32f0xx.h ../src/SilnikNapedu.h
+ ../system/include/cmsis/system_stm32f0xx.h ../lbutils/eeprom.h \
+ ../lbutils/stm32f0xx_flash.h
 
-../src/Silnik24VDC.h:
-
-../src/HBridge.h:
-
-../lbdrivers/Gpio.h:
+../lbutils/VEprom.h:
 
 ../lbdrivers/systemDefs.h:
 
@@ -26,4 +23,6 @@ src/Silnik24VDC.o: ../src/Silnik24VDC.cpp ../src/Silnik24VDC.h \
 
 ../system/include/cmsis/system_stm32f0xx.h:
 
-../src/SilnikNapedu.h:
+../lbutils/eeprom.h:
+
+../lbutils/stm32f0xx_flash.h:

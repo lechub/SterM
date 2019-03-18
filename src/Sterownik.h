@@ -80,7 +80,9 @@ private:
       awaria = false;
     }
 
-    getSilnik()->gotoSafePosition(isAwaria());
+    bool awaria = isAwaria();
+    getSilnik()->gotoSafePosition(awaria);
+    hamulec->gotoSafePosition(awaria);
 
   }
 
@@ -172,6 +174,7 @@ private:
       silnik24VDC->setType1234(false);
       hamulec->setMode(Hamulec::MODE::OFF, false); break;
     }
+    //hamulec->init();
   }
 
 
@@ -338,10 +341,6 @@ public:
     if (enable) setNaped(typNapedu);
     return true;
   }
-
-  //void poll();
-
-  // StanBramy ustalStanBramy();
 
 };
 

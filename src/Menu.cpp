@@ -39,8 +39,11 @@ void Menu::poll(){
     case Keyboard::Key::ENTER:{
       pass.clear();
       goToEkran(EKRAN::e_HASLO);
-      break;
-    }
+    }break;
+    case Keyboard::Key::ENTER_CANCEL:{
+      pass.clearService();
+      goToEkran(EKRAN::e_HASLO_SERWIS);
+    }break;
     case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_WEJSCIA);  break;
     case Keyboard::Key::LEFT: goToEkran(EKRAN::e_FRONT);  break;
     default: break;
@@ -72,20 +75,41 @@ void Menu::poll(){
     case Keyboard::Key::CANCEL: goToEkran(EKRAN::e_MAIN);  break;
     default: break;
     }
-    break;
-  }
-
+  }break;
 
   case e_HASLO:  {
-    if (key == Keyboard::Key::NONE) break;
-    Password::Status stat = pass.collect(key);
-    switch(stat){
-    case Password::Status::MATCH: goToEkran(EKRAN::e_uNAPED); break;
-    case Password::Status::FULL: goToEkran(EKRAN::e_MAIN); break;
+    switch(key){
+    case Keyboard::Key::ENTER:
+    case Keyboard::Key::CANCEL:
+    case Keyboard::Key::LEFT:
+    case Keyboard::Key::RIGHT:{
+      Password::Status stat = pass.collect(key);
+      switch(stat){
+      case Password::Status::MATCH: goToEkran(EKRAN::e_uNAPED); break;
+      case Password::Status::FULL: goToEkran(EKRAN::e_MAIN); break;
+      default: break;
+      }
+    }break;
+    default:  break;
+    }
+  }break;
+
+  case e_HASLO_SERWIS:  {
+    switch(key){
+    case Keyboard::Key::ENTER:
+    case Keyboard::Key::CANCEL:
+    case Keyboard::Key::LEFT:
+    case Keyboard::Key::RIGHT:{
+      Password::Status stat = pass.collectService(key);
+      switch(stat){
+      case Password::Status::MATCH: goToEkran(EKRAN::e_uNOWE_HASLO); break;
+      case Password::Status::FULL: goToEkran(EKRAN::e_MAIN); break;
+      default: break;
+      }
+    }break;
     default: break;
     }
-    break;
-  }
+  }break;
 
   case e_uNAPED:  {
     switch(key){
@@ -311,20 +335,20 @@ void Menu::showEkran(){
     lcd->printXY(0,0, "     WEJSCIA    ");  // przerwa
     lcd->gotoXY(0,1);
     lcd->print("|");  // przerwa
-    lcd->print(pins->gpioInKrancZamkniete.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioInKrancOtwarte.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioInZakazZamykania.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioInZakazOtwierania.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(pins->gpioInKrancZamkniete.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
+    lcd->print(pins->gpioInKrancOtwarte.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
+    lcd->print(pins->gpioInZakazZamykania.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
+    lcd->print(pins->gpioInZakazOtwierania.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
     lcd->print("|");  // przerwa
-    lcd->print(pins->gpioInOtworz.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioInKluczI.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioInKluczII.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioInPozar.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(pins->gpioInOtworz.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
+    lcd->print(pins->gpioInKluczI.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
+    lcd->print(pins->gpioInKluczII.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
+    lcd->print(pins->gpioInPozar.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
     lcd->print("|");  // przerwa
-    lcd->print(pins->gpioInAlarmAkust.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioInSiec230VAC.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioInRezerwa1.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioInRezerwa2.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(pins->gpioInAlarmAkust.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
+    lcd->print(pins->gpioInSiec230VAC.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
+    lcd->print(pins->gpioInRezerwa1.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
+    lcd->print(pins->gpioInRezerwa2.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
     lcd->print("|");  // przerwa
   }
   break;
@@ -334,12 +358,12 @@ void Menu::showEkran(){
     lcd->printXY(0, 0, "     WYJSCIA    ");  // przerwa
     lcd->gotoXY(0,1);
     lcd->print("WY:|");  // przerwa
-    lcd->print(pins->gpioOutZamkniete.getOutput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioOutOtwarte.getOutput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioOutPozar.getOutput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
-    lcd->print(pins->gpioOutRelSprawny.getOutput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(pins->gpioOutZamkniete.getOutput() ? CHAR_OPEN : CHAR_SHORT);
+    lcd->print(pins->gpioOutOtwarte.getOutput() ? CHAR_OPEN : CHAR_SHORT);
+    lcd->print(pins->gpioOutPozar.getOutput() ? CHAR_OPEN : CHAR_SHORT);
+    lcd->print(pins->gpioOutRelSprawny.getOutput() ? CHAR_SHORT : CHAR_OPEN);
     lcd->print("| SA:|");  // przerwa
-    lcd->print(pins->gpioOutSygnAkust.getOutput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(pins->gpioOutSygnAkust.getOutput() ? CHAR_ACTIVE : CHAR_INACTIVE);
     lcd->print("|");  // przerwa
   }
   break;
@@ -350,13 +374,13 @@ void Menu::showEkran(){
     lcd->printXY(0, 0, " KLAW. FRONT    ");  // przerwa
     lcd->gotoXY(0,1);
     lcd->print("kl:");  // przerwa
-    lcd->print(pins->stacyjka.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(pins->stacyjka.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
     lcd->print(" g:");  // przerwa
-    lcd->print(pins->keyUp.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(pins->keyUp.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
     lcd->print(" s:");  // przerwa
-    lcd->print(pins->keyStop.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(pins->keyStop.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
     lcd->print(" d:");  // przerwa
-    lcd->print(pins->keyDown.getInput() ? CHAR_IN_NOACTIVE : CHAR_IN_ACTIVE);
+    lcd->print(pins->keyDown.getInput() ? CHAR_INACTIVE : CHAR_ACTIVE);
   }
   break;
 
@@ -371,6 +395,17 @@ void Menu::showEkran(){
     lcd->printSymbolsWithPattern("    [-----]     ", values, '-');
     break;
   }
+
+  case e_HASLO_SERWIS:  {
+    //---------------->1234567890123456<
+    lcd->printXY(0, 0," HASLO SERWISOWE");  // przerwa
+    //----------------->1234567890123456<
+    char values[Password::ServicePassLength];
+    pass.getServiceChars(values);
+    lcd->gotoXY(0, 1);
+    //--------------------------->1234567890123456<
+    lcd->printSymbolsWithPattern("   [--------]   ", values, '-');
+  }break;
 
   case e_uNAPED:
   {

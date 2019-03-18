@@ -60,30 +60,6 @@ void hBridgePoll(){
   hBridgeSilnik.poll();
 }
 
-//void test(){
-//  HBridge * hb = &hBridgeHamulec;
-//  hb->init();
-//  hb->setPower(HBridge::POWER::HOLD_FLOAT);
-//  hb->poll();
-//  hb->poll();
-//  QuickTask::delayMsWithStoppedTasks(100);
-//  hb->setPower(HBridge::POWER::LeftToRight);
-//  hb->poll();
-//  hb->poll();
-//  QuickTask::delayMsWithStoppedTasks(100);
-//  hb->setPower(HBridge::POWER::HOLD_FLOAT);
-//  hb->poll();
-//  hb->poll();
-//  QuickTask::delayMsWithStoppedTasks(100);
-//  hb->setPower(HBridge::POWER::RightToLeft);
-//  hb->poll();
-//  hb->poll();
-//  QuickTask::delayMsWithStoppedTasks(100);
-//  hb->setPower(HBridge::POWER::HOLD_FLOAT);
-//  hb->poll();
-//  hb->poll();
-//
-//}
 
 ///** Wywolanie metody monitor() */
 //void static inline keyb_callback(){  keys.co10ms(); }
@@ -117,8 +93,6 @@ void main(void) {
 
   QuickTask::delayMsWithStoppedTasks(100);
   VEprom::init();
-
-  //test();
 
   {
     i2cDefs.base = I2C_FOR_LCD;

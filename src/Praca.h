@@ -85,8 +85,6 @@ public:
 
     // wewy->gpioWlaczZasNaped.setOutput(zas24Necessary);
     bool inverterInUse = sterM->isTyp230VAC() && isAwariaSieci230VAC() && moveRequest;
-    wewy->gpioWlaczInwerter.setOutput(inverterInUse);
-    wewy->gpioWlaczBypass.setOutput(inverterInUse);
 
     bool turnBuzzerOn = false;
 
@@ -101,6 +99,8 @@ public:
                 TIME_MOTOR_DELAY_MS;        // bez pozaru, to zwykle opoznienie 0.5 s
             sterM->zatrzymaj();
           }else{
+            wewy->gpioWlaczInwerter.setOutput(inverterInUse);
+            wewy->gpioWlaczBypass.setOutput(inverterInUse);
             sterM->opusc();
             turnBuzzerOn = true;
           }
@@ -119,7 +119,8 @@ public:
             motorDelayMs = TIME_MOTOR_DELAY_MS;
             sterM->zatrzymaj();
           }else{
-            //            if (isOpenedOn230Fail)
+            wewy->gpioWlaczInwerter.setOutput(inverterInUse);
+            wewy->gpioWlaczBypass.setOutput(inverterInUse);
             sterM->podnies();
             turnBuzzerOn = true;
           }
@@ -138,13 +139,6 @@ public:
     if (motorDelayMs > (maxDelay)) motorDelayMs = maxDelay;
 
     sterM->setBuzzer(turnBuzzerOn);
-
-    //    // propagacja sygnału pożarowego
-    //    wewy->gpioOutPozar.setOutput(sterM->isPozar());
-    //
-    //    // sygnalizator akustyczny dziala gdy jest pozar i nie ma sygnalu alarmAkustyczny
-    //    wewy->gpioOutSygnAkust.setOutput((!sterM->isAlarmAkustyczny())&&(sterM->isPozar()));
-
 
     checkLEDs();
 

@@ -21,8 +21,10 @@ class Menu {
 
 public:
 
-  static constexpr char CHAR_IN_ACTIVE = '*';
-  static constexpr char CHAR_IN_NOACTIVE = '-';
+  static constexpr char CHAR_ACTIVE = '*';
+  static constexpr char CHAR_INACTIVE = '-';
+  static constexpr char CHAR_SHORT = 'Z';
+  static constexpr char CHAR_OPEN = 'O';
 
   /*
    * e_START
@@ -42,6 +44,7 @@ public:
     e_WYJSCIA,
     e_FRONT,
     e_HASLO,
+    e_HASLO_SERWIS,
     e_uNAPED,
     e_uNAPED_USTAW,
     e_uRESET_LICZNIKA,
