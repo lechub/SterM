@@ -125,44 +125,44 @@ public:
   }
 
   static void setupFromClone(GPIO_TypeDef* gpioRegDest, uint8_t pinDest, GPIO_TypeDef* gpioRegSrc, uint8_t pinSrc){
-      setMODE(gpioRegDest, pinDest, getMode(gpioRegSrc, pinSrc));
-      setOType(gpioRegDest, pinDest, getOType(gpioRegSrc, pinSrc));
-      setPullUpDn(gpioRegDest, pinDest, getPull(gpioRegSrc, pinSrc));
-      setSpeed(gpioRegDest, pinDest, getSpeed(gpioRegSrc, pinSrc));
-    }
+    setMODE(gpioRegDest, pinDest, getMode(gpioRegSrc, pinSrc));
+    setOType(gpioRegDest, pinDest, getOType(gpioRegSrc, pinSrc));
+    setPullUpDn(gpioRegDest, pinDest, getPull(gpioRegSrc, pinSrc));
+    setSpeed(gpioRegDest, pinDest, getSpeed(gpioRegSrc, pinSrc));
+  }
 
   static bool setAlternateFunc(GPIO_TypeDef* gpioReg, uint8_t pin, uint8_t alternateFunction){
-      if (alternateFunction > 7) return false;
-      constexpr uint32_t BitMask = 0b00111; // najstarszy zarezerwowany
-      uint32_t val = alternateFunction;
-      if (pin < 8){
-        uint8_t offset = uint8_t(pin * 4);
-        uint32_t tmp = gpioReg->AFR[0];
-        tmp &= ~(BitMask << offset);
-        tmp |= val << offset;
-        gpioReg->AFR[0] = tmp;
-      }
-      if ((pin >= 8)&&(pin < 16)){
-        uint8_t offset = uint8_t((pin - 8) * 4);
-        uint32_t tmp = gpioReg->AFR[1];
-        tmp &= ~(BitMask << offset);
-        tmp |= val << offset;
-        gpioReg->AFR[1] = tmp;
-      }
-      return true;
+    if (alternateFunction > 7) return false;
+    constexpr uint32_t BitMask = 0b00111; // najstarszy zarezerwowany
+    uint32_t val = alternateFunction;
+    if (pin < 8){
+      uint8_t offset = uint8_t(pin * 4);
+      uint32_t tmp = gpioReg->AFR[0];
+      tmp &= ~(BitMask << offset);
+      tmp |= val << offset;
+      gpioReg->AFR[0] = tmp;
     }
+    if ((pin >= 8)&&(pin < 16)){
+      uint8_t offset = uint8_t((pin - 8) * 4);
+      uint32_t tmp = gpioReg->AFR[1];
+      tmp &= ~(BitMask << offset);
+      tmp |= val << offset;
+      gpioReg->AFR[1] = tmp;
+    }
+    return true;
+  }
 
   static inline uint8_t getAlternativeFunc(GPIO_TypeDef* gpioReg, uint8_t pin){
-     constexpr uint32_t BitMask = 0b00111;
-     uint32_t tmp = 0;
-     if (pin < 8){
-       tmp = (gpioReg->AFR[0]) >> (pin * 4);
-     }
-     if ((pin >= 8)&&(pin < 16)){
-       tmp = (gpioReg->AFR[1]) >> ((pin - 8) * 4);
-     }
-     return uint8_t(tmp  & BitMask);
-   }
+    constexpr uint32_t BitMask = 0b00111;
+    uint32_t tmp = 0;
+    if (pin < 8){
+      tmp = (gpioReg->AFR[0]) >> (pin * 4);
+    }
+    if ((pin >= 8)&&(pin < 16)){
+      tmp = (gpioReg->AFR[1]) >> ((pin - 8) * 4);
+    }
+    return uint8_t(tmp  & BitMask);
+  }
 
 
   //***********************************************
@@ -204,25 +204,6 @@ public:
     return getOType(gpio, pinNr);
   }
 
-  Gpio(GPIO_TypeDef * gpioDef, uint8_t pin_Nr){
-    gpio = gpioDef;
-    pinNr = pin_Nr;
-    setMODE(GpioMode::ANALOG);  // for power save
-    setPullUpDn(GpioPuPd::NoPull);
-    setSpeed(GpioSpeed::LowSpeed);
-    setOType(GpioOType::OpenDrain);
-  }
-
-  Gpio(GPIO_TypeDef * gpioDef, const uint8_t pin_Nr, GpioMode mode, GpioOType oType, GpioPuPd pupd, GpioSpeed speed){
-    gpio = gpioDef;
-    pinNr = pin_Nr;
-    setMODE(mode);
-    setOType(oType);
-    setPullUpDn(pupd);
-    setSpeed(speed);
-  }
-
-
   inline void setOutputUp(){
     setOutputUp(gpio, pinNr);
   }
@@ -248,7 +229,7 @@ public:
   }
 
 
-  void setup(GpioMode mode, GpioOType oType, GpioPuPd pupd, GpioSpeed speed){
+  inline void setup(GpioMode mode, GpioOType oType, GpioPuPd pupd, GpioSpeed speed){
     setMODE(mode);
     setOType(oType);
     setPullUpDn(pupd);
@@ -263,50 +244,27 @@ public:
     return setAlternateFunc(gpio, pinNr, alternateFunction);
   }
 
- inline uint8_t getAlternativeFunc(){
-   return getAlternativeFunc(gpio, pinNr);
- }
+  inline uint8_t getAlternativeFunc(){
+    return getAlternativeFunc(gpio, pinNr);
+  }
+
+  inline void mutate(GPIO_TypeDef * gpioDef, uint8_t pin_Nr){
+    gpio = gpioDef;
+    pinNr = pin_Nr;
+  }
 
 
-//  void setupFromClone(Gpio * dolly){
-//    setMODE(dolly->getMode());
-//    setOType(dolly->getOType());
-//    setPullUpDn(dolly->getPull());
-//    setSpeed(dolly->getSpeed());
-//  }
-//
-//  bool setAlternateFunc(uint8_t alternateFunction){
-//    if (alternateFunction > 7) return false;
-//    constexpr uint32_t BitMask = 0b00111; // najstarszy zarezerwowany
-//    uint32_t val = alternateFunction;
-//    if (pinNr < 8){
-//      uint8_t offset = uint8_t(pinNr * 4);
-//      uint32_t tmp = gpio->AFR[0];
-//      tmp &= ~(BitMask << offset);
-//      tmp |= val << offset;
-//      gpio->AFR[0] = tmp;
-//    }
-//    if ((pinNr >= 8)&&(pinNr < 16)){
-//      uint8_t offset = uint8_t((pinNr - 8) * 4);
-//      uint32_t tmp = gpio->AFR[1];
-//      tmp &= ~(BitMask << offset);
-//      tmp |= val << offset;
-//      gpio->AFR[1] = tmp;
-//    }
-//    return true;
-//  }
-//
-// inline uint8_t getAlternativeFunc(){
-//   constexpr uint32_t BitMask = 0b00111;
-//   uint32_t tmp = 0;
-//   if (pinNr < 8){
-//     tmp = (gpio->AFR[0]) >> (pinNr * 4);
-//   }
-//   if ((pinNr >= 8)&&(pinNr < 16)){
-//     tmp = (gpio->AFR[1]) >> ((pinNr - 8) * 4);
-//   }
-//   return uint8_t(tmp  & BitMask);
-// }
+  Gpio(GPIO_TypeDef * gpioDef, uint8_t pin_Nr)noexcept : gpio(gpioDef), pinNr(pin_Nr) {
+
+    setup(GpioMode::ANALOG, GpioOType::OpenDrain, GpioPuPd::NoPull, GpioSpeed::LowSpeed);
+  }
+
+  Gpio(GPIO_TypeDef * gpioDef, const uint8_t pin_Nr, GpioMode mode, GpioOType oType, GpioPuPd pupd, GpioSpeed speed){
+    gpio = gpioDef;
+    pinNr = pin_Nr;
+    setup(mode, oType, pupd, speed);
+  }
+
 
 };
 
@@ -318,7 +276,6 @@ extern "C" {
 #endif
 //----------------------------------------------------
 
-//void gpio_init(void);
 //----------------------------------------------------
 #ifdef __cplusplus
 }

@@ -16,6 +16,7 @@
 #include "Silnik24VDC.h"
 #include "VEprom.h"
 #include "Praca.h"
+#include "RS485.h"
 
 // ----------------------------------------------------------------------------
 
@@ -51,6 +52,10 @@ Praca *praca = &job;
 
 Menu menu = Menu();
 
+//RS485::InitStruct rsIS = { USART1, RS485::USART_DEFAULT_BAUD_RATE};
+
+RS485 comZB40 = RS485();
+RS485 comAux = RS485();
 
 /***
  * procedura sterowania mostkami H. docelowo przenieść do przerwania (co 200us)
@@ -70,9 +75,7 @@ void hBridgePoll(){
 // periodycznie wykonywana funkcja monitor() opakowana w aku_callback()
 QuickTask hBridgeQtsk(QuickTask::QT_PERIODIC, hBridgePoll, HBridge::TIME_POLL_PERIOD_MS);
 
-//RS485::InitStruct rsIS = { USART1, &rsRx, &rsTx, &rsDir,  RS485::USART_DEFAULT_BAUD_RATE};
-//
-//RS485 rs485 = RS485();
+
 
 // ----- main() ---------------------------------------------------------------
 
@@ -118,13 +121,14 @@ void main(void) {
   sterM->init();
   praca->init();
 
+  comZB40.setup(USART2, RS485::USART_DEFAULT_BAUD_RATE);
+  comAux.setup(USART1, RS485::USART_DEFAULT_BAUD_RATE);
+
   hmi->menu->goToEkran(Menu::EKRAN::e_INIT);
   QuickTask::hold(false);
   do{
     Hardware::WDOG_Reload();          // przeladowanie Watch-doga
     QuickTask::poll();                // przegląd i uruchamianie tasków
-    //komunikacja();  // w tle, bez opoznien
-
   } while (true);     // do konca swiata
 }
 

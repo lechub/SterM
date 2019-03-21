@@ -12,23 +12,28 @@
 //USART_TypeDef * usartReg;
 
 RS485 * RS485::rs485OnUSART1 = nullptr;
+RS485 * RS485::rs485OnUSART2 = nullptr;
 
+void setupToUsart(GPIO_TypeDef * gpio, uint8_t pin, uint8_t alternateFunc){
+  Gpio::setup(gpio, pin, Gpio::GpioMode::ALTERNATE, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::MaximumSpeed);
+  Gpio::setAlternateFunc(gpio, pin, alternateFunc);
+}
 
-void RS485::setup(InitStruct * iStr){
-  if(iStr->usart == USART1){
-    halfDuplexUsart.setup(iStr->usart, iStr->rs485Dir);
+void RS485::setup(USART_TypeDef * usartRegisters, uint32_t baudRate){
+  USART_TypeDef * usart = usartRegisters;
+  if(usart == USART1){
     rs485OnUSART1 = this;
+    setupToUsart(GPIOB, 6, 0x00);
+    setupToUsart(GPIOB, 7, 0x00);
+  }else if (usart == USART2){
+    rs485OnUSART2 = this;
+    setupToUsart(GPIOD, 6, 0x00);
+    setupToUsart(GPIOD, 5, 0x00);
   }else{
     while(true){;} // error - niewlasciwy USART
   }
 
-  iStr->rs485Rx->setup(Gpio::GpioMode::ALTERNATE, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::MaximumSpeed);
-  iStr->rs485Rx->setAlternateFunc(0x01);  //
-  iStr->rs485Tx->setup(Gpio::GpioMode::ALTERNATE, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::MaximumSpeed);
-  iStr->rs485Tx->setAlternateFunc(0x01);  //
-  iStr->rs485Dir->setup(Gpio::GpioMode::OUTPUT, Gpio::GpioOType::PushPull, Gpio::GpioPuPd::NoPull, Gpio::GpioSpeed::MaximumSpeed);
-  //getHDUsart()->rs485Dir = iStr->rs485Dir;
-
+  getHDUsart()->setup(usart);
   getHDUsart()->setMode(MODE_WAITING);
 
 
@@ -40,22 +45,29 @@ void RS485::setup(InitStruct * iStr){
    * */
 
   RCC_TypeDef * rcc = RCC;
-  rcc->CFGR3 =  (RCC->CFGR3 & ~RCC_CFGR3_USART1SW) | RCC_CFGR3_USART1SW_0; // 0b01 - SYSCLK
-  rcc->APB2ENR |= RCC_APB2ENR_USART1EN;
-  NVIC_SetPriority (USART1_IRQn, (1UL << __NVIC_PRIO_BITS) - 1UL); /* set Priority for Systick Interrupt */
-  NVIC_EnableIRQ(USART1_IRQn);
 
-  USART_TypeDef * usart = getHDUsart()->getRegs();
+  if(usart == USART1){
+    rcc->CFGR3 =  (RCC->CFGR3 & ~RCC_CFGR3_USART1SW) | RCC_CFGR3_USART1SW_0; // 0b01 - SYSCLK
+    rcc->APB2ENR |= RCC_APB2ENR_USART1EN;
+    NVIC_SetPriority (USART1_IRQn, (1UL << __NVIC_PRIO_BITS) - 1UL); /* set Priority for Systick Interrupt */
+    NVIC_EnableIRQ(USART1_IRQn);
+  }else if(usart == USART1){
+    rcc->CFGR3 =  (RCC->CFGR3 & ~RCC_CFGR3_USART2SW) | RCC_CFGR3_USART2SW_0; // 0b01 - SYSCLK
+    rcc->APB1ENR |= RCC_APB1ENR_USART2EN;
+    NVIC_SetPriority (USART2_IRQn, (1UL << __NVIC_PRIO_BITS) - 1UL); /* set Priority for Systick Interrupt */
+    NVIC_EnableIRQ(USART2_IRQn);
+  }
+
 
   CLEAR_BIT(usart->CR1, USART_CR1_UE); // disable USART
   usart->CR1 = 0
-//      |USART_CR1_TXEIE
-//      |USART_CR1_TCIE
+      //      |USART_CR1_TXEIE
+      //      |USART_CR1_TCIE
       |USART_CR1_RXNEIE
       |USART_CR1_TE
       |USART_CR1_RE
       ;
-  usart->BRR = SystemCoreClock / iStr->baudRate;
+  usart->BRR = uint16_t(SystemCoreClock / baudRate);
 
   usart->CR2 = 0;
   usart->CR3 = 0
@@ -65,14 +77,13 @@ void RS485::setup(InitStruct * iStr){
   SET_BIT(usart->CR1, USART_CR1_UE); // enable USART
   SET_BIT(usart->CR1, USART_CR1_RE); // enable READ
 
-
 }
 
 
 
 
 inline void usartHandler(RS485::HalfDuplexUsart * hdUsart){
-  //  RS485::DataStruct ds = data;
+
   USART_TypeDef * usart = hdUsart->getRegs();
 
   uint32_t isr = usart->ISR;
@@ -120,6 +131,10 @@ void USART1_IRQHandler(void){
   usartHandler(hdu->getHDUsart());
 }
 
+void USART2_IRQHandler(void){
+  RS485 * hdu = RS485::rs485OnUSART2;
+  usartHandler(hdu->getHDUsart());
+}
 
 bool RS485::canPut(void){
   if (getHDUsart()->getMode() != RS485::Mode::MODE_TX ){
