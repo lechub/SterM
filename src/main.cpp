@@ -70,6 +70,9 @@ void hBridgePoll(){
 // periodycznie wykonywana funkcja monitor() opakowana w aku_callback()
 QuickTask hBridgeQtsk(QuickTask::QT_PERIODIC, hBridgePoll, HBridge::TIME_POLL_PERIOD_MS);
 
+//RS485::InitStruct rsIS = { USART1, &rsRx, &rsTx, &rsDir,  RS485::USART_DEFAULT_BAUD_RATE};
+//
+//RS485 rs485 = RS485();
 
 // ----- main() ---------------------------------------------------------------
 

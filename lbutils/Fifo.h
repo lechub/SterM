@@ -23,8 +23,8 @@ protected:
 	volatile	uint8_t *bufor;	///< Przechowalnia bajtow, czyli bufor bajtow
 
 public:
-	const uint32_t BUFFER_EMPTY_FLAG_U32 = 0xffffff00;	///< flaga pustego bufora dla wartosci 16-bitowej
-	const uint16_t BUFFER_EMPTY_FLAG_U16 = 0xff00;		///< flaga pustego bufora dla wartosci 8-bitowej
+	static constexpr uint32_t BUFFER_EMPTY_FLAG_U32 = 0xffffff00;	///< flaga pustego bufora dla wartosci 16-bitowej
+	static constexpr uint16_t BUFFER_EMPTY_FLAG_U16 = 0xff00;		///< flaga pustego bufora dla wartosci 8-bitowej
 	Fifo(uint8_t *buforb, uint32_t size);				///< konstruktor musi otrzymac dane bufora
 
 	/** ***************************************************************

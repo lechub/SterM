@@ -1,6 +1,27 @@
 
-1. Opóźnienie dla sterownania mostków, po włączeniu przekaźnika zasilania 24V
+ToDo:
+- łączność z KBZB-40 - szczególnie sygnalizacja braku sieci
+- detekcja przeciążenia napędu - zrealizować w przerwaniu 
+- dodać parametr maksymalny czas podnoszenia/opadniecia kurtyny i sygnalizację alarmu
+- dodać test obecności napędu + awaria
+- rozszerzyć detekcję awarii - na przeciążenie, brak napędu, przekroczenie czasu podnoszenia/opadania
+- implementacja zegara RTC 
+- dodać obsługę portu szeregowego + opracowac protokół łączności.
+- implemetacja rejestru zdarzeń
 
-2. PWM dla mostka - soft-start.
+Wykonane zmiany:
 
+2019.03.xx Opóźnienia przy włączaniu kluczy mostka H. 
+			Wyłączenie:
+				1. wyłączenie kluczy L (wyłączenie PWM-a) 
+				2. odczekanie na zmianę stanu L 
+				3. wyłączenie kluczy H
+				4. Odczekanie na zmianę stanu H
+			Włączenie (po uprzednim wyłączeniu):
+				1. włączenie klucza H 
+				2. odczekanie na zmianę stanu H 
+				3. włączenie klucza L (włączenie PWM-a) 
+
+2019.03.xx PWM dla mostka - soft-start.
+2019.03.xx Wprowadzono hasło serwisowe "BB<<>>EE".
 
