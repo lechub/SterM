@@ -9,7 +9,8 @@
 #include "Hardware.h"
 #include "systemDefs.h"
 
-//USART_TypeDef * usartReg;
+void setupToUsart(GPIO_TypeDef * gpio, uint8_t pin, uint8_t alternateFunc);
+
 
 RS485 * RS485::rs485OnUSART1 = nullptr;
 RS485 * RS485::rs485OnUSART2 = nullptr;

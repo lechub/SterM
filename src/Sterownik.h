@@ -80,9 +80,9 @@ private:
       awaria = false;
     }
 
-    bool awaria = isAwaria();
-    getSilnik()->gotoSafePosition(awaria);
-    hamulec->gotoSafePosition(awaria);
+    bool aw = isAwaria();
+    getSilnik()->gotoSafePosition(aw);
+    hamulec->gotoSafePosition(aw);
 
   }
 

@@ -1,0 +1,150 @@
+
+Protokol KABE
+Protokol sluzy do komunikacji pomiedzy urzadzeniami(modulami) w systemach mikroprocesorowych.
+Protokol jest bajtowy, dane przesylane sa w ramkach o zmiennej dlugosci, umozliwa jest komunikacja w trybie half duplex lub full duplex.
+
+
+1. Budowa ramki - warstwa 1
+Ramka sklada sie zawsze z bajtow:
+SOF	- czyli StartOfFrame (0xAA)- jest to znacznik poczatku ramki. Wszystkie odbiorniki w stanie oczekiwania na poczatek ramki czekaja na ten bajt
+.	\
+.	 \
+.      dane  - tresc ramki stanowi warstwe 2 (ramka_2)
+.	 /
+.	/
+EOF	- czyki EndOfFrame (0xAB) - znacznik konca ramki ()
+
+W dloku "dane" nie dopuszcza sie wystapienia znakow SOF albo EOF. Dane o tych wartosciach sa kodowane na dwoch innych znakach,
+z ktorych pierwszy to ESC - rowniez znak specjalny. Wystapienie w danych bajtu o wartosci ESC rowniez jest kodowane na dwoch bajtach z ktorych pierwszys to ESC.
+Tabela kodowania i dekodowania znakow:
+-----------------------------
+|Nazwa |wartosc |Zakodowane | 
+|----------------------------
+|SOF   |0xAA    | 0xAC 0x01 | - czyli "ESC 0x01"
+|EOF   |0xAB    | 0xAC 0x02 | - podobnie ale "ESC 0x02"
+|ESC   |0xAC    | 0xAC 0x03 | - j.w.
+-----------------------------
+
+2. Budowa ramki - warstwa 2
+Warstwa 2 definiuje sposob interpretacji danych sterujacych ramki ramka_2.
+Ramka_2 sklada sia z nastepujacych czesci:
+<HEADER> <STRCT> <trescW2> <suma CRC>
+gdzie:
+HEADER     - jeden lub wiecej bajtow opisujacych strukture ramki i decydujacy o jej interpretacji
+STRCT      - bajty struktury ramki
+trescW2    - zawartosc ramki - od 0 do 254 bajtow
+suma CRC   - opcjonalna suma CRC na 1 lub 4 bajtach liczona poczawszy od HEADER i skonczywszy na trescW2
+ 
+Najmniejsza ramka razem z bajtami warstwy 1 sklada sie z 3 bajtow: <SOF> <DESCR> <EOF>
+
+2.1 Bajty opisu ramki (HEADER)
+W zaleznosci od tego bajtu, tresc ramki warstwy 2 moze miec rozna interpretacje kolejnych bajtow.
+Kazdy znacznik interpretuje istnienie kolejnych bajtow poczawszy od pierwszego, tylko suma CRC znajduje sie zawsze na koncu.
+Opis pierwszego bajtu HEADER(reszta na razie niezdefiniowana):
+bit 0	NEXT	-> 1 - bedzie drugi bajt HEADER (obecnie nieuzywany) / 0 - tylko 1 bajt HEADER (aktualny) 
+bit 1	ADRO	-> 1 - bedzie adres odbiorcy / 0 - brak (ramka moze byc bez adresu! Odbierac beda wszyscy)
+bit 2   ADRN	-> 1 - bedzie adres nadawcy / 0 - brak (jesli master wysle ramke bez swojego adresu, to otrzymaja ja wszyscy na magistrali)
+bit 3 i 4	DL_CRC	->  - dlugosc danych i CRC w ramce - dwa bity
+	00	- bez CRC i bez okreslenia dlugosci ramki. Ramke limituje znak EOF z wartwy nizszej
+	01	- bedzie dlugosc ramki 1 bajt, bez sumy CRC
+	10	- bedzie dlugosc ramki 1 bajt, suma CRC 1 bajtowa za trescia 
+	11	- bedzie dlugosc ramki 1 bajt, suma CRC 4 bajtowa za trescia
+bit 5	KONTYN	-> 1 - to jest kontynuacja ciagu danych - wtedy nie trzeba powtarzac adresow - bedzie 1 bajt numeru ramki/ 0 - nowa ramka, bez numeru
+bit 6	ACKEX	-> 1 - ramka z odpowiedzia (odpowiedz na bicie POZ_NEG)/ 0 - zwykla ramka (POZ_NEG nie ma znaczenia)
+bit 7	POZ_NEG	-> 1 - potwierdzenie pozytywne OK / 0 - potwierdzenie negatywne BLAD	- mozna uzywac do potwierdzenia przyjecia ramki itp.
+
+Za bajtami HEADER sa opcjonalnie dane struktury ramki, oznaczone w naglowku:
+- nastepny bajt HEADER, ADRES, ADRN...
+Uwaga: Tylko dwa ostatnie bity (ACKEX, POZ_NEG) nie maja znaczenia dla rozmiaru ramki!
+Uwaga2: Są trzy adresy o specjalnym znaczeniu, ktorych nie nalezy nadawac w innym kontekscie:
+ 0x00 - domyslnie adres mastera, czyli kontrolera podsieci
+ 0xFE - domyslny adres nadawany urzadzeniom w trakcie produkcji - identyfikowany jako "brak unikalnego adresu" - zmieniany bedzie w trakcie procedury nadawania adresow
+ 0xFF - adres broadcast - odbierany i interpretowany przez wszytkich
+
+3. Budowa ramki - warstwa 3
+Warstwa 3 stanowi czesc danych, ktore w warstwie 2 oznaczone byly jako "trescW2".
+Warstwa ta okresla podstawowe operacje wykonywane przez urzadzenia.
+Kolejne bajty ramki tej warstwy maja nastepujace znaczenie:
+bajt 1 - operacja	-
+	0x01	- READ			- odczyt 1 bajtu
+	0x02	- WRITE			- zapis 1 bajtu
+	0x03	- READBLOCK		- odczyt bloku danych
+	0x04	- WRITEBLOCK	- zapis bloku danych
+	
+	0x05	- ANSWER		- odpowiedz na ramke - przy wysylaniu danych do mastera
+
+	0x06	- READSTRING 	- odczyt ciagu bajtow
+	0x07	- WRITESTRING 	- zapis ciagu bajtow
+
+	0x10	- ASSIGN 		- wejscie w procedure nadawania adresu (procedura do opracowania)
+
+	0x63	- PRESENT_CHECK
+	0x64	- PRESENT_ACK
+	
+Operacje odczytu i zapisu operuja na wirtualnych pamieciach, ktorych mapowanie musi zapewnic procedura odczytu/zapisu.
+W zaleznosci od typu urzadzenia mapowanie pamieci moze byc inne, jednak poczatek powinien byc taki sam dla wszystkich urzadzen:
+Kazdy z bajtow tej pamieci moze byc odczytany - natomiast zapis mozliwy jest tylko dla bajtow dozwolonych do zapisu.  
+Proba odczytu lub zapisu w obszarze, ktory nie zawiera mapowanych danych powinna generowac ostrzezenie (np. negatywne potwierdzenie w odpowiedzi).
+
+operacja odczytu 1 bajtu ma skladnie:
+<READ> <INDEX>
+gdzie:
+INDEX jest bajtem (wskaznikiem) do bajtu odczytywanego.
+Odpowiedz: <ANSWER> <BYTE>
+
+
+operacja zapisu 1 bajtu ma skladnie:
+<WRITE> <INDEX> <DANE>
+gdzie:
+INDEX jest bajtem (wskaznikiem) do zapisu, DANE to wartoc bajtu do zapisu
+Odpowiedz: jesli w ramce mastera byl bit ACKEX, to nalezy zwrocic ACKEX i odpowiednio ustawiony POZ_NEG
+w przeciwnym wypadku nie wysylac nic
+
+
+operacja odczytu wielu bajtow ma skladnie:
+<READBLOCK> <INDEX> <LENGTH>
+gdzie:
+INDEX jest pierwszym bajtem do odczytu, LENGTH - ilosc bajtow do odczytu/zapisu.
+Odpowiedz: 
+<ANSWER> <DANE>; gdzie DANE to oczekiwany ciag bajtow.
+
+operacja odczytu i zapisu wielu bajtow ma skladnie:
+<WRITEBLOCK> <INDEX> <LENGTH> <DANE>
+gdzie:
+INDEX jest pierwszym bajtem do zapisu, LENGTH - ilosc bajtow do odczytu/zapisu.
+Odpowiedz: jesli w ramce mastera byl bit ACKEX, to nalezy zwrocic ACKEX i odpowiednio ustawiony POZ_NEG
+w przeciwnym wypadku nie wysylac nic
+
+4. Obszary indeksow
+Kazde urzadzenie (w szczegolnosci typu slave) udostepnia do odczytu i/lub zapisu danych obszar zmiennych:
+ - bajtowych nazwanych indeksami. Operuja na tym obszarze operacje READ, WRITE, READBLOCK i WRITEBLOCK.
+ - ciagow tekstowych nazwanych indeksami tekstowymi lub "stringami". Do operacji na tych obszarach sluza polecenia READSTRING i WRITESTRING ze wzgledu na ograniczenie protokolu nie przewiduje sie stringow o dlugosci wiekszej niz 255
+
+Kazdy z powyzszych obszarow moze posiadac maksymalnie 254 pola, wiec mozna zaadresowac 255 bajtow i/lub 255 ciagi tekstowe o dlugosci 255 bajtow kazdy (w teorii)
+Pierwsze 10 adresow dla indeksow tak bajtowych jak i tekstowych ma predefinowane znaczenie:
+Dla indeksow bajtowych:
+		INDEX_PKKB_STATUS	= 0,	// Status protokolu PKKB
+		INDEX_ERROR 		= 1,	// Ostatni niezatwierdzony blad protokolu PKKB
+		INDEX_PKKB_MODE 	= 2,	// tryb pracy protokolu PKKB (dla celow diagnostycznych protokolu)
+		INDEX_ADRES 		= 3,	// Adres urzadzenia. Zmiana poprzez procedure nadawania adresu lub zapis po odblokowaniu tego obszaru
+		INDEX_DEVICE_TYPE 	= 4,	// Typ urzadzenia - jeden z wymienionych w enumeracji DeviceType
+		INDEX_DEVICE_SUBTYPE = 5,	// Podtyp - zalezny od urzadzenia lub 0
+		INDEX_HEADER_COPY 	= 6,	// kopia ostatniego naglowka PKKB
+		INDEX_UNUSED7 		= 7,	// chwilowo nieuzywany
+		INDEX_UNUSED8 		= 8,	// chwilowo nieuzywany
+		INDEX_UNUSED9 		= 9,	// chwilowo nieuzywany
+		INDEX_DATA 			= 10	// od tego indeksu zaczynaja sie indeksy specyficzne dla kazdego urzadzenia
+		
+Dla indeksow tekstowych:
+		STR_NAME = 0,			// Nazwa urzadzenia, np. KBZB-38
+		STR_DESCRIPTION = 1,	// Rozwiniecie nazwy np. "Zasilacz buforowy do urz. ppoz."
+		STR_DESCR2 = 2,			// j.w.
+		STR_COMPANY = 3,		// Nazwa firmy
+		STR_COMPANY2 = 4,		// c.d. nazwy
+		STR_VERSION = 5,		// wersja urzadzenia
+		STR_AUTHOR = 6,			// autor urzadzenia/programu... 
+		STR_UNUSED7 = 7,		// chwilowo nieuzywany
+		STR_UNUSED8 = 8,		// chwilowo nieuzywany
+		STR_UNUSED9 = 9,		// chwilowo nieuzywany
+		STR_DATA = 10			// tu zaczynaja sie dalsze stringi, juz specyficzne dla konkretnego urzadzenia
+	

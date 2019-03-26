@@ -39,7 +39,7 @@ public:
     type1234 = enable;
   }
 
-  void setMove(MOVE newMove){
+  virtual void setMove(MOVE newMove){
     if (safePosition) newMove = MOVE::FLOAT;
     move = newMove;
     if (type1234){

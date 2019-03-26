@@ -31,20 +31,8 @@ public:
   }Mode;
 
 
-//  typedef struct{
-//    USART_TypeDef * usart;
-//    //Gpio *rs485Rx;
-//    //Gpio *rs485Tx;
-//    //Gpio *rs485Dir;
-//    uint32_t baudRate;
-//  }InitStruct;
-
 public:
   class HalfDuplexUsart{
-  public:
-    Fifo* getFifo()  {
-      return &fifoRxTx;
-    }
   private:
     volatile Mode  mode = Mode::MODE_WAITING;
   protected:
@@ -53,6 +41,13 @@ public:
     uint8_t bufRxTx[USART_DEFAULT_BUFFER_SIZE];
     Fifo  fifoRxTx = Fifo(bufRxTx, USART_DEFAULT_BUFFER_SIZE);
   public:
+
+    HalfDuplexUsart()noexcept {}
+
+    Fifo* getFifo()  {
+      return &fifoRxTx;
+    }
+
     void setup(USART_TypeDef * registers){
       usart = registers;
       if (registers == USART1){
@@ -103,6 +98,15 @@ public:
   bool canPut(uint32_t nrOfBytes);
 
   bool canGet(void);
+
+  inline void flush(){
+    getHDUsart()->getFifo()->flush();
+  }
+
+  inline bool isEmpty(){
+    return getHDUsart()->getFifo()->isEmpty();
+  }
+
 
   // zwraca BUFFER_EMPTY_FLAG_U16 jesli bufor jest pusty lub znak na 1 bajcie
   uint16_t get(void);

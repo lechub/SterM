@@ -25,7 +25,7 @@ protected:
 
 public:
 
-  virtual inline void setMove(MOVE newMove) = 0;
+  virtual void setMove(MOVE newMove) = 0;
   virtual inline MOVE getMove() const{
     return move;
   }

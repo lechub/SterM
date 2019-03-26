@@ -41,7 +41,7 @@ public:
     gpioOtworz->setOutputDown();
   }
 
-  void setMove(MOVE newMove){
+  virtual void setMove(MOVE newMove){
     if (safePosition) newMove = MOVE::FLOAT;
     move = newMove;
     switch (move){

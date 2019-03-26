@@ -16,7 +16,8 @@
 #include "Silnik24VDC.h"
 #include "VEprom.h"
 #include "Praca.h"
-#include "RS485.h"
+#include "ConnectionZB40.h"
+#include "ConnectionAux.h"
 
 // ----------------------------------------------------------------------------
 
@@ -54,8 +55,20 @@ Menu menu = Menu();
 
 //RS485::InitStruct rsIS = { USART1, RS485::USART_DEFAULT_BAUD_RATE};
 
-RS485 comZB40 = RS485();
-RS485 comAux = RS485();
+RS485 rsZB40 = RS485();
+RS485 rsAux = RS485();
+
+ConnectionZB40 conZB40 = ConnectionZB40(&rsZB40);
+ConnectionAux conAux = ConnectionAux(&rsAux);
+
+///** realizacja komunikacji ZB-40 i zewnętrznej */
+void static inline rs485_callback(){
+  conZB40.poll();
+  conAux.poll();
+}
+
+//// periodycznie wykonywana funkcja rs485_callback() opakowana w aku_callback()
+QuickTask connectQtsk(QuickTask::QT_PERIODIC, rs485_callback, 13);
 
 /***
  * procedura sterowania mostkami H. docelowo przenieść do przerwania (co 200us)
@@ -66,11 +79,6 @@ void hBridgePoll(){
 }
 
 
-///** Wywolanie metody monitor() */
-//void static inline keyb_callback(){  keys.co10ms(); }
-
-//// periodycznie wykonywana funkcja monitor() opakowana w aku_callback()
-//QuickTask keybQtsk(QuickTask::QT_PERIODIC, keyb_callback, Keyboard::TIME_PERIOD_KEYB_MS);
 
 // periodycznie wykonywana funkcja monitor() opakowana w aku_callback()
 QuickTask hBridgeQtsk(QuickTask::QT_PERIODIC, hBridgePoll, HBridge::TIME_POLL_PERIOD_MS);
@@ -121,11 +129,11 @@ void main(void) {
   sterM->init();
   praca->init();
 
-  comZB40.setup(USART2, RS485::USART_DEFAULT_BAUD_RATE);
-  comAux.setup(USART1, RS485::USART_DEFAULT_BAUD_RATE);
+  rsZB40.setup(USART2, RS485::USART_ZB40_BAUD_RATE);
+  rsAux.setup(USART1, RS485::USART_DEFAULT_BAUD_RATE);
 
   hmi->menu->goToEkran(Menu::EKRAN::e_INIT);
-  QuickTask::hold(false);
+  QuickTask::hold(false);   // uruchomienie QuickTask-ów
   do{
     Hardware::WDOG_Reload();          // przeladowanie Watch-doga
     QuickTask::poll();                // przegląd i uruchamianie tasków

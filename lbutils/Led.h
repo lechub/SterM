@@ -33,7 +33,7 @@ public:
   //    ticks = 0;
   //  }
 
-  Led(GPIO_TypeDef* gpioPtr, uint8_t pin_Nr):Gpio(gpioPtr, pin_Nr){
+  Led(GPIO_TypeDef* gpioPtr, uint8_t pin_Nr) noexcept :Gpio(gpioPtr, pin_Nr){
     preinit();
   }
 
