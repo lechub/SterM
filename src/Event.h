@@ -34,6 +34,23 @@ public:
     : name(eventName), value(0), enumNr(enumValNr), priority(pri) {
   }
 
+  inline bool isActive()const {
+    return value != 0;
+  }
+
+  inline void setActive(bool active) {
+    value = active;
+  }
+
+  inline uint32_t getValue()const {
+    return value;
+  }
+
+  inline void setValue(uint32_t newValue) {
+    value = newValue;
+  }
+
+
 };
 
 #endif /* EVENT_H_ */

@@ -15,6 +15,8 @@
 #include "Silnik24VDC.h"
 #include "Hamulec.h"
 #include "Pinout.h"
+#include "Events.h"
+#include "ConnectionZB40.h"
 
 class Sterownik {
 
@@ -57,7 +59,7 @@ private:
   Pozycja pozycja = POSRODKU;
   Ruch ruch = STOP;
 
-  bool awaria = false;
+  //bool awaria = false;
 
 
   SilnikNapedu * getSilnik() const{
@@ -76,7 +78,9 @@ private:
     getSilnik()->gotoSafePosition(bladKrancowek);
     hamulec->gotoSafePosition(bladKrancowek);
     bool blad230VAC = isAwariaSieci230VAC();
-    awaria = bladKrancowek || blad230VAC;
+    Events::setEvent(Events::Numer::BladKrancowek, bladKrancowek);
+    Events::setEvent(Events::Numer::Brak230VAC, bladKrancowek);
+//    awaria = bladKrancowek || blad230VAC;
   }
 
 
@@ -184,6 +188,7 @@ public:
     silnik230VAC->init();
     hamulec->init();
     typNapedu = (NAPED)VEprom::readWord(VEprom::VirtAdres::NAPED);
+    if (typNapedu == NAPED::NIEOKRESLONY) typNapedu = NAPED::VIC_040x;
     initNaped();
     return true;
   }
@@ -222,7 +227,10 @@ public:
   inline bool isZamkniete()const{ return wewy->gpioInKrancZamkniete.getInput(); }
   inline bool isZakazOtwierania()const{ return wewy->gpioInZakazOtwierania.getInput(); }
   inline bool isZakazZamykania()const{ return wewy->gpioInZakazZamykania.getInput(); }
-  inline bool isPozar()const{ return wewy->gpioInPozar.getInput(); }  // sygnał aktywny poziomem wysokim!
+  inline bool isPozar()const{
+
+    return wewy->gpioInPozar.getInput();
+  }  // sygnał aktywny poziomem wysokim!
   inline bool isAlarmAkustyczny()const{ return !(wewy->gpioInAlarmAkust.getInput()); }
   inline bool isPozarOrAlarmAkust()const{ return isPozar() || isAlarmAkustyczny(); }
   inline bool isRezerwa1()const{ return !(wewy->gpioInRezerwa1.getInput()); }
@@ -230,9 +238,18 @@ public:
 
   inline void setBuzzer(bool enable){ wewy->gpioOutBuzer.setOutput(enable); }
 
-  inline bool isAwaria()const{ return awaria; }
+  inline bool isAwaria()const{
+    return Events::isAwaria(Event::Priority::Ostrzezenie);
+//    return awaria;
+  }
 
-  bool isAwariaSieci230VAC(){ return !wewy->gpioInSiec230VAC.getInput();}
+  bool isAwariaSieci230VAC(){
+    if (!zb40->isZB40InUse()){
+      bool siecOK = wewy->gpioInSiec230VAC.getInput();
+      Events::getEvent(Events::Numer::Brak230VAC)->setActive(!siecOK);
+    }
+    return Events::getEvent(Events::Numer::Brak230VAC)->isActive();
+  }
 
   inline bool isOpenPossible(){
     return (      // mozna podniesc jesli
@@ -256,7 +273,7 @@ public:
     return ((move == SilnikNapedu::MOVE::DOWN) || (move == SilnikNapedu::MOVE::UP));
   }
 
-  void setAwaria(bool enable){ awaria = enable; }
+ //void setAwaria(bool enable){ awaria = enable; }
 
   Pozycja podnies(){
     if (ruch != Ruch::OTWORZYC) VEprom::addToValue(VEprom::VirtAdres::LICZNIK, 1);

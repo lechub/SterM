@@ -27,8 +27,10 @@ Event Events::eventTab[eventTabLen]={
     Event(UszkodzenieCzujnikaTemp, "Czujnik temp.",  Event::Priority::Awaria),
     Event(UszkodzenieBezpiecznika, "Uszk. bezpiecz.",  Event::Priority::Awaria),
     Event(InnyBladZB40, "Inny blad",  Event::Priority::Awaria),
+    Event(BrakPolaczeniaZB40, "Polacz. ZB40",  Event::Priority::Awaria),
     Event(BladAutoTestu, "Blad SelfTest",  Event::Priority::Awaria),
     Event(PrzeciazenieNapedu, "Przeciazenie",  Event::Priority::Usterka),
+    Event(AlarmPA, "Alarm",  Event::Priority::Alarm),
 };
 
 Event * Events::getEvent(Numer enumNr){

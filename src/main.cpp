@@ -61,6 +61,8 @@ RS485 rsAux = RS485();
 ConnectionZB40 conZB40 = ConnectionZB40(&rsZB40);
 ConnectionAux conAux = ConnectionAux(&rsAux);
 
+ConnectionZB40 * zb40 = &conZB40;
+
 ///** realizacja komunikacji ZB-40 i zewnętrznej */
 void static inline rs485_callback(){
   conZB40.poll();
