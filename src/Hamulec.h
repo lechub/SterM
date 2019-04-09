@@ -34,7 +34,7 @@ public:
 
   bool gotoSafePosition(bool enable){
     safePosition = enable;
-    if (safePosition)setMode(OFF);
+    if (safePosition) hamuj(true); //setMode(OFF);  // bezpieczna pozycja to trzymać!
      return safePosition;
    }
 

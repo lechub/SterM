@@ -52,16 +52,18 @@ public:
     sterM->gotoSafePosition(false);
   }
 
-  bool isAwariaSieci230VAC(){
-    return !wewy->gpioInSiec230VAC.getInput();
-  }
+//  bool isAwariaSieci230VAC(){
+//    return !wewy->gpioInSiec230VAC.getInput();
+//  }
 
   inline bool isOpenRequest(){
     if (!sterM->isOpenPossible()) return false;
-    return (!wewy->gpioInOtworz.getInput())     // otworz sygnalem OTWORZ
-        || (!wewy->gpioInKluczII.getInput())   // otworz sygnalem Klucz_II
-        || (HMI::getInstance()->front->getState() == Front::State::UP)   // otworz z klawiatury na drzwiach
-        ;
+    bool openInputs = (!wewy->gpioInOtworz.getInput())     // otworz sygnalem OTWORZ
+                || (!wewy->gpioInKluczII.getInput());   // otworz sygnalem Klucz_II
+    bool openFront = (HMI::getInstance()->front->getState() == Front::State::UP);   // otworz z klawiatury na drzwiach
+    if (openInputs) HMI::getInstance()->front->pushStop();
+
+    return openInputs || openFront;
   }
 
   inline bool isCloseRequest(){
@@ -73,7 +75,6 @@ public:
   }
 
 
-
   void poll(){
     sterM->poll();   // tutaj jest check
 
@@ -81,10 +82,10 @@ public:
 
     bool moveRequest = ( isOpenRequest() || isCloseRequest());
 
-    if (!isAwariaSieci230VAC()){ isOpenedOn230Fail = false; }   // reset licznika otwarc dla awarii sieci
+    if (!sterM->isAwariaSieci230VAC()){ isOpenedOn230Fail = false; }   // reset licznika otwarc dla awarii sieci
 
     // wewy->gpioWlaczZasNaped.setOutput(zas24Necessary);
-    bool inverterInUse = sterM->isTyp230VAC() && isAwariaSieci230VAC() && moveRequest;
+    bool inverterInUse = sterM->isTyp230VAC() && sterM->isAwariaSieci230VAC() && moveRequest;
 
     bool turnBuzzerOn = false;
 
@@ -106,7 +107,7 @@ public:
           }
         }else if(isOpenRequest()){
           if (job != JOB::OTWIERANIE){    // nalezy otwierac
-            if (isAwariaSieci230VAC()){   // gdy brak sieci to tylko 1 raz
+            if (sterM->isAwariaSieci230VAC()){   // gdy brak sieci to tylko 1 raz
               if (isOpenedOn230Fail){
                 job = JOB::STOI;
               }else{
@@ -162,7 +163,7 @@ public:
     }
 
     // mruganie diodą pracy buforowej
-    if (isAwariaSieci230VAC()){
+    if (sterM->isAwariaSieci230VAC()){
       wewy->ledGotowosc.set(Led::Mode::PULSUJE); // sygnalizacja na LED-ie
     }else if (sterM->isMotorOn()){
       wewy->ledGotowosc.set(Led::Mode::MRUGA_SLOW);

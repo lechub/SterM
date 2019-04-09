@@ -326,7 +326,7 @@ void Menu::showEkran(){
     lcd->print(sterM->isPozar() ? 'P' : '-');
     lcd->print(sterM->isAlarmAkustyczny() ? 'S' : '-');
     lcd->print(sterM->isAwaria() ? 'A' : '-');
-    lcd->print(praca->isAwariaSieci230VAC() ? 'V' : '-');
+    lcd->print(sterM->isAwariaSieci230VAC() ? 'V' : '-');
     break;
   }
   case e_WEJSCIA: {

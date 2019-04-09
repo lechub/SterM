@@ -1,5 +1,10 @@
 
 ToDo:
+
+badania prototypu 2 - uwagi:
+
+- Rozbudowa sterownika o układ badania położenia bramy/kurtyny o układ fotokomórki szczelinowej z programowym ustawianiem krańcówek ze sterownika
+
 - łączność z KBZB-40 - szczególnie sygnalizacja braku sieci
 - detekcja przeciążenia napędu - zrealizować w przerwaniu 
 - dodać parametr maksymalny czas podnoszenia/opadniecia kurtyny i sygnalizację alarmu
@@ -9,7 +14,18 @@ ToDo:
 - dodać obsługę portu szeregowego + opracowac protokół łączności.
 - implemetacja rejestru zdarzeń
 
+- Wyposażenie sterownika w autonomiczny układ detekcji pożaru dla 1 linii dozorowej i
+max. do 8 czujek dymowych, temperaturowych lub dualnych.
+
+
 Wykonane zmiany:
+
+2019.03.26
+- Negacja sygnału Pożar In – Protokół z badań 2018-12-17
+- Błąd krańcówek – dwie krańcówki e pozycji rozwartej /np. przerwanie kabla, wyłączona wtyczka / sygnalizuje Awarię lecz zwalnia Hamulec – błąd
+-„Otwieranie” przyciskiem na obudowie rozpoczyna proces otwierania, następnie z przełącznika KL I-II „Zamykanie” ten proces przerywa i rozpoczyna proces zamykania, lecz po puszczeniu kluczyka wraca do otwierania – sterownik powinien zakończyć proces otwierania przed przejściem do zamykania.
+- Zanik napięcia zasilającego 230V AC – miganie diody zielonej ok., lecz musi być włączony sygnał Awaria celem zasygnalizowania obsłudze początku rozładowywania akumulatorów – proponuję załączyć w związku z tym również miganie diody Awaria.
+- Operowanie przełącznikiem kluczykowym Zamknij Otwórz przy załączonej autoryzacji przycisków „na elewacji” powoduje stany dziwne – załączenie raz pracy „czuwakowej„ raz „ciągłej” stany bliżej nieokreślone – nie zaobserwowano prawidłowości.
 
 2019.03.xx Opóźnienia przy włączaniu kluczy mostka H. 
 			Wyłączenie:

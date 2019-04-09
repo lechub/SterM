@@ -20,8 +20,8 @@
 
 class RS485{
 public:
-  static constexpr uint32_t USART_ZB40_BAUD_RATE  = 38400;
-  static constexpr uint32_t USART_DEFAULT_BAUD_RATE  = 38400;
+  static constexpr uint32_t USART_ZB40_BAUD_RATE  = 57600;
+  static constexpr uint32_t USART_DEFAULT_BAUD_RATE  = 115200;
   static constexpr uint32_t USART_DEFAULT_BUFFER_SIZE  = 200;
 
   typedef enum{
@@ -51,7 +51,7 @@ public:
     void setup(USART_TypeDef * registers){
       usart = registers;
       if (registers == USART1){
-        rs485Dir.mutate(GPIOB, 12);
+        rs485Dir.mutate(GPIOA, 12);
       }else if (registers == USART2){
         rs485Dir.mutate(GPIOD, 4);
       }else{

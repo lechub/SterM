@@ -25,9 +25,34 @@ private:
   RS485 * port = nullptr;
   uint32_t lastFrame = 0;
   uint8_t ZB40ExistTry = 0;
-  bool ZB40Necessary = true;
+  bool ZB40InUse = true;
   //PkkbMaster master = PkkbMaster();
   PkkbL2 pkkbL2 = PkkbL2();
+
+//  typedef enum{
+//    INDEX_ZB_EKO_ERRORS = 11,  ///<  zawiera flagi KBZB38ErrorFlags
+//    INDEX_AKU_STATUS  = 12, ///<  zawiera flagi AkuStatusFlags
+//    INDEX_ZAS_STATUS  = 13, ///<  zawiera flagi ZasStatusFlags
+//    INDEX_BEZP_STATUS = 14, ///<  zawiera flagi BezpiecznikiStatus,
+//  }ZB40FlagsIndexes;
+
+  typedef struct{
+    KBZB40::ZBEKOErrorFlags errors;
+    KBZB40::AkuStatusFlags aku;
+    KBZB40::ZasStatusFlags zas;
+    KBZB40::BezpiecznikiStatus fuses;
+  }ZB40Flags;
+
+  ZB40Flags flags;
+  /*
+   *
+   INDEX_ZB_EKO_ERRORS = 11,  ///<  zawiera flagi KBZB38ErrorFlags
+    INDEX_AKU_STATUS  = 12, ///<  zawiera flagi AkuStatusFlags
+    INDEX_ZAS_STATUS  = 13, ///<  zawiera flagi ZasStatusFlags
+    INDEX_BEZP_STATUS = 14, ///<  zawiera flagi BezpiecznikiStatus,
+   *
+   * */
+
 
   bool receiveZB40Status(){
     if (port->isEmpty()){
@@ -40,12 +65,17 @@ private:
       uint8_t buff2[GET_INDEX_FRAME_LENGTH];
       Fifo frame2 = Fifo(buff2, GET_INDEX_FRAME_LENGTH);
 
-      while (!port->isEmpty()){
+      while (port->canGet()){
         PkkbL1::decodeByte(&frame1, (uint8_t)port->get());
       }
       PkkbL2::PKKB_Header1 header;
       pkkbL2.makeHeaderP2P(&header);
       pkkbL2.decodeFrame(&frame1, &frame2, &header);
+      if (frame2.get() != Pkkb::PkkbCommands::ANSWER) return false;
+      flags.errors.bajt = (uint8_t)frame2.get();
+      flags.aku.bajt = (uint8_t)frame2.get();
+      flags.zas.bajt = (uint8_t)frame2.get();
+      flags.fuses.bajt = (uint8_t)frame2.get();
     }
     return true;
   }
@@ -57,9 +87,17 @@ private:
       uint8_t buff2[GET_INDEX_FRAME_LENGTH];
       Fifo frame2 = Fifo(buff2, GET_INDEX_FRAME_LENGTH);
 
-      if (!PkkbMaster::makeFrameReadIndex(&frame1, KBZB40::IndexMap::INDEX_AKU_STATUS)){//Pkkb::IndexMapTmplt::INDEX_DEVICE_TYPE
+      //      if (!PkkbMaster::makeFrameReadIndex(&frame1, KBZB40::IndexMap::INDEX_AKU_STATUS)){
+      //        return false;
+      //      }
+      if (!PkkbMaster::makeFrameReadIndexBlock(
+          &frame1,
+          KBZB40::IndexMap::INDEX_ZB_EKO_ERRORS,
+          KBZB40::IndexMap::INDEX_BEZP_STATUS - KBZB40::IndexMap::INDEX_ZB_EKO_ERRORS)){
         return false;
       }
+
+
       PkkbL2::PKKB_Header1 header;
       pkkbL2.makeHeaderP2P(&header);
       //    pkkbL2.setAdresZdalny(Pkkb::PKKB_BROADCAST_ADRESS);
@@ -73,10 +111,20 @@ private:
 
 public:
 
+//  typedef enum{
+//    NoErrors    = 0b00000000,
+//    Brak230VAC  = 0b00000010,
+//        = 0b00000100,
+//    NoErrors    = 0b00001000,
+//    NoErrors    = 0b00010000,
+//    NoErrors    = 0b00100000,
+//
+//  }Errors;
+
   ConnectionZB40(RS485 * portRS485) :port(portRS485) { ; }
 
   void poll(){
-    if (!ZB40Necessary) return;
+    if (!ZB40InUse) return;
 
     if (QuickTask::isOlderThanMs(lastFrame, 1000)){
       lastFrame = QuickTask::getCounter();
@@ -88,8 +136,19 @@ public:
   inline bool isZB40Online()const{ return ZB40ExistTry < MAX_CONNECT_TRY; }
 
   inline void setZB40Cooperation(bool enable){
-    ZB40Necessary = enable;
+    ZB40InUse = enable;
     port->flush();
+  }
+
+  bool getZB40Status(uint32_t * returnValue){
+    if (!ZB40InUse){
+      *returnValue = 0l;
+      return false;
+    }
+    if (!isZB40Online()){
+      *returnValue = 1;
+      return false;
+    }
   }
 
 };

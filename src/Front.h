@@ -51,7 +51,7 @@ public:
     stacyjka->setupFromClone(bUp);
   }
 
-  bool isKeyActive(){
+  inline bool isKeyActive()const {
     return !stacyjka->getInput();
   }
 
@@ -59,11 +59,13 @@ public:
   void poll();
 
 
-  State getState(){
+  inline State getState()const {
     return state;
   }
 
-
+  inline void pushStop(){
+    state = State::STOP;
+  }
 
 };
 

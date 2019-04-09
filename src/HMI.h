@@ -32,7 +32,7 @@ public:
 	Sterownik * ster = nullptr;
 	FrameBuffer * lcd = nullptr;
 	Keyboard * keyboard = nullptr;
-	Front * front;
+	Front * front = nullptr;
 	Menu * menu = nullptr;
   Led * ledPozarRed = nullptr;
   Led * ledAwariaYellow = nullptr;
@@ -106,6 +106,7 @@ public:
   inline bool isBackLightInUse(){
     return backLight->getOutput();
   }
+
 
 };	// class HMI
 

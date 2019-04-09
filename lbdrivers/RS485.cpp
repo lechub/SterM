@@ -52,7 +52,7 @@ void RS485::setup(USART_TypeDef * usartRegisters, uint32_t baudRate){
     rcc->APB2ENR |= RCC_APB2ENR_USART1EN;
     NVIC_SetPriority (USART1_IRQn, (1UL << __NVIC_PRIO_BITS) - 1UL); /* set Priority for Systick Interrupt */
     NVIC_EnableIRQ(USART1_IRQn);
-  }else if(usart == USART1){
+  }else if(usart == USART2){
     rcc->CFGR3 =  (RCC->CFGR3 & ~RCC_CFGR3_USART2SW) | RCC_CFGR3_USART2SW_0; // 0b01 - SYSCLK
     rcc->APB1ENR |= RCC_APB1ENR_USART2EN;
     NVIC_SetPriority (USART2_IRQn, (1UL << __NVIC_PRIO_BITS) - 1UL); /* set Priority for Systick Interrupt */
@@ -64,6 +64,7 @@ void RS485::setup(USART_TypeDef * usartRegisters, uint32_t baudRate){
   usart->CR1 = 0
       //      |USART_CR1_TXEIE
       //      |USART_CR1_TCIE
+      //      |USART_CR1_OVER8
       |USART_CR1_RXNEIE
       |USART_CR1_TE
       |USART_CR1_RE
@@ -92,9 +93,11 @@ inline void usartHandler(RS485::HalfDuplexUsart * hdUsart){
 
   if (isr & USART_ISR_NE){    // noise??
     SET_BIT(usart->ICR, USART_ICR_NCF);
+    hdUsart->setMode(RS485::Mode::MODE_WAITING);
   }
   if (isr & USART_ISR_FE){    // framing error
     SET_BIT(usart->ICR, USART_ICR_FECF);
+    hdUsart->setMode(RS485::Mode::MODE_WAITING);
   }
 
   if (isr & USART_ISR_RXNE){      //odbior
@@ -154,8 +157,8 @@ bool RS485::canPut(uint32_t nrOfBytes){
 //zwraca false jesli bufor jest pelny i sie nie da
 bool RS485::put(uint8_t znak){
   if (canPut()){
-    getHDUsart()->setMode(MODE_TX);
     getFifo()->put( znak);
+    getHDUsart()->setMode(MODE_TX);
     SET_BIT(getHDUsart()->getRegs()->CR1, USART_CR1_TXEIE);	// odblokowac przerwania dla nadawania,
     return true;
   }

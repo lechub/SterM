@@ -33,13 +33,13 @@
 /* Includes ------------------------------------------------------------------*/
 //#include "stm32f0xx.h"
 #include "stm32f0xx_flash.h"
-#include "systemDefs.h"
+#include "Settings.h"
 
 /* Exported constants --------------------------------------------------------*/
 /* Define the size of the sectors to be used */
 #define PAGE_SIZE             ((uint32_t)(0x0400 * 2))  /* Page size = 1 or 2 KByte */
 /* Variables' number */
-#define NB_OF_VAR             10 // tu zmieniac max ilosc komorek
+#define NB_OF_VAR             20 // tu zmieniac max ilosc komorek
 
 /* EEPROM start address in Flash */
 /*EEPROM emulation start address:
@@ -52,7 +52,7 @@
 
 //#define EEPROM_START_ADDRESS  ((uint32_t)0x0800F800) //0x08002000)
 //#define EEPROM_START_ADDRESS  ((uint32_t)((FLASH_BANK1_END +1) - (2 * PAGE_SIZE))) //0x08007800)
-#define EEPROM_START_ADDRESS  ((uint32_t)0x0800F000)
+//#define EEPROM_START_ADDRESS  ((uint32_t)0x0800F000)
 
 /* Pages 0 and 1 base and end addresses */
 #define PAGE0_BASE_ADDRESS    ((uint32_t)(EEPROM_START_ADDRESS + 0x0000))

@@ -189,9 +189,9 @@ void Hardware::init(){
   // Procesor i zegar zainicjowany
 
   //flash_latency(32000000);
-  pll_start_lb(8000000, 32000000);
+  //pll_start_lb(8000000, 32000000);
   //fpu_enable();
-
+  //SetSysClock();
   SystemCoreClockUpdate();	// na wszelki wypadek
 
   rccInit();

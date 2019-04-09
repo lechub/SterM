@@ -72,18 +72,11 @@ private:
   }
 
   void fixOutputs(){
-//    wewy->gpioOutOtwarte.setOutput(pozycja == OTWARTA);
-//    wewy->gpioOutZamkniete.setOutput(pozycja == ZAMKNIETA);
-    if (pozycja == USZKODZONA){
-      awaria = true;
-    }else{
-      awaria = false;
-    }
-
-    bool aw = isAwaria();
-    getSilnik()->gotoSafePosition(aw);
-    hamulec->gotoSafePosition(aw);
-
+    bool bladKrancowek = (pozycja == USZKODZONA);
+    getSilnik()->gotoSafePosition(bladKrancowek);
+    hamulec->gotoSafePosition(bladKrancowek);
+    bool blad230VAC = isAwariaSieci230VAC();
+    awaria = bladKrancowek || blad230VAC;
   }
 
 
@@ -229,7 +222,7 @@ public:
   inline bool isZamkniete()const{ return wewy->gpioInKrancZamkniete.getInput(); }
   inline bool isZakazOtwierania()const{ return wewy->gpioInZakazOtwierania.getInput(); }
   inline bool isZakazZamykania()const{ return wewy->gpioInZakazZamykania.getInput(); }
-  inline bool isPozar()const{ return !wewy->gpioInPozar.getInput(); }
+  inline bool isPozar()const{ return wewy->gpioInPozar.getInput(); }  // sygnał aktywny poziomem wysokim!
   inline bool isAlarmAkustyczny()const{ return !(wewy->gpioInAlarmAkust.getInput()); }
   inline bool isPozarOrAlarmAkust()const{ return isPozar() || isAlarmAkustyczny(); }
   inline bool isRezerwa1()const{ return !(wewy->gpioInRezerwa1.getInput()); }
@@ -238,6 +231,8 @@ public:
   inline void setBuzzer(bool enable){ wewy->gpioOutBuzer.setOutput(enable); }
 
   inline bool isAwaria()const{ return awaria; }
+
+  bool isAwariaSieci230VAC(){ return !wewy->gpioInSiec230VAC.getInput();}
 
   inline bool isOpenPossible(){
     return (      // mozna podniesc jesli
@@ -298,19 +293,19 @@ public:
 
   static NAPED getPrevNaped(NAPED naped){
     uint8_t typ = (uint8_t)naped;
-     if (--typ <= NAPED::NIEOKRESLONY){
-       typ = int8_t(NAPED::VIC_0701);
-     }
-     return (NAPED)typ;
-   }
+    if (--typ <= NAPED::NIEOKRESLONY){
+      typ = int8_t(NAPED::VIC_0701);
+    }
+    return (NAPED)typ;
+  }
 
-   static NAPED getNextNaped(NAPED naped){
-     uint8_t typ = (uint8_t)naped;
-     if (++typ > NAPED::VIC_0701){
-       typ = (int8_t)NAPED::VIC_012x;
-     }
-     return (NAPED)typ;
-   }
+  static NAPED getNextNaped(NAPED naped){
+    uint8_t typ = (uint8_t)naped;
+    if (++typ > NAPED::VIC_0701){
+      typ = (int8_t)NAPED::VIC_012x;
+    }
+    return (NAPED)typ;
+  }
 
   void setPrevNaped(){
     setNaped(getPrevNaped(getTypNapedu()));
