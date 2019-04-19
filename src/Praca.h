@@ -52,14 +52,14 @@ public:
     sterM->gotoSafePosition(false);
   }
 
-//  bool isAwariaSieci230VAC(){
-//    return !wewy->gpioInSiec230VAC.getInput();
-//  }
+  //  bool isAwariaSieci230VAC(){
+  //    return !wewy->gpioInSiec230VAC.getInput();
+  //  }
 
   inline bool isOpenRequest(){
     if (!sterM->isOpenPossible()) return false;
     bool openInputs = (!wewy->gpioInOtworz.getInput())     // otworz sygnalem OTWORZ
-                || (!wewy->gpioInKluczII.getInput());   // otworz sygnalem Klucz_II
+                    || (!wewy->gpioInKluczII.getInput());   // otworz sygnalem Klucz_II
     bool openFront = (HMI::getInstance()->front->getState() == Front::State::UP);   // otworz z klawiatury na drzwiach
     if (openInputs) HMI::getInstance()->front->pushStop();
 
@@ -74,6 +74,18 @@ public:
         ;
   }
 
+  void checkRelays(){
+    //sterM->
+    wewy->gpioOutOtwarte.setOutput(!sterM->isOtwarte());
+    wewy->gpioOutZamkniete.setOutput(!sterM->isZamkniete());
+    wewy->gpioOutRelSprawny.setOutput(!Events::isAwaria(Event::Priority::Usterka, true));
+    bool alAku = Events::getEvent(Events::Name::AlarmAkustyczny)->isActive();
+    bool alPoz = Events::getEvent(Events::Name::AlarmPozarowy)->isActive();
+    wewy->gpioOutPozar.setOutput(alPoz);// alarm == Events::Alarm::AlarmPozarowy);
+    bool sygnalAkust = alPoz;
+    if ((alAku) && (!sterM->isZamkniete())) sygnalAkust = true;
+    wewy->gpioOutSygnAkust.setOutput(sygnalAkust);
+  }
 
   void poll(){
     sterM->poll();   // tutaj jest check
@@ -142,27 +154,32 @@ public:
     sterM->setBuzzer(turnBuzzerOn);
 
     checkLEDs();
+    checkRelays();
 
   }
 
   void inline checkLEDs(){
     // mruganie diodą pozar
-    if (sterM->isPozar()){
+    bool alPoz = Events::getEvent(Events::Name::AlarmPozarowy)->isActive();//::Alarm alarm = sterM->getAlarm();
+    bool alAkus = Events::getEvent(Events::Name::AlarmAkustyczny)->isActive();//::Alarm alarm = sterM->getAlarm();
+    if (alPoz){
       wewy->ledPozar.set(Led::Mode::MRUGA_FAST);
-    }else if(sterM->isAlarmAkustyczny()){
+    }else if(alAkus){
       wewy->ledPozar.set(Led::Mode::MRUGA_SLOW);
     }else{
       wewy->ledPozar.set(Led::Mode::ZGASZONA);
     }
 
     // mruganie diodą awarii
-    if (sterM->isAwaria()){
-      wewy->ledAwaria.set(Led::Mode::MRUGA_SLOW); // sygnalizacja na LED-ie
+    if (Events::isAwaria(Event::Priority::Awaria, true)){
+      wewy->ledAwaria.set(Led::Mode::MRUGA_FAST); // sygnalizacja na LED-ie
+    }else if (Events::isAwaria(Event::Priority::Usterka, true)){
+      wewy->ledAwaria.set(Led::Mode::PULSUJE);
     }else{
       wewy->ledAwaria.set(Led::Mode::ZGASZONA);
     }
 
-    // mruganie diodą pracy buforowej
+    // mruganie diodą gotowosc
     if (sterM->isAwariaSieci230VAC()){
       wewy->ledGotowosc.set(Led::Mode::PULSUJE); // sygnalizacja na LED-ie
     }else if (sterM->isMotorOn()){

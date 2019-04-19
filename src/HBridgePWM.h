@@ -13,6 +13,7 @@
 #include "SoftStart.h"
 #include "Sterownik.h"
 
+
 class HBridgePWM : public HBridge {
 
   static constexpr uint32_t SOFTSTART_MIN_TIME_mS = 1000;
@@ -29,16 +30,21 @@ protected:
     S4_LOW_ON,
   }Stage;
 
+
   SoftStart sStart = SoftStart();
   Gpio ovc = Gpio(GPIOA, 15);
+
+
+  uint32_t OVCDelay = 0;
+  uint32_t OVCTimeStamp = 0;
 
   //  uint16_t  pwmLeft = 0;
   uint16_t  pwm = 0;
   uint32_t stepPwm = 0;
   uint32_t stageTimeMs = 0;
 
-  POWER pState  = POWER::HOLD_FLOAT;
-  Stage stage = S1_LOW_OFF;
+  volatile POWER pState  = POWER::HOLD_FLOAT;
+  volatile Stage stage = S1_LOW_OFF;
 
   uint32_t switchDelay = 0;
 
@@ -113,6 +119,7 @@ public:
   POWER getPowerMode(){ return pState; }
 
   void poll();
+
 
 };
 

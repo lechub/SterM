@@ -45,7 +45,7 @@ void Menu::poll(){
       goToEkran(EKRAN::e_HASLO_SERWIS);
     }break;
     case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_WEJSCIA);  break;
-    case Keyboard::Key::LEFT: goToEkran(EKRAN::e_FRONT);  break;
+    case Keyboard::Key::LEFT: goToEkran(EKRAN::e_BLEDY);  break;
     default: break;
     }
     break;
@@ -70,7 +70,7 @@ void Menu::poll(){
   }
   case e_FRONT:  {
     switch(key){
-    case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_MAIN);  break;
+    case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_BLEDY);  break;
     case Keyboard::Key::LEFT: goToEkran(EKRAN::e_WYJSCIA);  break;
     case Keyboard::Key::CANCEL: goToEkran(EKRAN::e_MAIN);  break;
     default: break;
@@ -259,6 +259,15 @@ void Menu::poll(){
     break;
   }
 
+  case e_BLEDY:  {
+    switch(key){
+    case Keyboard::Key::RIGHT: goToEkran(EKRAN::e_MAIN);  break;
+    case Keyboard::Key::LEFT: goToEkran(EKRAN::e_FRONT);  break;
+    case Keyboard::Key::CANCEL: goToEkran(EKRAN::e_MAIN);  break;
+    default: break;
+    }
+  }break;
+
   default: break;
   }
 
@@ -266,6 +275,7 @@ void Menu::poll(){
   showEkran();
 
 }
+
 
 void Menu::printPattern(const char * pattern, uint32_t value){
   lcd->printNumbersWithPattern(pattern, value);
@@ -323,8 +333,9 @@ void Menu::showEkran(){
     lcd->print("]");
     lcd->gotoXY(11,1);
     lcd->print(getJobSymbol());
-    lcd->print(sterM->isPozar() ? 'P' : '-');
-    lcd->print(sterM->isAlarmAkustyczny() ? 'S' : '-');
+    //Events::Alarm alarm = sterM->getAlarm();
+    lcd->print(Events::getEvent(Events::Name::AlarmPozarowy)->isActive() ? 'P' : '-');
+    lcd->print(Events::getEvent(Events::Name::AlarmAkustyczny)->isActive() ? 'S' : '-');
     lcd->print(sterM->isAwaria() ? 'A' : '-');
     lcd->print(sterM->isAwariaSieci230VAC() ? 'V' : '-');
     break;
@@ -475,6 +486,27 @@ void Menu::showEkran(){
     lcd->printNumbersWithPattern("  [000] sekund  ", tmpValue & 0x0ffff);
     break;
   }
+  case e_BLEDY:{
+    //----------------->1234567890123456<
+    lcd->clearScreen();
+    lcd->gotoXY(0, 0);
+    Events::Iterator iter = Events::getIterator();
+    bool noEvents = true;
+    while(true){
+      Event * ev = Events::getNextEvent(iter);
+      if (ev == nullptr) break;
+      if (ev->value != 0){
+        noEvents = false;
+        if (!(lcd->printToEnd(ev->name))) break;
+        if (!(lcd->printToEnd(", "))) break;
+      }
+    }
+    if (noEvents){
+      lcd->print(" BRAK ZDARZEN");
+    }
+    break;
+  }
+
   default:
     break;
   }

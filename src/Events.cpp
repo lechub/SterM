@@ -7,39 +7,47 @@
 
 #include <Events.h>
 
-//NoEvents = 0,
+// NoEvents = 0,
 //    BladKrancowek = 1,
 //    Brak230VAC,
-//    BrakAkumulatora,
+//    UszkodzenieAkumulatora,
 //    NiskiStanAkumulatora,
 //    WysokaRezystancjaAku,
 //    UszkodzenieCzujnikaTemp,
 //    UszkodzenieBezpiecznika,
 //    InnyBladZB40,
-//
+//    BrakPolaczeniaZB40,
+//    BladAutoTestu,
+//    PrzeciazenieNapedu,
+//    AlarmPA,
+//    LastNumber,
+
 
 Event Events::eventTab[eventTabLen]={
-    Event(BladKrancowek, "Blad kranc.", Event::Priority::Awaria),
-    Event(Brak230VAC, "Brak 230VAC",  Event::Priority::Usterka),
-    Event(UszkodzenieAkumulatora, "Uszk. akum.",  Event::Priority::Awaria),
-    Event(NiskiStanAkumulatora, "Niski stan akum.",  Event::Priority::Usterka),
+    Event(NoEvents, "Inf._test1", Event::Priority::WaznaInformacja),
+    Event(BladKrancowek, "Obie_kranc.", Event::Priority::Awaria),
+    Event(Brak230VAC, "230VAC",  Event::Priority::Usterka),
+    Event(UszkodzenieAkumulatora, "Uszk._akum.",  Event::Priority::Awaria),
+    Event(NiskiStanAkumulatora, "Niski akum.",  Event::Priority::Usterka),
     Event(WysokaRezystancjaAku, "Rezyst. akum.",  Event::Priority::Awaria),
-    Event(UszkodzenieCzujnikaTemp, "Czujnik temp.",  Event::Priority::Awaria),
-    Event(UszkodzenieBezpiecznika, "Uszk. bezpiecz.",  Event::Priority::Awaria),
-    Event(InnyBladZB40, "Inny blad",  Event::Priority::Awaria),
-    Event(BrakPolaczeniaZB40, "Polacz. ZB40",  Event::Priority::Awaria),
+    Event(UszkodzenieCzujnikaTemp, "Czujnik t.",  Event::Priority::Awaria),
+    Event(UszkodzenieBezpiecznika, "Bezpiecz.",  Event::Priority::Awaria),
+    Event(InnyBladZB40, "Inny_ZB40",  Event::Priority::Awaria),
+    Event(BrakPolaczeniaZB40, "Polacz._ZB40",  Event::Priority::Awaria),
     Event(BladAutoTestu, "Blad SelfTest",  Event::Priority::Awaria),
     Event(PrzeciazenieNapedu, "Przeciazenie",  Event::Priority::Usterka),
-    Event(AlarmPA, "Alarm",  Event::Priority::Alarm),
+    Event(AlarmPozarowy, "Alarm_Pozarowy",  Event::Priority::Alarm),
+    Event(AlarmAkustyczny, "Alarm_Akust.",  Event::Priority::Alarm),//    Event(AlarmPA, "Alarm",  Event::Priority::Alarm),
+    Event(LastNumber, "AwariaK_test2",  Event::Priority::AwariaKrytyczna),
 };
 
-Event * Events::getEvent(Numer enumNr){
-  for (uint8_t i = 0; i < eventTabLen; i++ ){
-    Event * ev = &eventTab[i];
-    if (ev->enumNr == enumNr) return ev;
-  }
-  return nullptr;
-}
+//Event * Events::getEvent(Name enumNr){
+//  for (uint8_t i = 0; i < eventTabLen; i++ ){
+//    Event * ev = &eventTab[i];
+//    if (ev->enumNr == enumNr) return ev;
+//  }
+//  return nullptr;
+//}
 
 
 

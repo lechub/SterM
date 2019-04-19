@@ -82,6 +82,27 @@ public:
       return true;
     }
 
+    void getCursor(uint32_t &column, uint32_t &row){
+      column = cursorPosition % COLUMNS;
+      row = cursorPosition / COLUMNS;
+    }
+
+    bool isCursorAtEnd(){
+      return cursorPosition == (getROWS() * getCOLUMNS()) - 1;
+    }
+
+    // drukuje do konca ekranu i dalej juz nie. Jesli to koniec ekranu, to zwroci false, w przeciwnym wypadku true
+    bool printToEnd(const char * str){
+      while(*str != '\0'){
+        if (isCursorAtEnd()){
+          print(*str);
+          return false;
+        }
+        print(*str++);
+      }
+      return true;
+    }
+
     void cursorRight(void){
       setRefreshNeed();
       if (++cursorPosition >= BUFFERSIZE) cursorPosition = 0;

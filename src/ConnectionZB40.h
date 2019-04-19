@@ -18,7 +18,7 @@
 
 class ConnectionZB40 {
 public:
-  static constexpr uint32_t FRAME_INTERVAL_MS = 1000; // co sekunde transmisja
+  static constexpr uint32_t FRAME_INTERVAL_MS = 2200; // co 2,2 sekundy transmisja
   static constexpr uint32_t MAX_CONNECT_TRY = 3; // tyle utraconych ramek oznacza brak łączności
   static constexpr uint32_t GET_INDEX_FRAME_LENGTH = 10; // tyle utraconych ramek oznacza brak łączności
 
@@ -56,18 +56,18 @@ private:
 //  BrakPolaczeniaZB40,
 
 
-  void copyToEvents(){
+  void generateEvents(){
     if (!isZB40InUse())return;
     bool online = isZB40Online();
-    Events::setEvent(Events::Numer::BrakPolaczeniaZB40, !online);
+    Events::setEvent(Events::Name::BrakPolaczeniaZB40, !online);
     if (!online) return;
-    Events::setEvent(Events::Numer::Brak230VAC, (bool)flags.errors.flag.u230V);
-    Events::setEvent(Events::Numer::UszkodzenieAkumulatora, (bool)flags.aku.flag.brakAku);
-    Events::setEvent(Events::Numer::NiskiStanAkumulatora, (bool)flags.aku.flag.niskieUAku);
-    Events::setEvent(Events::Numer::WysokaRezystancjaAku, (bool)flags.aku.flag.wysokaRwewn);
-    Events::setEvent(Events::Numer::UszkodzenieCzujnikaTemp, (bool)flags.aku.flag.bladCzujnikaT);
-    Events::setEvent(Events::Numer::UszkodzenieBezpiecznika, (bool)flags.errors.flag.bezpieczniki);
-    Events::setEvent(Events::Numer::InnyBladZB40, (
+    Events::setEvent(Events::Name::Brak230VAC, (bool)flags.errors.flag.u230V);
+    Events::setEvent(Events::Name::UszkodzenieAkumulatora, (bool)flags.aku.flag.brakAku);
+    Events::setEvent(Events::Name::NiskiStanAkumulatora, (bool)flags.aku.flag.niskieUAku);
+    Events::setEvent(Events::Name::WysokaRezystancjaAku, (bool)flags.aku.flag.wysokaRwewn);
+    Events::setEvent(Events::Name::UszkodzenieCzujnikaTemp, (bool)flags.aku.flag.bladCzujnikaT);
+    Events::setEvent(Events::Name::UszkodzenieBezpiecznika, (bool)flags.errors.flag.bezpieczniki);
+    Events::setEvent(Events::Name::InnyBladZB40, (
         flags.errors.flag.bezpieczniki || flags.errors.flag.dociaz || flags.errors.flag.inny ||
         flags.errors.flag.ladowarka || flags.errors.flag.out || flags.errors.flag.torPomiarowy ||
         flags.aku.flag.bladCzujnikaT || flags.aku.flag.niskiIDociaz || flags.aku.flag.niskieUAku ||
@@ -95,11 +95,11 @@ private:
       pkkbL2.makeHeaderP2P(&header);
       pkkbL2.decodeFrame(&frame1, &frame2, &header);
       if (frame2.get() != Pkkb::PkkbCommands::ANSWER) return false;
+      ZB40ExistTry = 0; // reset licznika prob
       flags.errors.bajt = (uint8_t)frame2.get();
       flags.aku.bajt = (uint8_t)frame2.get();
       flags.zas.bajt = (uint8_t)frame2.get();
       flags.fuses.bajt = (uint8_t)frame2.get();
-      copyToEvents();
     }
     return true;
   }
@@ -129,25 +129,17 @@ private:
   }
 
 public:
-//  typedef enum{
-//    NoErrors    = 0b00000000,
-//    U230VAC     = 0b00000010,
-//    AkuFail     = 0b00000100,
-//    AkuLow      = 0b00001000,
-//    AkuResist   = 0b00010000,
-//    TempSensor  = 0b00100000,
-//    ZB40Fail    = 0b01000000,
-//    AnyError    = 0b11111111,
-//  }Error;
+
 
   ConnectionZB40(RS485 * portRS485) :port(portRS485) { ; }
 
   void poll(){
     if (!ZB40InUse) return;
 
-    if (QuickTask::isOlderThanMs(lastFrame, 1000)){
+    if (QuickTask::isOlderThanMs(lastFrame, FRAME_INTERVAL_MS)){
       lastFrame = QuickTask::getCounter();
       receiveZB40Status();
+      generateEvents();
       sendForZB40Status();
     }
   }
@@ -160,41 +152,6 @@ public:
     ZB40InUse = enable;
     port->flush();
   }
-
-
-//  bool getZB40Status(uint32_t * returnValue){
-//    if (!isZB40InUse()){
-//      *returnValue = 0l;
-//      return false;
-//    }
-//    if (!isZB40Online()){
-//      *returnValue = 1;
-//      return false;
-//    }
-//    return true;
-//  }
-
-//  bool getError(Error errNr){
-//    switch(errNr){
-//    case U230VAC:     return flags.errors.flag.u230V;
-//    case AkuFail:     return flags.aku.flag.brakAku;
-//    case AkuLow:      return flags.aku.flag.niskieUAku;
-//    case AkuResist:   return flags.aku.flag.wysokaRwewn;
-//    case TempSensor:  return flags.aku.flag.bladCzujnikaT;
-//    case ZB40Fail:    return (
-//        flags.errors.flag.bezpieczniki || flags.errors.flag.dociaz || flags.errors.flag.inny ||
-//        flags.errors.flag.ladowarka || flags.errors.flag.out || flags.errors.flag.torPomiarowy ||
-//        flags.aku.flag.bladCzujnikaT || flags.aku.flag.niskiIDociaz || flags.aku.flag.niskieUAku ||
-//        flags.aku.flag.wysokiIDociaz || flags.aku.flag.wysokiPrad || flags.aku.flag.wysokieUAku ||
-//        flags.zas.flag.bladKlucza || flags.zas.flag.bladModuluMM || flags.zas.flag.brakUwy ||
-//        flags.zas.flag.nieokreslonyBlad || flags.zas.flag.zaWysokiI || flags.zas.flag.zaWysokieUwy
-//    );
-//    case AnyError:    return flags.errors.bajt != 0;
-//    case NoErrors:
-//    default:
-//      return false;
-//    }
-//  }
 
 
 };

@@ -15,7 +15,7 @@ class Events {
 public:
 
   typedef enum{
-    //NoEvents = 0,
+    NoEvents = 0,
     BladKrancowek = 1,
     Brak230VAC,
     UszkodzenieAkumulatora,
@@ -27,40 +27,47 @@ public:
     BrakPolaczeniaZB40,
     BladAutoTestu,
     PrzeciazenieNapedu,
-    AlarmPA,
+    AlarmPozarowy,
+    AlarmAkustyczny,  //    AlarmPA,
     LastNumber,
-  }Numer;
+  }Name;
+
+  static constexpr Name FIRST_EVENT = NoEvents;
+  static constexpr Name LAST_EVENT = LastNumber;
 
   typedef enum{
     DISABLED = 0,
     ENABLED = 1,
   }EnableValue;
 
-  typedef enum{
-    BrakAlarmu = 0,
-    AlarmPozarowy = 1,
-    AlarmAkustyczny = 2,
-  }Alarm;
+//  typedef enum{
+//    BrakAlarmu = 0,
+//    AlarmPozarowy = 1,
+//    AlarmAkustyczny = 2,
+//  }Alarm;
 
-  static Event * getEvent(Numer eventNr);
+  static Event * getEvent(Name eventNr){
+    if ((eventNr < FIRST_EVENT)||(eventNr > LAST_EVENT))
+      return nullptr;
+    return &eventTab[eventNr];
+  }
 
+  // mechanizm przeglądania typów zdarzeń poprzez iteratora
   typedef uint8_t Iterator;
-
   static Iterator getIterator(){ return 0; }
-
   static Event * getNextEvent(Iterator & iterator) {
-    if (iterator >= eventTabLen) return nullptr;
+    if (iterator > LAST_EVENT) return nullptr;
     return &eventTab[iterator++];
   }
 
 private:
   Events();
 
-  static constexpr uint8_t eventTabLen = LastNumber - BladKrancowek;
+  static constexpr uint8_t eventTabLen = LAST_EVENT - FIRST_EVENT + 1;
   static Event eventTab[eventTabLen];
 
 public:
-  static bool setEvent(Numer eventNr, uint32_t newValue){
+  static bool setEvent(Name eventNr, uint32_t newValue){
     Event * ev = getEvent(eventNr);
     if (ev == nullptr) return false;
     if (ev->value == newValue) return true;
@@ -71,26 +78,28 @@ public:
     return true;
   }
 
-  static inline bool setEvent(Numer eventNr, EnableValue enableValue){
+  static inline bool setEvent(Name eventNr, EnableValue enableValue){
     return setEvent(eventNr, (uint32_t)enableValue);
   }
 
-  static inline bool setEvent(Numer eventNr, bool enableV){
+  static inline bool setEvent(Name eventNr, bool enableV){
     return setEvent(eventNr, enableV ? EnableValue::ENABLED : EnableValue::DISABLED);
   }
 
-  static Alarm getAlarm(){
-    return (Alarm)getEvent(Numer::AlarmPA)->value;
-  }
+//  static Alarm getAlarm(){
+//    return (Alarm)getEvent(Name::AlarmPA)->value;
+//  }
 
-  static bool isAwaria(Event::Priority minPriority){
+  static bool isAwaria(Event::Priority minPriority, bool excludeAlarms){
     Iterator it = getIterator();
 //    Event * najwyzszy = nullptr;
     while (true){
       Event * ev = getNextEvent(it);
       if (ev == nullptr) break;                     // przeszukano wszystkie
       if (ev->priority < minPriority) continue;     // olewac mniejsze priorytety
-      if (ev->enumNr == Numer::AlarmPA) continue;   // nie liczyc alarmow pozarowych
+      if (excludeAlarms){
+        if (ev->priority == Event::Priority::Alarm) continue;   // nie liczyc alarmow pozarowych
+      }
       if(ev->value > 0) return true;
     }
     return false;

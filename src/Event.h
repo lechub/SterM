@@ -26,7 +26,7 @@ public:
 
 //#pragma GCC diagnostic ignored "-Wreorder"
   const char * name;
-  uint32_t   value;
+  volatile uint32_t   value;
   uint8_t    enumNr;
   Priority    priority;
 

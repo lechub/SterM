@@ -9,6 +9,7 @@
 #define HBRIDGE_H_
 
 #include "Gpio.h"
+#include "OVCdetector.h"
 
 class HBridge {
 
@@ -36,19 +37,6 @@ public:
   virtual POWER getPowerMode() = 0;
   virtual void poll() = 0;
   virtual void init() = 0;
-
-
-//  virtual void poll(){
-//      if ((pMinus != pMinusSet) || (pPlus != pPlusSet)){
-//        if ((pMinus == PULL::FLOATING) && (pPlus == PULL::FLOATING)){
-//          setPullMinus(pMinusSet);
-//          setPullPlus(pPlusSet);
-//        }else{
-//          setPullMinus(PULL::FLOATING);
-//          setPullPlus(PULL::FLOATING);
-//        }
-//      }
-//    }
 
 };
 

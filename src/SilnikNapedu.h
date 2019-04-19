@@ -11,6 +11,8 @@
 class SilnikNapedu {
 
 public:
+
+
   typedef enum{
     UP,     // naped idzie do gory
     DOWN,   // naped idzie w dol
@@ -20,8 +22,8 @@ public:
   }MOVE;
 
 protected:
-  bool safePosition = true;
-  MOVE move = MOVE::FLOAT;
+  volatile bool safePosition = true;
+  volatile MOVE move = MOVE::FLOAT;
 
 public:
 
@@ -29,6 +31,7 @@ public:
   virtual inline MOVE getMove() const{
     return move;
   }
+  //virtual void ovcHold() = 0;
 
   virtual inline bool gotoSafePosition(bool enable){
     safePosition = enable;

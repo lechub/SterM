@@ -80,7 +80,9 @@ public:
     }
   }
 
+  virtual void onOVP(){
 
+  }
 
 };
 

@@ -5,7 +5,6 @@ badania prototypu 2 - uwagi:
 
 - Rozbudowa sterownika o układ badania położenia bramy/kurtyny o układ fotokomórki szczelinowej z programowym ustawianiem krańcówek ze sterownika
 
-- łączność z KBZB-40 - szczególnie sygnalizacja braku sieci
 - detekcja przeciążenia napędu - zrealizować w przerwaniu 
 - dodać parametr maksymalny czas podnoszenia/opadniecia kurtyny i sygnalizację alarmu
 - dodać test obecności napędu + awaria
@@ -19,6 +18,9 @@ max. do 8 czujek dymowych, temperaturowych lub dualnych.
 
 
 Wykonane zmiany:
+
+2019.04.10
+- łączność z KBZB-40 - szczególnie sygnalizacja braku sieci
 
 2019.03.26
 - Negacja sygnału Pożar In – Protokół z badań 2018-12-17

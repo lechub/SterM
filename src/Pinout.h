@@ -220,7 +220,7 @@ public:
     keyStop.setupFromClone(&gpioInBtnBACK);
     keyUp.setupFromClone(&gpioInBtnBACK);
 
-    gpioOVCdetect.setup(Gpio::GpioMode::INPUT, Gpio::GpioOType::NoMatter, Gpio::GpioPuPd::PullUp, Gpio::GpioSpeed::MaximumSpeed);
+
 
     // zainicjowane w HMI
 //    ledAwaria.init(Led::Type::ACTIVEHIGH, Led::Mode::SWIECI );

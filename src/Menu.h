@@ -54,6 +54,7 @@ public:
     e_uHASLO_USTAW,
     e_uOPOZN_ZAM_POZ,
     e_uOPOZN_Z_P_USTAW,
+    e_BLEDY,
   }EKRAN;
 
 

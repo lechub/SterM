@@ -18,11 +18,9 @@
 #include "Events.h"
 #include "ConnectionZB40.h"
 
-class Sterownik {
+class Sterownik :public OVCdetector {
 
 private:
-
-  //	Praca praca = Praca();
 
 public:
 
@@ -55,7 +53,7 @@ private:
   Hamulec * hamulec;
   Pinout *wewy = nullptr;
 
-  NAPED typNapedu = NIEOKRESLONY;
+  volatile NAPED typNapedu = NIEOKRESLONY;
   Pozycja pozycja = POSRODKU;
   Ruch ruch = STOP;
 
@@ -70,17 +68,18 @@ private:
       sn = silnik24VDC;
     }
     return sn;
-    //    return reinterpret_cast<SilnikNapedu>( ?  : );
   }
+
+  void initOVC();
+
 
   void fixOutputs(){
     bool bladKrancowek = (pozycja == USZKODZONA);
+    Events::setEvent(Events::Name::BladKrancowek, bladKrancowek);
+    ovcIrqEnable(false);
     getSilnik()->gotoSafePosition(bladKrancowek);
     hamulec->gotoSafePosition(bladKrancowek);
-    bool blad230VAC = isAwariaSieci230VAC();
-    Events::setEvent(Events::Numer::BladKrancowek, bladKrancowek);
-    Events::setEvent(Events::Numer::Brak230VAC, bladKrancowek);
-//    awaria = bladKrancowek || blad230VAC;
+    ovcIrqEnable(false);
   }
 
 
@@ -101,50 +100,51 @@ private:
     return pozycja;
   }
 
+  void makeSilnikMove(SilnikNapedu::MOVE move){
+    ovcIrqEnable(false);
+    getSilnik()->setMove(move);
+    ovcIrqEnable(true);
+  }
+
+  void hamuj(bool hamowanie){
+    ovcIrqEnable(false);
+    hamulec->hamuj(hamowanie);
+    ovcIrqEnable(true);
+  }
+
   void checkRuch(){
     checkPozycja();
     switch(ruch){
     case  Ruch::OTWORZYC:
       if (isOpenPossible()){
-        hamulec->hamuj(false);
-        getSilnik()->setMove(SilnikNapedu::MOVE::UP);
+        hamuj(false);
+        makeSilnikMove(SilnikNapedu::MOVE::UP);
       }else{
-        getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
+        makeSilnikMove(SilnikNapedu::MOVE::HOLD_DOWN);
         hamulec->hamuj(true);
       }
       break;
     case  Ruch::ZAMKNAC:
       if (isClosePossible()){
-        hamulec->hamuj(false);
-        getSilnik()->setMove(SilnikNapedu::MOVE::DOWN);
+        hamuj(false);
+        makeSilnikMove(SilnikNapedu::MOVE::DOWN);
       }else{
-        getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
-        hamulec->hamuj(true);
+        makeSilnikMove(SilnikNapedu::MOVE::HOLD_DOWN);
+        hamuj(true);
       }
       break;
     case  Ruch::STOP:
     default:
       ruch = Ruch::STOP;
-      getSilnik()->setMove(SilnikNapedu::MOVE::HOLD_DOWN);
-      hamulec->hamuj(true);
+      makeSilnikMove(SilnikNapedu::MOVE::HOLD_DOWN);
+      hamuj(true);
       break;
     }
   }
 
 
-  void checkRelays(){
-    wewy->gpioOutOtwarte.setOutput(!isOtwarte());
-    wewy->gpioOutZamkniete.setOutput(!isZamkniete());
-    wewy->gpioOutRelSprawny.setOutput(!isAwaria()); // Awaria ma odwrocona logike
-    wewy->gpioOutPozar.setOutput(wewy->gpioInPozar.getInput());
-    bool alarmAkust = false;
-    if (isPozar()) alarmAkust = true;
-    if (isAlarmAkustyczny() && (!isZamkniete())) alarmAkust = true;
-    wewy->gpioOutSygnAkust.setOutput(alarmAkust);
-  }
-
-
   void initNaped(){
+    ovcIrqEnable(false);
     switch(typNapedu){
     case VIC_012x:
       silnik24VDC->setType1234(false);
@@ -171,7 +171,7 @@ private:
       silnik24VDC->setType1234(false);
       hamulec->setMode(Hamulec::MODE::OFF, false); break;
     }
-    //hamulec->init();
+    ovcIrqEnable(true);
   }
 
 
@@ -184,6 +184,7 @@ public:
 
   bool init(){
     wewy = pins;
+    initOVC();
     silnik24VDC->init();
     silnik230VAC->init();
     hamulec->init();
@@ -227,28 +228,30 @@ public:
   inline bool isZamkniete()const{ return wewy->gpioInKrancZamkniete.getInput(); }
   inline bool isZakazOtwierania()const{ return wewy->gpioInZakazOtwierania.getInput(); }
   inline bool isZakazZamykania()const{ return wewy->gpioInZakazZamykania.getInput(); }
-  inline bool isPozar()const{
+  inline bool checkAlarm(){
+    bool alPoz = wewy->gpioInPozar.getInput();
+    Events::setEvent(Events::Name::AlarmPozarowy, alPoz);
+    bool alAku = !(wewy->gpioInAlarmAkust.getInput());
+    Events::setEvent(Events::Name::AlarmAkustyczny, alAku);
+    return alPoz || alAku;
+  }
 
-    return wewy->gpioInPozar.getInput();
-  }  // sygnał aktywny poziomem wysokim!
-  inline bool isAlarmAkustyczny()const{ return !(wewy->gpioInAlarmAkust.getInput()); }
-  inline bool isPozarOrAlarmAkust()const{ return isPozar() || isAlarmAkustyczny(); }
+  inline bool isPozarOrAlarmAkust(){ return checkAlarm(); }
   inline bool isRezerwa1()const{ return !(wewy->gpioInRezerwa1.getInput()); }
   inline bool isRezerwa2()const{ return !(wewy->gpioInRezerwa2.getInput()); }
 
   inline void setBuzzer(bool enable){ wewy->gpioOutBuzer.setOutput(enable); }
 
   inline bool isAwaria()const{
-    return Events::isAwaria(Event::Priority::Ostrzezenie);
-//    return awaria;
+    return Events::isAwaria(Event::Priority::Awaria, true);
   }
 
   bool isAwariaSieci230VAC(){
     if (!zb40->isZB40InUse()){
       bool siecOK = wewy->gpioInSiec230VAC.getInput();
-      Events::getEvent(Events::Numer::Brak230VAC)->setActive(!siecOK);
+      Events::getEvent(Events::Name::Brak230VAC)->setActive(!siecOK);
     }
-    return Events::getEvent(Events::Numer::Brak230VAC)->isActive();
+    return Events::getEvent(Events::Name::Brak230VAC)->isActive();
   }
 
   inline bool isOpenPossible(){
@@ -273,7 +276,7 @@ public:
     return ((move == SilnikNapedu::MOVE::DOWN) || (move == SilnikNapedu::MOVE::UP));
   }
 
- //void setAwaria(bool enable){ awaria = enable; }
+  //void setAwaria(bool enable){ awaria = enable; }
 
   Pozycja podnies(){
     if (ruch != Ruch::OTWORZYC) VEprom::addToValue(VEprom::VirtAdres::LICZNIK, 1);
@@ -296,8 +299,9 @@ public:
   }
 
   void poll(){
+    ovcCheck();
     checkRuch();
-    checkRelays();
+
   }
 
   void setNaped(NAPED nowyTypNapedu){
@@ -347,15 +351,50 @@ public:
   }
 
   bool gotoSafePosition(bool enable){
+    ovcIrqEnable(false);
     silnik24VDC->gotoSafePosition(enable);
     silnik230VAC->gotoSafePosition(enable);
     hamulec->gotoSafePosition(enable);
     if (enable) setNaped(typNapedu);
+    ovcIrqEnable(true);
     return true;
   }
 
+  // wylaczenie obciazenia dla usuniecia OVC
+  virtual void ovcHold(bool state){
+    if (state){
+      makeSilnikMove(SilnikNapedu::MOVE::FLOAT);
+      if (isTyp230VAC()) wewy->gpioWlaczInwerter.setOutput(false);
+    }
+    Events::setEvent(Events::Name::PrzeciazenieNapedu, state);
+
+  }
+
+  // dla zainicjowania innych akcji przy OVC
+  virtual void ovcStart(){ };
+
+  virtual void ovcIrqEnable(bool state){
+    if (state) {
+      NVIC_EnableIRQ(EXTI4_15_IRQn);
+    }else{
+      NVIC_DisableIRQ(EXTI4_15_IRQn);
+    }
+  }
+
+
 };
 
+
 extern Sterownik * sterM;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void EXTI4_15_IRQHandler(void); // przerwanie od detekcji OVC
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* STEROWNIK_H_ */

@@ -10,9 +10,9 @@
 
 #include "Gpio.h"
 #include "SilnikNapedu.h"
+#include "QuickTask.h"
 
 class Silnik230VAC : public SilnikNapedu {
-
 
 private:
 
@@ -26,7 +26,6 @@ private:
 
   Gpio * gpioZamknij;
   Gpio * gpioOtworz;
-
 
 public:
   Silnik230VAC(Gpio * gpioZamk, Gpio * gpioOtw) {
@@ -61,10 +60,6 @@ public:
       gpioOtworz->setOutputDown();
     }
   }
-
-
-
-
 
 };
 
