@@ -107,6 +107,7 @@ void main(void) {
 
   pins->init();
 
+
   QuickTask::delayMsWithStoppedTasks(100);
   VEprom::init();
 
