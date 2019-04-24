@@ -59,7 +59,7 @@ public:
   inline bool isOpenRequest(){
     if (!sterM->isOpenPossible()) return false;
     bool openInputs = (!wewy->gpioInOtworz.getInput())     // otworz sygnalem OTWORZ
-                    || (!wewy->gpioInKluczII.getInput());   // otworz sygnalem Klucz_II
+                        || (!wewy->gpioInKluczII.getInput());   // otworz sygnalem Klucz_II
     bool openFront = (HMI::getInstance()->front->getState() == Front::State::UP);   // otworz z klawiatury na drzwiach
     if (openInputs) HMI::getInstance()->front->pushStop();
 
@@ -68,10 +68,12 @@ public:
 
   inline bool isCloseRequest(){
     if (!sterM->isClosePossible()) return false;
-    return (!wewy->gpioInKluczI.getInput())   // zamknij sygnalem KL_I
-        || (sterM->isPozarOrAlarmAkust())               // zamknij sygnalem pozaru
-        || (HMI::getInstance()->front->getState() == Front::State::DOWN)   // otworz z klawiatury na drzwiach
-        ;
+    bool closeInputs = (!wewy->gpioInKluczI.getInput());   // zamknij sygnalem KL_I
+    bool closeEvent = (sterM->isPozarOrAlarmAkust()) || (Events::getEvent(Events::Name::NiskiStanAkumulatora)->isActive());
+    bool closeFront = (HMI::getInstance()->front->getState() == Front::State::DOWN);   // zamknij
+    if (closeInputs || closeEvent) HMI::getInstance()->front->pushStop();
+    return   closeInputs || closeEvent || closeFront;          // zamknij sygnalem pozaru
+
   }
 
   void checkRelays(){
@@ -96,8 +98,8 @@ public:
 
     if (!sterM->isAwariaSieci230VAC()){ isOpenedOn230Fail = false; }   // reset licznika otwarc dla awarii sieci
 
-    // wewy->gpioWlaczZasNaped.setOutput(zas24Necessary);
     bool inverterInUse = sterM->isTyp230VAC() && sterM->isAwariaSieci230VAC() && moveRequest;
+    sterM->setInverter(inverterInUse);
 
     bool turnBuzzerOn = false;
 
@@ -112,8 +114,8 @@ public:
                 TIME_MOTOR_DELAY_MS;        // bez pozaru, to zwykle opoznienie 0.5 s
             sterM->zatrzymaj();
           }else{
-            wewy->gpioWlaczInwerter.setOutput(inverterInUse);
-            wewy->gpioWlaczBypass.setOutput(inverterInUse);
+//            wewy->gpioWlaczInwerter.setOutput(inverterInUse);
+//            wewy->gpioWlaczBypass.setOutput(inverterInUse);
             sterM->opusc();
             turnBuzzerOn = true;
           }
@@ -132,8 +134,8 @@ public:
             motorDelayMs = TIME_MOTOR_DELAY_MS;
             sterM->zatrzymaj();
           }else{
-            wewy->gpioWlaczInwerter.setOutput(inverterInUse);
-            wewy->gpioWlaczBypass.setOutput(inverterInUse);
+//            wewy->gpioWlaczInwerter.setOutput(inverterInUse);
+//            wewy->gpioWlaczBypass.setOutput(inverterInUse);
             sterM->podnies();
             turnBuzzerOn = true;
           }

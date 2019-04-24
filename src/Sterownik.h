@@ -52,6 +52,7 @@ private:
   Silnik230VAC * silnik230VAC;
   Hamulec * hamulec;
   Pinout *wewy = nullptr;
+  volatile bool inverterIsOn = false;
 
   volatile NAPED typNapedu = NIEOKRESLONY;
   Pozycja pozycja = POSRODKU;
@@ -350,6 +351,17 @@ public:
     }
   }
 
+
+  void setInverter(bool enable){
+    if (!inverterIsOn){ // wylaczyć detekcje przeciążenia przy starcie przetwornicy
+      ovcIrqEnable(false);
+    }
+    wewy->gpioWlaczInwerter.setOutput(enable);
+    wewy->gpioWlaczBypass.setOutput(enable);
+    inverterIsOn = enable;
+  }
+
+
   bool gotoSafePosition(bool enable){
     ovcIrqEnable(false);
     silnik24VDC->gotoSafePosition(enable);
@@ -369,6 +381,8 @@ public:
     Events::setEvent(Events::Name::PrzeciazenieNapedu, state);
 
   }
+
+
 
   // dla zainicjowania innych akcji przy OVC
   virtual void ovcStart(){ };

@@ -60,7 +60,9 @@ private:
     if (!isZB40InUse())return;
     bool online = isZB40Online();
     Events::setEvent(Events::Name::BrakPolaczeniaZB40, !online);
-    if (!online) return;
+    if (!online) {
+      flags.aku.bajt = flags.errors.bajt = flags.fuses.bajt = flags.zas.bajt = 0;
+    };
     Events::setEvent(Events::Name::Brak230VAC, (bool)flags.errors.flag.u230V);
     Events::setEvent(Events::Name::UszkodzenieAkumulatora, (bool)flags.aku.flag.brakAku);
     Events::setEvent(Events::Name::NiskiStanAkumulatora, (bool)flags.aku.flag.niskieUAku);

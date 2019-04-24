@@ -105,6 +105,21 @@ public:
     return false;
   }
 
+  static Event * getMaxPriEvent(bool excludeAlarms){
+    Event * result = nullptr;
+    Event::Priority pri = Event::Priority::Informacja;
+    Iterator it = getIterator();
+    while (true){
+      Event * ev = getNextEvent(it);
+      if (ev == nullptr) break;                     // przeszukano wszystkie
+      if (ev->priority < pri) continue;     // olewac mniejsze priorytety
+      if (excludeAlarms){
+        if (ev->priority == Event::Priority::Alarm) continue;   // nie liczyc alarmow pozarowych
+      }
+      if(ev->value > 0) result = ev;
+    }
+    return result;
+  }
 
 };
 

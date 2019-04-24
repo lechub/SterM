@@ -336,12 +336,18 @@ void Menu::showEkran(){
     //Events::Alarm alarm = sterM->getAlarm();
     lcd->print(Events::getEvent(Events::Name::AlarmPozarowy)->isActive() ? 'P' : '-');
     lcd->print(Events::getEvent(Events::Name::AlarmAkustyczny)->isActive() ? 'S' : '-');
-    lcd->print(sterM->isAwaria() ? 'A' : '-');
+    Event * ev = Events::getMaxPriEvent(false);
+    uint8_t nrAwarii = '0';
+    if (ev != nullptr){
+      nrAwarii = uint8_t(nrAwarii + ev->priority);
+    }
+    lcd->print(nrAwarii != '0' ? nrAwarii : '-');
     lcd->print(sterM->isAwariaSieci230VAC() ? 'V' : '-');
     break;
   }
   case e_WEJSCIA: {
     //--------------->|****|----|*-*-|<
+
     //--------------->1234567890123456<
     lcd->printXY(0,0, "     WEJSCIA    ");  // przerwa
     lcd->gotoXY(0,1);
